@@ -1,0 +1,16 @@
+
+#welcome-section p {
+    margin: 0;
+
+
+}
+
+
+.content {
+    position: relative;
+}
+
+#left-panel-link {
+    position: absolute;
+    padding-top: 4;
+}
