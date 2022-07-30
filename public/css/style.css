@@ -1,104 +1,110 @@
-.hero-main{
+.hero-main {
     height: 90vh;
     background: linear-gradient(90deg, rgb(11, 125, 255) 20%, rgb(0, 68, 255) 60%, rgb(76, 17, 185));
 
 }
 
 .carousel-control-next,
-.carousel-control-prev /*, .carousel-indicators */ {
+.carousel-control-prev
+
+/*, .carousel-indicators */
+    {
     filter: invert(100%);
 }
 
-.carousel{
+.carousel {
     margin: auto;
 }
 
-.navbar{
+.navbar {
     background: linear-gradient(90deg, rgb(11, 125, 255) 20%, rgb(0, 68, 255) 60%, rgb(76, 17, 185));
 }
 
-.img-logo{
-    height: 48px; 
+.img-logo {
+    height: 48px;
     width: 48px;
 }
 
-.footer-logo{
-    height: 90px; 
+.footer-logo {
+    height: 90px;
     width: 380px;
 }
 
-.card{
+.card {
     border: none;
 }
 
 .navbar-dark .navbar-nav .nav-link {
     color: white;
     font-size: 18px;
-  }
-  
-.navbar-dark .navbar-nav .nav-link:focus,
-.navbar-dark .navbar-nav .nav-link:hover {
-  color: #F6D55C;
 }
 
-.main .card{
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #F6D55C;
+}
+
+.main .card {
     border: none;
 }
 
 /* to prevent cascading: order media query from large to small */
-.hero-img{
+.hero-img {
     width: 550px;
 }
 
-@media screen and (max-width:1200px){
-    .hero-img{
+@media screen and (max-width:1200px) {
+    .hero-img {
         width: 450px;
     }
 }
-@media screen and (max-width:992px){
-    .hero-img{
+
+@media screen and (max-width:992px) {
+    .hero-img {
         width: 350px;
     }
 }
-@media screen and (max-width:767px){
-    .hero-img-col{
+
+@media screen and (max-width:767px) {
+    .hero-img-col {
         display: none;
     }
 }
 
-.feature .card{
+.feature .card {
     box-shadow: 2px 10px 15px gray;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
 
-.feature .card .card-text{
+.feature .card .card-text {
     font-size: 1.25rem;
 }
 
-.feature .card:hover{
+.feature .card:hover {
     box-shadow: 2px 10px 45px gray;
     cursor: pointer;
 }
-.feature .card:active{
+
+.feature .card:active {
     box-shadow: 2px 10px 45px gray;
     background-color: rgb(219, 219, 219);
     cursor: pointer;
 }
 
-.theme{
+.theme {
     color: #F6D55C;
 }
 
-.bg-none{
+.bg-none {
     background-color: transparent;
 }
 
-.card-title{
+.card-title {
     padding: 1.25rem;
 }
 
-.footer{
+.footer {
     color: white;
     margin-top: 5rem;
     margin-bottom: 50px;
@@ -106,12 +112,45 @@
     padding: 2rem;
 }
 
-footer a{
+footer a {
     color: white;
 
 }
 
-footer ul{
+footer ul {
     list-style: none;
     padding-left: 0;
+}
+
+.login {
+    min-height: 100vh;
+}
+
+.login-heading {
+    font-weight: 300;
+}
+
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+}
+
+.enrollment-details {
+    padding-left: 280px;
+    padding-right: 280px;
+}
+
+.basic-details{
+    margin: 50px;
+}
+
+.profile{
+    margin: 50px;
+}
+
+.main-div {
+    height: 90vh;
+    overflow-y: scroll;
+    border: rgb(194, 194, 194);
 }
