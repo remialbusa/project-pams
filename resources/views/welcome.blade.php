@@ -33,7 +33,7 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="#">FAQ's</a>
+                        <a href="student/auth/faqs" class="nav-link" href="#">FAQ's</a>
                     </li>
                 </ul>
                 <div>

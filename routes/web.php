@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FaqsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +30,6 @@ Route::get('/student/profile', [MainController::class, 'profile'])->middleware('
 Route::get('/student/auth/logout', [MainController::class, 'logout'])->name('auth.logout');
 
 Route::get('/student/enrollment-status', [MainController::class, 'enrollmentStatus'])->name('auth.enrollment-status');
+
+Route::get('/staff/auth/login', [AdminController::class, 'loginAdmin']);
+Route::get('/student/auth/faqs',[FaqsController::class, 'faqsStudent']);
