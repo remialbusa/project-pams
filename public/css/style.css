@@ -154,3 +154,11 @@ footer ul {
     overflow-y: scroll;
     border: rgb(194, 194, 194);
 }
+
+.faqs-student {
+    height: 80vh;
+}
+
+.faqs-student p{
+    padding-left: 380px;
+}
