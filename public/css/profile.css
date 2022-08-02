@@ -1,0 +1,25 @@
+.navbar {
+    background: linear-gradient(90deg, rgb(11, 125, 255) 20%, rgb(0, 68, 255) 60%, rgb(76, 17, 185));
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+    font-size: 18px;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #F6D55C;
+}
+
+.img-logo {
+    height: 48px;
+    width: 48px;
+}
+
+@media screen and (max-width:767px) {
+    .enrollment-details {
+        padding: 0;
+        margin: 0;
+    }   
+}

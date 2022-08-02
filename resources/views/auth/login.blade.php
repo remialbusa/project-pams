@@ -35,15 +35,12 @@
                     <li class="nav-item px-2">
                         <a class="nav-link" href="#">FAQ's</a>
                     </li>
-                </ul>
-                <div>
-                    <a href=""><button href class="btn btn-warning px-4" type="submit">Login</button></a>
-                </div>
+                </ul>               
             </div>
     </nav>
 
-    <div class="container-fluid ps-md-0">
-        <div class="login d-flex align-items-center py-5">
+    <div class="container-fluid ps-md-0 mt-5">
+        <div class="login d-flex py-5">
             <div class="container">
                 <div class="row">
                     <div class="col-md-9 col-lg-4 mx-auto">
