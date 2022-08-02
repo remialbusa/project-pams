@@ -123,7 +123,7 @@ footer ul {
 }
 
 .login {
-    min-height: 100vh;
+    min-height: 70vh;
 }
 
 .login-heading {
@@ -136,23 +136,12 @@ footer ul {
     padding: 0.75rem 1rem;
 }
 
-.enrollment-details {
-    padding-left: 280px;
-    padding-right: 280px;
-}
-
 .basic-details{
     margin: 50px;
 }
 
 .profile{
     margin: 50px;
-}
-
-.main-div {
-    height: 90vh;
-    overflow-y: scroll;
-    border: rgb(194, 194, 194);
 }
 
 .faqs-student {
