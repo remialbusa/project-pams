@@ -36,8 +36,14 @@
                         <a href="student/auth/faqs" class="nav-link" href="#">FAQ's</a>
                     </li>
                 </ul>
-                <div>
-                    <a href="student/auth/login"><button href class="btn btn-warning px-4" type="submit">Login</button></a>
+                <div class="dropdown">
+                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Login as
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="student/auth/login">Student</a></li>
+                        <li><a class="dropdown-item" href="staff/auth/login">Employee</a></li>
+                    </ul>
                 </div>
             </div>
     </nav>
@@ -63,7 +69,7 @@
                                 Classes will start on August 22, 2022.
 
                             </p>
-                            <a href="#!" class="btn btn-warning bg-warning btn-block mt-3">Enroll now</a>
+                            <a href="student/auth/login" class="btn btn-warning bg-warning btn-block mt-3">Pre Enroll now</a>
                         </div>
                     </div>
                 </div>
