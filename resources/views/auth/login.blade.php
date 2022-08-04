@@ -15,7 +15,7 @@
 
     <!-- custom css -->
     <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
-    <title>Login</title>
+    <title>Student Login</title>
 </head>
 
 <body>
@@ -46,7 +46,7 @@
                     <div class="col-md-9 col-lg-4 mx-auto">
                         <h3 class="login-heading mb-4">Student login</h3>
                         <!-- login Form -->
-                        <form action="{{ route('auth.verify') }}" method="POST">
+                        <form action="{{ route('auth.verify-student') }}" method="POST">
                             @if(Session::get('fail'))
                             <div class="alert alert-danger">{{Session::get('fail')}}</div>
                             @endif

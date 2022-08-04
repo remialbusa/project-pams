@@ -22,7 +22,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-dark sticky-top navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="{{route('auth.logout')}}"><img class="img-logo" style="height:48px; width: 48px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
+            <a class="navbar-brand" href="{{route('auth.logout-student')}}"><img class="img-logo" style="height:48px; width: 48px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,7 +39,7 @@
                         <a class="nav-link" href="{{route('auth.enrollment-status')}}">Monitor Enrollment</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="{{route('auth.logout')}}">Logout</a>
+                        <a class="nav-link" href="{{route('auth.logout-student')}}">Logout</a>
                     </li>
                 </ul>
             </div>

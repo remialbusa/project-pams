@@ -131,7 +131,7 @@
                     <div class="row text-white">
                         <div class="col col-12 col-sm-6">
                             <h5>Contact Us</h5>
-                            <ul>
+                            <ul> 
                                 <li><a>Leyte Normal University</a></li>
                                 <li><a>B. Paterno Street</a></li>
                                 <li><a>Tacloban City, Leyte 6500</a></li>
