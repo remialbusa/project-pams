@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Admin;
-use Illuminate\Support\Facades\DB;
+use App\Models\AdmissionOfficer;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class AdmissionOfficerController extends Controller
 {
-    function loginAdmin()
+    //
+    function loginAdmissionOfficer()
     {
         return view('admin.login-admin');
     }
@@ -17,7 +17,7 @@ class AdminController extends Controller
     {
         return view('admin.register-admin');
     }
-    function saveAdmin(Request $request)
+    function saveAdmissionOfficer(Request $request)
     {
         //validate info
         $request->validate([
@@ -28,8 +28,8 @@ class AdminController extends Controller
             'password' => 'required'
         ]);
 
-        //insert admin data
-        $admin = new Admin();
+        //insert data
+        $admin = new AdmissionOfficer();
         $admin->employee_id = $request->employee_id;
         $admin->name = $request->name;
         $admin->middle_name = $request->middle_name;
@@ -43,7 +43,6 @@ class AdminController extends Controller
             return back()->with('fail', 'failed inserting admin data');
         }
     }
-    //verify admin login credential
     function verify(Request $request)
     {
         //validate request
@@ -55,10 +54,10 @@ class AdminController extends Controller
 
         $userType = $request->user_type;
 
-        $adminInfo = Admin::where('employee_id', '=', $request->employee_id)->first();
+        $adminInfo = AdmissionOfficer::where('employee_id', '=', $request->employee_id)->first();
 
-        if ($userType == "1") {
-            if ($adminInfo && Hash::check($request->password, $adminInfo->password)) {
+        if ($userType == "1" && $adminInfo) {
+            if (Hash::check($request->password, $adminInfo->password)) {
                 $request->session()->put('LoggedAdmin', $adminInfo->id);
                 return redirect('staff/admin/manage-users');
             } else {
@@ -67,28 +66,21 @@ class AdminController extends Controller
         } else {
             return back()->with('fail', 'employee ID does not exist');
         }
-
-
     }
-    function manageUsersView(){
+    function manageEnrollees(){
         if(session()->has('LoggedAdmin')){
-            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $admin = AdmissionOfficer::where('id', '=', session('LoggedAdmin'))->first();
             $data = [
                 'LoggedAdminInfo'=>$admin
             ];
         }
-        $adminList = Admin::all();
-        return view('admin.manage-users', $data, ['admins'=>$adminList]);
-    }
-    function systemConfigView(){
-        return view('admin.system-configuration');
+        return view('admin.manage-users', $data);
     }
 
-    function logoutAdmin(){
+    function AdmissionOfficer(){
         if(session()->has('LoggedAdmin')){
             session()->pull('LoggedAdmin');
             return redirect('staff/auth/login');
         }
     }
-
 }

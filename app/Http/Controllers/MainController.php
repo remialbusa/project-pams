@@ -16,7 +16,7 @@ class MainController extends Controller
         return view('auth.register-student');
     }
 
-    function save(Request $request){
+    function saveStudent(Request $request){
         //validate info
         $request->validate([
             'student_id'=>'required',
