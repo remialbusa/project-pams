@@ -34,7 +34,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a class="nav-link">Welcome, <b>{{$LoggedAdminInfo->name}}</b></a>
+                        <a class="nav-link active">Welcome, <b>{{$LoggedAdminInfo->name}}</b></a>
                     </li>
                     <li class="nav-item px-2">
                         <a class="nav-link" href="/staff/admin/manage-users">Manage Users</a>
@@ -49,21 +49,20 @@
             </div>
     </nav>
 
-    <section class="manage-users-body">
-        <div class="container h-100 ">
+    <section class="manage-users-section">
+        <div class="manage-users-body container mt-5 px-4">
             <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>Employees</b></h2>
+                            <h2>Manage <b>Users</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                            <a href="#addEmployeeModal" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalForm"><i class="material-icons">&#xE147;</i> <span>Add User</span></a>                      
                         </div>
                     </div>
                 </div>
-            <div class="table-wrapper row">
-                
+                <hr>
+            <div class="table-wrapper row">              
                 <table class="table table-fixed table-hover">
                     <thead>
                         <tr>
@@ -73,12 +72,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($admins as $admin)
+                        @foreach ($admins as $key => $admin)
                         <tr>
-                            <td>{{$admin['employee_id']}}</td>
-                            <td>{{$admin['name']}}</td>
+                            <td>{{$admin->employee_id}}</td>
+                            <td>{{$admin->name}}</td>
                             <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="{{ route('edit-admin',  $adminData->id) }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                 <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
@@ -87,7 +86,7 @@
                 </table>
                 
             </div>
-            <div class="clearfix px-4">
+            <div class="clearfix px-4 mb-4">
                     <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                     <ul class="pagination">
                         <li class="page-item disabled"><a href="#">Previous</a></li>
@@ -101,6 +100,60 @@
                 </div>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- login Form -->
+                        <form action="{{ route('auth.save-admin') }}" method="POST">     
+                            @if(Session::get('success'))
+                                <div class="alert alert-success">{{Session::get('success')}}</div>
+                            @endif     
+                        
+                            @if(Session::get('fail'))
+                                <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                            @endif    
+                        
+                            @csrf
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="employee_id" placeholder="Employee ID" value="{{ old('employee_id') }}">
+                                <span class="text-danger">@error('employee_id'){{$message}} @enderror</span>
+                                <label for="floatingInput">Employee ID</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}">
+                                <span class="text-danger">@error('name'){{$message}} @enderror</span>
+                                <label for="floatingInput">Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="middle_name" placeholder="Middle Name" value="{{ old('middle_name') }}">
+                                <span class="text-danger">@error('middle_name'){{$message}} @enderror</span>
+                                <label for="floatingInput">Middle Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{ old('last_name') }}">
+                                <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
+                                <label for="floatingInput">Last Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" name="password" placeholder="Password">
+                                <span class="text-danger">@error('password'){{$message}} @enderror</span>
+                                <label for="floatingPassword">Password</label>
+                            </div>                           
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Login</button>                               
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <footer class="footer mb-0">
         <div class="container">
@@ -135,7 +188,6 @@
                             <i class="bi bi-facebook" style="font-size: 2rem; margin-right: 20px;"></i>
                             <i class="bi bi-youtube" style="font-size: 2rem;"></i>
                         </div>
-
                     </div>
                 </div>
                 <hr>
