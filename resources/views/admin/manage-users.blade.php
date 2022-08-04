@@ -77,7 +77,7 @@
                             <td>{{$admin->employee_id}}</td>
                             <td>{{$admin->name}}</td>
                             <td>
-                                <a href="{{ route('edit-admin',  $adminData->id) }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="{{ route('edit-admin', $admin->id) }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                 <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
