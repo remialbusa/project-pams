@@ -72,13 +72,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($admins as $key => $admin)
+                        @foreach ($admins as $admin)
                         <tr>
-                            <td>{{$admin->employee_id}}</td>
-                            <td>{{$admin->name}}</td>
+                            <td>{{$admin['employee_id']}}</td>
+                            <td>{{$admin['name']}}</td>
                             <td>
-                                <a href="{{ route('edit-admin', $admin->id) }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="{{ route('edit-admin', $admin['id'])}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="{{ route('delete-admin', $admin['id'])}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
                         @endforeach                      
@@ -147,7 +147,7 @@
                                 <label for="floatingPassword">Password</label>
                             </div>                           
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Login</button>                               
+                                <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Add</button>                               
                             </div>
                         </form>
                     </div>
