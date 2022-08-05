@@ -39,6 +39,13 @@ Route::get('/staff/auth/login', [AdminController::class, 'loginAdmin']);
 Route::get('/staff/auth/register', [AdminController::class, 'register'])->middleware('adminAlreadyLoggedIn');
 Route::post('/staff/auth/register-admin', [AdminController::class, 'saveAdmin'])->name('auth.save-admin');
 
+//update admin user credentials
+Route::get('/staff/admin/edit/{id}', [AdminController::class, 'editAdminDetails'])->name('edit-admin');
+Route::post('/staff/admin/edit', [AdminController::class, 'updateAdminDetails'])->name('update-admin');
+
+//delete admin user
+Route::get('/staff/admin/delete/{id}', [AdminController::class, 'deleteAdminUser'])->name('delete-admin');
+
 //Verify and login admin routes
 Route::post('/staff/auth/verify', [AdminController::class, 'verify'])->name('auth.verify-admin');
 Route::get('/staff/admin/manage-users', [AdminController::class, 'manageUsersView'])->middleware('isLoggedAdmin');

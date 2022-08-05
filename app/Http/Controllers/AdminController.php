@@ -43,6 +43,44 @@ class AdminController extends Controller
             return back()->with('fail', 'failed inserting admin data');
         }
     }
+    //edit route
+    function editAdminDetails($id){
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $adminData = Admin::find($id);
+        return view('admin.edit-user', $data, ['adminData'=>$adminData]);
+    }
+
+    //update admin user details
+    function updateAdminDetails(Request $request){
+        $request->validate([
+            'employee_id' => 'required',
+            'name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required',
+            'password' => 'required'
+        ]);
+
+        $admin = Admin::find($request->id);
+        $admin->employee_id = $request->employee_id;
+        $admin->name = $request->name;
+        $admin->middle_name = $request->middle_name;
+        $admin->last_name = $request->last_name;
+        $admin->password = Hash::make($request->password);
+        $admin->save();
+        return redirect('staff/admin/manage-users');
+    }
+
+    function deleteAdminUser($id){
+        $admin = Admin::find($id);
+        $admin->delete();
+        return redirect('staff/admin/manage-users');
+    }
+
     //verify admin login credential
     function verify(Request $request)
     {
@@ -67,8 +105,6 @@ class AdminController extends Controller
         } else {
             return back()->with('fail', 'employee ID does not exist');
         }
-
-
     }
     function manageUsersView(){
         if(session()->has('LoggedAdmin')){
