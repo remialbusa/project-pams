@@ -40,7 +40,7 @@
                 <div class="row mt-4 px-5">
                     <div class="col-md-6">
                         <div class="form-outline">
-                            <label class="form-label" for="form6Example1"><b>Student Type</b></label>
+                            <label class="form-label" for="form6Example1">Student Type</label>
                             <select class="form-select" aria-label="Default select example" name="student_type">
                                 <option value="New Student">New Student</option>
                                 <option selected value="Continuing">Continuing</option>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="col">
                         <div class="form-outline">
-                            <label class="form-label" for="form6Example2"><b>Program</b></label>
+                            <label class="form-label" for="form6Example2">Program</label>
                             <select class="form-select" aria-label="Default select example" name="program">
                                 <option selected>N/A</option>
                                 <option value="MIT">MIT - Master of Information Technology</option>
@@ -63,7 +63,54 @@
                         </div>
                     </div>
                 </div>
-                <div class="profile px-5">
+
+                <h4 class="px-5 mt-4"><b>Select Course/s you plan to enroll this semester:</b></h4>    
+
+                <div class="row mt-4 px-5">
+                    <div class="col-md-6">
+                        <div class="form-outline">
+                            <label class="form-label" for="form6Example1">1ST PERIOD - 7:30 a.m. - 10:30 a.m.</label>
+                            <select class="form-select" aria-label="Default select example" name="first_period">
+                                <option disabled selected>Select</option>
+                                <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
+                                <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
+                                <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>                      
+                                <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>                      
+                                <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
+                                <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
+                            </select>
+                            <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-outline">
+                            <label class="form-label" for="form6Example2">2ND PERIOD - 11:00 a.m. - 2:00 p.m.</label>
+                            <select class="form-select" aria-label="Default select example" name="second_period">
+                                <option disabled selected>Select</option>
+                                <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
+                                <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
+                                <option value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
+                                <option value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
+                            </select>
+                            <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
+                        </div>
+                    </div>
+                    <div class="col mt-3">
+                        <div class="form-outline">
+                            <label class="form-label" for="form6Example2">3RD PERIOD - 2:00 p.m. - 5:00 p.m.</label>
+                            <select class="form-select" aria-label="Default select example" name="third_period">
+                                <option disabled selected>Select</option>
+                                <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
+                                <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
+                                <option value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
+                                <option value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
+                            </select>
+                            <span class="text-danger">@error('third_period'){{$message}} @enderror</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile px-5 mt-5">
 
                     <h4><b>Profile</b></h4>
                     <!-- 2 column grid layout with text inputs for the first and last names -->

@@ -17,6 +17,9 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('student_type');
             $table->string('program');
+            $table->string('first_period');
+            $table->string('second_period');
+            $table->string('third_period');          
             $table->integer('student_id');
             $table->string('first_name');
             $table->string('middle_name');
