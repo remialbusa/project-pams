@@ -37,11 +37,8 @@
                         <a class="nav-link active">Welcome, <b>{{$LoggedAdminInfo->name}}</b></a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/staff/admin/manage-users">Manage Users</a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" href="/staff/admin/system-configuration">System Configuration</a>
-                    </li>
+                        <a class="nav-link" href="/staff/admin/manage-enrollees">Manage Enrollees</a>
+                    </li>                 
                     <li class="nav-item px-2">
                         <a class="nav-link" href="{{route('auth.logout-admin')}}">Logout</a>
                     </li>
@@ -54,7 +51,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Manage <b>Users</b></h2>
+                        <h2>Manage <b>Enrollees</b></h2>
                     </div>
                     <div class="col-sm-6">
                         <a href="#addEmployeeModal" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalForm"><i class="material-icons">&#xE147;</i> <span>Add User</span></a>
