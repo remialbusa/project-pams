@@ -1,3 +1,25 @@
+.manage-users-body {
+    width: 70vw;
+    font-family: 'Varela Round', sans-serif;
+    border-radius: 15px;
+    border:1px solid rgb(194, 194, 194);
+}
+
+p{
+    font-size: 12px;
+}
+
+.basic-details{
+    height: 75vh;
+    overflow-y:scroll;
+}
+
+.table-title {        
+   
+    margin-top: 30px;
+    border-radius: 3px 3px 0 0;
+}
+
 .navbar {
     background: linear-gradient(90deg, rgb(11, 125, 255) 20%, rgb(0, 68, 255) 60%, rgb(76, 17, 185));
 }
@@ -18,8 +40,52 @@
 }
 
 @media screen and (max-width:767px) {
-    .enrollment-details {
-        padding: 0;
-        margin: 0;
-    }   
+    .manage-users-body{
+        padding: 0px;
+        
+    }
+    .basic-details {
+        padding: 0px;
+        margin: 0px;
+    }
+    .student-type{
+        padding: 0px;
+        margin: 0px;
+    }
+    .profile{
+        padding: 0px;
+        margin: 0px;
+    }
+    .other-details{
+        padding: 0px;
+        margin: 0px;
+    }
+       
+}
+.footer {
+    color: white;
+    margin-top: 5rem;
+    margin-bottom: 50px;
+    background: linear-gradient(90deg, rgb(11, 125, 255) 20%, rgb(0, 68, 255) 60%, rgb(76, 17, 185));
+    padding: 2rem;
+}
+
+.img-logo {
+    height: 48px;
+    width: 48px;
+}
+
+.footer-logo {
+    height: 90px;
+    width: 380px;
+}
+
+footer a {
+    color: white;
+
+}
+
+footer ul {
+    list-style: none;
+    padding-left: 0;
 }

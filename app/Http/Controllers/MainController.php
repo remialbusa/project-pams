@@ -19,27 +19,99 @@ class MainController extends Controller
     function saveStudent(Request $request){
         //validate info
         $request->validate([
+            'student_type'=>'required',
+            'program'=>'required',          
             'student_id'=>'required',
-            'name'=>'required',
+            'first_name'=>'required',
+            'middle_name'=>'required',
+            'last_name'=>'required',
+            'birth_date'=>'required',
+            'gender'=>'required',
+            'civil_status'=>'required',
+            'nationality'=>'required',
+            'contact_no'=>'required',
             'email'=>'required|email',
-            'password'=>'required'
+            'zipcode'=>'required',
+            'home_address'=>'required',
+            'guardian'=>'required',
+            'guardian_contact_no'=>'required'
         ]);
 
         //insert data
         $student = new Student();
+        $student->student_type= $request->student_type;
+        $student->program= $request->program;
         $student->student_id= $request->student_id;
-        $student->name= $request->name;
+        $student->first_name= $request->first_name;
+        $student->middle_name= $request->middle_name;
+        $student->last_name= $request->last_name;
+        $student->birth_date= $request->birth_date;
+        $student->gender= $request->gender;
+        $student->civil_status= $request->civil_status;
+        $student->nationality= $request->nationality;
+        $student->contact_no= $request->contact_no;
         $student->email= $request->email;
-        $student->password= Hash::make($request->password);
+        $student->zipcode= $request->zipcode;
+        $student->home_address= $request->home_address;
+        $student->guardian= $request->guardian;
+        $student->guardian_contact_no= $request->guardian_contact_no;
         $save = $student->save();
 
         if($save){
-            return back()->with('success', 'student inserted successfuly');
+            return back()->with('success', 'Student inserted successfuly');
         }else{
-            return back()->with('fail', 'failed inserting student data');
+            return back()->with('fail', 'Failed inserting student data');
         }
     }
 
+    //update student details
+    function updateStudentDetails(Request $request){
+        $request->validate([
+            'student_type'=>'required',
+            'program'=>'required',          
+            'student_id'=>'required',
+            'first_name'=>'required',
+            'middle_name'=>'required',
+            'last_name'=>'required',
+            'birth_date'=>'required',
+            'gender'=>'required',
+            'civil_status'=>'required',
+            'nationality'=>'required',
+            'contact_no'=>'required',
+            'email'=>'required|email',
+            'zipcode'=>'required',
+            'home_address'=>'required',
+            'guardian'=>'required',
+            'guardian_contact_no'=>'required'
+        ]);
+
+        $student = Student::find($request->id);
+        $student->student_type= $request->student_type;
+        $student->program= $request->program;
+        $student->student_id= $request->student_id;
+        $student->first_name= $request->first_name;
+        $student->middle_name= $request->middle_name;
+        $student->last_name= $request->last_name;
+        $student->birth_date= $request->birth_date;
+        $student->gender= $request->gender;
+        $student->civil_status= $request->civil_status;
+        $student->nationality= $request->nationality;
+        $student->contact_no= $request->contact_no;
+        $student->email= $request->email;
+        $student->zipcode= $request->zipcode;
+        $student->home_address= $request->home_address;
+        $student->guardian= $request->guardian;
+        $student->guardian_contact_no= $request->guardian_contact_no;
+        $save = $student->save();
+
+        if($save){
+            return back()->with('success', 'Student update successful');
+        }else{
+            return back()->with('fail', 'Failed updating student data');
+        }
+    }
+
+    //verify student credential
     function verify(Request $request){
         //validate request
          $request->validate([
@@ -47,29 +119,30 @@ class MainController extends Controller
              'password'=>'required'
          ]);
 
-         $studentInfo = Student::where('student_id','=', $request->student_id)->first();
-
-         if($studentInfo){ //student_id exist
-            if(Hash::check($request->password, $studentInfo->password)){               
-                $request->session()->put('LoggedUser', $studentInfo->id);
+         $studentID = Student::where('student_id','=', $request->student_id)->first();
+         $studentPassword = Student::where('last_name','=', $request->password)->first();
+         
+         if($studentID){ //if student_id exist
+            if($studentPassword){ //if password exist                
+                $request->session()->put('LoggedUser', $studentID->id);
                 return redirect('student/profile');
             }else{
-                return back()->with('fail', 'incorrect password');
+                return back()->with('fail', 'Incorrect password');
             }
          }else{
-             return back()->with('fail', 'student ID does not exist');           
+             return back()->with('fail', 'Student ID does not exist');           
          }
     }
 
-    function profile(){
-        
+    function profile(){       
         if(session()->has('LoggedUser')){
             $student = Student::where('id', '=', session('LoggedUser'))->first();
             $data = [
                 'LoggedUserInfo'=>$student
             ];
         }
-        return view('student.profile', $data);
+        $studentList = Student::all();
+        return view('student.profile', $data, ['students'=>$studentList]);
     }
 
     function logout(){

@@ -39,7 +39,7 @@
             <a class="nav-link" href="{{route('auth.enrollment-status')}}">Monitor Enrollment</a>
           </li>
           <li class="nav-item px-2">
-            <a class="nav-link" href="{{route('auth.logout')}}">Logout</a>
+            <a class="nav-link" href="{{route('auth.logout-student')}}">Logout</a>
           </li>
         </ul>
       </div>

@@ -24,11 +24,16 @@ Route::get('/welcome', function () {
 //students routes
 Route::get('/student/auth/login', [MainController::class, 'login'])->middleware('studentAlreadyLoggedIn');
 Route::get('/student/auth/register', [MainController::class, 'register'])->middleware('studentAlreadyLoggedIn');
-Route::post('/student/auth/register-student', [MainController::class, 'saveStudent'])->name('auth.save');;
+Route::post('/student/auth/register-student', [MainController::class, 'saveStudent'])->name('auth.save');
 Route::post('/student/auth/verify', [MainController::class, 'verify'])->name('auth.verify-student');
+
 //student profile routes
 Route::get('/student/profile', [MainController::class, 'profile'])->middleware('isLoggedStudent');
 Route::get('/student/auth/logout', [MainController::class, 'logout'])->name('auth.logout-student');
+
+//update student details
+Route::post('/student/profile/update', [MainController::class, 'updateStudentDetails'])->name('update-student');
+
 //enrollment status routes
 Route::get('/student/enrollment-status', [MainController::class, 'enrollmentStatus'])->name('auth.enrollment-status');
 Route::get('/student/auth/faqs',[FaqsController::class, 'faqsStudent']);
