@@ -88,13 +88,13 @@
           </div>
           <div class="col-sm-6">
 
-          </div>
+          </div> 
         </div>
         <hr>
         <!-- RH: this is bootstrap 5 tabbed panel -->
         <ul class="nav nav-tabs nav-fill mt-4 mb-2" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
-            <a class="nav-link link-dark active" id="active-semester-tab" data-bs-toggle="tab" href="#active-semester" role="tab" aria-controls="active-semester" aria-selected="true">Active Semester</a>
+            <a class="nav-link link-dark active" id="active-semester-tab" data-bs-toggle="tab" href="#active-semester" role="tab" aria-controls="active-semester" aria-selected="true">Enrollment Process</a>
           </li>
           <li class="nav-item" role="presentation">
             <a class="nav-link link-dark" id="enrolled-tab" data-bs-toggle="tab" href="#enrolled-subjects" role="tab" aria-controls="enrolled-subjects" aria-selected="false">Enrolled Subjects</a>
