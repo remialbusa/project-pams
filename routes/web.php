@@ -57,3 +57,5 @@ Route::get('/staff/admin/manage-users', [AdminController::class, 'manageUsersVie
 Route::get('/staff/admin/system-configuration', [AdminController::class, 'systemConfigView'])->middleware('isLoggedAdmin');
 Route::get('/staff/auth/logout', [AdminController::class, 'logoutAdmin'])->name('auth.logout-admin');
 
+//Admission Officer routes
+Route::get('/staff/admin/admission-officer', [AdminController::class, 'admissionOfficerView'])->name('admision-officer');
