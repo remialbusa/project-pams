@@ -99,16 +99,22 @@ class AdminController extends Controller
 
         $adminInfo = Admin::where('employee_id', '=', $request->employee_id)->first();
 
-        if ($userType == "1") {
+        if ($userType == "Admin") {
             if ($adminInfo && Hash::check($request->password, $adminInfo->password)) {
                 $request->session()->put('LoggedAdmin', $adminInfo->id);
                 return redirect('staff/admin/manage-users');
             } else {
                 return back()->with('fail', 'incorrect password');
             }
-        } else {
-            return back()->with('fail', 'employee ID does not exist');
-        }
+        } 
+        if ($userType == "Admission Officer") {
+            if ($adminInfo && Hash::check($request->password, $adminInfo->password)) {
+                $request->session()->put('LoggedAdmin', $adminInfo->id);
+                return redirect('staff/admin/admission-officer');
+            } else {
+                return back()->with('fail', 'incorrect password');
+            }
+        } 
     }
     function manageUsersView(){
         if(session()->has('LoggedAdmin')){
@@ -120,6 +126,18 @@ class AdminController extends Controller
         $adminList = Admin::all();
         return view('admin.manage-users', $data, ['admins'=>$adminList]);
     }
+
+    function admissionOfficerView(){
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $adminList = Admin::all();
+        return view('admission-officer.admission-officer-profile', $data, ['admins'=>$adminList]);
+    }
+
     function systemConfigView(){
         return view('admin.system-configuration');
     }

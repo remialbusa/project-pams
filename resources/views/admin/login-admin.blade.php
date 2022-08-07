@@ -55,9 +55,9 @@
                             @csrf
                             <div class="mb-3">    
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="user_type">
-                                    <option value="1">Admin</option>
-                                    <option value="2">Admission Officer</option>
-                                    <option value="3">MIS</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Admission Officer">Admission Officer</option>
+                                    <option value="MIS">MIS Officer</option>
                                 </select>
                                 <span class="text-danger">@error('user_type'){{$message}} @enderror</span>
                             </div>

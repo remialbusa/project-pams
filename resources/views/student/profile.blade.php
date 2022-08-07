@@ -93,26 +93,36 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2"><b>Program</b></label>
                                         <select class="form-select" aria-label="Default select example" name="program">
-                                            @if($LoggedUserInfo->program == 'BSIT')
-                                            <option selected value="BSIT">BSIT</option>
-                                            <option value="BSBIO">BSBIO</option>
-                                            <option value="BLIS">BLIS</option>
-                                            <option value="BSSW">BSSW</option>
-                                            @elseif($LoggedUserInfo->program == 'BSBIO')
-                                            <option value="BSIT">BSIT</option>
-                                            <option selected value="BSBIO">BSBIO</option>
-                                            <option value="BLIS">BLIS</option>
-                                            <option value="BSSW">BSSW</option>
-                                            @elseif($LoggedUserInfo->program == 'BSSW')
-                                            <option value="BSIT">BSIT</option>
-                                            <option value="BSBIO">BSBIO</option>
-                                            <option value="BLIS">BLIS</option>
-                                            <option selected value="BSSW">BSSW</option>
+                                            @if($LoggedUserInfo->program == 'MIT')
+                                            <option selected value="MIT">MIT - Master of Information Technology</option>
+                                            <option value="MSIT">MSIT - Master of Science in Information Technology</option>
+                                            <option value="ME">ME - Master of English</option>
+                                            <option value="MSW">MSW - Master of Social Work</option>
+                                            <option value="MB">MB - Master in Biology</option>
+                                            @elseif($LoggedUserInfo->program == 'MSIT')
+                                            <option value="MIT">MIT - Master of Information Technology</option>
+                                            <option selected value="MSIT">MSIT - Master of Science in Information Technology</option>
+                                            <option value="ME">ME - Master of English</option>
+                                            <option value="MSW">MSW - Master of Social Work</option>
+                                            <option value="MB">MB - Master in Biology</option>
+                                            @elseif($LoggedUserInfo->program == 'ME')
+                                            <option value="MIT">MIT - Master of Information Technology</option>
+                                            <option value="MSIT">MSIT - Master of Science in Information Technology</option>
+                                            <option selected value="ME">ME - Master of English</option>
+                                            <option value="MSW">MSW - Master of Social Work</option>
+                                            <option value="MB">MB - Master in Biology</option>
+                                            @elseif($LoggedUserInfo->program == 'MSW')
+                                            <option value="MIT">MIT - Master of Information Technology</option>
+                                            <option value="MSIT">MSIT - Master of Science in Information Technology</option>
+                                            <option value="ME">ME - Master of English</option>
+                                            <option selected value="MSW">MSW - Master of Social Work</option>
+                                            <option value="MB">MB - Master in Biology</option>
                                             @else
-                                            <option value="BSIT">BSIT</option>
-                                            <option value="BSBIO">BSBIO</option>
-                                            <option selected value="BLIS">BLIS</option>
-                                            <option value="BSSW">BSSW</option>
+                                            <option value="MIT">MIT - Master of Information Technology</option>
+                                            <option value="MSIT">MSIT - Master of Science in Information Technology</option>
+                                            <option value="ME">ME - Master of English</option>
+                                            <option value="MSW">MSW - Master of Social Work</option>
+                                            <option selected value="MB">MB - Master in Biology</option>
                                             @endif
                                         </select>
                                         <span class="text-danger">@error('program'){{$message}} @enderror</span>
