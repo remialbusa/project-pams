@@ -153,7 +153,13 @@ class MainController extends Controller
     }
 
     function enrollmentStatus(){
-        return view('student.monitor-enrollment');
+        if(session()->has('LoggedUser')){
+            $student = Student::where('id', '=', session('LoggedUser'))->first();
+            $data = [
+                'LoggedUserInfo'=>$student
+            ];
+        }
+        return view('student.monitor-enrollment', $data);
     }
 
 }
