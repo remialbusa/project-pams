@@ -70,7 +70,6 @@
                         <div class="form-floating mb-3">
                             <input type="hidden" class="form-control" name="id" placeholder="ID" value="{{$LoggedUserInfo->id}}">
                             <span class="text-danger">@error('id'){{$message}} @enderror</span>
-                            <label for="floatingInput">ID</label>
                         </div>
                         <div class="student-type px-5">
                             <div class="row mt-5">
