@@ -22,6 +22,7 @@ class AdminController extends Controller
         //validate info
         $request->validate([
             'employee_id' => 'required',
+            'role' => 'required',
             'name' => 'required',
             'middle_name' => 'required',
             'last_name' => 'required',
@@ -31,6 +32,7 @@ class AdminController extends Controller
         //insert admin data
         $admin = new Admin();
         $admin->employee_id = $request->employee_id;
+        $admin->role = $request->role;
         $admin->name = $request->name;
         $admin->middle_name = $request->middle_name;
         $admin->last_name = $request->last_name;
@@ -59,6 +61,7 @@ class AdminController extends Controller
     function updateAdminDetails(Request $request){
         $request->validate([
             'employee_id' => 'required',
+            'role' => 'required',
             'name' => 'required',
             'middle_name' => 'required',
             'last_name' => 'required',
@@ -67,6 +70,7 @@ class AdminController extends Controller
 
         $admin = Admin::find($request->id);
         $admin->employee_id = $request->employee_id;
+        $admin->role = $request->role;
         $admin->name = $request->name;
         $admin->middle_name = $request->middle_name;
         $admin->last_name = $request->last_name;
