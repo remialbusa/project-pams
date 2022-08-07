@@ -67,6 +67,11 @@
                         @endif
 
                         @csrf
+                        <div class="form-floating mb-3">
+                            <input type="hidden" class="form-control" name="id" placeholder="ID" value="{{$LoggedUserInfo->id}}">
+                            <span class="text-danger">@error('id'){{$message}} @enderror</span>
+                            <label for="floatingInput">ID</label>
+                        </div>
                         <div class="student-type px-5">
                             <div class="row mt-5">
                                 <div class="col-md-6">
@@ -89,25 +94,25 @@
                                         <label class="form-label" for="form6Example2"><b>Program</b></label>
                                         <select class="form-select" aria-label="Default select example" name="program">
                                             @if($LoggedUserInfo->program == 'BSIT')
-                                                <option selected value="BSIT">BSIT</option>
-                                                <option value="BSBIO">BSBIO</option>
-                                                <option value="BLIS">BLIS</option>
-                                                <option value="BSSW">BSSW</option>
+                                            <option selected value="BSIT">BSIT</option>
+                                            <option value="BSBIO">BSBIO</option>
+                                            <option value="BLIS">BLIS</option>
+                                            <option value="BSSW">BSSW</option>
                                             @elseif($LoggedUserInfo->program == 'BSBIO')
-                                                <option value="BSIT">BSIT</option>
-                                                <option selected value="BSBIO">BSBIO</option>
-                                                <option value="BLIS">BLIS</option>
-                                                <option value="BSSW">BSSW</option>
+                                            <option value="BSIT">BSIT</option>
+                                            <option selected value="BSBIO">BSBIO</option>
+                                            <option value="BLIS">BLIS</option>
+                                            <option value="BSSW">BSSW</option>
                                             @elseif($LoggedUserInfo->program == 'BSSW')
-                                                <option value="BSIT">BSIT</option>
-                                                <option value="BSBIO">BSBIO</option>
-                                                <option value="BLIS">BLIS</option>
-                                                <option selected value="BSSW">BSSW</option>
+                                            <option value="BSIT">BSIT</option>
+                                            <option value="BSBIO">BSBIO</option>
+                                            <option value="BLIS">BLIS</option>
+                                            <option selected value="BSSW">BSSW</option>
                                             @else
-                                                <option value="BSIT">BSIT</option>
-                                                <option value="BSBIO">BSBIO</option>
-                                                <option selected value="BLIS">BLIS</option>
-                                                <option value="BSSW">BSSW</option>
+                                            <option value="BSIT">BSIT</option>
+                                            <option value="BSBIO">BSBIO</option>
+                                            <option selected value="BLIS">BLIS</option>
+                                            <option value="BSSW">BSSW</option>
                                             @endif
                                         </select>
                                         <span class="text-danger">@error('program'){{$message}} @enderror</span>
@@ -130,7 +135,7 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">First name</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="first_name" value="{{$LoggedUserInfo->first_name}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="first_name" value="{{$LoggedUserInfo->first_name}}" />
                                         <span class="text-danger">@error('first_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -140,14 +145,14 @@
                                 <div class="col-md-6">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Middle name</label>
-                                        <input type="text" id="form6Example1" class="form-control" name="middle_name" value="{{$LoggedUserInfo->middle_name}}"/>
+                                        <input type="text" id="form6Example1" class="form-control" name="middle_name" value="{{$LoggedUserInfo->middle_name}}" />
                                         <span class="text-danger">@error('middle_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Last name</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="last_name" value="{{$LoggedUserInfo->last_name}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="last_name" value="{{$LoggedUserInfo->last_name}}" />
                                         <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -157,7 +162,7 @@
                                 <div class="col-md-6">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Birthday</label>
-                                        <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{$LoggedUserInfo->birth_date}}"/>
+                                        <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{$LoggedUserInfo->birth_date}}" />
                                         <span class="text-danger">@error('birth_date'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -166,11 +171,11 @@
                                         <label class="form-label" for="form6Example2">Gender</label>
                                         <select class="form-select" aria-label="Default select example" name="gender">
                                             @if($LoggedUserInfo->student_id == 'Male')
-                                                <option selected value="Male">Male</option>
-                                                <option value="Female">Female</option>
+                                            <option selected value="Male">Male</option>
+                                            <option value="Female">Female</option>
                                             @else
-                                                <option value="Male">Male</option>
-                                                <option selected value="Female">Female</option>
+                                            <option value="Male">Male</option>
+                                            <option selected value="Female">Female</option>
                                             @endif
                                         </select>
                                         <span class="text-danger">@error('gender'){{$message}} @enderror</span>
@@ -211,7 +216,7 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Nationality</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="nationality" value="{{$LoggedUserInfo->nationality}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="nationality" value="{{$LoggedUserInfo->nationality}}" />
                                         <span class="text-danger">@error('nationality'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -221,14 +226,14 @@
                                 <div class="col-md-6">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Contact Number</label>
-                                        <input type="text" id="form6Example1" class="form-control" name="contact_no" value="{{$LoggedUserInfo->contact_no}}"/>
+                                        <input type="text" id="form6Example1" class="form-control" name="contact_no" value="{{$LoggedUserInfo->contact_no}}" />
                                         <span class="text-danger">@error('contact_no'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Email Address</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="email" value="{{$LoggedUserInfo->email}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="email" value="{{$LoggedUserInfo->email}}" />
                                         <span class="text-danger">@error('email'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -243,14 +248,14 @@
                                 <div class="col-md-6">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Zip Code</label>
-                                        <input type="text" id="form6Example1" class="form-control" name="zipcode" value="{{$LoggedUserInfo->zipcode}}"/>
+                                        <input type="text" id="form6Example1" class="form-control" name="zipcode" value="{{$LoggedUserInfo->zipcode}}" />
                                         <span class="text-danger">@error('zipcode'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Home Address</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="home_address" value="{{$LoggedUserInfo->home_address}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="home_address" value="{{$LoggedUserInfo->home_address}}" />
                                         <span class="text-danger">@error('home_address'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -260,14 +265,14 @@
                                 <div class="col-md-6">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Guardian</label>
-                                        <input type="text" id="form6Example1" class="form-control" name="guardian" value="{{$LoggedUserInfo->guardian}}"/>
+                                        <input type="text" id="form6Example1" class="form-control" name="guardian" value="{{$LoggedUserInfo->guardian}}" />
                                         <span class="text-danger">@error('guardian'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Guardian Contact Number</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="guardian_contact_no" value="{{$LoggedUserInfo->guardian_contact_no}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="guardian_contact_no" value="{{$LoggedUserInfo->guardian_contact_no}}" />
                                         <span class="text-danger">@error('guardian_contact_no'){{$message}} @enderror</span>
                                     </div>
                                 </div>

@@ -32,43 +32,42 @@
                         
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="employee_id" placeholder="Employee ID" value="{{ old('employee_id') }}">
-                                <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
-                                <label for="floatingInput">Employee ID</label>
+                            <input type="text" class="form-control" name="employee_id" placeholder="Employee ID" value="{{ old('employee_id') }}">
+                            <span class="text-danger">@error('employee_id'){{$message}} @enderror</span>
+                            <label for="floatingInput">Employee ID</label>
+                        </div>
+                        <div class="form-floating mb-3">    
+                                <select class="form-select form-select-lg" aria-label="Default select example" name="role">
+                                    <option value="Admin">Admin</option>
+                                    <option value="Admission Officer">Admission Officer</option>
+                                    <option value="MIS Officer">MIS Officer</option>
+                                </select>
+                                <span class="text-danger">@error('role'){{$message}} @enderror</span>
+                                <label for="floatingInput">Role</label>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}">
-                                <span class="text-danger">@error('name'){{$message}} @enderror</span>
-                                <label for="floatingInput">Name</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="middle_name" placeholder="Middle Name" value="{{ old('middle_name') }}">
-                                <span class="text-danger">@error('middle_name'){{$message}} @enderror</span>
-                                <label for="floatingInput">Middle Name</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{ old('last_name') }}">
-                                <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
-                                <label for="floatingInput">Last Name</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" name="password" placeholder="Password">
-                                <span class="text-danger">@error('password'){{$message}} @enderror</span>
-                                <label for="floatingPassword">Password</label>
-                            </div>
-
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                                <label class="form-check-label" for="rememberPasswordCheck">
-                                    Remember password
-                                </label>
-                            </div>
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Login</button>
-                                <div class="text-center">
-                                    <a class="small" href="#">Forgot password?</a>
-                                </div>
-                            </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}">
+                            <span class="text-danger">@error('name'){{$message}} @enderror</span>
+                            <label for="floatingInput">Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="middle_name" placeholder="Middle Name" value="{{ old('middle_name') }}">
+                            <span class="text-danger">@error('middle_name'){{$message}} @enderror</span>
+                            <label for="floatingInput">Middle Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{ old('last_name') }}">
+                            <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
+                            <label for="floatingInput">Last Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" name="password" placeholder="Password">
+                            <span class="text-danger">@error('password'){{$message}} @enderror</span>
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Add</button>
+                        </div>
                         </form>
                     </div>
                 </div>

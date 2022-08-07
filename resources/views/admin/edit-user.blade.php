@@ -21,15 +21,15 @@
                     <div class="col-md-9 col-lg-4 mx-auto">
                         <h3 class="login-heading mb-4">Update User</h3>
                         <!-- login Form -->
-                        <form action="{{route('update-admin')}}" method="POST">     
+                        <form action="{{route('update-admin')}}" method="POST">
                             @if(Session::get('success'))
-                                <div class="alert alert-success">{{Session::get('success')}}</div>
-                            @endif     
-                        
+                            <div class="alert alert-success">{{Session::get('success')}}</div>
+                            @endif
+
                             @if(Session::get('fail'))
-                                <div class="alert alert-danger">{{Session::get('fail')}}</div>
-                            @endif    
-                        
+                            <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                            @endif
+
                             @csrf
                             <div class="form-floating mb-3">
                                 <input type="hidden" class="form-control" name="id" placeholder="ID" value="{{$adminData['id']}}">
@@ -40,6 +40,30 @@
                                 <input type="text" class="form-control" name="employee_id" placeholder="Employee ID" value="{{$adminData['employee_id']}}">
                                 <span class="text-danger">@error('employee_id'){{$message}} @enderror</span>
                                 <label for="floatingInput">Employee ID</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-select form-select-lg" aria-label="Default select example" name="role">
+                                    @if($adminData['role'] == 'Admin')
+                                    <option selected value="Admin">Admin</option>
+                                    <option value="Admission Officer">Admission Officer</option>
+                                    <option value="MIS Officer">MIS Officer</option>
+                                    @elseif($adminData['role'] == 'Admission Officer')
+                                    <option value="Admin">Admin</option>
+                                    <option selected value="Admission Officer">Admission Officer</option>
+                                    <option value="MIS Officer">MIS Officer</option>
+                                    @else
+                                    <option value="Admin">Admin</option>
+                                    <option value="Admission Officer">Admission Officer</option>
+                                    <option selected value="MIS Officer">MIS Officer</option>
+                                    @endif              
+                                </select>
+                                <span class="text-danger">@error('role'){{$message}} @enderror</span>
+                                <label for="floatingInput">Role</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="role" placeholder="Role" value="{{$adminData['employee_id']}}">
+                                <span class="text-danger">@error('role'){{$message}} @enderror</span>
+                                <label for="floatingInput">Role</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="name" placeholder="Name" value="{{$adminData['name']}}">
@@ -60,9 +84,9 @@
                                 <input type="password" class="form-control" name="password" placeholder="Password" value="{{$adminData['password']}}">
                                 <span class="text-danger">@error('password'){{$message}} @enderror</span>
                                 <label for="floatingPassword">Password</label>
-                            </div>    
+                            </div>
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Update</button>                            
+                                <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Update</button>
                             </div>
                         </form>
                     </div>

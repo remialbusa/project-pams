@@ -16,6 +16,7 @@ class CreateAdminsTable extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->integer('employee_id');
+            $table->text('role');
             $table->text('name');
             $table->text('middle_name');
             $table->text('last_name');

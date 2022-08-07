@@ -105,7 +105,7 @@ class MainController extends Controller
         $save = $student->save();
 
         if($save){
-            return back()->with('success', 'Student update successful');
+            return back()->with('success', 'Your Profile is already updated');
         }else{
             return back()->with('fail', 'Failed updating student data');
         }
