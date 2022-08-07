@@ -97,9 +97,10 @@
             <a class="nav-link link-dark active" id="active-semester-tab" data-bs-toggle="tab" href="#active-semester" role="tab" aria-controls="active-semester" aria-selected="true">Active Semester</a>
           </li>
           <li class="nav-item" role="presentation">
-            <a class="nav-link link-dark" id="enrolled-tab" data-bs-toggle="tab" href="#enrolled" role="tab" aria-controls="enrolled-subjects" aria-selected="false">Enrolled Subjects</a>
+            <a class="nav-link link-dark" id="enrolled-tab" data-bs-toggle="tab" href="#enrolled-subjects" role="tab" aria-controls="enrolled-subjects" aria-selected="false">Enrolled Subjects</a>
           </li>
         </ul>
+
         <div class="manage-user-body container px-4">
           <div class="tab-content mb-5" id="myTabContent">
             <div class="tab-pane fade show active" id="active-semester" role="tabpanel" aria-labelledby="active-semester-tab">
@@ -197,11 +198,39 @@
                 </div>
               </div>
             </div>
+
+            <div class="tab-pane fade show active" id="enrolled-tab" role="tabpanel" aria-labelledby="active-semester-tab">
+              <div class="tab-pane fade active show" id="subjects" role="tabpanel" aria-labelledby="subjects" style="max-width: 100%;">
+                <!-- Enrolled Subjects -->
+                <h4 class="title mb-2" style="width: 100%;">Enrolled Subjects</h4>
+                <div class="alert alert-success" style="display: none;"></div>
+                <hr class="default-divider ml-auto mt-1 mb-2">
+                <p class="profile-text">Enrollment Status: <span style="font-weight: 600; color: #135e24; text-transform: uppercase; "> Regular</span> </p>
+                <hr class="default-divider ml-auto mt-1 mb-2">
+                <p class="form-header">List of enrolled subjects: </p>
+                <table class="table default-table">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="width: 30%; text-align: left;">Subject Code</th>
+                      <th scope="col" style="width: 50%; text-align: left;">Subject Name</th>
+                      <th scope="col" style="width: 20%; text-align: center;">Units</th>
+                    </tr>
+                  </thead>
+
+                </table>
+              </div>
+
+            </div>
+
           </div>
         </div>
       </div>
     </div>
-    <div class="tab-pane fade" id="enrolled" role="tabpanel" aria-labelledby="enrolled-tab">
+
+
+
+
+
 
 
   </section>
