@@ -31,12 +31,13 @@
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
                         <a class="nav-link" href="#">Home</a>
-                    </li>                  
+                    </li>
                     <li class="nav-item px-2">
                         <a class="nav-link" href="#">FAQ's</a>
                     </li>
-                </ul>               
+                </ul>
             </div>
+        </div>
     </nav>
 
     <div class="container-fluid ps-md-0 mt-5">

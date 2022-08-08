@@ -58,7 +58,7 @@
                 <hr>
                 <div class="col">
                     <div>
-                        <h6>S.Y. 2022-20223 (First Semester)</h6>
+                        <h6>S.Y. 2022-2023 (First Semester)</h6>
                     </div>
                     <div>
                         <h5>Master of Science in Information Technology</b></h5>
