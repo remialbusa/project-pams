@@ -83,13 +83,13 @@
                                 <div class="tab-pane fade show active" id="active-semester" role="tabpanel" aria-labelledby="active-semester-tab">
                                     <div class="table-wrapper row">
                                         <table class="table table-fixed table-hover">
-                                            <h4 class="title mb-2">Monitor Status</h4>
+                                            <h4 class="title mb-2" style="margin-top: 50px;">Monitor Status</h4>
                                             <h6 class="form-header"><b>You are currently enrolled with the following details: </b></h6>
 
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <p class="sub-text"><b>Student Type: </b><span style="font-weight: 600; color: #4285F4;"> </span> {{$LoggedUserInfo->student_type}}</p>
+                                            <p class="text"><b>Student Type: </b><span style="font-weight: 600; color: #4285F4;"> </span> {{$LoggedUserInfo->student_type}}</p>
                                         </div>
                                         <div class="col-md-4">
                                             <p class="sub-text"><b>Program: </b><span style="font-weight: 600; color: #4285F4;"> </span> {{$LoggedUserInfo->program}} </p>
