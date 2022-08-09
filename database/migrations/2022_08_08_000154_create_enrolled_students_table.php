@@ -35,6 +35,7 @@ class CreateEnrolledStudentsTable extends Migration
             $table->string('guardian');
             $table->string('guardian_contact_no');
             $table->timestamps();
+
         });
     }
 
