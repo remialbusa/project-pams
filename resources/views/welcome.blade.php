@@ -69,7 +69,7 @@
                                 Classes will start on August 22, 2022.
 
                             </p>
-                            <a href="student/auth/login" class="btn btn-warning bg-warning btn-block mt-3">Pre Enroll now</a>
+                            <a href="student/auth/register" class="btn btn-warning bg-warning btn-block mt-3">Pre Enroll now</a>
                         </div>
                     </div>
                 </div>

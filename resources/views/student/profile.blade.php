@@ -49,11 +49,11 @@
 
         <div class="manage-users-body container mt-5">
             <div class="container h-100">
-                <div class="basic-details mt-5">
-                    <h4 class="px-5">Enrollment Details</h4>
-                    <hr>
-                    <h6 class="mt-5 px-5"><b>You are currently enrolled with the following details:</b></h6>
-                    <p class="px-5">
+                <div class="basic-details mt-5 px-4">
+                    <h4>Enrollment Details</h4>
+                    <hr/>
+                    <h6 class="mt-5"><b>You are currently enrolled with the following details:</b></h6>
+                    <p>
                         <i>(Note: To update your enrollment details, select the corresponding field from the drop-downs below and click 'Update'.)</i>
                     </p>
                     <form action="{{ route('update-student') }}" method="POST">
@@ -71,7 +71,7 @@
                             <input type="hidden" class="form-control" name="id" placeholder="ID" value="{{$LoggedUserInfo->id}}">
                             <span class="text-danger">@error('id'){{$message}} @enderror</span>
                         </div>
-                        <div class="student-type px-5">
+                        <div class="student-type">
                             <div class="row mt-5">
                                 <div class="col-md-6">
                                     <div class="form-outline">
@@ -129,7 +129,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="profile mt-5 px-5">
+                        <div class="profile mt-5">
 
                             <h5><b>Profile</b></h5>
                             <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -249,7 +249,7 @@
 
                             </div>
                         </div>
-                        <div class="other-details px-5 mt-4">
+                        <div class="other-details mt-4">
 
                             <h5><b>Other details</b></h5>
                             <!-- 2 column grid layout with text inputs for the first and last names -->

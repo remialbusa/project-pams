@@ -1,5 +1,5 @@
 .manage-users-body {
-    width: 70vw;
+    width: 60vw;
     font-family: 'Varela Round', sans-serif;
     border-radius: 15px;
     border:1px solid rgb(194, 194, 194);
@@ -12,6 +12,7 @@ p{
 .basic-details{
     height: 75vh;
     overflow-y:scroll;
+    font-size: 14px;
 }
 
 .table-title {        
