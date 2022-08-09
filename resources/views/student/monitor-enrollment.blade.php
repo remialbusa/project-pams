@@ -54,6 +54,7 @@
       <div class="table-title">
         <div class="row">
           <div class="col-sm-6">
+          <div class="col-sm-8">
             <h2>Enrollment Profile</h2>
             <div class="alert alert-light">
               <div class="row">
@@ -68,9 +69,7 @@
                   <p class="profile-text">Name: <span style="font-weight: 600; text-transform: uppercase;"> </span> </p>
                   <p class="profile-text">Email: <span style="font-weight: 600;"></span> </p>
                 </div>
-
               </div>
-
             </div>
             <p class="form-header"><b>You are currently enrolled with the following details: </b></p>
 
@@ -86,9 +85,6 @@
               <p class="sub-text">Program: <span style="font-weight: 600; color: #4285F4;"> BSIT</span> </p>
             </div>
           </div>
-          <div class="col-sm-6">
-
-          </div> 
         </div>
         <hr>
         <!-- RH: this is bootstrap 5 tabbed panel -->
@@ -263,6 +259,198 @@
 
 
   </section>
+=======
+      </div>
+      <!-- RH: this is bootstrap 5 tabbed panel -->
+      <ul class="nav nav-tabs nav-fill mt-4 mb-2" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link link-dark active" id="enrollment-process-tab" data-bs-toggle="tab" href="#enrollment-process" role="tab" aria-controls="enrollment-process" aria-selected="true">Enrollment Process</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link link-dark" id="enrolled-subjects-tab" data-bs-toggle="tab" href="#enrolled-subjects" role="tab" aria-controls="enrolled-subjects" aria-selected="false">Enrolled Subject</a>
+        </li>
+      </ul>
+      <div class="manage-user-body container px-4">
+        <div class="tab-content mb-5" id="myTabContent">
+          <div class="tab-pane fade show active" id="enrollment-process" role="tabpanel" aria-labelledby="enrollment-process-tab">
+            <div class="table-wrapper row">
+              <table class="table default-table">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 60%">Enrollment Procedure</th>
+                    <th scope="col" style="width: 40%; text-align: center;">Current Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p class="sub-text">1. Submission of Entrance Documents to the Registrar's Office <i>(for transferee/new students only):</i></p>
+                    </td>
+                    <td>
+                      <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                          <i class="bx bx-x-circle"></i> N/A</span></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="sub-text">2. Submission of Medical Examination Result to the Health Services Office <i>(for transferee/new students only):</i></p>
+                    </td>
+                    <td>
+                      <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                          <i class="bx bx-x-circle"></i> N/A</span></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="sub-text">3. Subject advisement by the Enrolling Teacher:</p>
+                    </td>
+                    <td>
+                      <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #13a166">
+                          <i class="bx bx-check-circle"></i> Assigned Subjects by the Enrolling Teacher @ 2022-08-04 10:38:02</span></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="sub-text ml-4">3.1. Unit Head Validation <i>(for on-probation students only):</i></p>
+                    </td>
+                    <td>
+                      <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                          <i class="bx bx-x-circle"></i> N/A</span></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="sub-text ml-4">3.2. Dean's Validation <i>(for on-probation students only):</i></p>
+                    </td>
+                    <td>
+                      <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                          <i class="bx bx-x-circle"></i> N/A</span></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="sub-text">4. Subject Enlistment at the Management Information System Office:</p>
+                    </td>
+                    <td>
+                      <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #0e52c7">
+                          <i class="bx bx-loader-circle"></i> Pending</span></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="sub-text">5. Validation and issuance of the Entrance Slip:</p>
+                    </td>
+                    <td>
+                      <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #0e52c7">
+                          <i class="bx bx-loader-circle"></i> Pending</span></p>
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
+              <hr class="default-divider ml-auto mt-1 mb-2">
+              <p class="form-header">Legend: </p>
+              <div class="row">
+                <div class="col-md-4">
+                  <p class="sub-text"><span style="font-weight: 600; color: #c70e42"><i class="bx bx-x-circle"></i> N/A</span> - Process not applicable</p>
+                </div>
+                <div class="col-md-4">
+                  <p class="sub-text"><span style="font-weight: 600; color: #0e52c7"><i class="bx bx-loader-circle"></i> Pending</span> - Process is ongoing </p>
+                </div>
+                <div class="col-md-4">
+                  <p class="sub-text"><span style="font-weight: 600; color: #13a166"><i class="bx bx-check-circle"></i> Done</span> - Process is done </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="enrolled-subjects" role="tabpanel" aria-labelledby="enrolled-subjects-tab">
+            <h4 class="title mb-2" style="width: 100%;">Enrolled Subjects</h4>
+            <hr class="default-divider ml-auto mt-1 mb-2">
+            <p class="profile-text">Enrollment Status: <span style="font-weight: 600; color: #135e24; text-transform: uppercase; "> Regular</span> </p>
+            <hr class="default-divider ml-auto mt-1 mb-2">
+            <p class="form-header">List of enrolled subjects: </p>
+            <table class="table default-table">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 50%; text-align: left;">Subject Name</th>
+                  <th scope="col" style="width: 20%; text-align: center;">Units</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->first_period}}</p>
+                  </td>
+                  <td>
+                    <p class="status-text" style="text-align: center;">3</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->second_period}}</p>
+                  </td>
+                  <td>
+                    <p class="status-text" style="text-align: center;">3</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->third_period}}</p>
+                  </td>
+                  <td>
+                    <p class="status-text" style="text-align: center;">3</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <hr class="default-divider ml-auto mt-1 mb-2">
+            <p class="form-header" style="font-size: 14px; text-align: right"><b>Number of Units: 6</b></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <footer class="footer mb-0">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12 col-md-8">
+          <div class="row text-white">
+            <div class="col col-12 col-sm-6">
+              <h5>Contact Us</h5>
+              <ul>
+                <li><a>Leyte Normal University</a></li>
+                <li><a>B. Paterno Street</a></li>
+                <li><a>Tacloban City, Leyte 6500</a></li>
+                <li><a><b>Phone:</b>+63 (53) 321 2176</a></li>
+                <li><a><b>Email:</b>info@lnu.edu.ph</a></li>
+              </ul>
+            </div>
+            <div class="col col-12 col-sm-3">
+              <h5>Useful Links</h5>
+              <ul>
+                <li><a href="#">LNU Official Website</a></li>
+                <li><a href="#">LNU Student Portal</a></li>
+                <li><a href="#">Enrollment Updates</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 my-auto">
+          <img class="footer-logo" src="https://www.enrollment.lnu.edu.ph/assets/images/lnu_logo.png" alt="logo" />
+          <p>Follow our official social media platforms:</p>
+          <div class="row">
+            <div class="col col-xs-6 ml-2">
+              <i class="bi bi-facebook" style="font-size: 2rem; margin-right: 20px;"></i>
+              <i class="bi bi-youtube" style="font-size: 2rem;"></i>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <p class="text-light text-center">© Copyright <b>Leyte Normal University</b> . All Rights Reserved 2022</p>
+      </div>
+  </footer>
+>>>>>>> 7ad47c07828334680b98b1fd64f7a2ee7ffaa16c
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
