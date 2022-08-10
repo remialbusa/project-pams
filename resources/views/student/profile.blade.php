@@ -44,7 +44,6 @@
     </nav>
 
     <section class="details">
-
         <div class="manage-users-body container mt-5">
             <div class="container h-100">
                 <div class="basic-details mt-5 px-4">
@@ -75,7 +74,7 @@
                                 <a class="nav-link link-dark active" id="active-semester-tab" data-bs-toggle="tab" href="#active-semester" role="tab" aria-controls="active-semester" aria-selected="true">Enrollment Status</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link link-dark" id="enrolled-tab" data-bs-toggle="tab" href="#enrolled-subjects" role="tab" aria-controls="enrolled-subjects" aria-selected="false">Enrolled Subjects</a>
+                                <a class="nav-link link-dark" id="enrolled-subjects" data-bs-toggle="tab" href="#enrolled-subjects" role="tab" aria-controls="enrolled-subjects-tab" aria-selected="false">Enrolled Subjects</a>
                             </li>
                         </ul>
                         <div class="manage-user-body container px-4">
@@ -85,24 +84,170 @@
                                         <table class="table table-fixed table-hover">
                                             <h4 class="title mb-2" style="margin-top: 50px;">Monitor Status</h4>
                                             <h6 class="form-header"><b>You are currently enrolled with the following details: </b></h6>
-
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <p class="text"><b>Student Type: </b><span style="font-weight: 600; color: #4285F4;"> </span> {{$LoggedUserInfo->student_type}}</p>
+                                            <p class="text" style="margin-top: 20px;"><b>Student Type: </b><span style="font-weight: 600; color: #4285F4;"> </span> {{$LoggedUserInfo->student_type}}</p>
                                         </div>
                                         <div class="col-md-4">
-                                            <p class="sub-text"><b>Program: </b><span style="font-weight: 600; color: #4285F4;"> </span> {{$LoggedUserInfo->program}} </p>
+                                            <p class="sub-text" style="margin-top: 20px;"><b>Program: </b><span style="font-weight: 600; color: #4285F4;"> </span> {{$LoggedUserInfo->program}} </p>
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <div class="manage-user-body container px-4">
+                                <div class="tab-content mb-5" id="myTabContent">
+                                    <div class="tab-pane active" id="enrollment-process" role="tabpanel" aria-labelledby="enrollment-process-tab">
+                                        <div class="table-wrapper row">
+                                            <table class="table default-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" style="width: 60%">Enrollment Procedure</th>
+                                                        <th scope="col" style="width: 40%; text-align: center;">Current Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <p class="sub-text">1. VISIT OF THE GRADUATE SCHOOL FOR EVALUATION <i>(FOR ALL GRAD SCHOOL ENROLLEES):</i></p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                                                                    <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p class="sub-text">2. PAY AND SECURE A SCHEDULE FOR THE GSAT <i>(FOR ALL GRAD SCHOOL ENROLLEES):</i></p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                                                                    <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p class="sub-text">3. ONLINE PRE-REGISTRATION:</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #13a166">
+                                                                    <i class="bx bx-check-circle" style="margin-left: 150px;"></i> N/A</span></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p class="sub-text ml-4">4. FILL OUT THE NEEDED FORMS FOR ADMISSION AT THE OGS:</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                                                                    <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p class="sub-text ml-4">5. GO TO THE MIS FOR THE SIGNING OF YOUR DRF AND PRINTING OF YOUR ENROLMENT AND ASSESSMENT FORM:</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                                                                    <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p class="sub-text">6. GO TO THE ACCOUNTING OFFICE AND PRESENT YOUR EAF(ENROLMENT AND ASSESSMENT FORM) AND DRF(DRAFT REGISTRATION FORM):</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #0e52c7">
+                                                                    <i class="bx bx-loader-circle" style="margin-left: 145px;"></i> Pending</span></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p class="sub-text">7. GO TO THE CASHIER'S OFFICE AND PAY FOR YOUR ENTRANCE FEE:</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #0e52c7">
+                                                                    <i class="bx bx-loader-circle" style="margin-left: 145px;"></i> Pending</span></p>
+                                                        </td>
+                                                    <tr>
+                                                        <td>
+                                                            <p class="sub-text">8. SUBMIT YOUR ORIGINAL ENTRANCE DOCUMENTS TO THE REGISTRAR'S OFFICE:</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #0e52c7">
+                                                                    <i class="bx bx-loader-circle" style="margin-left: 145px;"></i> Pending</span></p>
+                                                        </td>
+                                                    <tr>
+                                                        <td>
+                                                            <p class="sub-text">9. GO TO THE INCOME GENERATING PROJECT(IGP) OFFICE FOR YOUR ID:</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #0e52c7">
+                                                                    <i class="bx bx-loader-circle" style="margin-left: 145px;"></i> Pending</span></p>
+                                                        </td>
+                                                    <tr>
+                                                        <td>
+                                                            <p class="sub-text">10. SUBMIT TO THE OGS THE OTHER COPY OF YOUR DRF:</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #0e52c7">
+                                                                    <i class="bx bx-loader-circle" style="margin-left: 145px;"></i> Pending</span></p>
+                                                        </td>
+                                                    </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="enrolled-subjects" role="tabpanel" aria-labelledby="enrolled-subjects-tab">
+                                        <div class="table-wrapper row">
+                                                <table class="table default-table">
+                                                    <h4 class="title mb-2" style="width: 100%;">Enrolled Subjects</h4>
+                                                    <hr class="default-divider ml-auto mt-1 mb-2">
+                                                    <p class="profile-text">Enrollment Status: <span style="font-weight: 600; color: #135e24; text-transform: uppercase; "> Regular</span> </p>
+                                                    <hr class="default-divider ml-auto mt-1 mb-2">
+                                                    <p class="form-header">List of enrolled subjects: </p>
+                                                    <table class="table default-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col" style="width: 50%; text-align: left;">Subject Name</th>
+                                                                <th scope="col" style="width: 20%; text-align: center;">Units</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->first_period}}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="status-text" style="text-align: center;">3</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->second_period}}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="status-text" style="text-align: center;">3</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->third_period}}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <p class="status-text" style="text-align: center;">3</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <hr class="default-divider ml-auto mt-1 mb-2">
+                                                    <p class="form-header" style="font-size: 14px; text-align: right"><b>Number of Units: 6</b></p>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
