@@ -84,6 +84,10 @@
                                         <table class="table table-fixed table-hover">
                                             <h4 class="title mb-2" style="margin-top: 50px;">Monitor Status</h4>
                                             <h6 class="form-header"><b>You are currently enrolled with the following details: </b></h6>
+<<<<<<< HEAD
+=======
+                                        </table>
+>>>>>>> 2d065c665aa59a2731d335db3c388e373689cc1f
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">

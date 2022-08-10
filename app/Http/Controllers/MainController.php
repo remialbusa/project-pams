@@ -24,53 +24,49 @@ class MainController extends Controller
         //validate info
         $request->validate([
             'student_type' => 'required',
+            'student_id' => 'required',
+            'last_name' => 'required',          
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'gender' => 'required',  
+            'birth_date' => 'required', 
+            'mobile_no' => 'required',
+            'fb_acc_name' => 'required',
+            'region' => 'required',
+            'province' => 'required',
+            'city' => 'required',
+            'barangay' => 'required',
             'program' => 'required',
             'first_period' => 'required',
             'second_period' => 'required',
-            'third_period' => 'required',
-            'student_id' => 'required',
-            'first_name' => 'required',
-            'middle_name' => 'required',
-            'last_name' => 'required',
-            'birth_date' => 'required',
-            'gender' => 'required',
-            'civil_status' => 'required',
-            'nationality' => 'required',
-            'contact_no' => 'required',
-            'email' => 'required|email',
-            'zipcode' => 'required',
-            'home_address' => 'required',
-            'guardian' => 'required',
-            'guardian_contact_no' => 'required'
+            'third_period' => 'required',                          
         ]);
 
         //insert data
         $student = new Student();
         $student->student_type = $request->student_type;
-        $student->program = $request->program;
-        $student->first_period = $request->first_period;
-        $student->second_period = $request->second_period;
-        $student->third_period = $request->third_period;
-        $student->student_id = $request->student_id;
+        $student->student_id = $request->student_id;       
+        $student->last_name = $request->last_name;
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
-        $student->last_name = $request->last_name;
-        $student->birth_date = $request->birth_date;
         $student->gender = $request->gender;
-        $student->civil_status = $request->civil_status;
-        $student->nationality = $request->nationality;
-        $student->contact_no = $request->contact_no;
-        $student->email = $request->email;
-        $student->zipcode = $request->zipcode;
-        $student->home_address = $request->home_address;
-        $student->guardian = $request->guardian;
-        $student->guardian_contact_no = $request->guardian_contact_no;
+        $student->birth_date = $request->birth_date;
+        $student->mobile_no = $request->mobile_no;
+        $student->fb_acc_name = $request->fb_acc_name;
+        $student->region_code = $request->region;
+        $student->province_code = $request->province;
+        $student->city_code = $request->city;
+        $student->barangay_code = $request->barangay;
+        $student->program = $request->program;
+        $student->first_period_sub = $request->first_period;
+        $student->second_period_sub = $request->second_period;
+        $student->third_period_sub = $request->third_period;
         $save = $student->save();
 
         if ($save) {
-            return back()->with('success', 'Student inserted successfuly');
+            return back()->with('success', 'Registration complete');
         } else {
-            return back()->with('fail', 'Failed inserting student data');
+            return back()->with('fail', 'Failed Registration');
         }
     }
 

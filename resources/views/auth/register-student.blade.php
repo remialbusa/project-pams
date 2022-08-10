@@ -20,11 +20,10 @@
     <!-- custom css -->
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
-    <title>Register</title>
+    <title>Pre-registration</title>
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
@@ -53,16 +52,16 @@
                     <form action="{{ route('auth.save') }}" method="POST">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
                         @if(Session::get('success'))
-                        <div class="alert alert-success">{{Session::get('success')}}</div>
+                        <div class="alert alert-success text-center">{{Session::get('success')}}</div>
                         @endif
 
                         @if(Session::get('fail'))
-                        <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                        <div class="alert alert-danger text-center">{{Session::get('fail')}}</div>
                         @endif
 
                         @csrf
                         <div class="profile mt-5">
-                            <h5>PROFILE</h5>
+                            <h5 class="lead">Student Information</h5>
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="col mt-4">
                                 <div class="form-outline">
@@ -113,15 +112,16 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Gender</label>
                                         <select class="form-select" aria-label="Default select example" name="gender">
-                                            <option value="1">Male</option>
-                                            <option value="2">Female</option>
+                                            <option disabled selected>N/A</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
                                         </select>
                                         <span class="text-danger">@error('gender'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-outline">
-                                        <label class="form-label" for="form6Example1">Birthday</label>
+                                        <label class="form-label" for="form6Example1">Birthdate</label>
                                         <input type="date" id="form6Example1" class="form-control" name="birth_date" />
                                         <span class="text-danger">@error('birth_date'){{$message}} @enderror</span>
                                     </div>
@@ -132,15 +132,15 @@
                                 <div class="col-md-6">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Mobile Number<label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="contact_no" />
-                                        <span class="text-danger">@error('contact_no'){{$message}} @enderror</span>
+                                        <input type="text" id="form6Example1" class="form-control" name="mobile_no" />
+                                        <span class="text-danger">@error('mobile_no'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Facebook Account Name <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="fb_account_name" />
-                                        <span class="text-danger">@error('fb_account_name'){{$message}} @enderror</span>
+                                        <input type="text" id="form6Example2" class="form-control" name="fb_acc_name" />
+                                        <span class="text-danger">@error('fb_acc_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                             </div>
@@ -152,39 +152,39 @@
                                 </p>
                                 <div class="col">
                                     <div class="form-outline">
-                                        <select class="form-select" aria-label="Default select example" id="region" name="gender">
+                                        <select class="form-select" aria-label="Default select example" id="region" name="region">
 
                                         </select>
-                                        <span class="text-danger">@error('gender'){{$message}} @enderror</span>
+                                        <span class="text-danger">@error('region'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
-                                        <select class="form-select" aria-label="Default select example" id="province" name="gender">
+                                        <select class="form-select" aria-label="Default select example" id="province" name="province">
 
                                         </select>
-                                        <span class="text-danger">@error('gender'){{$message}} @enderror</span>
+                                        <span class="text-danger">@error('province'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
-                                        <select class="form-select" aria-label="Default select example" id="city" name="gender">
+                                        <select class="form-select" aria-label="Default select example" id="city" name="city">
 
                                         </select>
-                                        <span class="text-danger">@error('gender'){{$message}} @enderror</span>
+                                        <span class="text-danger">@error('city'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
-                                        <select class="form-select" aria-label="Default select example" id="barangay" name="gender">
+                                        <select class="form-select" aria-label="Default select example" id="barangay" name="barangay">
 
                                         </select>
-                                        <span class="text-danger">@error('gender'){{$message}} @enderror</span>
+                                        <span class="text-danger">@error('barangay'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <h5 class="mt-5">COURSE/S</h5>
+                            <h5 class="mt-5 lead">COURSE/S</h5>
                             <div class="col mt-4 mb-3">
                                 <div class="col">
                                     <div class="form-outline">
@@ -218,7 +218,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-4 mb-5">
+                            <div class="row mt-4 mb-3">
                                 <div class="col-md-6 mt-2">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">1ST PERIOD - 7:30 a.m. - 10:30 a.m.</label>
@@ -261,8 +261,8 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-4 mb-5">Register</button>
                     </form>
                 </div>
             </div>
