@@ -125,7 +125,6 @@
                                         <th>Student Number</th>
                                         <th>Student Name</th>
                                         <th>Programs</th>
-                                        <th>Address</th>
                                         <th>Contact Number</th>
                                         <th>Actions</th>
                                     </tr>
@@ -136,8 +135,7 @@
                                         <td>{{$value['student_id']}}</td>
                                         <td>{{$value['first_name']}} {{$value['middle_name']}} {{$value['last_name']}}</td>
                                         <td>{{$value['program']}}</td>
-                                        <td>{{$value['home_address']}}</td>
-                                        <td>{{$value['contact_no']}}</td>
+                                        <td>{{$value['mobile_no']}}</td>
                                         <td>
                                             <a href="{{ route('delete-enrolled-mit', $value['id'])}}" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                         </td>
