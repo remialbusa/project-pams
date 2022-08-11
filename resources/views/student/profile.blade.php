@@ -16,6 +16,7 @@
 
     <!-- custom css -->
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
+    
 
 </head>
 

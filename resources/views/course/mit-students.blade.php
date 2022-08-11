@@ -20,6 +20,7 @@
 
     <!-- custom css -->
     <link type="text/css" href="{{url('css/manage-users.css')}}" rel="stylesheet">
+    <script type="text/javascript" src="{{URL::asset('js/search.js') }}"></script>
 
 </head>
 
@@ -60,7 +61,7 @@
                     <div>
                         <h6>S.Y. 2022-2023 (First Semester)</h6>
                     </div>
-                    <input type="text" placeholder="Search..">
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
                 </div>
                 
             </div>
@@ -77,7 +78,7 @@
                 <div class="tab-content mb-5" id="myTabContent">
                     <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
                         <div class="table-wrapper row">
-                            <table class="table table-fixed table-hover">
+                            <table class="table table-fixed table-hover" id="myTable">
                                 <thead>
                                     <tr>
                                         <th>Student Number</th>
