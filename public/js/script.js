@@ -4,7 +4,6 @@ var my_handlers = {
 
         var region_code = $(this).val();
         $('#province').ph_locations('fetch_list', [{"region_code": region_code}]);
-        
     },
 
     fill_cities: function(){
