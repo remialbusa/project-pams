@@ -123,6 +123,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="enrollment-process" role="tabpanel" aria-labelledby="enrollment-process-tab">
+                                @if($LoggedUserInfo->student_type == 'Continuing')
                                 <div class="table-wrapper row">
                                     <table class="table default-table">
                                         <thead>
@@ -131,10 +132,10 @@
                                                 <th scope="col" style="width: 40%; text-align: center;">Current Status</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody>               
                                             <tr>
                                                 <td>
-                                                    <p class="sub-text">1. VISIT OF THE GRADUATE SCHOOL FOR EVALUATION <i>(FOR ALL GRAD SCHOOL ENROLLEES):</i></p>
+                                                    <p class="sub-text">1. SUBMISSION OF CLEARANCE TO OGS:</i></p>
                                                 </td>
                                                 <td>
                                                     <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
@@ -143,16 +144,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <p class="sub-text">2. PAY AND SECURE A SCHEDULE FOR THE GSAT <i>(FOR ALL GRAD SCHOOL ENROLLEES):</i></p>
-                                                </td>
-                                                <td>
-                                                    <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
-                                                            <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p class="sub-text">3. ONLINE PRE-REGISTRATION:</p>
+                                                    <p class="sub-text">2. SIGNING OF DRF AND PRINTING ENROLLMENT AND ASSESSMENT FORM:</p>
                                                 </td>
                                                 <td>
                                                     <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #13a166">
@@ -161,67 +153,57 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <p class="sub-text ml-4">4. FILL OUT THE NEEDED FORMS FOR ADMISSION AT THE OGS:</p>
+                                                    <p class="sub-text ml-4">3. SUBMISSION COPY OF DRF TO OGS:</p>
                                                 </td>
                                                 <td>
                                                     <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
                                                             <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p class="sub-text ml-4">5. GO TO THE MIS FOR THE SIGNING OF YOUR DRF AND PRINTING OF YOUR ENROLMENT AND ASSESSMENT FORM:</p>
-                                                </td>
-                                                <td>
-                                                    <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
-                                                            <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p class="sub-text">6. GO TO THE ACCOUNTING OFFICE AND PRESENT YOUR EAF(ENROLMENT AND ASSESSMENT FORM) AND DRF(DRAFT REGISTRATION FORM):</p>
-                                                </td>
-                                                <td>
-                                                    <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #0e52c7">
-                                                            <i class="bx bx-loader-circle" style="margin-left: 145px;"></i> Pending</span></p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p class="sub-text">7. GO TO THE CASHIER'S OFFICE AND PAY FOR YOUR ENTRANCE FEE:</p>
-                                                </td>
-                                                <td>
-                                                    <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #0e52c7">
-                                                            <i class="bx bx-loader-circle" style="margin-left: 145px;"></i> Pending</span></p>
-                                                </td>
-                                            <tr>
-                                                <td>
-                                                    <p class="sub-text">8. SUBMIT YOUR ORIGINAL ENTRANCE DOCUMENTS TO THE REGISTRAR'S OFFICE:</p>
-                                                </td>
-                                                <td>
-                                                    <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #0e52c7">
-                                                            <i class="bx bx-loader-circle" style="margin-left: 145px;"></i> Pending</span></p>
-                                                </td>
-                                            <tr>
-                                                <td>
-                                                    <p class="sub-text">9. GO TO THE INCOME GENERATING PROJECT(IGP) OFFICE FOR YOUR ID:</p>
-                                                </td>
-                                                <td>
-                                                    <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #0e52c7">
-                                                            <i class="bx bx-loader-circle" style="margin-left: 145px;"></i> Pending</span></p>
-                                                </td>
-                                            <tr>
-                                                <td>
-                                                    <p class="sub-text">10. SUBMIT TO THE OGS THE OTHER COPY OF YOUR DRF:</p>
-                                                </td>
-                                                <td>
-                                                    <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #0e52c7">
-                                                            <i class="bx bx-loader-circle" style="margin-left: 145px;"></i> Pending</span></p>
-                                                </td>
-                                            </tr>
+                                            </tr>                                                                                                                                                                                  
                                         </tbody>
                                     </table>
                                 </div>
+                                @else
+                                <div class="table-wrapper row">
+                                    <table class="table default-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="width: 60%">Enrollment Procedure</th>
+                                                <th scope="col" style="width: 40%; text-align: center;">Current Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>               
+                                            <tr>
+                                                <td>
+                                                    <p class="sub-text">1. FILLED OUT FORM FOR ADMISSION:</i></p>
+                                                </td>
+                                                <td>
+                                                    <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                                                            <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p class="sub-text">2. SIGNING OF DRF AND PRINTING ENROLLMENT AND ASSESSMENT FORM::</p>
+                                                </td>
+                                                <td>
+                                                    <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #13a166">
+                                                            <i class="bx bx-check-circle" style="margin-left: 150px;"></i> N/A</span></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p class="sub-text ml-4">3. SUBMISSION OF ORIGINAL ENTRANCE DOCUMENTS TO REGISTRAR"S OFFICE:</p>
+                                                </td>
+                                                <td>
+                                                    <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                                                            <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
+                                                </td>
+                                            </tr>                                                                                                                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                @endif
                             </div>                          
                         </div>
                     </div>
