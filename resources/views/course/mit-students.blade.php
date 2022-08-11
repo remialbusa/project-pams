@@ -58,7 +58,7 @@
                 <hr>
                 <div class="col">
                     <div>
-                        <h6>S.Y. 2022-20223 (First Semester)</h6>
+                        <h6>S.Y. 2022-2023 (First Semester)</h6>
                     </div>
                     <div>
                         <h5>Master of Information Technology</b></h5>
@@ -84,7 +84,6 @@
                                         <th>Student Number</th>
                                         <th>Student Name</th>
                                         <th>Programs</th>
-                                        <th>Address</th>
                                         <th>Contact Number</th>
                                         <th>Actions</th>
                                     </tr>
@@ -95,8 +94,7 @@
                                         <td>{{$student['student_id']}}</td>
                                         <td>{{$student['first_name']}} {{$student['middle_name']}} {{$student['last_name']}}</td>
                                         <td>{{$student['program']}}</td>
-                                        <td>{{$student['home_address']}}</td>
-                                        <td>{{$student['contact_no']}}</td>
+                                        <td>{{$student['mobile_no']}}</td>
                                         <td>
                                             <a href="{{ route('mit-edit-student', $student['id'])}}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                             <a href="{{ route('mit-delete-student', $student['id'])}}" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -120,9 +118,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="approved" role="tabpanel" aria-labelledby="approved-tab">
-                <div class="table-wrapper row">
+                    <div class="tab-pane fade" id="approved" role="tabpanel" aria-labelledby="approved-tab">
+                        <div class="table-wrapper row">
                             <table class="table table-fixed table-hover">
                                 <thead>
                                     <tr>
@@ -142,15 +139,15 @@
                                         <td>{{$value['program']}}</td>
                                         <td>{{$value['home_address']}}</td>
                                         <td>{{$value['contact_no']}}</td>
-                                        <td>                                      
+                                        <td>
                                             <a href="{{ route('delete-enrolled-mit', $value['id'])}}" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
