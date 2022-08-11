@@ -60,10 +60,9 @@
                     <div>
                         <h6>S.Y. 2022-2023 (First Semester)</h6>
                     </div>
-                    <div>
-                        <h5>Master of Information Technology</b></h5>
-                    </div>
+                    <input type="text" placeholder="Search..">
                 </div>
+                
             </div>
             <!-- RH: this is bootstrap 5 tabbed panel -->
             <ul class="nav nav-tabs nav-fill mt-4 mb-2" id="myTab" role="tablist">
@@ -126,7 +125,6 @@
                                         <th>Student Number</th>
                                         <th>Student Name</th>
                                         <th>Programs</th>
-                                        <th>Address</th>
                                         <th>Contact Number</th>
                                         <th>Actions</th>
                                     </tr>
@@ -137,8 +135,7 @@
                                         <td>{{$value['student_id']}}</td>
                                         <td>{{$value['first_name']}} {{$value['middle_name']}} {{$value['last_name']}}</td>
                                         <td>{{$value['program']}}</td>
-                                        <td>{{$value['home_address']}}</td>
-                                        <td>{{$value['contact_no']}}</td>
+                                        <td>{{$value['mobile_no']}}</td>
                                         <td>
                                             <a href="{{ route('delete-enrolled-mit', $value['id'])}}" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                         </td>
