@@ -60,10 +60,9 @@
                     <div>
                         <h6>S.Y. 2022-2023 (First Semester)</h6>
                     </div>
-                    <div>
-                        <h5>Master of Information Technology</b></h5>
-                    </div>
+                    <input type="text" placeholder="Search..">
                 </div>
+                
             </div>
             <!-- RH: this is bootstrap 5 tabbed panel -->
             <ul class="nav nav-tabs nav-fill mt-4 mb-2" id="myTab" role="tablist">
