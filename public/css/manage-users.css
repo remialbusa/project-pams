@@ -79,12 +79,7 @@ table.table tr th, table.table tr td {
     padding: 12px 15px;
     vertical-align: middle;
 }
-table.table tr th:first-child {
-    width: 230px;
-}
-table.table tr th:last-child {
-    width: 100px;
-}
+
 table.table-striped tbody tr:nth-of-type(odd) {
     background-color: #fcfcfc;
 }

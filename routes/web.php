@@ -59,8 +59,8 @@ Route::get('/staff/admin/system-configuration', [AdminController::class, 'system
 Route::get('/staff/auth/logout', [AdminController::class, 'logoutAdmin'])->name('auth.logout-admin');
 
 //Admission Officer Course routes
-Route::get('/staff/admission-officer/mit', [AdmissionOfficerController::class, 'admissionOfficerMITView'])->name('mit-students');
-Route::get('/staff/admission-officer/msit', [AdmissionOfficerController::class, 'admissionOfficerMSITView'])->name('msit-students');
+Route::get('/staff/admission-officer/ogs-view', [AdmissionOfficerController::class, 'admissionOfficerView'])->name('students');
+//Route::get('/staff/admission-officer/msit', [AdmissionOfficerController::class, 'admissionOfficerMSITView'])->name('msit-students');
 
 //MIT Students
 //delete pending students
@@ -69,11 +69,11 @@ Route::get('/staff/admission-officer/delete/{id}', [AdmissionOfficerController::
 Route::get('/staff/admission-officer/delete/enrolled/{id}', [AdmissionOfficerController::class, 'deleteEnrolledStudent'])->name('delete-enrolled-mit');
 //approve students
 Route::get('/staff/admission-officer/edit/{id}', [AdmissionOfficerController::class, 'editPendingStudent'])->name('mit-edit-student');
-Route::post('/staff/admission-officer/edit', [AdmissionOfficerController::class, 'approvePendingStudent'])->name('mit-approve-student');
+Route::post('/staff/admission-officer/edit', [AdmissionOfficerController::class, 'approvePendingStudent'])->name('approve-student');
 
 //MSIT Students
 //delete pending students
-Route::get('/staff/admission-officer/msit/delete/{id}', [AdmissionOfficerController::class, 'deletePendingMsitStudent'])->name('msit-delete-student');
+//Route::get('/staff/admission-officer/msit/delete/{id}', [AdmissionOfficerController::class, 'deletePendingMsitStudent'])->name('msit-delete-student');
 //approve students
-Route::get('/staff/admission-officer/msit/edit/{id}', [AdmissionOfficerController::class, 'editPendingMsitStudent'])->name('msit-edit-student');
-Route::post('/staff/admission-officer/msit/edit', [AdmissionOfficerController::class, 'approvePendingMsitStudent'])->name('msit-approve-student');
+//Route::get('/staff/admission-officer/msit/edit/{id}', [AdmissionOfficerController::class, 'editPendingMsitStudent'])->name('msit-edit-student');
+//Route::post('/staff/admission-officer/msit/edit', [AdmissionOfficerController::class, 'approvePendingMsitStudent'])->name('msit-approve-student');

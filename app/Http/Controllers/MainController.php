@@ -159,8 +159,8 @@ class MainController extends Controller
                 'LoggedUserInfo' => $student
             ];
         }
-        $studentList = Student::all();
-        return view('student.profile', $data, ['students' => $studentList]);
+        $enrolledStudent = EnrolledStudent::where('student_id', '=', session('LoggedUser'))->first();     
+        return view('student.profile', $data, ['enrolledStudent' => $enrolledStudent]);
     }
 
     function logout()
@@ -179,8 +179,7 @@ class MainController extends Controller
                 'LoggedUserInfo' => $student
             ];
         }
-        $enrolledMITSubjects = EnrolledStudent::where('program', 'MIT')->get();
-        $enrolledMSITSubjects = EnrolledStudent::where('program', 'MSIT')->get();
-        return view('student.monitor-enrollment', $data, ['enrolledMitSubjects' => $enrolledMITSubjects, 'enrolledSubjects' => $enrolledMSITSubjects]);
+        $enrolledStudent = EnrolledStudent::where('id', '=', '1')->first();     
+        return view('student.monitor-enrollment', $data, ['enrolledStudent' => $enrolledStudent]);
     }
 }

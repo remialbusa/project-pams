@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-   <!-- Fonts -->
-   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap Icon-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <!-- Bootstrap -->
@@ -20,12 +20,12 @@
     <!-- custom css -->
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
-    <title>Register</title>
+    <title>Student Information</title>
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
                         <a class="nav-link" href="#">Back</a>
-                    </li>                
+                    </li>
                 </ul>
             </div>
         </div>
@@ -47,7 +47,7 @@
                 <div class="basic-details px-4 mt-5 mb-5">
                     <h4>MANAGE STUDENT DATA</h4>
                     <hr />
-                    <form action="{{ route('auth.save') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('approve-student') }}" method="POST" enctype="multipart/form-data">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
                         @if(Session::get('success'))
                         <div class="alert alert-success text-center">{{Session::get('success')}}</div>
@@ -65,8 +65,11 @@
                                 <div class="form-outline">
                                     <label class="form-label" for="form6Example1">Student Type</label>
                                     <select class="form-select" aria-label="Default select example" name="student_type">
+                                        @if($studentData['student_type'] == 'New Student')
                                         <option selected value="New Student">New Student</option>
+                                        @else
                                         <option value="Continuing">Continuing</option>
+                                        @endif
                                     </select>
                                     <span class="text-danger">@error('student_type'){{$message}} @enderror</span>
                                 </div>
@@ -75,14 +78,14 @@
                                 <div class="col-md-6">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="student_id" />
+                                        <input type="text" id="form6Example1" class="form-control" name="student_id" value="{{$studentData['student_id']}}" />
                                         <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Last name <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="last_name" />
+                                        <input type="text" id="form6Example2" class="form-control" name="last_name" value="{{$studentData['last_name']}}" />
                                         <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -92,14 +95,14 @@
                                 <div class="col-md-6">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">First name <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="first_name" />
+                                        <input type="text" id="form6Example1" class="form-control" name="first_name" value="{{$studentData['first_name']}}" />
                                         <span class="text-danger">@error('first_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Middle name <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="middle_name" />
+                                        <input type="text" id="form6Example2" class="form-control" name="middle_name" value="{{$studentData['middle_name']}}" />
                                         <span class="text-danger">@error('middle_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -110,10 +113,13 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
                                         <select class="form-select" aria-label="Default select example" name="vaccination_status">
-                                            <option disabled selected>N/A</option>
-                                            <option value="Vaccinated">Vaccinated</option>
-                                            <option value="Not Vaccinated">Not Vaccinated</option>
-                                            <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                            @if($studentData['vaccination_status'] == 'Vaccinated')
+                                            <option selected value="Vaccinated">Vaccinated</option>
+                                            @elseif($studentData['student_type'] == 'Not Vaccinated')
+                                            <option selected value="Not Vaccinated">Not Vaccinated</option>
+                                            @else
+                                            <option selected value="Partially Vaccinated">Partially Vaccinated</option>
+                                            @endif
                                         </select>
                                         <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
                                     </div>
@@ -121,7 +127,7 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Email <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="email" />
+                                        <input type="text" id="form6Example2" class="form-control" name="email" value="{{$studentData['email']}}" />
                                         <span class="text-danger">@error('email'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -132,9 +138,11 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Gender</label>
                                         <select class="form-select" aria-label="Default select example" name="gender">
-                                            <option disabled selected>N/A</option>
+                                            @if($studentData['gender'] == 'Male')
                                             <option value="Male">Male</option>
+                                            @else
                                             <option value="Female">Female</option>
+                                            @endif
                                         </select>
                                         <span class="text-danger">@error('gender'){{$message}} @enderror</span>
                                     </div>
@@ -142,7 +150,7 @@
                                 <div class="col-md-6">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Birthdate</label>
-                                        <input type="date" id="form6Example1" class="form-control" name="birth_date" />
+                                        <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{$studentData['birth_date']}}" />
                                         <span class="text-danger">@error('birth_date'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -152,99 +160,33 @@
                                 <div class="col-md-6">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Mobile Number <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="mobile_no" />
+                                        <input type="text" id="form6Example1" class="form-control" name="mobile_no" value="{{$studentData['mobile_no']}}" />
                                         <span class="text-danger">@error('mobile_no'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Facebook Account Name <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="fb_acc_name" />
+                                        <input type="text" id="form6Example2" class="form-control" name="fb_acc_name" value="{{$studentData['fb_acc_name']}}" />
                                         <span class="text-danger">@error('fb_acc_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                             </div>
-                            <!-- 2 column grid layout with text inputs for the first and last names -->
-                            <div class="row mt-2 mb-3">
-                                <label class="form-label" for="form6Example2">Address</label>
-                                <p>
-                                    <i>(Please follow the format Region/Province/City/Barangay.)</i>
-                                </p>
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <select class="form-select" aria-label="Default select example" id="region" name="region">
-
-                                        </select>
-                                        <span class="text-danger">@error('region'){{$message}} @enderror</span>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <select class="form-select" aria-label="Default select example" id="province" name="province">
-
-                                        </select>
-                                        <span class="text-danger">@error('province'){{$message}} @enderror</span>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <select class="form-select" aria-label="Default select example" id="city" name="city">
-
-                                        </select>
-                                        <span class="text-danger">@error('city'){{$message}} @enderror</span>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <select class="form-select" aria-label="Default select example" id="barangay" name="barangay">
-
-                                        </select>
-                                        <span class="text-danger">@error('barangay'){{$message}} @enderror</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="form-label" for="form6Example1">List of Requirements: <label class="text-danger">*</label></label>
-                                        <p>
-                                            <i>(Kindly upload the soft copy of your entrance credentials, registration, consent, and promissory note in one PDF file.)</i>
-                                        </p>
-                                        <input type="file" placeholder="Choose file" class="form-control" name="file">
-                                        <span class="text-danger">@error('file'){{$message}} @enderror</span>
-                                    </div>
-                                </div>
-                            </div>
-
                             <h5 class="mt-5 lead">COURSE/S</h5>
                             <div class="col mt-4 mb-3">
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Select Your Program</label>
                                         <select class="form-select" aria-label="Default select example" name="program">
-                                            <option disabled selected>N/A</option>
-                                            <option value="MIT">MIT - Master of Information Technology</option>
-                                            <option value="MSIT">MSIT - Master of Science in Information Technology</option>
-                                            <option value="ME">ME - Master of English</option>
-                                            <option value="MSW">MSW - Master of Social Work</option>
-                                            <option value="MB">MB - Master in Biology</option>
-                                            <option value="MB">MPE - Master in Physical Education</option>
-                                            <option value="MB">MA-SPED - Master of Arts (Special Education)</option>
-                                            <option value="MB">MM - Master in Management</option>
-                                            <option value="MB">MED-MATHEMATICS - Master in Education (Mathematics)</option>
-                                            <option value="MB">MA-PRE-ELEM - Master of Arts in Education(Pre-Elementary Education</option>
-                                            <option value="MB">MAED-EDM - Master of Arts in Education(Educational Management)</option>
-                                            <option value="MB">MAED-MATH - Master of Arts in Education(Mathematics)</option>
-                                            <option value="MB">MAT-FILIPINO - Master of Arts in Education(Filipino)</option>
-                                            <option value="MB">MAT-SOC SCI - Master of Arts in Teaching(Social Science)</option>
-                                            <option value="MB">MAT-NAT SCI - Master of Arts in Teaching(Natural Science)</option>
-                                            <option value="MB">MAT-READING - Master of Arts in Teaching(Reading)</option>
-                                            <option value="MB">MAT-LT - Master of Arts in Teaching(Language Teaching)</option>
-                                            <option value="MB">DM-HRM - Doctor of Management(Human Resource Management</option>
-                                            <option value="MB">Ph.D.-SSR - Doctor of Philosophy(Social Science Research)</option>
-                                            <option value="MB">DA-LT - Doctor of Arts(Language Teaching)</option>
-                                            <option value="MB">EdD-EdAd - Doctor of Education(Educational Administration)</option>
+                                            @if($studentData['program'] == 'MIT')
+                                            <option selected value="MIT">MIT - Master of Information Technology</option>
+                                            @elseif($studentData['program'] == 'MSIT')
+                                            <option selected value="MSIT">MSIT - Master of Science in Information Technology</option>
+                                            @elseif($studentData['program'] == 'ME')
+                                            <option selected value="ME">ME - Master in English</option>
+                                            @else
+                                            <option selected value="MB">MB - Master in Biology</option>
+                                            @endif
                                         </select>
                                         <span class="text-danger">@error('program'){{$message}} @enderror</span>
                                     </div>
@@ -256,13 +198,63 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">1ST PERIOD - 7:30 a.m. - 10:30 a.m.</label>
                                         <select class="form-select" aria-label="Default select example" name="first_period">
-                                            <option disabled selected>Select First Period Subject</option>
+                                            @if($studentData['first_period_sub'] == 'MIT 501 Advanced Programming I')
+                                            <option disabled>Select</option>
+                                            <option selected value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
+                                            <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
+                                            <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
+                                            <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
+                                            <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
+                                            <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
+                                            @elseif($studentData['first_period_sub'] == 'MIT 505 Advanced Data Structure and Algorithm')
+                                            <option disabled>Select</option>
+                                            <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
+                                            <option selected value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
+                                            <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
+                                            <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
+                                            <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
+                                            <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
+                                            @elseif($studentData['first_period_sub'] == 'MIT 506 Advanced Multimedia Communication')
+                                            <option disabled>Select</option>
+                                            <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
+                                            <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
+                                            <option selected value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
+                                            <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
+                                            <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
+                                            <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
+                                            @elseif($studentData['first_period_sub'] == 'MSIT 501 Advanced Programming I')
+                                            <option disabled>Select</option>
+                                            <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
+                                            <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
+                                            <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
+                                            <option selected value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
+                                            <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
+                                            <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
+                                            @elseif($studentData['first_period_sub'] == 'MSIT 505 Advanced Data Structure & Algorithm')
+                                            <option disabled>Select</option>
+                                            <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
+                                            <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
+                                            <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
+                                            <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
+                                            <option selected value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
+                                            <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
+                                            @elseif($studentData['first_period_sub'] == 'MSIT 506 Advanced Multimedia Communication')
+                                            <option disabled>Select</option>
+                                            <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
+                                            <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
+                                            <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
+                                            <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
+                                            <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
+                                            <option selected value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
+                                            @else
+                                            <option selected disabled>Select</option>
                                             <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
                                             <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
                                             <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
                                             <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
                                             <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
                                             <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
+                                            @endif
                                         </select>
                                         <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
                                     </div>
@@ -271,11 +263,37 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">2ND PERIOD - 11:00 a.m. - 2:00 p.m.</label>
                                         <select class="form-select" aria-label="Default select example" name="second_period">
-                                            <option disabled selected>Select Second Period Subject</option>
+                                            @if($studentData['second_period_sub'] == 'MIT 502 Methods of Research for IT')
+                                            <option disabled>Select</option>
+                                            <option selected value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
+                                            <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
+                                            <option value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
+                                            <option value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
+                                            @elseif($studentData['second_period_sub'] == 'MIT 507 System Analysis and Design')
+                                            <option disabled>Select</option>
+                                            <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
+                                            <option selected value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
+                                            <option value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
+                                            <option value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
+                                            @elseif($studentData['second_period_sub'] == 'MSIT 502 Methods of Research for IT')
+                                            <option disabled>Select</option>
+                                            <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
+                                            <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
+                                            <option selected value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
+                                            <option value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
+                                            @elseif($studentData['second_period_sub'] == 'MSIT 507 System Analysis and Design')
+                                            <option disabled>Select</option>
+                                            <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
+                                            <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
+                                            <option value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
+                                            <option selected value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
+                                            @else
+                                            <option selected disabled>Select</option>
                                             <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
                                             <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
                                             <option value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
                                             <option value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
+                                            @endif
                                         </select>
                                         <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
                                     </div>
@@ -284,18 +302,44 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">3RD PERIOD - 2:00 p.m. - 5:00 p.m.</label>
                                         <select class="form-select" aria-label="Default select example" name="third_period">
-                                            <option disabled selected>Select Third Period Subject</option>
+                                            @if($studentData['third_period_sub'] == 'MIT 503 Statistics for IT Research')
+                                            <option disabled>Select</option>
+                                            <option selected value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
+                                            <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
+                                            <option value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
+                                            <option value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
+                                            @elseif($studentData['third_period_sub'] == 'MSIT 503 Statistics for IT Research')
+                                            <option disabled>Select</option>
+                                            <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
+                                            <option selected value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
+                                            <option value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
+                                            <option value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
+                                            @elseif($studentData['third_period_sub'] == 'TW 001 Statistics for IT Research')
+                                            <option disabled>Select</option>
+                                            <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
+                                            <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
+                                            <option selected value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
+                                            <option value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
+                                            @elseif($studentData['third_period_sub'] == 'TW 002 Statistics for IT Research')
+                                            <option disabled>Select</option>
+                                            <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
+                                            <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
+                                            <option value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
+                                            <option selected value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
+                                            @else
+                                            <option selected disabled>Select</option>
                                             <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
                                             <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
                                             <option value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
                                             <option value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
+                                            @endif
                                         </select>
                                         <span class="text-danger">@error('third_period'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block mt-4 mb-5">Register</button>
+                        <button type="submit" class="btn btn-primary btn-block mt-4 mb-5">Approve</button>
                     </form>
                 </div>
             </div>
