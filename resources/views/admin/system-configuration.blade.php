@@ -145,41 +145,38 @@
 
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
-                </div>
+                    <!--announcement-tab-->
+                    <div class="tab-pane fade" id="announcement" role="tabpanel" aria-labelledby="announcement-tab">
+                        <div class="tab-pane fade active show" id="announcement" role="tabpanel" aria-labelledby="announcement-tab" style="max-width: 100%;">
+                            <h4 class="title mb-2" style="width: 100%;">Configure Announcement and Updates</h4>
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="button" autocomplete="on">Post New Announcement</button>
+                            <div class="alert alert-success" style="display: none;"></div>
+                            <hr class="default-divider ml-auto mt-1 mb-2">
+                            <table class="table default-table">
+                                <table id="example" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Date Posted</th>
+                                            <th>Title</th>
+                                            <th>Preview</th>
+                                            <th>Category</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
 
-                <!--announcement-tab-->
-                <div class="tab-pane fade" id="announcement" role="tabpanel" aria-labelledby="announcement-tab">
-                    <div class="tab-pane fade active show" id="announcement" role="tabpanel" aria-labelledby="announcement-tab" style="max-width: 100%;">
-                        <h4 class="title mb-2" style="width: 100%;">Configure Announcement and Updates</h4>
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="button" autocomplete="on">Post New Announcement</button>
-                        <div class="alert alert-success" style="display: none;"></div>
-                        <hr class="default-divider ml-auto mt-1 mb-2">
-                        <table class="table default-table">
-                            <table id="example" class="table table-striped" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Date Posted</th>
-                                        <th>Title</th>
-                                        <th>Preview</th>
-                                        <th>Category</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
+                                </table>
+                        </div>
 
-                            </table>
                     </div>
-
-                </div>
-                <div class="tab-pane fade" id="faqs" role="tabpanel" aria-labelledby="faqs-tab">
-                </div>
-                <div class="tab-pane fade" id="technical-support" role="tabpanel" aria-labelledby="technical-support-tab">
-                    .eeeeeeeeeeeeeeeeeeeeeeeeeeey
+                    <div class="tab-pane fade" id="faqs" role="tabpanel" aria-labelledby="faqs-tab">
+                    </div>
+                    <div class="tab-pane fade" id="technical-support" role="tabpanel" aria-labelledby="technical-support-tab">
+                        .eeeeeeeeeeeeeeeeeeeeeeeeeeey
+                    </div>
                 </div>
             </div>
-
         </div>
     </section>
 

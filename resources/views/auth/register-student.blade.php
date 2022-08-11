@@ -49,7 +49,7 @@
                 <div class="basic-details px-4 mt-5 mb-5">
                     <h4>PRE-REGISTRATION</h4>
                     <hr />
-                    <form action="{{ route('auth.save') }}" method="POST">
+                    <form action="{{ route('auth.save') }}" method="POST" enctype="multipart/form-data">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
                         @if(Session::get('success'))
                         <div class="alert alert-success text-center">{{Session::get('success')}}</div>
@@ -110,6 +110,28 @@
                             <div class="row mt-2 mb-3">
                                 <div class="col-md-6">
                                     <div class="form-outline">
+                                        <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
+                                        <select class="form-select" aria-label="Default select example" name="vaccination_status">
+                                            <option disabled selected>N/A</option>
+                                            <option value="Vaccinated">Vaccinated</option>
+                                            <option value="Not Vaccinated">Not Vaccinated</option>
+                                            <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                        </select>
+                                        <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example2">Email <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example2" class="form-control" name="email" />
+                                        <span class="text-danger">@error('email'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 2 column grid layout with text inputs for the first and last names -->
+                            <div class="row mt-2 mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Gender</label>
                                         <select class="form-select" aria-label="Default select example" name="gender">
                                             <option disabled selected>N/A</option>
@@ -131,7 +153,7 @@
                             <div class="row mt-2 mb-3">
                                 <div class="col-md-6">
                                     <div class="form-outline">
-                                        <label class="form-label" for="form6Example1">Mobile Number<label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Mobile Number <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example1" class="form-control" name="mobile_no" />
                                         <span class="text-danger">@error('mobile_no'){{$message}} @enderror</span>
                                     </div>
@@ -180,6 +202,19 @@
 
                                         </select>
                                         <span class="text-danger">@error('barangay'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label" for="form6Example1">List of Requirements: <label class="text-danger">*</label></label>
+                                        <p>
+                                            <i>(Kindly upload the soft copy of your entrance credentials, registration, consent, and promissory note in one PDF file.)</i>
+                                        </p>
+                                        <input type="file" placeholder="Choose file" class="form-control" name="file">
+                                        <span class="text-danger">@error('file'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                             </div>

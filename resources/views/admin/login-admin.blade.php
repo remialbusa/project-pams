@@ -56,22 +56,10 @@
                             <div class="mb-3">
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="user_type">
                                     <option value="Admin">Admin</option>
-                                    <option value="Admission Officer">Admission Officer</option>
+                                    <option value="OGS Officer">OGS Officer</option>
                                     <option value="MIS">MIS Officer</option>
                                 </select>
                                 <span class="text-danger">@error('user_type'){{$message}} @enderror</span>
-                            </div>
-                            <div class="mb-3">
-                                <select class="form-select form-select-lg" aria-label="Default select example" name="program">
-                                    <option disabled selected value="">Program</option>
-                                    <option value="N/A">N/A</option>        
-                                    <option value="MIT">MIT - Master of Information Technology</option>
-                                    <option value="MSIT">MSIT - Master of Science in Information Technology</option>
-                                    <option value="ME">ME - Master of English</option>
-                                    <option value="MSW">MSW - Master of Social Work</option>
-                                    <option value="MB">MB - Master in Biology</option>
-                                </select>
-                                <span class="text-danger">@error('program'){{$message}} @enderror</span>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="employee_id" placeholder="Employee ID" value="{{ old('employee_id') }}">

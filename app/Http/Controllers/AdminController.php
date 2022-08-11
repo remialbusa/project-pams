@@ -93,31 +93,28 @@ class AdminController extends Controller
         //validate request
         $request->validate([
             'user_type' => 'required',
-            'program' => 'required',
             'employee_id' => 'required',
             'password' => 'required'
         ]);
 
         $userType = $request->user_type;
-        $userProgram = $request->program;
-
         $adminInfo = Admin::where('employee_id', '=', $request->employee_id)->first();
 
-        if ($userType == "Admin" && $userProgram == "N/A") {
+        if ($userType == "Admin") {
             if ($adminInfo && Hash::check($request->password, $adminInfo->password)) {
                 $request->session()->put('LoggedAdmin', $adminInfo->id);
                 return redirect('staff/admin/manage-users');
             } else {
                 return back()->with('fail', 'incorrect password');
             }
-        }elseif ($userType == "Admission Officer" && $userProgram == "MIT") {
+        }elseif ($userType == "OGS Officer") {
             if ($adminInfo && Hash::check($request->password, $adminInfo->password)) {
                 $request->session()->put('LoggedAdmin', $adminInfo->id);
                 return redirect('staff/admission-officer/mit');
             } else {
                 return back()->with('fail', 'incorrect password');
             }
-        }elseif($userType == "Admission Officer" && $userProgram == "MSIT") {
+        }elseif($userType == "MIS Officer") {
             if ($adminInfo && Hash::check($request->password, $adminInfo->password)) {
                 $request->session()->put('LoggedAdmin', $adminInfo->id);
                 return redirect('staff/admission-officer/msit');

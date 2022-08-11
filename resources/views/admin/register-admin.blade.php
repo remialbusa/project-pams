@@ -39,7 +39,7 @@
                         <div class="form-floating mb-3">    
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="role">
                                     <option value="Admin">Admin</option>
-                                    <option value="Admission Officer">Admission Officer</option>
+                                    <option value="OGS Officer">OGS Officer</option>
                                     <option value="MIS Officer">MIS Officer</option>
                                 </select>
                                 <span class="text-danger">@error('role'){{$message}} @enderror</span>

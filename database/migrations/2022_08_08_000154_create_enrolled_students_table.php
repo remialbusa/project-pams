@@ -15,25 +15,27 @@ class CreateEnrolledStudentsTable extends Migration
     {
         Schema::create('enrolled_students', function (Blueprint $table) {
             $table->id();
-            $table->string('student_type');
-            $table->string('program');
-            $table->string('first_period');
-            $table->string('second_period');
-            $table->string('third_period');          
+            $table->string('student_type');         
             $table->integer('student_id');
+            $table->string('last_name');
             $table->string('first_name');
             $table->string('middle_name');
-            $table->string('last_name');
-            $table->date('birth_date');
-            $table->string('gender');
-            $table->string('civil_status');
-            $table->string('nationality');
-            $table->string('contact_no');
+            $table->string('vaccination_status');
             $table->string('email');
-            $table->string('zipcode');
-            $table->string('home_address');
-            $table->string('guardian');
-            $table->string('guardian_contact_no');
+            $table->string('gender');
+            $table->date('birth_date');                                   
+            $table->string('mobile_no');
+            $table->string('fb_acc_name');
+            $table->string('region_code');
+            $table->string('province_code');
+            $table->string('city_code');
+            $table->string('barangay_code');
+            $table->string('program');
+            $table->string('file_name');
+            $table->string('file_path');
+            $table->string('first_period_sub');
+            $table->string('second_period_sub');
+            $table->string('third_period_sub'); 
             $table->timestamps();
 
         });

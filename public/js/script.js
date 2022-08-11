@@ -34,3 +34,15 @@ $(function(){
 
     $('#region').ph_locations('fetch_list');
 });
+
+// $(document).ready(function(){
+//     var regionVal = 08;
+//     $('#city_code').ph_locations({'location_type': 'cities'});
+//     $('#city_code').ph_locations('fetch_list', [{"city_code": "083747"}]);
+//     alert(regionVal);
+
+
+   
+// });
+
+

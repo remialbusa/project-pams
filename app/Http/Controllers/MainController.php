@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\EnrolledStudent;
 use App\Models\Student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class MainController extends Controller
 {
@@ -28,6 +27,8 @@ class MainController extends Controller
             'last_name' => 'required',          
             'first_name' => 'required',
             'middle_name' => 'required',
+            'vaccination_status' => 'required',
+            'email' => 'required',
             'gender' => 'required',  
             'birth_date' => 'required', 
             'mobile_no' => 'required',
@@ -36,11 +37,15 @@ class MainController extends Controller
             'province' => 'required',
             'city' => 'required',
             'barangay' => 'required',
+            'file' => 'required|mimes:pdf,xlx,csv|max:2048',
             'program' => 'required',
             'first_period' => 'required',
             'second_period' => 'required',
             'third_period' => 'required',                          
         ]);
+
+        $fileName = $request->file('file')->getClientOriginalName();
+        $filePath = $request->file('file')->store('public/files');
 
         //insert data
         $student = new Student();
@@ -49,6 +54,8 @@ class MainController extends Controller
         $student->last_name = $request->last_name;
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
+        $student->vaccination_status = $request->vaccination_status;
+        $student->email = $request->email;
         $student->gender = $request->gender;
         $student->birth_date = $request->birth_date;
         $student->mobile_no = $request->mobile_no;
@@ -57,6 +64,8 @@ class MainController extends Controller
         $student->province_code = $request->province;
         $student->city_code = $request->city;
         $student->barangay_code = $request->barangay;
+        $student->file_name = $fileName;
+        $student->file_path = $filePath;
         $student->program = $request->program;
         $student->first_period_sub = $request->first_period;
         $student->second_period_sub = $request->second_period;
