@@ -80,14 +80,13 @@
                                     <div class="table-wrapper row">
                                         <h4 class="title mb-2" style="width: 100%;">Enrolled Subjects</h4>
                                         <hr class="default-divider ml-auto mt-1 mb-2">
-                                        <p class="profile-text">Enrollment Status: <span style="font-weight: 600; color: #135e24; text-transform: uppercase; "> Regular</span> </p>
                                         <hr class="default-divider ml-auto mt-1 mb-2">
                                         <p class="form-header">List of enrolled subjects: </p>
                                         <table class="table default-table">
                                             <thead>
                                                 <tr>
                                                     <th scope="col" style="width: 50%; text-align: left;">Subject Name</th>
-                                                    <th scope="col" style="width: 20%; text-align: center;">Units</th>
+                                                    <th scope="col" style="width: 20%; text-align: center;">Period</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -96,7 +95,7 @@
                                                         <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->first_period_sub}}</p>
                                                     </td>
                                                     <td>
-                                                        <p class="status-text" style="text-align: center;">3</p>
+                                                        <p class="status-text" style="text-align: center;">7:30 AM - 10:30 AM</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -104,7 +103,7 @@
                                                         <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->second_period_sub}}</p>
                                                     </td>
                                                     <td>
-                                                        <p class="status-text" style="text-align: center;">3</p>
+                                                        <p class="status-text" style="text-align: center;">11:00 AM - 2:00 PM</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -112,13 +111,13 @@
                                                         <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->third_period_sub}}</p>
                                                     </td>
                                                     <td>
-                                                        <p class="status-text" style="text-align: center;">3</p>
+                                                        <p class="status-text" style="text-align: center;">2:00 PM - 5:00 PM</p>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <hr class="default-divider ml-auto mt-1 mb-2">
-                                        <p class="form-header" style="font-size: 14px; text-align: right"><b>Number of Units: 6</b></p>
+                                        <a class="small" href="#">Download Copy Of Rating</a>
                                     </div>
                                 </div>
                             </div>
