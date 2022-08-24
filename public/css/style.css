@@ -88,7 +88,7 @@
 
 .feature .card:active {
     box-shadow: 2px 10px 45px gray;
-    background-color: rgb(219, 219, 219);
+    background-color: #1e2fce;
     cursor: pointer;
 }
 
@@ -150,4 +150,11 @@ footer ul {
 
 .faqs-student p{
     padding-left: 380px;
+}
+
+.admission-body{
+    width: 90vw;
+    border-radius: 10px;
+    border:1px solid rgb(194, 194, 194);
+    
 }
