@@ -182,4 +182,9 @@ class MainController extends Controller
         $enrolledStudent = EnrolledStudent::where('id', '=', '1')->first();     
         return view('student.monitor-enrollment', $data, ['enrolledStudent' => $enrolledStudent]);
     }
+
+    function admission(){
+        return view('auth.admission');
+    }
+
 }
