@@ -62,7 +62,7 @@ Route::get('/staff/auth/logout', [AdminController::class, 'logoutAdmin'])->name(
 Route::get('/staff/admission-officer/ogs-view', [AdmissionOfficerController::class, 'admissionOfficerView'])->name('students');
 //Route::get('/staff/admission-officer/msit', [AdmissionOfficerController::class, 'admissionOfficerMSITView'])->name('msit-students');
 
-//MIT Students
+//Students
 //delete pending students
 Route::get('/staff/admission-officer/delete/{id}', [AdmissionOfficerController::class, 'deletePendingStudent'])->name('mit-delete-student');
 //delete enrolled MIT Student
@@ -71,9 +71,5 @@ Route::get('/staff/admission-officer/delete/enrolled/{id}', [AdmissionOfficerCon
 Route::get('/staff/admission-officer/edit/{id}', [AdmissionOfficerController::class, 'editPendingStudent'])->name('mit-edit-student');
 Route::post('/staff/admission-officer/edit', [AdmissionOfficerController::class, 'approvePendingStudent'])->name('approve-student');
 
-//MSIT Students
-//delete pending students
-//Route::get('/staff/admission-officer/msit/delete/{id}', [AdmissionOfficerController::class, 'deletePendingMsitStudent'])->name('msit-delete-student');
-//approve students
-//Route::get('/staff/admission-officer/msit/edit/{id}', [AdmissionOfficerController::class, 'editPendingMsitStudent'])->name('msit-edit-student');
-//Route::post('/staff/admission-officer/msit/edit', [AdmissionOfficerController::class, 'approvePendingMsitStudent'])->name('msit-approve-student');
+//Admission routes
+Route::get('/enrollment', [MainController::class, 'admission'])->name('enrollment');
