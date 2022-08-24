@@ -27,6 +27,7 @@ Route::get('/student/auth/login', [MainController::class, 'login'])->middleware(
 Route::get('/student/auth/register', [MainController::class, 'register'])->middleware('studentAlreadyLoggedIn');
 Route::post('/student/auth/register-student', [MainController::class, 'saveStudent'])->name('auth.save');
 Route::post('/student/auth/verify', [MainController::class, 'verify'])->name('auth.verify-student');
+Route::get('/student/auth/register-new-student', [MainController::class, 'registerNewStudent']);
 
 //student profile routes
 Route::get('/student/profile', [MainController::class, 'profile'])->middleware('isLoggedStudent');

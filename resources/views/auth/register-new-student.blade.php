@@ -67,20 +67,13 @@
                                 <div class="form-outline">
                                     <label class="form-label" for="form6Example1">Student Type</label>
                                     <select class="form-select" aria-label="Default select example" name="student_type">
-
-                                        <option selected value="Continuing">Continuing</option>
+                                        <option selected value="New Student">New Student</option>
                                     </select>
                                     <span class="text-danger">@error('student_type'){{$message}} @enderror</span>
                                 </div>
                             </div>
                             <div class="row mt-4 mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="student_id" />
-                                        <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
-                                    </div>
-                                </div>
+                                <input type="hidden" type="text" id="form6Example1" class="form-control" name="student_id" value="null" />
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Last name <label class="text-danger">*</label></label>

@@ -33,7 +33,6 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="{{ route('enrollment') }}">Admission</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="student/auth/faqs" class="nav-link" href="#">FAQ's</a>
@@ -72,7 +71,7 @@
                                 Classes will start on August 22, 2022.
 
                             </p>
-                            <a href="student/auth/register" class="btn btn-warning bg-warning btn-block mt-3">Enroll now</a>
+                            <a href="{{ route('enrollment') }}" class="btn btn-warning bg-warning btn-block mt-3">Enroll now</a>
                         </div>
                     </div>
                 </div>

@@ -41,21 +41,11 @@
         <div class="admission-body container mt-5">
             <h1 class="text-center mt-5" style="color: #0b7dff">ADMISSION REQUIREMENTS</h1>
             <div class="col-sm-8 px-5 mt-5">
-                    <p class="m-0">1. Must take the Graduate School Admission Test (GSAT)</p>
-                    <p class="m-0">2. Original Transcript of Records</p>
-                    <p class="m-0">3. Original Honorable Dismissal</p>
-                    <p class="m-0">4. Certificate of Good Moral Character</p>
-                    <p class="m-0">5. PSA Birth Certificate</p>
-                    <p class="m-0">6. Marriage Certificate (if applicable)</p>
-                    <p class="m-0">7. 2 pcs. RECENT 2x2 ID Pictures</p>
-                    <p class="m-0">8. For enrollees in any Doctoral Program, 1 Letter of Recommendation
-                        from any former professor or superiors
-                    </p>
-                    
-                </div>
-             
-            <h4 class="px-5 mt-5">ENROLLMENT PROCESS</h4>
-            <div class="admission-requirements row px-5 mb-5 mt-3">                   
+
+            </div>
+
+            <h4 class="px-5 mt-5">ADMISSION REQUIREMENTS</h4>
+            <div class="admission-requirements row px-5 mb-5 mt-3">
                 <div class="col-sm-4">
                     New Students
                 </div>
@@ -70,26 +60,59 @@
                     <p class="m-0">8. For enrollees in any Doctoral Program, 1 Letter of Recommendation
                         from any former professor or superiors
                     </p>
-                    
+
                 </div>
             </div>
-            <h4 class="px-5 mt-5">ADMISSION REQUIREMENTS</h4>
-            <div class="admission-requirements row px-5 mb-5 mt-3">                   
+            <h4 class="px-5 mt-5">ENROLLMENT PROCESS</h4>
+            <div class="admission-requirements row px-5 mb-5 mt-3">
                 <div class="col-sm-4">
                     New Students
                 </div>
                 <div class="col-sm-8">
-                    <p class="m-0">1. Must take the Graduate School Admission Test (GSAT)</p>
-                    <p class="m-0">2. Original Transcript of Records</p>
-                    <p class="m-0">3. Original Honorable Dismissal</p>
-                    <p class="m-0">4. Certificate of Good Moral Character</p>
-                    <p class="m-0">5. PSA Birth Certificate</p>
-                    <p class="m-0">6. Marriage Certificate (if applicable)</p>
-                    <p class="m-0">7. 2 pcs. RECENT 2x2 ID Pictures</p>
-                    <p class="m-0">8. For enrollees in any Doctoral Program, 1 Letter of Recommendation
-                        from any former professor or superiors
-                    </p>
-                    
+                <p class="m-0">1. VISIT THE OFFICE OF THE GRADUATE SCHOOL FOR EVALUATION
+                    (JULY 27-AUGUST 5, 2022)</p>
+                <p>Bring a copy of your Transcript of Records. From there, you will be
+                    given a slip for you to take the Graduate School Admission test
+                    (CSAT)</p>
+                <p class="m-0">2. PAY AND SECURE A SCHEDULE FOR THE GSAT (JULY 27-AUGUST 5, 2022)</p>Pay at the Cashier's Office and visit the LNU Guidance and Testing Office
+                to schedule your GSAT.
+                <p class="m-0">3. FILL OUT ONLINE PRE-REGISTRATION FORM: <a class="small" href="/student/auth/register-new-student">PRE-REGISTER HERE</a> </p>
+                <p class="m-0">4. FILL OUT THE NEEDED FORMS FOR ADMISSION AT THE OGS</p>For successful examinees, fill out the Application for Graduate Admission Form
+                (AFCAF) and the Draft Registration Form (DRF) at the Office of the Graduate School.
+                <p class="m-0">5. GO TO THE MIS FOR THE SIGNING OF YOUR DRF AND PRINTING OF YOUR
+                    ENROLMENT AND ASSESSMENT FORM (EAF)</p>
+                <p class="m-0">6. GO TO THE ACCOUNTING OFFICE AND PRESENT YOUR EAF AND DRF</p>
+                <p class="m-0">7. GO TO THE CASHIER'S OFFICE AND PAY FOR YOUR ENTRANCE FEE</p>
+                <p class="m-0">8. SUBMIT YOUR ORIGINAL ENTRANCE DOcUMENTS TO THE REGISTRAR'S OFFICE
+                </p>
+                <p class="m-0">9.GO TO THE INCOME GENERATING PROJECT (IGP) OFFICE FOR YOUR ID
+                </p>
+                <p class="m-0">10. SUBMIT TO THE OGS THE OTHER COPY OF YOUR DRF.
+                </p>
+                <div class="col-sm-8">
+
+                </div>
+            </div>
+            <h4 class="px-5 mt-5">ENROLLMENT PROCESS</h4>
+            <div class="admission-requirements row px-5 mb-5 mt-3">
+                <div class="col-sm-4">
+                    Continuining Students
+                </div>
+                <div class="col-sm-8">
+                    <p class="m-0">1. SIGNING OF CLEARANCE </p>
+                    <p>July 27- August 5, 2022
+                        Visit the Office of the Graduate School to secure a
+                        copy of your Clearance Form and have them signed by
+                        the CS Library and University Registrar.</p>
+                    <p class="m-0">2. FILL OUT ONLINE PRE-REGISTRATION <a class="small" href="/student/auth/register">PRE-REGISTER HERE</a></p>
+                    <p class="m-0">3. SUBMIT YOUR CLEARANCE TO THE OGS AND FILL OUT THE
+                        DRAFT REGISTRATION FORM (DRF).</p>
+                    <p class="m-0">4. GO TO THE MIS FOR THE SIGNING OF YOUR DRF AND PRINTING
+                        OF YOUR ENROLMENT AND ASSESSMENT FORM (EAF).</p>
+                    <p class="m-0">5. 60 TO THE ACCOUNTING OFFICE AND PRESENT YOUR EAF AND DRF.</p>
+                    <p class="m-0">6. GO TO THE CASHIER'S OFFICE AND PAY FOR YOUR ASSESSMENT.</p>
+                    <p class="m-0">7. SUBMIT TO THE O6S THE OTHER COPY OF YOUR DRF AND WAIT FOR
+                        FURTHER INSTRUCTIONS.</p>
                 </div>
             </div>
         </div>

@@ -17,6 +17,10 @@ class MainController extends Controller
     {
         return view('auth.register-student');
     }
+    function registerNewStudent()
+    {
+        return view('auth.register-new-student');
+    }
 
     function saveStudent(Request $request)
     {
