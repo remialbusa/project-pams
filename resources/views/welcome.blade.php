@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LNU Graduate School PAMS</title>
+    <title>LNU Graduate School Manangement System</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -55,7 +55,7 @@
                     <div class="card bg-none text-white">
                         <div class="card-title">
                             <h1 class="pt-3">
-                                Welcome to LNU Graduate School PAMS!
+                                Welcome to LNU Graduate School Management System
                             </h1>
                         </div>
                         <div class="card-body pt-0">

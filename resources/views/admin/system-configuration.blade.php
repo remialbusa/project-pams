@@ -173,7 +173,7 @@
                     <div class="tab-pane fade" id="faqs" role="tabpanel" aria-labelledby="faqs-tab">
                     </div>
                     <div class="tab-pane fade" id="technical-support" role="tabpanel" aria-labelledby="technical-support-tab">
-                        .eeeeeeeeeeeeeeeeeeeeeeeeeeey
+                        .
                     </div>
                 </div>
             </div>
