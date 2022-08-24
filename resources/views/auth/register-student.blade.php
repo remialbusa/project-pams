@@ -224,7 +224,7 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Select Your Program</label>
-                                        <select class="form-select" aria-label="Default select example" name="program">
+                                        <select class="form-select" aria-label="Default select example" id="slct_program" name="program" onchange="populate(this.id, 'slct_first_period')">
                                             <option disabled selected>N/A</option>
                                             <option value="MIT">MIT - Master of Information Technology</option>
                                             <option value="MSIT">MSIT - Master of Science in Information Technology</option>
@@ -257,7 +257,7 @@
                                 <div class="col-md-6 mt-2">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">1ST PERIOD - 7:30 a.m. - 10:30 a.m.</label>
-                                        <select class="form-select" aria-label="Default select example" name="first_period">
+                                        <select class="form-select" aria-label="Default select example" id="slct_first_period" name="first_period" onchange="populateTwo(this.id, 'slct_second_period')">
                                             <option disabled selected>Select First Period Subject</option>
                                             <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
                                             <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
@@ -277,7 +277,7 @@
                                 <div class="col-sm-6 mt-2">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">2ND PERIOD - 11:00 a.m. - 2:00 p.m.</label>
-                                        <select class="form-select" aria-label="Default select example" name="second_period">
+                                        <select class="form-select" aria-label="Default select example" id="slct_second_period" name="second_period" onchange="populateThree(this.id, 'slct_third_period')">
                                             <option disabled selected>Select Second Period Subject</option>
                                             <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
                                             <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
@@ -287,7 +287,6 @@
                                             <option value="LT 509 Language Teaching Methodology">LT 509 Language Teaching Methodology</option>
                                             <option value="FD 501 Basic Research">FD 501 Basic Research</option>
                                             <option value="SW 515 Field Instruction">SW 515 Field Instruction</option>
-
                                         </select>
                                         <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
                                     </div>
@@ -295,7 +294,7 @@
                                 <div class="col mt-3 mt-2">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">3RD PERIOD - 2:00 p.m. - 5:00 p.m.</label>
-                                        <select class="form-select" aria-label="Default select example" name="third_period">
+                                        <select class="form-select" aria-label="Default select example" id="slct_third_period" name="third_period">
                                             <option disabled selected>Select Third Period Subject</option>
                                             <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
                                             <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
