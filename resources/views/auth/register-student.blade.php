@@ -175,7 +175,7 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <select class="form-select" aria-label="Default select example" id="region" name="region">
-
+                                            <option value="">Region</option>
                                         </select>
                                         <span class="text-danger">@error('region'){{$message}} @enderror</span>
                                     </div>
@@ -183,7 +183,7 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <select class="form-select" aria-label="Default select example" id="province" name="province">
-
+                                            <option value="">province</option>
                                         </select>
                                         <span class="text-danger">@error('province'){{$message}} @enderror</span>
                                     </div>
@@ -191,7 +191,7 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <select class="form-select" aria-label="Default select example" id="city" name="city">
-
+                                            <option value="">city</option>
                                         </select>
                                         <span class="text-danger">@error('city'){{$message}} @enderror</span>
                                     </div>
@@ -199,7 +199,7 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <select class="form-select" aria-label="Default select example" id="barangay" name="barangay">
-
+                                            <option value="">Barangay</option>
                                         </select>
                                         <span class="text-danger">@error('barangay'){{$message}} @enderror</span>
                                     </div>

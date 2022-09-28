@@ -163,6 +163,12 @@ class MainController extends Controller
                 'LoggedUserInfo' => $student
             ];
         }
+        // working na adi les
+        // $enrolledStudent = EnrolledStudent::find(session('LoggedUser'));
+        // $studdata = [
+        //     'LoggedUserInfo' => $enrolledStudent
+        // ];    
+
         $enrolledStudent = EnrolledStudent::where('student_id', '=', session('LoggedUser'))->first();     
         return view('student.profile', $data, ['enrolledStudent' => $enrolledStudent]);
     }
