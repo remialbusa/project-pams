@@ -287,7 +287,6 @@
                                             <option value="LT 509 Language Teaching Methodology">LT 509 Language Teaching Methodology</option>
                                             <option value="FD 501 Basic Research">FD 501 Basic Research</option>
                                             <option value="SW 515 Field Instruction">SW 515 Field Instruction</option>
-
                                         </select>
                                         <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
                                     </div>
