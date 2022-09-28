@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="row mt-4 mb-3">
-                                <input type="hidden" type="text" id="form6Example1" class="form-control" name="student_id" value="null" />
+                                <input type="hidden" type="text" id="form6Example1" class="form-control" name="student_id" value="N/A"/>
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Last name <label class="text-danger">*</label></label>
