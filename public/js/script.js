@@ -1,38 +1,38 @@
-// var my_handlers = {
+var my_handlers = {
 
-//     fill_provinces:  function(){
+    fill_provinces:  function(){
 
-//         var region_code = $(this).val();
-//         $('#province').ph_locations('fetch_list', [{"region_code": region_code}]);
-//     },
+        var region_code = $(this).val();
+        $('#province').ph_locations('fetch_list', [{"region_code": region_code}]);
+    },
 
-//     fill_cities: function(){
+    fill_cities: function(){
 
-//         var province_code = $(this).val();
-//         $('#city').ph_locations( 'fetch_list', [{"province_code": province_code}]);
-//     },
+        var province_code = $(this).val();
+        $('#city').ph_locations( 'fetch_list', [{"province_code": province_code}]);
+    },
 
 
-//     fill_barangays: function(){
+    fill_barangays: function(){
 
-//         var city_code = $(this).val();
-//         $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
-//     }
+        var city_code = $(this).val();
+        $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
+    }
     
-// };
+};
 
-// $(function(){
-//     $('#region').on('change', my_handlers.fill_provinces);
-//     $('#province').on('change', my_handlers.fill_cities);
-//     $('#city').on('change', my_handlers.fill_barangays);
+$(function(){
+    $('#region').on('change', my_handlers.fill_provinces);
+    $('#province').on('change', my_handlers.fill_cities);
+    $('#city').on('change', my_handlers.fill_barangays);
 
-//     $('#region').ph_locations({'location_type': 'regions'});
-//     $('#province').ph_locations({'location_type': 'provinces'});
-//     $('#city').ph_locations({'location_type': 'cities'});
-//     $('#barangay').ph_locations({'location_type': 'barangays'});
+    $('#region').ph_locations({'location_type': 'regions'});
+    $('#province').ph_locations({'location_type': 'provinces'});
+    $('#city').ph_locations({'location_type': 'cities'});
+    $('#barangay').ph_locations({'location_type': 'barangays'});
 
-//     $('#region').ph_locations('fetch_list');
-// });
+    $('#region').ph_locations('fetch_list');
+});
 
 // $(document).ready(function(){
 //     var regionVal = 08;
@@ -44,81 +44,81 @@
    
 // });
 
-$(document).ready(function() {
+// $(document).ready(function() {
     
-    getRegion();
+//     getRegion();
 
-    $('#region').change(function(){
-        getProvince();
-    });
-    $('#province').change(function(){
-        getCity();
-    });
-});
+//     $('#region').change(function(){
+//         getProvince();
+//     });
+//     $('#province').change(function(){
+//         getCity();
+//     });
+// });
 
-function getRegion(){
-    $.ajax({
-        type: 'get',
-        url: 'https://psgc.gitlab.io/api/regions/',
-        success: function(data){       
-            data = JSON.parse(data); 
-            data.forEach(element => {
-                $('#region').append('<option value="'+element.code+'">'+element.regionName+'</option>');
-            });
-            //getProvince(auth_token);
-        },  
-        error: function(error) {
-            console.log(error);
-        },
-        headers: {        
-            "Accept": "text/html" 
-        }
-    })
-}
+// function getRegion(){
+//     $.ajax({
+//         type: 'get',
+//         url: 'https://psgc.gitlab.io/api/regions/',
+//         success: function(data){       
+//             data = JSON.parse(data); 
+//             data.forEach(element => {
+//                 $('#region').append('<option value="'+element.code+'">'+element.regionName+'</option>');
+//             });
+//             //getProvince(auth_token);
+//         },  
+//         error: function(error) {
+//             console.log(error);
+//         },
+//         headers: {        
+//             "Accept": "text/html" 
+//         }
+//     })
+// }
 
-function getProvince(){
-    let region = $('#region').val();
-    $.ajax({
-        type: 'get',
-        url: 'https://psgc.gitlab.io/api/regions/'+region+'/provinces/',   
-        success: function(data){       
-            data = JSON.parse(data); 
-            data.forEach(element => {   
-                $('#province').append('<option>'+element.name+'</option>');
-            });
-            //getProvince(auth_token);
-        },  
-        error: function(error) {
-            console.log(error);
-        },
-        headers: {        
-            "Accept": "text/html" 
-        }
-    })
-}
-function getCity(){
-    let region = $('#region').val();
-    $.ajax({
-        type: 'get',
-        url: 'https://psgc.gitlab.io/api/regions/'+region+'/cities-municipalities/',   
-        success: function(data){       
-            data = JSON.parse(data); 
-            data.forEach(element => {   
-                $('#city').append('<option>'+element.name+'</option>');
-            });
-            //getProvince(auth_token);
-        },  
-        error: function(error) {
-            console.log(error);
-        },
-        headers: {        
-            "Accept": "text/html" 
-        }
-    })
-}
-function getBarangay(auth_token){
+// function getProvince(){
+//     let region = $('#region').val();
+//     $.ajax({
+//         type: 'get',
+//         url: 'https://psgc.gitlab.io/api/regions/'+region+'/provinces/',   
+//         success: function(data){       
+//             data = JSON.parse(data); 
+//             data.forEach(element => {   
+//                 $('#province').append('<option>'+element.name+'</option>');
+//             });
+//             //getProvince(auth_token);
+//         },  
+//         error: function(error) {
+//             console.log(error);
+//         },
+//         headers: {        
+//             "Accept": "text/html" 
+//         }
+//     })
+// }
+// function getCity(){
+//     let region = $('#region').val();
+//     $.ajax({
+//         type: 'get',
+//         url: 'https://psgc.gitlab.io/api/regions/'+region+'/cities-municipalities/',   
+//         success: function(data){       
+//             data = JSON.parse(data); 
+//             data.forEach(element => {   
+//                 $('#city').append('<option>'+element.name+'</option>');
+//             });
+//             //getProvince(auth_token);
+//         },  
+//         error: function(error) {
+//             console.log(error);
+//         },
+//         headers: {        
+//             "Accept": "text/html" 
+//         }
+//     })
+// }
+// function getBarangay(auth_token){
     
-}
+// }
 
 
 function populate(s1, s2){
