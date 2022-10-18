@@ -110,7 +110,7 @@ class AdminController extends Controller
         }elseif ($userType == "OGS Officer") {
             if ($adminInfo && Hash::check($request->password, $adminInfo->password)) {
                 $request->session()->put('LoggedAdmin', $adminInfo->id);
-                return redirect('staff/admission-officer/ogs-view');
+                return redirect('staff/admin/dashboard');
             } else {
                 return back()->with('fail', 'incorrect password');
             }

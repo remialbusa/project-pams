@@ -60,7 +60,15 @@ Route::get('/staff/admin/system-configuration', [AdminController::class, 'system
 Route::get('/staff/auth/logout', [AdminController::class, 'logoutAdmin'])->name('auth.logout-admin');
 
 //Admission Officer Course routes
-Route::get('/staff/admission-officer/ogs-view', [AdmissionOfficerController::class, 'admissionOfficerView'])->name('students');
+Route::get('/staff/admin/dashboard', [AdmissionOfficerController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/staff/admin/pre-enrollment', [AdmissionOfficerController::class, 'preEnrollment'])->name('admin.pre-enrollment');
+Route::get('/staff/admin/monitoring', [AdmissionOfficerController::class, 'monitoring'])->name('admin.monitoring');
+Route::get('/staff/admin/advising', [AdmissionOfficerController::class, 'advising'])->name('admin.advising');
+Route::get('/staff/admin/thesis-management', [AdmissionOfficerController::class, 'thesisManagement'])->name('admin.thesis-management');
+
+
+
+
 //Route::get('/staff/admission-officer/msit', [AdmissionOfficerController::class, 'admissionOfficerMSITView'])->name('msit-students');
 
 //Students
