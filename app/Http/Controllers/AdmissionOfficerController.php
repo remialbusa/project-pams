@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AdmissionOfficerController extends Controller
 {
-    function admissionOfficerView(){
+    function dashboard(){
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
             $data = [
@@ -20,8 +20,53 @@ class AdmissionOfficerController extends Controller
         }
         $studentList = Student::all();
         $enrolledStudents = EnrolledStudent::all();
-        return view('course.mit-students', $data, ['students'=>$studentList, 'enrolled'=>$enrolledStudents]);
+        return view('admin.dashboard', $data, ['students'=>$studentList, 'enrolled'=>$enrolledStudents]);
     }
+
+    function preEnrollment()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }   
+        return view('admin.pre-enrollment', $data);
+    }
+
+    function monitoring()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }   
+        return view('admin.monitoring', $data);
+    }
+
+    function advising()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }   
+        return view('admin.advising', $data);
+    }
+
+    function thesisManagement()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }  
+        return view('admin.thesis-management', $data);
+    }
+
     function editPendingStudent($id){
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
