@@ -197,4 +197,8 @@ class MainController extends Controller
         return view('auth.admission');
     }
 
+    function process(){
+        return view('auth.process');
+    }
+
 }

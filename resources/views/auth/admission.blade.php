@@ -28,10 +28,10 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="#">Home</a>
+                        <a href="/welcome" class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="#">FAQ's</a>
+                        <a href="student/auth/faqs" class="nav-link" href="#">FAQ's</a>
                     </li>
                 </ul>
             </div>
@@ -49,7 +49,7 @@
                 <div class="col-sm-4">
                     New Students
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-8 lh-lg">
                     <p class="m-0">1. Must take the Graduate School Admission Test (GSAT)</p>
                     <p class="m-0">2. Original Transcript of Records</p>
                     <p class="m-0">3. Original Honorable Dismissal</p>
@@ -68,7 +68,7 @@
                 <div class="col-sm-4">
                     New Students
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-8 lh-lg">
                 <p class="m-0">1. VISIT THE OFFICE OF THE GRADUATE SCHOOL FOR EVALUATION
                     (JULY 27-AUGUST 5, 2022)</p>
                 <p>Bring a copy of your Transcript of Records. From there, you will be
@@ -76,7 +76,7 @@
                     (CSAT)</p>
                 <p class="m-0">2. PAY AND SECURE A SCHEDULE FOR THE GSAT (JULY 27-AUGUST 5, 2022)</p>Pay at the Cashier's Office and visit the LNU Guidance and Testing Office
                 to schedule your GSAT.
-                <p class="m-0">3. FILL OUT ONLINE PRE-REGISTRATION FORM: <a class="small" href="/student/auth/register-new-student">PRE-REGISTER HERE</a> </p>
+                <p class="m-0">3. FILL OUT ONLINE PRE-REGISTRATION FORM: <a class="small btn btn-warning bg-warning btn-block mt-1" href="/student/auth/register-new-student">PRE-REGISTER HERE</a> </p>
                 <p class="m-0">4. FILL OUT THE NEEDED FORMS FOR ADMISSION AT THE OGS</p>For successful examinees, fill out the Application for Graduate Admission Form
                 (AFCAF) and the Draft Registration Form (DRF) at the Office of the Graduate School.
                 <p class="m-0">5. GO TO THE MIS FOR THE SIGNING OF YOUR DRF AND PRINTING OF YOUR
@@ -98,13 +98,13 @@
                 <div class="col-sm-4">
                     Continuining Students
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-8 lh-lg">
                     <p class="m-0">1. SIGNING OF CLEARANCE </p>
                     <p>July 27- August 5, 2022
                         Visit the Office of the Graduate School to secure a
                         copy of your Clearance Form and have them signed by
                         the CS Library and University Registrar.</p>
-                    <p class="m-0">2. FILL OUT ONLINE PRE-REGISTRATION <a class="small" href="/student/auth/register">PRE-REGISTER HERE</a></p>
+                    <p class="m-0">2. FILL OUT ONLINE PRE-REGISTRATION: <a class="small btn btn-warning bg-warning btn-block mt-1" href="/student/auth/register">PRE-REGISTER HERE</a></p>
                     <p class="m-0">3. SUBMIT YOUR CLEARANCE TO THE OGS AND FILL OUT THE
                         DRAFT REGISTRATION FORM (DRF).</p>
                     <p class="m-0">4. GO TO THE MIS FOR THE SIGNING OF YOUR DRF AND PRINTING

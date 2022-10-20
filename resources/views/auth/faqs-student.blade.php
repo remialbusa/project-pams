@@ -33,7 +33,7 @@
                         <a href="/welcome" class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="student/auth/faqs" class="nav-link" href="#">FAQ's</a>
+                        <a href="" class="nav-link" href="#">FAQ's</a>
                     </li>
                 </ul>
                 <div>
@@ -42,11 +42,87 @@
             </div>
     </nav>
 
-    <section class="faqs-student">
-        <!-- what we do -->
-        <h1 class="text-center display-6">Frequently Ask Questions</h1>
-        <hr>
-        <p>View commonly asked questions regarding the pre-online enrollment process.</p>
+    <section class="faqs-details">
+        <h1 class="text-center mt-5" style="color: #f7d05c">FREQUENTLY ASK QUESTIONS</h1>
+        <div class="admission-body container mt-5">
+            <div class="col-sm-8 px-5 mt-5">
+            </div>
+
+            <h4 class="text-center px-5 mt-5" style="color: #0b7dff">FREQUENTLY ASK QUESTIONS ABOUT THE WRITTEN COMPREHENSIVE EXAMS</h4>
+            <div class="admission-requirements row px-5 mb-5 mt-3">
+                <div class="col-sm-8 px-5 mt-5">
+                </div>
+                <h5 class="col-sm-10"><strong>WHO CAN TAKE THE WRITTEN COMPREHENSIVE EXAM</strong></h5>
+                
+                <div class="col-sm-8 lh-lg">
+                    <p class="m-0">- Students who have completed ALL of their Academic Subjects and must not have any lacking grades in any of their subjects</p>
+                    <p class="m-0">- They must also be enrolled in Residency on the same semester they plan to take the exams</p>
+                </div>
+            </div>
+
+            
+            <div class="admission-requirements row px-5 mb-5 mt-3">
+                <div class="col-sm-8 px-5 mt-5">
+                </div>
+                <h5 class="col-sm-10"><strong>WHAT ARE THE PROCESS TO BE ABLE TO APPLY FOR THE WRITTEN COMPREHENSIVE EXAMS?</strong></h5>
+                
+                <div class="col-sm-8 lh-lg">
+                    <p class="m-0">1.During the enrolment period, student must Pre-Register online and choose RESIDENCY as his/her enrolled subject.</p>
+                    <p class="m-0">2.Student must visit the office of the Graduate School for the next steps of the enrolment.</p>
+                    <p class="m-0">3.Student must visit the MIS for the printing of the Enrollment & Assesment Form (EAF).</p>
+                    <p class="m-0">4.Student must visit the Accounting and Cashier's Office for the payment of their total assesment.</p>
+                    <p class="m-0">5.After enrolling and paying for the Residency, student may now proceed applying for the Written Comprehensive Exam by visiting Office Graduate School and filling out the Application Form.</p>
+                    <p class="m-0">6.If approved by the Dean of the Graduate School, student may now pay for the Written Comprehensive Exams (WCE).</p>
+                    <p class="m-0">7.After paying, student must return the copy of their application to the Secretary of the Graduate School.</p>
+                </div>
+            </div>
+            
+            <div class="admission-requirements row px-5 mb-5 mt-3">
+                <div class="col-sm-8 px-5 mt-5">
+                </div>
+                <h5 class="col-sm-10"><strong>WHEN IS THE SCHEDULE FOR THE NEXT WRITTEN COMPREHENSIVE EXAMS (WCE)?</strong></h5>
+                
+                <div class="col-sm-8 lh-lg">
+                    <p class="m-0">(date)</p>
+                </div>
+            </div>
+            
+            <div class="admission-requirements row px-5 mb-5 mt-3">
+                <div class="col-sm-8 px-5 mt-5">
+                </div>
+                <h5 class="col-sm-10"><strong>WHAT WILL BE THE SETTING OF THE EXAM?</strong></h5>
+                
+                <div class="col-sm-8 lh-lg">
+                    <p class="m-0">Face-to-Face Examinations</p>
+                </div>
+            </div>
+
+            <div class="admission-requirements row px-5 mb-5 mt-3">
+                <div class="col-sm-8 px-5 mt-5">
+                </div>
+                <h5 class="col-sm-10"><strong>WHEN WILL BE THE DEADLINE FOR THE APPLICATION?</strong></h5>
+                
+                <div class="col-sm-8 lh-lg">
+                    <p class="m-0">For Residency Enrolment - (date)</p>
+                    <p class="m-0">For the Application Form Submission - (date)</p>
+                </div>
+            </div>
+
+            <div class="admission-requirements row px-5 mb-5 mt-3">
+                <div class="col-sm-8 px-5 mt-5">
+                </div>
+                <h5 class="col-sm-10"><strong>WHAT IF I CANNOT PHYSICALLY ATTEND THE EXAMS?</strong></h5>
+                
+                <div class="col-sm-8 lh-lg">
+                    <p class="m-0">For student who are from the region or country and unable to attend physically, please inform us during your application.</p>
+                </div>
+            </div>
+
+            <div class="admission-requirements row px-5 mb-5 mt-3">
+                <p class="bi bi-envelope-fill" style="font-size: 1rem; margin-right: 10px;">  gradschool@lnu.edu.ph</p>
+                <p class="bi bi-facebook" style="font-size: 1rem; margin-right: 10px;">  LNU Graduate School 2022</p>
+            </div>
+        </div>
     </section>
 
     <footer class="footer mb-0">

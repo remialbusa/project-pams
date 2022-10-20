@@ -30,7 +30,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="#">Home</a>
+                        <a href="" class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item px-2">
                     </li>
@@ -72,6 +72,7 @@
 
                             </p>
                             <a href="{{ route('enrollment') }}" class="btn btn-warning bg-warning btn-block mt-3">Enroll now</a>
+                            <a href="{{ route('process')}}" class="btn btn-warning bg-warning btn-block mt-3">Enrollment process</a>
                         </div>
                     </div>
                 </div>

@@ -74,3 +74,5 @@ Route::post('/staff/admission-officer/edit', [AdmissionOfficerController::class,
 
 //Admission routes
 Route::get('/enrollment', [MainController::class, 'admission'])->name('enrollment');
+
+Route::get('/process', [MainController::class, 'process'])->name('process');
