@@ -146,7 +146,7 @@ class MainController extends Controller
         if ($studentID) { //if student_id exist
             if ($studentPassword) { //if password exist                
                 $request->session()->put('LoggedUser', $studentID->id);
-                return redirect('student/profile');
+                return redirect('student/student-profile');
             } else {
                 return back()->with('fail', 'Incorrect password');
             }
@@ -155,22 +155,17 @@ class MainController extends Controller
         }
     }
 
-    function profile()
+    function profileView()
     {
         if (session()->has('LoggedUser')) {
             $student = Student::where('id', '=', session('LoggedUser'))->first();
             $data = [
                 'LoggedUserInfo' => $student
             ];
-        }
-        // working na adi les
-        // $enrolledStudent = EnrolledStudent::find(session('LoggedUser'));
-        // $studdata = [
-        //     'LoggedUserInfo' => $enrolledStudent
-        // ];    
+        }   
 
         $enrolledStudent = EnrolledStudent::where('student_id', '=', session('LoggedUser'))->first();     
-        return view('student.profile', $data, ['enrolledStudent' => $enrolledStudent]);
+        return view('student.student-profile', $data, ['enrolledStudent' => $enrolledStudent]);
     }
 
     function logout()
@@ -179,6 +174,18 @@ class MainController extends Controller
             session()->pull('LoggedUser');
             return redirect('student/auth/login');
         }
+    }
+
+    function thesisView()
+    {
+        if (session()->has('LoggedUser')) {
+            $student = Student::where('id', '=', session('LoggedUser'))->first();
+            $data = [
+                'LoggedUserInfo' => $student
+            ];
+        }
+        $enrolledStudent = EnrolledStudent::where('id', '=', '1')->first();     
+        return view('student.student-thesis', $data, ['enrolledStudent' => $enrolledStudent]);
     }
 
     function enrollmentStatus()
@@ -191,14 +198,6 @@ class MainController extends Controller
         }
         $enrolledStudent = EnrolledStudent::where('id', '=', '1')->first();     
         return view('student.monitor-enrollment', $data, ['enrolledStudent' => $enrolledStudent]);
-    }
-
-    function admission(){
-        return view('auth.admission');
-    }
-
-    function process(){
-        return view('auth.process');
     }
 
 }

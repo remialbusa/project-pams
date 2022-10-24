@@ -5,6 +5,8 @@ use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\AdmissionOfficerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProcessController;
+use App\Http\Controllers\EnrollmentController;
 
 
 /*
@@ -30,8 +32,12 @@ Route::post('/student/auth/verify', [MainController::class, 'verify'])->name('au
 Route::get('/student/auth/register-new-student', [MainController::class, 'registerNewStudent']);
 
 //student profile routes
-Route::get('/student/profile', [MainController::class, 'profile'])->middleware('isLoggedStudent');
+Route::get('/student/student-profile', [MainController::class, 'profileView'])->middleware('isLoggedStudent');
+Route::get('/student/monitor-enrollment', [MainController::class, 'enrollmentStatus'])->middleware('isLoggedStudent');
 Route::get('/student/auth/logout', [MainController::class, 'logout'])->name('auth.logout-student');
+
+//student thesis routes
+Route::get('/student/student-thesis', [MainController::class, 'thesisView'])->middleware('isLoggedStudent');
 
 //update student details
 Route::post('/student/profile/update', [MainController::class, 'updateStudentDetails'])->name('update-student');
@@ -73,6 +79,7 @@ Route::get('/staff/admission-officer/edit/{id}', [AdmissionOfficerController::cl
 Route::post('/staff/admission-officer/edit', [AdmissionOfficerController::class, 'approvePendingStudent'])->name('approve-student');
 
 //Admission routes
-Route::get('/enrollment', [MainController::class, 'admission'])->name('enrollment');
+Route::get('/enrollment', [EnrollmentController::class, 'admission'])->name('enrollment');
 
-Route::get('/process', [MainController::class, 'process'])->name('process');
+Route::get('/process', [ProcessController::class, 'process'])->name('process');
+

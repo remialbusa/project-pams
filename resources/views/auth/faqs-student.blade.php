@@ -36,9 +36,6 @@
                         <a href="" class="nav-link" href="#">FAQ's</a>
                     </li>
                 </ul>
-                <div>
-                    <a href="student/auth/login"><button href class="btn btn-warning px-4" type="submit">Login</button></a>
-                </div>
             </div>
     </nav>
 

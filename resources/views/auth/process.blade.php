@@ -36,14 +36,11 @@
                         <a href="student/auth/faqs" class="nav-link" href="#">FAQ's</a>
                     </li>
                 </ul>
-                <div>
-                    <a href="student/auth/login"><button href class="btn btn-warning px-4" type="submit">Login</button></a>
-                </div>
             </div>
+        </div>
     </nav>
 
     <section class="container feature pt-5 mt-5">
-        <!-- what we do -->
         <h1 class="text-center display-6">Enrollment Process</h1>
         <hr>
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
