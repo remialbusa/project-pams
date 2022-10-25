@@ -15,10 +15,11 @@ class CreateSubjectsTable extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();           
-            $table->integer('student_id');
-            $table->string('first_period_sub');
-            $table->string('second_period_sub');
-            $table->string('third_period_sub');
+            $table->string('code');
+            $table->string('subject');
+            $table->string('description');
+            $table->string('unit');     
+            $table->string('schedule');      
             $table->timestamps();
         });
     }

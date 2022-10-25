@@ -18,8 +18,17 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
+    <!-- Bootstrap Icon-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+
     <!-- Custom styles for this template-->
     <link href="{{asset('admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
 </head>
 
@@ -52,25 +61,45 @@
 
             <!-- Nav Item - Pre-enrollment -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.pre-enrollment')}}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Pre-Enrollment</span>
-                </a>              
+                </a>       
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Student Type:</h6>
+                        <a class="collapse-item" href="{{ route('admin.pre-enrollment-new')}}">New</a>
+                        <a class="collapse-item" href="{{ route('admin.pre-enrollment-continuing')}}">Continuing</a>
+                    </div>
+                </div>       
             </li>
             <!-- Nav Item - Student Monitoring -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('admin.monitoring')}}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Student Monitoring</span>
                 </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Student Status:</h6>
+                        <a class="collapse-item" href="{{ route('admin.pending')}}">Pending Students</a>
+                        <a class="collapse-item" href="{{ route('admin.enrolled')}}">Enrolled Students</a>
+                    </div>
+                </div>   
             </li>
             
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('admin.advising')}}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Assigning of Subjects</span>
                 </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('admin.assign-subjects')}}">Assign Subjects</a>
+                        <a class="collapse-item" href="{{ route('admin.subjects')}}">List of Subject</a>
+                    </div>
+                </div>    
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -153,7 +182,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
+                    <!-- Topbar Search
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -165,7 +194,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -382,6 +411,10 @@
         </div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -399,6 +432,13 @@
     <script src="{{asset('admin/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('admin/js/demo/chart-pie-demo.js')}}"></script>
 
+    <!-- Page level plugins -->
+    <script src="{{asset('admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
+    
 </body>
 
 </html>

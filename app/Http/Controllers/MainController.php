@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EnrolledStudent;
 use App\Models\Student;
+use App\Models\StudentStatus;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -76,11 +77,24 @@ class MainController extends Controller
         $student->third_period_sub = $request->third_period;
         $save = $student->save();
 
+        //insert student to pending after registerin the pre-enrollment form
+        $this->insertPendingStudent($request->student_id);
+
         if ($save) {
             return back()->with('success', 'Registration complete');
         } else {
             return back()->with('fail', 'Failed Registration');
         }
+    }
+
+    public function insertPendingStudent($id){
+
+        $pendingStudent = new StudentStatus();
+        $pendingStudent->student_id = $id;
+        $pendingStudent->submitted_form = "Pending";
+        $pendingStudent->payment = "Pending";
+        $pendingStudent->status = "Pending";
+        $pendingStudent->save();
     }
 
     //update student details

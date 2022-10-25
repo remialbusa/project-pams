@@ -61,12 +61,15 @@ Route::get('/staff/auth/logout', [AdminController::class, 'logoutAdmin'])->name(
 
 //Admission Officer Course routes
 Route::get('/staff/admin/dashboard', [AdmissionOfficerController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/staff/admin/pre-enrollment', [AdmissionOfficerController::class, 'preEnrollment'])->name('admin.pre-enrollment');
-Route::get('/staff/admin/monitoring', [AdmissionOfficerController::class, 'monitoring'])->name('admin.monitoring');
-Route::get('/staff/admin/advising', [AdmissionOfficerController::class, 'advising'])->name('admin.advising');
+Route::get('/staff/admin/pre-enrollment/new', [AdmissionOfficerController::class, 'preEnrollmentNew'])->name('admin.pre-enrollment-new');
+Route::get('/staff/admin/pre-enrollment/continuing', [AdmissionOfficerController::class, 'preEnrollmentContinuing'])->name('admin.pre-enrollment-continuing');
+Route::get('/staff/admin/pending', [AdmissionOfficerController::class, 'pendingStudents'])->name('admin.pending');
+Route::get('/staff/admin/enrolled', [AdmissionOfficerController::class, 'enrolledStudents'])->name('admin.enrolled');
+Route::get('/staff/admin/assign-subjects', [AdmissionOfficerController::class, 'assignSubjects'])->name('admin.assign-subjects');
+Route::get('/staff/admin/subjects', [AdmissionOfficerController::class, 'subjectList'])->name('admin.subjects');
 Route::get('/staff/admin/thesis-management', [AdmissionOfficerController::class, 'thesisManagement'])->name('admin.thesis-management');
 
-
+Route::post('/staff/admin/subjects', [AdmissionOfficerController::class, 'saveSubject'])->name('auth.save-subject');
 
 
 //Route::get('/staff/admission-officer/msit', [AdmissionOfficerController::class, 'admissionOfficerMSITView'])->name('msit-students');
