@@ -24,6 +24,12 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', [MainController::class, 'dashboard']);
+
+Route::get('/test', [MainController::class, 'test'])->middleware('isLoggedStudent');
+
+
+
 //students routes
 Route::get('/student/auth/login', [MainController::class, 'login'])->middleware('studentAlreadyLoggedIn');
 Route::get('/student/auth/register', [MainController::class, 'register'])->middleware('studentAlreadyLoggedIn');
@@ -81,5 +87,6 @@ Route::post('/staff/admission-officer/edit', [AdmissionOfficerController::class,
 //Admission routes
 Route::get('/enrollment', [EnrollmentController::class, 'admission'])->name('enrollment');
 
+//Process route
 Route::get('/process', [ProcessController::class, 'process'])->name('process');
 

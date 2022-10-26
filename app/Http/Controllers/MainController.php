@@ -165,7 +165,7 @@ class MainController extends Controller
         }   
 
         $enrolledStudent = EnrolledStudent::where('student_id', '=', session('LoggedUser'))->first();     
-        return view('student.student-profile', $data, ['enrolledStudent' => $enrolledStudent]);
+        return view('student.dashboard.profile-dashboard', $data, ['enrolledStudent' => $enrolledStudent]);
     }
 
     function logout()
@@ -185,7 +185,7 @@ class MainController extends Controller
             ];
         }
         $enrolledStudent = EnrolledStudent::where('id', '=', '1')->first();     
-        return view('student.student-thesis', $data, ['enrolledStudent' => $enrolledStudent]);
+        return view('student.dashboard.thesis-dashboard', $data, ['enrolledStudent' => $enrolledStudent]);
     }
 
     function enrollmentStatus()
@@ -197,7 +197,18 @@ class MainController extends Controller
             ];
         }
         $enrolledStudent = EnrolledStudent::where('id', '=', '1')->first();     
-        return view('student.monitor-enrollment', $data, ['enrolledStudent' => $enrolledStudent]);
+        return view('student.dashboard.monitor-enrollment-dashboard', $data, ['enrolledStudent' => $enrolledStudent]);
     }
 
+    function test()
+    {
+        if (session()->has('LoggedUser')) {
+            $student = Student::where('id', '=', session('LoggedUser'))->first();
+            $data = [
+                'LoggedUserInfo' => $student
+            ];
+        }
+        $enrolledStudent = EnrolledStudent::where('id', '=', '1')->first();     
+        return view('test', $data, ['enrolledStudent' => $enrolledStudent]);
+    }
 }
