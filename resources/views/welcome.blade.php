@@ -36,7 +36,7 @@
                     <li class="nav-item px-2">
                     </li>
                     <li class="nav-item px-2">
-                        <a href="student/auth/faqs" class="nav-link" href="#">FAQ's</a>
+                        <a href="/faqs" class="nav-link" href="#">FAQ's</a>
                     </li>
                 </ul>
                 <div class="dropdown">
@@ -63,7 +63,7 @@
                         </div>
                         <div class="card-body pt-0">
                             <p class="card-text">
-                                <b>Graduate School Pre Advising Management System</b>
+                                <b>Graduate School Managment System</b>
                             </p>
                             <p class="card-text">
                                 The pre-enrollment for 1st Semester S.Y. 2022 - 2023

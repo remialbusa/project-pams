@@ -1,7 +1,7 @@
-@extends('student.student-thesis')
+@extends('student.student-main-layout')
 @section('title', 'Thesis')
 
-@section('thesis')
+@section('content')
 <div>
     <div class="container-fluid">
 

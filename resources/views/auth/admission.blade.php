@@ -28,10 +28,10 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a href="/welcome" class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="/welcome">Home</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="student/auth/faqs" class="nav-link" href="#">FAQ's</a>
+                        <a class="nav-link" href="/faqs">FAQ's</a>
                     </li>
                 </ul>
             </div>

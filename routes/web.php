@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProcessController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\ThesisManagementController;
 
 
 /*
@@ -24,9 +25,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [MainController::class, 'dashboard']);
-
-Route::get('/test', [MainController::class, 'test'])->middleware('isLoggedStudent');
+Route::get('/test', [MainController::class, 'test']);
 
 
 
@@ -38,19 +37,21 @@ Route::post('/student/auth/verify', [MainController::class, 'verify'])->name('au
 Route::get('/student/auth/register-new-student', [MainController::class, 'registerNewStudent']);
 
 //student profile routes
-Route::get('/student/student-profile', [MainController::class, 'profileView'])->middleware('isLoggedStudent');
-Route::get('/student/monitor-enrollment', [MainController::class, 'enrollmentStatus'])->middleware('isLoggedStudent');
+Route::get('/student/auth/student-profile', [MainController::class, 'profileView'])->middleware('isLoggedStudent');
 Route::get('/student/auth/logout', [MainController::class, 'logout'])->name('auth.logout-student');
 
+//student profile update
+Route::post('/student/auth/student-profile/update', [MainController::class, 'updateStudentDetails'])->name('update-student');
+
+//student monitor routes
+Route::get('/student/auth/monitor-enrollment', [MainController::class, 'enrollmentStatus'])->middleware('isLoggedStudent');
+
 //student thesis routes
-Route::get('/student/student-thesis', [MainController::class, 'thesisView'])->middleware('isLoggedStudent');
+Route::get('/student/auth/student-thesis/directory', [ThesisManagementController::class, 'studentThesisDirectory'])->middleware('isLoggedStudent');
+Route::get('/student/auth/student-thesis/schedule', [ThesisManagementController::class, 'studentThesisSchedule'])->middleware('isLoggedStudent');
 
-//update student details
-Route::post('/student/profile/update', [MainController::class, 'updateStudentDetails'])->name('update-student');
-
-//enrollment status routes
-Route::get('/student/enrollment-status', [MainController::class, 'enrollmentStatus'])->name('auth.enrollment-status');
-Route::get('/student/auth/faqs',[FaqsController::class, 'faqsStudent']);
+//faqs routes
+Route::get('/faqs',[FaqsController::class, 'faqsStudent']);
 
 
 //Admin routes
@@ -72,8 +73,24 @@ Route::get('/staff/admin/system-configuration', [AdminController::class, 'system
 Route::get('/staff/auth/logout', [AdminController::class, 'logoutAdmin'])->name('auth.logout-admin');
 
 //Admission Officer Course routes
-Route::get('/staff/admission-officer/ogs-view', [AdmissionOfficerController::class, 'admissionOfficerView'])->name('students');
+Route::get('/staff/admin/dashboard', [AdmissionOfficerController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/staff/admin/pre-enrollment/new', [AdmissionOfficerController::class, 'preEnrollmentNew'])->name('admin.pre-enrollment-new');
+Route::get('/staff/admin/pre-enrollment/continuing', [AdmissionOfficerController::class, 'preEnrollmentContinuing'])->name('admin.pre-enrollment-continuing');
+Route::get('/staff/admin/pending', [AdmissionOfficerController::class, 'pendingStudents'])->name('admin.pending');
+Route::get('/staff/admin/enrolled', [AdmissionOfficerController::class, 'enrolledStudents'])->name('admin.enrolled');
+Route::get('/staff/admin/assign-subjects', [AdmissionOfficerController::class, 'assignSubjects'])->name('admin.assign-subjects');
+Route::get('/staff/admin/subjects', [AdmissionOfficerController::class, 'subjectList'])->name('admin.subjects');
+
+Route::post('/staff/admin/subjects', [AdmissionOfficerController::class, 'saveSubject'])->name('auth.save-subject');
 //Route::get('/staff/admission-officer/msit', [AdmissionOfficerController::class, 'admissionOfficerMSITView'])->name('msit-students');
+
+//Admission Officer ThesisManagement routes
+Route::get('/staff/admin/thesis-directory', [ThesisManagementController::class, 'thesisDirectory'])->name('admin.thesis-directory');
+Route::get('/staff/admin/thesis-scheduling', [ThesisManagementController::class, 'thesisScheduling'])->name('admin.thesis-scheduling');
+Route::get('/staff/admin/thesis-directory/delete/{id}', [ThesisManagementController::class, 'thesisDelete'])->name('thesis-delete');
+Route::get('/staff/admin/thesis-directory/edit/{id}', [ThesisManagementController::class, 'thesisEdit'])->name('thesis-edit');
+Route::post('/staff/admin/thesis-directory/edit', [ThesisManagementController::class, 'thesisUpdate'])->name('thesis-update');
+Route::post('/staff/admin/thesis-directory/save', [ThesisManagementController::class, 'thesisSave'])->name('thesis-save');
 
 //Students
 //delete pending students

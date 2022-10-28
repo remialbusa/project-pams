@@ -1,7 +1,7 @@
-@extends('student.monitor-enrollment')
+@extends('student.student-main-layout')
 @section('title', 'Monitor Enrollment')
 
-@section('monitor')
+@section('content')
 
 <div>
     <div class="container-fluid">
@@ -11,7 +11,7 @@
         <h1 class="h3 mb-2 text-gray-800">Monitor Enrollment</h1>
         
     </div>
-    <p>The details of your profile is shown below for the S.Y. 2022-2023.</p>
+    <p>The Monitoring of your enrollment status and list of enrolled subjects is shown below for the S.Y. 2022-2023.</p>
       
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -127,7 +127,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <p class="sub-text ml-4">3. SUBMISSION COPY OF DRF TO OGS:</p>
+                                                        <p class="sub-text">3. SUBMISSION COPY OF DRF TO OGS:</p>
                                                     </td>
                                                     <td>
                                                         <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">

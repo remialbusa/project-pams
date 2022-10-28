@@ -7,11 +7,14 @@ use App\Models\Admin;
 use App\Models\EnrolledStudent;
 use App\Models\Student;
 use App\Models\AdmissionOfficer;
+use App\Models\StudentStatus;
+use App\Models\Subject;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AdmissionOfficerController extends Controller
 {
-    function admissionOfficerView(){
+    function dashboard(){
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
             $data = [
@@ -20,8 +23,86 @@ class AdmissionOfficerController extends Controller
         }
         $studentList = Student::all();
         $enrolledStudents = EnrolledStudent::all();
-        return view('course.mit-students', $data, ['students'=>$studentList, 'enrolled'=>$enrolledStudents]);
+        return view('admin.dashboard.dashboard', $data, ['students'=>$studentList, 'enrolled'=>$enrolledStudents]);
     }
+
+    function preEnrollmentNew()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }   
+
+        $newStudents = DB::table('students')->where('student_type', 'New Student')->get();
+
+        return view('admin.pre-enrollment.new-student', $data, ['newStudents'=>$newStudents]);
+    }
+
+    function preEnrollmentContinuing()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }   
+
+        $continuingStudents = DB::table('students')->where('student_type', 'Continuing')->get();
+
+        return view('admin.pre-enrollment.continuing-student', $data, ['continuingStudents'=>$continuingStudents]);
+    }
+
+    function pendingStudents()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }   
+
+        $pendingStudent = StudentStatus::all();
+
+        return view('admin.monitoring.pending-students', $data, ['pendingStudents'=>$pendingStudent]);
+    }
+
+    function enrolledStudents()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }   
+        return view('admin.monitoring.enrolled-students', $data);
+    }
+
+    function subjectList()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        } 
+        
+        $subjects = Subject::all();
+        return view('admin.advising.subjects', $data, ['subjects'=>$subjects]);
+    }
+
+    function assignSubjects()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }   
+        return view('admin.advising.assign-subjects', $data);
+    }
+
     function editPendingStudent($id){
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
@@ -89,6 +170,32 @@ class AdmissionOfficerController extends Controller
         $student = EnrolledStudent::find($id);
         $student->delete();
         return redirect('staff/admission-officer/mit');
+    }
+
+    function saveSubject(Request $request){
+        //validate info
+        $request->validate([
+            'code' => 'required',
+            'subject' => 'required',
+            'description' => 'required',
+            'units' => 'required',
+            'schedule' => 'required'
+        ]);
+
+        //insert subject
+        $subject = new Subject();
+        $subject->code = $request->code;
+        $subject->subject = $request->subject;
+        $subject->description = $request->description;
+        $subject->unit = $request->units;
+        $subject->schedule = $request->schedule;       
+        $save = $subject->save();
+
+        if ($save) {
+            return back()->with('success', 'subject added successfuly');
+        } else {
+            return back()->with('fail', 'failed adding subject');
+        }
     }
 
 }
