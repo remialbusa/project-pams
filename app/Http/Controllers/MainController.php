@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\EnrolledStudent;
 use App\Models\Student;
 use App\Models\StudentStatus;
+use App\Models\ThesisManagement;
+use App\Models\Thesis;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -29,13 +31,13 @@ class MainController extends Controller
         $request->validate([
             'student_type' => 'required',
             'student_id' => 'required',
-            'last_name' => 'required',          
+            'last_name' => 'required',
             'first_name' => 'required',
             'middle_name' => 'required',
             'vaccination_status' => 'required',
             'email' => 'required',
-            'gender' => 'required',  
-            'birth_date' => 'required', 
+            'gender' => 'required',
+            'birth_date' => 'required',
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
             'region' => 'required',
@@ -46,7 +48,7 @@ class MainController extends Controller
             'program' => 'required',
             'first_period' => 'required',
             'second_period' => 'required',
-            'third_period' => 'required',                          
+            'third_period' => 'required',
         ]);
 
         $fileName = $request->file('file')->getClientOriginalName();
@@ -55,7 +57,7 @@ class MainController extends Controller
         //insert data
         $student = new Student();
         $student->student_type = $request->student_type;
-        $student->student_id = $request->student_id;       
+        $student->student_id = $request->student_id;
         $student->last_name = $request->last_name;
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
@@ -87,7 +89,8 @@ class MainController extends Controller
         }
     }
 
-    public function insertPendingStudent($id){
+    public function insertPendingStudent($id)
+    {
 
         $pendingStudent = new StudentStatus();
         $pendingStudent->student_id = $id;
@@ -183,7 +186,7 @@ class MainController extends Controller
         //     'LoggedUserInfo' => $enrolledStudent
         // ];    
 
-        $enrolledStudent = EnrolledStudent::where('student_id', '=', session('LoggedUser'))->first();     
+        $enrolledStudent = EnrolledStudent::where('student_id', '=', session('LoggedUser'))->first();
         return view('student.profile', $data, ['enrolledStudent' => $enrolledStudent]);
     }
 
@@ -203,12 +206,56 @@ class MainController extends Controller
                 'LoggedUserInfo' => $student
             ];
         }
-        $enrolledStudent = EnrolledStudent::where('id', '=', '1')->first();     
+        $enrolledStudent = EnrolledStudent::where('id', '=', '1')->first();
         return view('student.monitor-enrollment', $data, ['enrolledStudent' => $enrolledStudent]);
     }
 
-    function admission(){
+    function admission()
+    {
         return view('auth.admission');
     }
+    function thesisManagement()
+    {
+        $insert = Thesis::all();
+        return view('auth.thesis-management',compact('insert'));
+    }
+    function thesisInsert(Request $request)
+    {
 
+        //insert 
+        $insert = new Thesis();
+        $insert->thesis_title = $request->input('title');
+        $insert->thesis_author = $request->input('author');
+        $save = $insert->save();
+
+        if ($save) {
+            return back()->with('success', 'Your Profile is already updated');
+        } else {
+            return back()->with('fail', 'Failed updating student data');
+        }
+        //return view('staff.admin.thesis-management');
+    }
+    
+
+    function saveThesisMonitoring(Request $request){
+        return view('staff.admin.thesis-monitoring');
+        //validate info
+        /* $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+        ]);
+
+        //insert subject
+        $insert = new Thesis();
+        $insert- = $request->code;
+        $insert->subject = $request->subject;    
+        $save = $thesis->save();
+
+        if ($save) {
+            return back()->with('success', 'subject added successfuly');
+        } else {
+            return back()->with('fail', 'failed adding subject');
+        } */
+    }
 }
+

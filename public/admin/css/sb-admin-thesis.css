@@ -1,0 +1,24 @@
+table thead {
+    text-align: center;
+}
+
+table tr {
+    text-align: center;
+
+}
+.thesis-table h6{
+    text-align: center;
+}
+
+
+.table {
+    width: 100% !important;
+}
+
+.thesis-table {
+    margin: 90px;
+    width: 90vw;
+    border-radius: 10px;
+    border: 1px solid rgb(194, 194, 194);
+
+}

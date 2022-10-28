@@ -85,3 +85,13 @@ Route::post('/staff/admission-officer/edit', [AdmissionOfficerController::class,
 
 //Admission routes
 Route::get('/enrollment', [MainController::class, 'admission'])->name('enrollment');
+
+//Thesis Management
+Route::get('/student/auth/thesis-management', [MainController::class, 'thesisManagement'])->name('thesis-management');
+//Insertion of Data for Thesis Management
+Route::post('/staff/admin/thesis-management', [MainController::class, 'thesisInsert'])->name('insert-thesis');
+//Monitoring of Thesis Title & Author
+Route::get('/staff/admin/thesis-monitoring', [MainController::class, 'saveThesisMonitoring'])->name('admin.thesis-list');
+
+
+

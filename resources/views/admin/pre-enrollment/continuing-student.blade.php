@@ -2,11 +2,11 @@
 @section('title', 'Continuing Students')
 
 @section('content')
-
+ 
 <!-- Begin Page Content -->
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
+ 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Continuing Students</h1>
 <p class="mb-4">The data below are the students who filled out the pre-enrollment form during the pre-enrollment period.</p>
@@ -42,7 +42,7 @@
                             <a href="{{ route('mit-delete-student', $student->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
                         </td>
                     </tr>
-                @endforeach                                            
+                @endforeach                                             
                 </tbody>
             </table>
         </div>

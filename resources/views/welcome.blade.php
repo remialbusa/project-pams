@@ -33,6 +33,7 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item px-2">
+                        <a href="student/auth/thesis-management" class="nav-link" href="#">Thesis Management</a>
                     </li>
                     <li class="nav-item px-2">
                         <a href="student/auth/faqs" class="nav-link" href="#">FAQ's</a>
