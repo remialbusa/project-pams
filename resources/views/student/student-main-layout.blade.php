@@ -48,7 +48,7 @@
         <div id="wrapper">
     
             <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" aria-expanded="false">
     
                 <!-- Sidebar -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center">
@@ -56,15 +56,30 @@
                     <div class="sidebar-brand-text mx-3">Welcome Student!</div>
                     
                 </a>
+                <hr class="sidebar-divider my-0">
+
+                <li class="nav-item mt-3">
+                    <a class="nav-link" href="/student/auth/dashboard">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
     
                 <!-- Divider -->
                 <hr class="sidebar-divider my-0">
     
                 <!-- Nav Item - Student Profile -->
                 <li class="nav-item mt-3">
-                    <a class="nav-link" href="/student/auth/student-profile">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne">
                         <i class="bi bi-person-lines-fill"></i>
-                        <span>Student Profile</span></a>
+                        <span>Student Profile</span>
+                    </a>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Student Profile:</h6>
+                            <a class="collapse-item" href="/student/auth/student-profile">Profile</a>
+                            <a class="collapse-item" href="/student/auth/payment">Payment</a>
+                        </div>
+                    </div>    
                 </li>
     
                 <!-- Divider -->
@@ -80,12 +95,13 @@
                 <hr class="sidebar-divider">
                 <!-- Nav Item - Thesis -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour">
-                        <i class="fas fa-fw fa-wrench"></i>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo">
+                        <i class="bi bi-book"></i>
                         <span>Thesis Management</span>
                     </a>
-                    <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Thesis Management:</h6>
                             <a class="collapse-item" href="/student/auth/student-thesis/directory">Directory</a>
                             <a class="collapse-item" href="/student/auth/student-thesis/schedule">Schedule</a>
                         </div>
@@ -122,7 +138,7 @@
                   
                                 <ul class="navbar-nav ms-auto font-weight-semibold">
                                     <li class="nav-item px-2">
-                                        <a class="nav-link-1">Welcome, <b>{{$LoggedUserInfo->first_name}}</b></a>
+                                        <a class="nav-link-1">Welcome, <b>{{$LoggedUserInfo->first_name}} {{$LoggedUserInfo->last_name}}</b></a>
                                     </li>
                                     </li>
                                     <li class="nav-item px-2">

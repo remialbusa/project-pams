@@ -48,8 +48,11 @@
                                 <a class="nav-link link-dark" id="enrollment-process-tab" data-bs-toggle="tab" href="#enrollment-process" role="tab" aria-controls="enrollment-process" aria-selected="false">Enrollment Status</a>
                             </li>
                         </ul>
+
+                        
                         <div class="manage-user-body container px-4">
                             <div class="tab-content mb-5" id="myTabContent">
+                                {{-- Enrolled Subjects Tab --}}
                             <div class="tab-pane active" id="enrolled-subjects" role="tabpanel" aria-labelledby="enrolled-subjects-tab">
                                     <div class="tab-pane fade active show" id="enrolled-subjects" role="tabpanel" aria-labelledby="enrolled-subjects-tab" style="max-width: 100%;">
                                         <div class="table-wrapper row">
@@ -96,6 +99,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                {{-- Enrollment Process/Status Tab --}}
                                 <div class="tab-pane fade" id="enrollment-process" role="tabpanel" aria-labelledby="enrollment-process-tab">
                                     @if($LoggedUserInfo->student_type == 'Continuing')
                                     <div class="table-wrapper row">
@@ -181,7 +186,6 @@
                                 </div>                          
                             </div>
                         </div>
-      
                     </div>
                 </div>
             </div>

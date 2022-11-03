@@ -1,4 +1,4 @@
-@extends('admin.main-layout')
+@extends('admin.ogs-main-layout')
 @section('title', 'Subjects')
 
 @section('content')
@@ -27,7 +27,6 @@
                             <th>Subject</th>
                             <th>Description</th>
                             <th>Units</th>
-                            <th>Schedule</th>
                             <th>Action</th>
                         </tr>
                     </thead>               
@@ -38,10 +37,9 @@
                             <td>{{$subject->subject}}</td>                       
                             <td>{{$subject->description}}</td>
                             <td>{{$subject->unit}}</td>
-                            <td>{{$subject->schedule}}</td>
                             <td>
-                                <a href="{{ route('mit-edit-student', $subject->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
-                                <a href="{{ route('mit-delete-student', $subject->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
+                                <a href="" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
+                                <a href="{{ route('delete-subject', $subject->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>
                     @endforeach                                            
@@ -96,12 +94,7 @@
                             </select>
                             <span class="text-danger">@error('units'){{$message}} @enderror</span>
                             <label for="floatingInput">Units</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="schedule" placeholder="Schedule">
-                            <span class="text-danger">@error('schedule'){{$message}} @enderror</span>
-                            <label for="floatingInput">Schedule</label>
-                        </div>                        
+                        </div>                      
                         <div class="d-grid">
                             <button type="submit" class="btn btn-lg btn-primary shadow-sm btn-login fw-bold mb-2">Save</button>
                         </div>

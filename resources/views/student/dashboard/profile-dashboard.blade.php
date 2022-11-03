@@ -9,7 +9,7 @@
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Student Profile: {{$LoggedUserInfo->first_name}} {{$LoggedUserInfo->last_name}}</h1>
+            <h1 class="h3 mb-2 text-gray-800">Student Profile</h1>
             
         </div>
         <p>The details of your profile is shown below for the S.Y. 2022-2023.</p>

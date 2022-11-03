@@ -1,4 +1,4 @@
-@extends('admin.main-layout')
+@extends('admin.ogs-main-layout')
 @section('title', 'New Students')
 
 @section('content')
@@ -8,7 +8,10 @@
 <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">New Students</h1>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">New Students</h1>
+</div>
 <p class="mb-4">The data below are the students who filled out the pre-enrollment form during the pre-enrollment period.</p>
 
 <!-- DataTales Example -->
@@ -38,8 +41,8 @@
                         <td>{{$student->mobile_no}}</td>
                         <td>{{$student->created_at}}</td>
                         <td>
-                            <a href="{{ route('mit-edit-student', $student->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
-                            <a href="{{ route('mit-delete-student', $student->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
+                            <a href="{{ route('student-edit', $student->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
+                            <a href="{{ route('student-delete', $student->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
                         </td>
                     </tr>
                 @endforeach                                                    

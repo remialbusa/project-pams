@@ -42,7 +42,7 @@ class AdminController extends Controller
         $save = $admin->save();
 
         if ($save) {
-            return back()->with('success', 'admin inserted successfuly');
+            return redirect('staff/auth/login');
         } else {
             return back()->with('fail', 'failed inserting admin data');
         }
@@ -134,11 +134,40 @@ class AdminController extends Controller
             ];
         }
         $adminList = Admin::all();
-        return view('admin.manage-users', $data, ['admins'=>$adminList]);
+        return view('admin.manage-users.manage-users', $data, ['admins'=>$adminList]);
     }
 
-    function systemConfigView(){
-        return view('admin.system-configuration');
+    function systemAnnouncements(){
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $adminList = Admin::all();
+        return view('admin.system-configuration.announcements', $data, ['admins'=>$adminList]);
+    }
+
+    function systemFaqs(){
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $adminList = Admin::all();
+        return view('admin.system-configuration.faqs', $data, ['admins'=>$adminList]);
+    }
+
+    function systemTechnicalsupport(){
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $adminList = Admin::all();
+        return view('admin.system-configuration.technical-support', $data, ['admins'=>$adminList]);
     }
 
     function logoutAdmin(){

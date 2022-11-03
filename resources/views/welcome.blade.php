@@ -31,12 +31,12 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a href="" class="nav-link" href="#">Home</a>
+                        <a href="" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item px-2">
                     </li>
                     <li class="nav-item px-2">
-                        <a href="/faqs" class="nav-link" href="#">FAQ's</a>
+                        <a href="/faqs" class="nav-link">FAQ's</a>
                     </li>
                 </ul>
                 <div class="dropdown">
@@ -70,7 +70,7 @@
                                 is currently on going! Pre-enrollment period:
                                 July 16 - August 7, 2022. Enrollment Period: August 08 - 19, 2022.
                                 Classes will start on August 22, 2022.
-
+                                
                             </p>
                             <a href="{{ route('enrollment') }}" class="btn btn-warning bg-warning btn-block mt-3">Enroll now</a>
                             <a href="{{ route('process')}}" class="btn btn-warning bg-warning btn-block mt-3">Enrollment process</a>
@@ -125,6 +125,13 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+        </div>
+    </section>
+
+    <section class="container feature pt-5 mt-5">
+        <div class="container h-100">
+            <h1 class="text-center display-6">Events Calender</h1>
+            <hr>
         </div>
     </section>
 

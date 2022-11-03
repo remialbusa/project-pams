@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectsTable extends Migration
+class CreatePendingStudentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
-            $table->id();           
-            $table->integer('student_id');
-            $table->string('first_period_sub');
-            $table->string('second_period_sub');
-            $table->string('third_period_sub');
+        Schema::create('pending_students', function (Blueprint $table) {
+            $table->id();       
+            $table->string('student_id')->nullable();
+            $table->string('submitted_form');
+            $table->string('payment'); 
+            $table->string('status'); 
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('pending_students');
     }
 }

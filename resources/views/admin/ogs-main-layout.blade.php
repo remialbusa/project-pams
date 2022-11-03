@@ -44,9 +44,9 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center">
                 
-                <div class="sidebar-brand-text mx-3">Welcome Admin!</div>
+                <div class="sidebar-brand-text mx-3">Welcome OGS!</div>
             </a>
 
             <!-- Divider -->
@@ -99,20 +99,36 @@
                 </a>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Assigning Subjects:</h6>
                         <a class="collapse-item" href="{{ route('admin.assign-subjects')}}">Assign Subjects</a>
                         <a class="collapse-item" href="{{ route('admin.subjects')}}">List of Subject</a>
                     </div>
                 </div>    
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Thesis Management</span>
+                    <span>Advising Of Students</span>
                 </a>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Adivising:</h6>
+                        <a class="collapse-item" href="{{ route('admin.advising')}}">Advising</a>
+                        <a class="collapse-item" href="{{ route('admin.instructor')}}">List of Advisers</a>
+                    </div>
+                </div>    
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Thesis Management</span>
+                </a>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Thesis Management:</h6>
                         <a class="collapse-item" href="{{ route('admin.thesis-directory')}}">Directory</a>
                         <a class="collapse-item" href="{{ route('admin.thesis-scheduling')}}">Scheduling</a>
                     </div>

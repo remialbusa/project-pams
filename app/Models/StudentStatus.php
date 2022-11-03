@@ -10,4 +10,5 @@ class StudentStatus extends Model
     use HasFactory;
 
     protected $table = 'students_status';
+
 }

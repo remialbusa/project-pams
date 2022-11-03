@@ -31,8 +31,7 @@ class CreateStudentsTable extends Migration
             $table->string('city_code');
             $table->string('barangay_code');
             $table->string('program');
-            $table->string('file_name');
-            $table->string('file_path');
+            $table->string('file');
             $table->string('first_period_sub');
             $table->string('second_period_sub');
             $table->string('third_period_sub'); 

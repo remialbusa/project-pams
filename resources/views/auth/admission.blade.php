@@ -76,7 +76,7 @@
                     (CSAT)</p>
                 <p class="m-0">2. PAY AND SECURE A SCHEDULE FOR THE GSAT (JULY 27-AUGUST 5, 2022)</p>Pay at the Cashier's Office and visit the LNU Guidance and Testing Office
                 to schedule your GSAT.
-                <p class="m-0">3. FILL OUT ONLINE PRE-REGISTRATION FORM: <a class="small btn btn-warning bg-warning btn-block mt-1" href="/student/auth/register-new-student">PRE-REGISTER HERE</a> </p>
+                <p class="m-0">3. FILL OUT ONLINE PRE-REGISTRATION FORM: <a class="small btn btn-warning bg-warning btn-block mt-1" href="student/auth/register-new-student">PRE-REGISTER HERE</a> </p>
                 <p class="m-0">4. FILL OUT THE NEEDED FORMS FOR ADMISSION AT THE OGS</p>For successful examinees, fill out the Application for Graduate Admission Form
                 (AFCAF) and the Draft Registration Form (DRF) at the Office of the Graduate School.
                 <p class="m-0">5. GO TO THE MIS FOR THE SIGNING OF YOUR DRF AND PRINTING OF YOUR
@@ -104,7 +104,7 @@
                         Visit the Office of the Graduate School to secure a
                         copy of your Clearance Form and have them signed by
                         the CS Library and University Registrar.</p>
-                    <p class="m-0">2. FILL OUT ONLINE PRE-REGISTRATION: <a class="small btn btn-warning bg-warning btn-block mt-1" href="/student/auth/register">PRE-REGISTER HERE</a></p>
+                    <p class="m-0">2. FILL OUT ONLINE PRE-REGISTRATION: <a class="small btn btn-warning bg-warning btn-block mt-1" href="/student/auth/register-student">PRE-REGISTER HERE</a></p>
                     <p class="m-0">3. SUBMIT YOUR CLEARANCE TO THE OGS AND FILL OUT THE
                         DRAFT REGISTRATION FORM (DRF).</p>
                     <p class="m-0">4. GO TO THE MIS FOR THE SIGNING OF YOUR DRF AND PRINTING

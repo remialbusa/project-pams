@@ -1,4 +1,4 @@
-@extends('admin.main-layout')
+@extends('admin.ogs-main-layout')
 @section('title', 'Thesis Management')
 
 @section('content')
@@ -31,9 +31,8 @@
                 </table>
             </div>
         </div>
-    </div>
-    
-    </div>
+    </div>   
+</div>
     <!-- /.container-fluid -->
     
 @endsection

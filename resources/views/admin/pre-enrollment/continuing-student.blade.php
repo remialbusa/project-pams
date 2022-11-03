@@ -1,14 +1,16 @@
-@extends('admin.main-layout')
+@extends('admin.ogs-main-layout')
 @section('title', 'Continuing Students')
 
 @section('content')
 
 <!-- Begin Page Content -->
-<!-- Begin Page Content -->
 <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Continuing Students</h1>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Continuing Students</h1>
+</div>
 <p class="mb-4">The data below are the students who filled out the pre-enrollment form during the pre-enrollment period.</p>
 
 <!-- DataTales Example -->
@@ -19,6 +21,16 @@
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <form action="{{ route('approve-student') }}" method="POST" enctype="multipart/form-data">
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    @if(Session::get('success'))
+                    <div class="alert alert-success text-center">{{Session::get('success')}}</div>
+                    @endif
+
+                    @if(Session::get('fail'))
+                    <div class="alert alert-danger text-center">{{Session::get('fail')}}</div>
+                    @endif
+                </form>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -38,8 +50,9 @@
                         <td>{{$student->mobile_no}}</td>
                         <td>{{$student->created_at}}</td>
                         <td>
-                            <a href="{{ route('mit-edit-student', $student->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
-                            <a href="{{ route('mit-delete-student', $student->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
+                            <a href="{{ route('student-edit', $student->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
+                            {{-- <a href="{{ route('admin.download-pdf', $student->file)}}" class="edit mx-2 bi bi-eye">Download</a> --}}
+                            <a href="{{ route('student-delete', $student->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
                         </td>
                     </tr>
                 @endforeach                                            
