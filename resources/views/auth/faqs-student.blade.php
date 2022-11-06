@@ -40,12 +40,12 @@
     </nav>
 
     <section class="faqs-details">
-        <h1 class="text-center mt-5" style="color: #f7d05c">FREQUENTLY ASK QUESTIONS</h1>
+        <h1 class="text-center mt-5" style="color: #f7d05c"><b>FREQUENTLY ASK QUESTIONS</b></h1>
         <div class="admission-body container mt-5">
             <div class="col-sm-8 px-5 mt-5">
             </div>
 
-            <h4 class="text-center px-5 mt-5" style="color: #0b7dff">FREQUENTLY ASK QUESTIONS ABOUT THE WRITTEN COMPREHENSIVE EXAMS</h4>
+            <h4 class="text-center px-5 mt-5" style="color: #0b7dff"><b>FREQUENTLY ASK QUESTIONS ABOUT THE WRITTEN COMPREHENSIVE EXAMS</b></h4>
             <div class="admission-requirements row px-5 mb-5 mt-3">
                 <div class="col-sm-8 px-5 mt-5">
                 </div>

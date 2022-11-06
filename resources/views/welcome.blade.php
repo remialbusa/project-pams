@@ -21,7 +21,7 @@
 
 <body>
     
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark border-bottom border-white">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,8 +72,13 @@
                                 Classes will start on August 22, 2022.
                                 
                             </p>
-                            <a href="{{ route('enrollment') }}" class="btn btn-warning bg-warning btn-block mt-3">Enroll now</a>
-                            <a href="{{ route('process')}}" class="btn btn-warning bg-warning btn-block mt-3">Enrollment process</a>
+                            
+                            <a href="{{ route('enrollment') }}" class="btn btn-warning btn-lg">Enroll now</a>
+                            <a href="{{ route('process')}}" class="btn btn-warning btn-lg">Enrollment process</a>
+                            
+                            
+
+                           
                         </div>
                     </div>
                 </div>
@@ -85,8 +90,9 @@
     </section>
 
     <section class="container feature pt-5 mt-5">
+
         <!-- what we do -->
-        <h1 class="text-center display-6">Enrollment Updates</h1>
+        <h1 class="text-center display-6"><b>Enrollment Updates</b></h1>
         <hr>
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
             <div class="carousel-indicators">
@@ -130,7 +136,23 @@
 
     <section class="container feature pt-5 mt-5">
         <div class="container h-100">
-            <h1 class="text-center display-6">Events Calender</h1>
+            <h1 class="text-center display-6"><b>Events Calendar</b></h1>
+            
+            <meta charset='utf-8' />
+    <link href='fullcalendar/main.css' rel='stylesheet' />
+    <script src='fullcalendar/main.js'></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
+
             <hr>
         </div>
     </section>

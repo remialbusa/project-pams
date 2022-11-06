@@ -44,7 +44,7 @@
 
             </div>
 
-            <h4 class="px-5 mt-5">ADMISSION REQUIREMENTS</h4>
+            <h4 class="px-5 mt-5" style="color:orange">ADMISSION REQUIREMENTS</h4>
             <div class="admission-requirements row px-5 mb-5 mt-3">
                 <div class="col-sm-4">
                     New Students
@@ -63,7 +63,7 @@
 
                 </div>
             </div>
-            <h4 class="px-5 mt-5">ENROLLMENT PROCESS</h4>
+            <h4 class="px-5 mt-5" style="color:orange">ENROLLMENT PROCESS</h4>
             <div class="admission-requirements row px-5 mb-5 mt-3">
                 <div class="col-sm-4">
                     New Students
@@ -93,7 +93,7 @@
 
                 </div>
             </div>
-            <h4 class="px-5 mt-5">ENROLLMENT PROCESS</h4>
+            <h4 class="px-5 mt-5" style="color:orange">ENROLLMENT PROCESS</h4>
             <div class="admission-requirements row px-5 mb-5 mt-3">
                 <div class="col-sm-4">
                     Continuining Students
