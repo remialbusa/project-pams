@@ -22,7 +22,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            
                             <th>Title</th>
                             <th>Author</th>
                             <th>Saved Date</th>
@@ -33,7 +33,7 @@
                     <tbody>
                         @foreach ($thesis as $thesis)
                         <tr>
-                            <td>{{$thesis['id']}}</td>
+                            
                             <td>{{$thesis['thesis_title']}}</td>
                             <td>{{$thesis['thesis_author']}}</td>
                             <td>{{$thesis['created_at']}}</td>
