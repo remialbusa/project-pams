@@ -28,6 +28,7 @@
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -35,7 +36,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/staff/admin/pending">Back</a>
+                        <a class="nav-link" href="/staff/admin/dashboard">Back</a>
                     </li>
                 </ul>
             </div>
@@ -121,8 +122,6 @@
                                         <span class="text-danger">@error('status'){{$message}} @enderror</span>
                                     </div>
                                 </div>
-
-                                
                             </div> 
                             <div class="col mt-4">
                                 <div class="form-outline">

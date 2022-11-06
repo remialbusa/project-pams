@@ -14,7 +14,7 @@ class CreateEnrolledStudentsTable extends Migration
     public function up()
     {
         Schema::create('enrolled_students', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();    
             $table->string('student_type');         
             $table->string('student_id')->nullable();
             $table->string('last_name');
@@ -29,13 +29,13 @@ class CreateEnrolledStudentsTable extends Migration
             $table->string('program');
             $table->string('first_period_sub');
             $table->string('second_period_sub');
-            $table->string('third_period_sub'); 
-            $table->string('time_first_period_sub');
-            $table->string('time_second_period_sub');
-            $table->string('time_third_period_sub');  
-            $table->string('first_period_instructor');
-            $table->string('second_period_instructor');
-            $table->string('third_period_instructor'); 
+            $table->string('third_period_sub');  
+            $table->string('first_period_sched');
+            $table->string('second_period_sched');
+            $table->string('third_period_sched'); 
+            $table->string('first_period_adviser');
+            $table->string('second_period_adviser');
+            $table->string('third_period_adviser');
             $table->timestamps();
         });
     }

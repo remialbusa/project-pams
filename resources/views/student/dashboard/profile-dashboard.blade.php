@@ -164,6 +164,23 @@
                                         </div>
                                     </div>
                                     <hr/>
+
+                                    <div class="row mt-4">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="form6Example1">List of Requirements: <label class="text-danger">*</label></label>
+                                                <p>
+                                                    <i>(Kindly upload the soft copy of your entrance payment receipt, credentials, registration, consent, and promissory note in one PDF file.)</i>
+                                                    <br><i>(Important : Pass the only necessary requirements per semester.)
+                                                    <br><i>(File format name (ex. Lastname-Firstname-MI-Requirements).)</i>
+                                                </p>
+                                                <input type="file" placeholder="Choose file" class="form-control" name="file">
+                                                <span class="text-danger">@error('file'){{$message}} @enderror</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr/>
                                     <!-- column grid layout with text inputs for course/s -->
                                     <h5 class="mt-5 lead">COURSE/S</h5>
                                     <div class="col mt-4 mb-3">

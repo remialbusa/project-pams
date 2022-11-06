@@ -22,17 +22,21 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Student ID</th>
-                                <th>Requirements Form</th>
-                                <th>Payment</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th class="col-sm-2">Name</th>
+                                <th class="col-sm-2">Student ID</th>
+                                <th class="col-sm-1">Program</th>
+                                <th class="col-sm-1">Requirements Form</th>
+                                <th class="col-sm-1">Payment</th>
+                                <th class="col-sm-1">Status</th>
+                                <th class="col-sm-2">Action</th>
                             </tr>
                         </thead>               
                         <tbody>
                         @foreach ($pendingStudents as $pendingStudents)
                             <tr>
+                                <td>{{$pendingStudents->first_name}} {{$pendingStudents->middle_name}} {{$pendingStudents->last_name}}</td>
                                 <td>{{$pendingStudents->student_id}}</td>
+                                <td>{{$pendingStudents->program}}</td>
                                 @if($pendingStudents->submitted_form == "Pending")
                                 <td><span class="badge badge-warning">{{$pendingStudents->submitted_form}}</span></td>   
                                 @else 
@@ -49,9 +53,9 @@
                                 <td><span class="badge badge-success">{{$pendingStudents->status}}</span></td>
                                 @endif
                                 <td>
-                                    <a href="{{ route('edit-pending', $pendingStudents->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
-                                    <a href="{{ route('view-pending', $pendingStudents->id)}}" class="edit mx-2"><i class="bi bi-check-circle"></i></a>
-                                    <a href="{{ route('delete-pending', $pendingStudents->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
+                                    <a href="{{ route('edit-pending', $pendingStudents->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="{{ route('approving-pending', $pendingStudents->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-check-circle"></i></a>
+                                    <a href="{{ route('delete-pending', $pendingStudents->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                                 </td>
                             </tr>
                         @endforeach                                            

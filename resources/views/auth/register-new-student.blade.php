@@ -27,6 +27,7 @@
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/imgaes/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -204,7 +205,8 @@
                                     <div class="form-group">
                                         <label class="form-label" for="form6Example1">List of Requirements: <label class="text-danger">*</label></label>
                                         <p>
-                                            <i>(Kindly upload the soft copy of your entrance credentials, registration, consent, and promissory note in one PDF file.)</i>
+                                            <i>(Kindly upload the soft copy of your entrance payment receipt, credentials, registration, consent, and promissory note in one PDF file.)</i>
+                                            <br><i>(File format name (ex. Lastname-Firstname-MI-Requirements))</i>
                                         </p>
                                         <input type="file" placeholder="Choose file" class="form-control" name="file">
                                         <span class="text-danger">@error('file'){{$message}} @enderror</span>

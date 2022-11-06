@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\EnrolledStudent;
 use App\Models\Student;
-use App\Models\AdmissionOfficer;
 use App\Models\StudentStatus;
 use App\Models\Subject;
 use App\Models\PendingStudent;
 use App\Models\AssignStudent;
 use App\Models\AdvisingStudent;
+use App\Models\StudentUser;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -113,6 +113,79 @@ class AdmissionOfficerController extends Controller
         return view('admin.view-pdf', $data, compact('student'));
     }
 
+    function creatingStudentUser($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+
+        $student = EnrolledStudent::find($id);
+        return view('admin.create-student-users', $data, compact('student'));
+    }
+
+    function createStudentUser(Request $request)
+    {
+        $request->validate([
+            'student_type' => 'required',
+            'student_id' => 'required',
+            'last_name' => 'required',          
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'vaccination_status' => 'required',
+            'email' => 'required',
+            'gender' => 'required',  
+            'birth_date' => 'required', 
+            'mobile_no' => 'required',
+            'fb_acc_name' => 'required',
+            'program' => 'required',
+            'first_period_sub' => 'required',
+            'second_period_sub' => 'required',
+            'third_period_sub' => 'required', 
+            'first_period_sched' => 'required',
+            'second_period_sched' => 'required',
+            'third_period_sched' => 'required',
+            'first_period_adviser' => 'required',
+            'second_period_adviser' => 'required',
+            'third_period_adviser' => 'required',
+        ]);
+
+        $student = new StudentUser();
+        $student->id=$request->id;
+        $student->student_type = $request->student_type;
+        $student->student_id = $request->student_id;       
+        $student->last_name = $request->last_name;
+        $student->first_name = $request->first_name;
+        $student->middle_name = $request->middle_name;
+        $student->vaccination_status = $request->vaccination_status;
+        $student->email = $request->email;
+        $student->gender = $request->gender;
+        $student->birth_date = $request->birth_date;
+        $student->mobile_no = $request->mobile_no;
+        $student->fb_acc_name = $request->fb_acc_name;
+        $student->program = $request->program;
+        $student->first_period_sub = $request->first_period_sub;
+        $student->second_period_sub = $request->second_period_sub;
+        $student->third_period_sub = $request->third_period_sub;
+        $student->first_period_sched = $request->first_period_sched;
+        $student->second_period_sched = $request->second_period_sched;
+        $student->third_period_sched = $request->third_period_sched;
+        $student->first_period_adviser = $request->first_period_adviser;
+        $student->second_period_adviser = $request->second_period_adviser;
+        $student->third_period_adviser = $request->third_period_adviser;
+
+        $save = $student->save();
+
+        
+        if($save){
+            return redirect('/staff/admin/enrolled');
+        }else{
+            return back()->with('fail', 'Failed inserting student data');
+        }
+    }
+
 
     function enrolledStudents()
     {
@@ -140,20 +213,20 @@ class AdmissionOfficerController extends Controller
         return view('admin.advising.subjects', $data, ['subjects'=>$subjects]);
     }
 
-    function assignSubjects()
+    function advisingAndAssigning()
     {
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
             $data = [
                 'LoggedAdminInfo'=>$admin
             ];
-        }   
+        }
 
-        $student = AssignStudent::all();
-        return view('admin.advising.assign-subjects', $data, ['student'=>$student]);
+        $student = PendingStudent::all();
+        return view('admin.advising.advising-and-assigning', $data, ['student'=>$student]);
     }
 
-    function scheduleSubject($id)
+    function editAdvisingAndAssignSubject($id)
     {
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
@@ -162,12 +235,12 @@ class AdmissionOfficerController extends Controller
             ];
         }   
 
-        $student = AssignStudent::find($id);
+        $student = PendingStudent::find($id);
         $subject = Subject::all();
-        return view('admin.assign-subject-schedule', $data, ['subject'=>$subject,'student'=>$student]);
+        return view('admin.approve-advising-and-assigning-subject', $data, ['subject'=>$subject,'student'=>$student]);
     }
 
-    function approveAdvising(Request $request)
+    function approveAdvisingAndAssigningSubject(Request $request)
     {
         $request->validate([
             'student_type' => 'required',
@@ -182,18 +255,19 @@ class AdmissionOfficerController extends Controller
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
             'program' => 'required',
-            'first_period' => 'required',
-            'second_period' => 'required',
-            'third_period' => 'required', 
-            'first_period_schedule' => 'required',
-            'second_period_schedule' => 'required',
-            'third_period_schedule' => 'required', 
+            'first_period_sub' => 'required',
+            'second_period_sub' => 'required',
+            'third_period_sub' => 'required', 
+            'first_period_sched' => 'required',
+            'second_period_sched' => 'required',
+            'third_period_sched' => 'required', 
+            'first_period_adviser' => 'required',
+            'second_period_adviser' => 'required',
+            'third_period_adviser' => 'required',
+
         ]);
 
-        $this->deletePreviousAdvising($request->id);
-
-        //update data
-        $student = new EnrolledStudent();
+        $student = PendingStudent::find($request->id);
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;       
         $student->last_name = $request->last_name;
@@ -206,92 +280,23 @@ class AdmissionOfficerController extends Controller
         $student->mobile_no = $request->mobile_no;
         $student->fb_acc_name = $request->fb_acc_name;
         $student->program = $request->program;
-        $student->first_period_sub = $request->first_period;
-        $student->second_period_sub = $request->second_period;
-        $student->third_period_sub = $request->third_period;
-        $student->time_first_period_sub = $request->first_period_schedule;
-        $student->time_second_period_sub = $request->second_period_schedule;
-        $student->time_third_period_sub = $request->third_period_schedule;
-        $student->first_period_instructor = $request->first_instructor;
-        $student->second_period_instructor = $request->second_instructor;
-        $student->third_period_instructor = $request->third_instructor;
-        $save = $student->save();
-
-        if($save){
-            return redirect('/staff/admin/dashboard');
-        }else{
-            return back()->with('fail', 'Failed inserting student data');
-        }
-    }
-
-    public function deletePreviousAdvising($id){
-        $student = AdvisingStudent::find($id);
-        $student->delete();
-        return redirect('/staff/admin/dashboard');
-    }
-
-    function assignScheduleSubject(Request $request)
-    {
-        $request->validate([
-            'student_type' => 'required',
-            'student_id' => 'required',
-            'last_name' => 'required',          
-            'first_name' => 'required',
-            'middle_name' => 'required',
-            'vaccination_status' => 'required',
-            'email' => 'required',
-            'gender' => 'required',  
-            'birth_date' => 'required', 
-            'mobile_no' => 'required',
-            'fb_acc_name' => 'required',
-            'program' => 'required',
-            'first_period' => 'required',
-            'second_period' => 'required',
-            'third_period' => 'required', 
-            'first_period_schedule' => 'required',
-            'second_period_schedule' => 'required',
-            'third_period_schedule' => 'required', 
-
-        ]);
-
-        $student = new AdvisingStudent();
-        $student->student_type = $request->student_type;
-        $student->student_id = $request->student_id;       
-        $student->last_name = $request->last_name;
-        $student->first_name = $request->first_name;
-        $student->middle_name = $request->middle_name;
-        $student->vaccination_status = $request->vaccination_status;
-        $student->email = $request->email;
-        $student->gender = $request->gender;
-        $student->birth_date = $request->birth_date;
-        $student->mobile_no = $request->mobile_no;
-        $student->fb_acc_name = $request->fb_acc_name;
-        $student->program = $request->program;
-        $student->first_period_sub = $request->first_period;
-        $student->second_period_sub = $request->second_period;
-        $student->third_period_sub = $request->third_period;
-        $student->time_first_period_sub = $request->first_period_schedule;
-        $student->time_second_period_sub = $request->second_period_schedule;
-        $student->time_third_period_sub = $request->third_period_schedule;
-        $student->first_period_instructor = "N/A";
-        $student->second_period_instructor = "N/A";
-        $student->third_period_instructor = "N/A";
+        $student->first_period_sub = $request->first_period_sub;
+        $student->second_period_sub = $request->second_period_sub;
+        $student->third_period_sub = $request->third_period_sub;
+        $student->first_period_sched = $request->first_period_sched;
+        $student->second_period_sched = $request->second_period_sched;
+        $student->third_period_sched = $request->third_period_sched;
+        $student->first_period_adviser = $request->first_period_adviser;
+        $student->second_period_adviser = $request->second_period_adviser;
+        $student->third_period_adviser = $request->third_period_adviser;
 
         $save = $student->save();
 
-        $this->deletePreviousAssignSubject($request->id);
-
         if($save){
-            return redirect('/staff/admin/assign-subjects');
+            return redirect('/staff/admin/advising-assigning');
         }else{
             return back()->with('fail', 'Failed inserting student data');
         }
-    }
-
-    public function deletePreviousAssignSubject($id){
-        $student = AssignStudent::find($id);
-        $student->delete();
-        return redirect('/staff/admin/assign-subjects');
     }
 
     function editPreEnrollees($id){
@@ -312,9 +317,8 @@ class AdmissionOfficerController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
-        $student = Student::find($id);
         $status = PendingStudent::find($id);
-        return view('admin.approve-pending', $data, ['status'=>$status,'student'=>$student]);
+        return view('admin.approve-pending', $data, ['status'=>$status]);
     }
 
     function deleteSubjects($id){
@@ -323,7 +327,7 @@ class AdmissionOfficerController extends Controller
         return redirect('/staff/admin/subjects');
     }
 
-    function advisingStudent()
+    function adviserList()
     {
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
@@ -333,86 +337,23 @@ class AdmissionOfficerController extends Controller
         } 
         
         $subjects = Subject::all();
-        $student = AdvisingStudent::all();
-        return view('admin.advising.advising', $data, ['student'=>$student,'subjects'=>$subjects]);
+        return view('admin.advising.adviser', $data, ['subjects'=>$subjects]);
     }
 
-    function editAdvising($id)
+    function studentUsers()
     {
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
             $data = [
                 'LoggedAdminInfo'=>$admin
             ];
-        } 
-        $student = AdvisingStudent::find($id);
-        return view('admin.approve-advising', $data, ['student'=>$student]);
-    }
+        }
 
-    function instructorList()
-    {
-        if(session()->has('LoggedAdmin')){
-            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
-            $data = [
-                'LoggedAdminInfo'=>$admin
-            ];
-        } 
-        
-        $subjects = Subject::all();
-        return view('admin.advising.instructors', $data, ['subjects'=>$subjects]);
+        $studentUsers = StudentUser::all();
+        return view('admin.monitoring.student-users', $data, ['studentUsers'=>$studentUsers]);
     }
 
     function approvePreEnrollees(Request $request){
-        $request->validate([
-            'student_id' => 'required',
-            'last_name' => 'required',
-            'first_name' => 'required',
-            'middle_name' => 'required',
-        ]);
-
-        //insert data
-        $student = new PendingStudent();
-        $student->student_id = $request->student_id;
-        $student->submitted_form = "Pending";
-        $student->payment = "Pending";
-        $student->status = "Pending";
-
-        $save = $student->save();
-
-
-        if($save){
-            return redirect('staff/admin/dashboard');
-        }else{
-            return back()->with('fail', 'Failed inserting student data');
-        }
-        
-    }
-
-    /* public function store(Request $request)
-    {
- 
-            $data=new product();
-        
-          
-             $file=$request->file;
-                 
-     $filename=time().'.'.$file->getClientOriginalExtension();
- 
-                 $request->file->move('assets',$filename);
- 
-                 $data->file=$filename;
- 
- 
-                 $data->name=$request->name;
-                 $data->description=$request->description;
- 
-                 $data->save();
-                 return redirect()->back();
- 
- 
- 
-    } */
-    function approvePending(Request $request){
         $request->validate([
             'student_type' => 'required',
             'student_id' => 'required',
@@ -431,8 +372,9 @@ class AdmissionOfficerController extends Controller
             'third_period' => 'required', 
         ]);
 
-        //update data
-        $student = new AssignStudent();
+        //insert data
+        $student = new PendingStudent();
+        $student->id=$request->id;
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;       
         $student->last_name = $request->last_name;
@@ -448,15 +390,83 @@ class AdmissionOfficerController extends Controller
         $student->first_period_sub = $request->first_period;
         $student->second_period_sub = $request->second_period;
         $student->third_period_sub = $request->third_period;
-        $student->time_first_period_sub = "N/A";
-        $student->time_second_period_sub = "N/A";
-        $student->time_third_period_sub = "N/A";
+        $student->first_period_sched = "";
+        $student->second_period_sched = "";
+        $student->third_period_sched = "";
+        $student->first_period_adviser = "";
+        $student->second_period_adviser = "";
+        $student->third_period_adviser = "";
+        $student->submitted_form = "Pending";
+        $student->payment = "Pending";
+        $student->status = "Pending";
+
         $save = $student->save();
 
-        $this->deletePending($request->id);
         
         if($save){
             return redirect('staff/admin/dashboard');
+        }else{
+            return back()->with('fail', 'Failed inserting student data');
+        }
+    }
+
+    
+    function approvePending(Request $request){
+        $request->validate([
+            'student_type' => 'required',
+            'student_id' => 'required',
+            'last_name' => 'required',          
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'vaccination_status' => 'required',
+            'email' => 'required',
+            'gender' => 'required',  
+            'birth_date' => 'required', 
+            'mobile_no' => 'required',
+            'fb_acc_name' => 'required',
+            'program' => 'required',
+            'first_period_sub' => 'required',
+            'second_period_sub' => 'required',
+            'third_period_sub' => 'required', 
+            'first_period_sched' => 'required',
+            'second_period_sched' => 'required',
+            'third_period_sched' => 'required',
+            'first_period_adviser' => 'required',
+            'second_period_adviser' => 'required',
+            'third_period_adviser' => 'required',
+        ]);
+
+        //insert data
+        $student = new EnrolledStudent();
+        $student->id=$request->id;
+        $student->student_type = $request->student_type;
+        $student->student_id = $request->student_id;       
+        $student->last_name = $request->last_name;
+        $student->first_name = $request->first_name;
+        $student->middle_name = $request->middle_name;
+        $student->vaccination_status = $request->vaccination_status;
+        $student->email = $request->email;
+        $student->gender = $request->gender;
+        $student->birth_date = $request->birth_date;
+        $student->mobile_no = $request->mobile_no;
+        $student->fb_acc_name = $request->fb_acc_name;
+        $student->program = $request->program;
+        $student->first_period_sub = $request->first_period_sub;
+        $student->second_period_sub = $request->second_period_sub;
+        $student->third_period_sub = $request->third_period_sub;
+        $student->first_period_sched = $request->first_period_sched;
+        $student->second_period_sched = $request->second_period_sched;
+        $student->third_period_sched = $request->third_period_sched;
+        $student->first_period_adviser = $request->first_period_adviser;
+        $student->second_period_adviser = $request->second_period_adviser;
+        $student->third_period_adviser = $request->third_period_adviser;
+        $save = $student->save();
+
+        $this->deletePending($request->id);
+        $this->deletePreEnrollee($request->id);
+
+        if($save){
+            return redirect('staff/admin/enrolled');
         }else{
             return back()->with('fail', 'Failed inserting student data');
         }
@@ -493,20 +503,10 @@ class AdmissionOfficerController extends Controller
         
     }
 
-   /*  public function insertPreEnrollee($id){
-
-        $pendingStudent = new PendingStudent();
-        $pendingStudent->student_id = $id;
-        $pendingStudent->submitted_form = "Pending";
-        $pendingStudent->payment = "Pending";
-        $pendingStudent->status = "Pending";
-        $pendingStudent->save();
-    } */
-
     public function deletePreEnrollee($id){
         $student = Student::find($id);
         $student->delete();
-        return redirect('/staff/admin/pre-enrollment/new');
+        return redirect('/staff/admin/dashboard');
     }
 
     function saveSubject(Request $request){
@@ -533,4 +533,168 @@ class AdmissionOfficerController extends Controller
         }
     }
 
+    function viewEnrolledStudent($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $student = EnrolledStudent::find($id);
+        return view('admin.view-enrolled-student', $data, ['student'=>$student]);
+    }
+
+    function editEnrolledStudent($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $student = EnrolledStudent::find($id);
+        return view('admin.edit-enrolled-student', $data, ['student'=>$student]);
+    }
+
+    function updateEnrolledStudent(Request $request){
+        $request->validate([
+            'student_type' => 'required',
+            'student_id' => 'required',
+            'last_name' => 'required',          
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'vaccination_status' => 'required',
+            'email' => 'required',
+            'gender' => 'required',  
+            'birth_date' => 'required', 
+            'mobile_no' => 'required',
+            'fb_acc_name' => 'required',
+            'program' => 'required',
+            'first_period_sub' => 'required',
+            'second_period_sub' => 'required',
+            'third_period_sub' => 'required', 
+            'first_period_sched' => 'required',
+            'second_period_sched' => 'required',
+            'third_period_sched' => 'required',
+            'first_period_adviser' => 'required',
+            'second_period_adviser' => 'required',
+            'third_period_adviser' => 'required',
+        ]);
+
+        $student = EnrolledStudent::find($request->id);
+        $student->id=$request->id;
+        $student->student_type = $request->student_type;
+        $student->student_id = $request->student_id;       
+        $student->last_name = $request->last_name;
+        $student->first_name = $request->first_name;
+        $student->middle_name = $request->middle_name;
+        $student->vaccination_status = $request->vaccination_status;
+        $student->email = $request->email;
+        $student->gender = $request->gender;
+        $student->birth_date = $request->birth_date;
+        $student->mobile_no = $request->mobile_no;
+        $student->fb_acc_name = $request->fb_acc_name;
+        $student->program = $request->program;
+        $student->first_period_sub = $request->first_period_sub;
+        $student->second_period_sub = $request->second_period_sub;
+        $student->third_period_sub = $request->third_period_sub;
+        $student->first_period_sched = $request->first_period_sched;
+        $student->second_period_sched = $request->second_period_sched;
+        $student->third_period_sched = $request->third_period_sched;
+        $student->first_period_adviser = $request->first_period_adviser;
+        $student->second_period_adviser = $request->second_period_adviser;
+        $student->third_period_adviser = $request->third_period_adviser;
+        $save = $student->save();
+
+        if ($save) {
+            return back()->with('success', 'Enrolled Student Data Updated Successfuly!');
+        } else {
+            return back()->with('fail', 'failed updating');
+        }
+    }
+
+    function deleteEnrolledStudent($id)
+    {
+        $student = EnrolledStudent::find($id);
+        $student->delete();
+        return redirect('/staff/admin/enrolled');
+    }
+
+    function updateStudentUser(Request $request)
+    {
+        $request->validate([
+            'student_type' => 'required',
+            'student_id' => 'required',
+            'last_name' => 'required',          
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'vaccination_status' => 'required',
+            'email' => 'required',
+            'gender' => 'required',  
+            'birth_date' => 'required', 
+            'mobile_no' => 'required',
+            'fb_acc_name' => 'required',
+            'program' => 'required',
+            'first_period_sub' => 'required',
+            'second_period_sub' => 'required',
+            'third_period_sub' => 'required', 
+            'first_period_sched' => 'required',
+            'second_period_sched' => 'required',
+            'third_period_sched' => 'required',
+            'first_period_adviser' => 'required',
+            'second_period_adviser' => 'required',
+            'third_period_adviser' => 'required',
+        ]);
+
+        $student = StudentUser::find($request->id);
+        $student->id=$request->id;
+        $student->student_type = $request->student_type;
+        $student->student_id = $request->student_id;       
+        $student->last_name = $request->last_name;
+        $student->first_name = $request->first_name;
+        $student->middle_name = $request->middle_name;
+        $student->vaccination_status = $request->vaccination_status;
+        $student->email = $request->email;
+        $student->gender = $request->gender;
+        $student->birth_date = $request->birth_date;
+        $student->mobile_no = $request->mobile_no;
+        $student->fb_acc_name = $request->fb_acc_name;
+        $student->program = $request->program;
+        $student->first_period_sub = $request->first_period_sub;
+        $student->second_period_sub = $request->second_period_sub;
+        $student->third_period_sub = $request->third_period_sub;
+        $student->first_period_sched = $request->first_period_sched;
+        $student->second_period_sched = $request->second_period_sched;
+        $student->third_period_sched = $request->third_period_sched;
+        $student->first_period_adviser = $request->first_period_adviser;
+        $student->second_period_adviser = $request->second_period_adviser;
+        $student->third_period_adviser = $request->third_period_adviser;
+        $save = $student->save();
+
+        if ($save) {
+            return back()->with('success', 'Enrolled Student Data Updated Successfuly!');
+        } else {
+            return back()->with('fail', 'failed updating');
+        }
+    }
+
+    function deleteStudentUser($id)
+    {
+        $student = StudentUser::find($id);
+        $student->delete();
+        return redirect('/staff/admin/student-users');
+    }
+
+    function editStudentUser($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $student = StudentUser::find($id);
+        return view('admin.edit-student-users', $data, ['student'=>$student]);
+    }
 }
