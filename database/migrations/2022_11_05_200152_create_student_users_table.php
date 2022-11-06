@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssignStudentsTable extends Migration
+class CreateStudentUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateAssignStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assign_students', function (Blueprint $table) {
-            $table->id();
+        Schema::create('student_users', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->string('student_type');         
             $table->string('student_id')->nullable();
             $table->string('last_name');
@@ -29,10 +29,13 @@ class CreateAssignStudentsTable extends Migration
             $table->string('program');
             $table->string('first_period_sub');
             $table->string('second_period_sub');
-            $table->string('third_period_sub'); 
-            $table->string('time_first_period_sub');
-            $table->string('time_second_period_sub');
-            $table->string('time_third_period_sub'); 
+            $table->string('third_period_sub');  
+            $table->string('first_period_sched');
+            $table->string('second_period_sched');
+            $table->string('third_period_sched'); 
+            $table->string('first_period_adviser');
+            $table->string('second_period_adviser');
+            $table->string('third_period_adviser');
             $table->timestamps();
         });
     }
@@ -44,6 +47,6 @@ class CreateAssignStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assign_students');
+        Schema::dropIfExists('student_users');
     }
 }
