@@ -45,7 +45,7 @@
             <div class=" px-4 mt-5 mb-5">
                 <div class="login d-flex align-items-center py-5">
                     <div class="container">
-                        <div class="row">
+                        <div class="row"> 
                             <div class="col-md-9 col-lg-4 mx-auto">
                                 <h3 class="login-heading mb-4">Update Thesis</h3>
                                 <form action="{{ route('thesis-update', $thesis->id) }}" method="POST">

@@ -242,4 +242,8 @@ class MainController extends Controller
         $studentStatus = StudentStatus::find($id);
         return view('test-edit', ['studentData'=>$studentData, 'studentStatus'=>$studentStatus]);
     }
+    function coursesNewStudent(){
+        
+
+    }
 }

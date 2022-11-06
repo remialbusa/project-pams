@@ -28,7 +28,7 @@
     <!-- Custom styles for this template-->
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
-    <link href="{{url('css/sb-admin-2.css')}}" rel="stylesheet">
+    <link href="{{url('css/sb-admin-2.css')}}" rel="stylesheet"> 
 
     <!-- Custom styles for this page -->
     <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
@@ -47,7 +47,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center">
                 
                 <div class="sidebar-brand-text mx-3">Welcome Admin!</div>
-            </a>
+            </a> 
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">

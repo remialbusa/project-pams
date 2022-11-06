@@ -54,7 +54,7 @@
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6" aria-label="Slide 7"></button>
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7" aria-label="Slide 8"></button>
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="8" aria-label="Slide 9"></button>
-            </div>
+            </div> 
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="./images/enrollment-process.png" class="rounded mx-auto d-block w-50" alt="...">

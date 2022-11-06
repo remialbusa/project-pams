@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LNU Graduate School Manangement System</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -17,10 +19,12 @@
     <!-- custom css -->
     <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
 
+    
+
 </head>
 
 <body>
-    
+
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
@@ -70,10 +74,11 @@
                                 is currently on going! Pre-enrollment period:
                                 July 16 - August 7, 2022. Enrollment Period: August 08 - 19, 2022.
                                 Classes will start on August 22, 2022.
-                                
+
                             </p>
-                            <a href="{{ route('enrollment') }}" class="btn btn-warning bg-warning btn-block mt-3">Enroll now</a>
-                            <a href="{{ route('process')}}" class="btn btn-warning bg-warning btn-block mt-3">Enrollment process</a>
+                            <a href="{{ route('enrollment') }}" class="btn btn-warning btn-lg mt-3">Enroll now</a>
+                            <a href="{{ route('process')}}" class="btn btn-warning
+                             btn-lg mt-3">Enrollment process</a>
                         </div>
                     </div>
                 </div>
@@ -130,10 +135,29 @@
 
     <section class="container feature pt-5 mt-5">
         <div class="container h-100">
-            <h1 class="text-center display-6">Events Calender</h1>
+            <h1 class="text-center display-6">Events Calendar</h1>
             <hr>
-        </div>
+            <script>
+                $(document).ready(function() {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    var calendar = $('#calendar').fullCalendar();
+
+                });
+            </script>
+            <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/
+bootstrap.min.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/1ibs/fullcalendar/3.9.0/
+    fullcalendar.css" />
+            <script src="https://cdnjs.claudeflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+            <script src="https://cdnjs.claudeflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script> -->
     </section>
+
+
 
     <footer class="footer mb-0">
         <div class="container">
@@ -142,7 +166,7 @@
                     <div class="row text-white">
                         <div class="col col-12 col-sm-6">
                             <h5>Contact Us</h5>
-                            <ul> 
+                            <ul>
                                 <li><a>Leyte Normal University</a></li>
                                 <li><a>B. Paterno Street</a></li>
                                 <li><a>Tacloban City, Leyte 6500</a></li>

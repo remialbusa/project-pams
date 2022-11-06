@@ -8,6 +8,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProcessController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ThesisManagementController;
+use App\Http\Controllers\FullCalendarController;
 
 
 /*
@@ -36,7 +37,8 @@ Route::get('/student/auth/register-student', [MainController::class, 'register']
 Route::post('/student/auth/register-student/save', [MainController::class, 'saveStudent'])->name('auth.save');
 Route::post('/student/auth/verify', [MainController::class, 'verify'])->name('auth.verify-student');
 Route::get('/student/auth/register-new-student', [MainController::class, 'registerNewStudent']);
-
+/* Route::get('/student/auth/register-new-student', [MainController::class, 'coursesNewStudent']);
+ */
 //student profile routes
 Route::get('/student/auth/student-profile', [MainController::class, 'profileView'])->middleware('isLoggedStudent');
 Route::get('/student/auth/payment', [MainController::class, 'paymentView'])->middleware('isLoggedStudent');
@@ -55,7 +57,7 @@ Route::get('/student/auth/student-thesis/schedule', [ThesisManagementController:
 
 //faqs routes
 Route::get('/faqs',[FaqsController::class, 'faqsStudent']);
-
+Route::post('/staff/admin/system-configuration/faqs',[FaqsController::class, 'saveFaqs'])->name('save-faqs'); 
 
 //Admin routes
 Route::get('/staff/auth/login', [AdminController::class, 'loginAdmin']);
@@ -103,7 +105,7 @@ Route::get('/staff/admin/thesis-directory/edit/{id}', [ThesisManagementControlle
 Route::post('/staff/admin/thesis-directory/edit', [ThesisManagementController::class, 'thesisUpdate'])->name('thesis-update');
 Route::post('/staff/admin/thesis-directory/save', [ThesisManagementController::class, 'thesisSave'])->name('thesis-save');
 
-
+ 
 //Students
 //delete pending students
 Route::get('/staff/admin/pre-enrollment/delete/{id}', [AdmissionOfficerController::class, 'deletePreEnrollee'])->name('student-delete');
@@ -125,4 +127,7 @@ Route::get('/enrollment', [EnrollmentController::class, 'admission'])->name('enr
 
 //Process route
 Route::get('/process', [ProcessController::class, 'process'])->name('process');
+
+//Calender Event
+Route::get('/welcome', [FullCalendarController::class, 'index']);
 

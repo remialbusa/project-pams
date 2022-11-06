@@ -243,7 +243,7 @@
                                         </select>
                                         <span class="text-danger">@error('program'){{$message}} @enderror</span>
                                     </div>
-                                </div>
+                                </div> 
                             </div>
 
                             <div class="row mt-4 mb-3">

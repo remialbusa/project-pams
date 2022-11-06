@@ -460,7 +460,7 @@ class AdmissionOfficerController extends Controller
         }else{
             return back()->with('fail', 'Failed inserting student data');
         }
-        
+         
     }
 
     public function deletePending($id){

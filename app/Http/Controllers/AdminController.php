@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\EnrolledStudent;
 use App\Models\Student;
+use App\Models\Faqs;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -155,9 +156,11 @@ class AdminController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
-        $adminList = Admin::all();
-        return view('admin.system-configuration.faqs', $data, ['admins'=>$adminList]);
+        $faqs = faqs::all();
+        return view('admin.system-configuration.faqs', $data, ['faqs'=>$faqs]);
     }
+
+     
 
     function systemTechnicalsupport(){
         if(session()->has('LoggedAdmin')){
@@ -176,5 +179,6 @@ class AdminController extends Controller
             return redirect('staff/auth/login');
         }
     }
+    
 
 }
