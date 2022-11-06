@@ -24,12 +24,12 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Student Number</th>
-                        <th>Program</th>
-                        <th>Contact Number</th>
-                        <th>Date</th>
-                        <th>Action</th>
+                        <th class="col-sm-3">Name</th>
+                        <th class="col-sm-2">Student Number</th>
+                        <th class="col-sm-1">Program</th>
+                        <th class="col-sm-2">Contact Number</th>
+                        <th class="col-sm-2">Date</th>
+                        <th class="col-sm-2">Action</th>
                     </tr>
                 </thead>               
                 <tbody>
@@ -41,8 +41,8 @@
                         <td>{{$student->mobile_no}}</td>
                         <td>{{$student->created_at}}</td>
                         <td>
-                            <a href="{{ route('student-edit', $student->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
-                            <a href="{{ route('student-delete', $student->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
+                            <a href="{{ route('student-edit', $student->id)}}" class="mx-3 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                            <a href="{{ route('student-delete', $student->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                         </td>
                     </tr>
                 @endforeach                                                    

@@ -28,6 +28,7 @@
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -47,7 +48,7 @@
                 <div class=" px-4 mt-5 mb-5">
                     <h4>MANAGE STUDENT DATA</h4>
                     <hr />
-                    <form action="{{ route('assign-subject') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('advising-and-assign-subject') }}" method="POST" enctype="multipart/form-data">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
                         @if(Session::get('success'))
                         <div class="alert alert-success text-center">{{Session::get('success')}}</div>
@@ -198,54 +199,78 @@
                                 </div>
                             </div>
 
+                            <div class="mb-3"></div>
                             <div class="row mt-2 mb-3">
-                                <div class="col-md-6">
+                                <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">1st PERIOD</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="first_period" value="{{$student['first_period_sub']}}" readonly />
-                                        <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
+                                        <input type="text" id="form6Example2" class="form-control" name="first_period_sub" value="{{$student['first_period_sub']}}"/>
+                                        <span class="text-danger">@error('first_period_sub'){{$message}} @enderror</span>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Schedule<label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="first_period_schedule" value="{{$student['time_first_period_sub']}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="first_period_sched" value="{{$student['first_period_sched']}}" />
+                                        <span class="text-danger">@error('first_period_sched'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col mt-4">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Adviser</label><label class="text-danger">*</label>
+                                        <input type="text" id="form6Example2" class="form-control" name="first_period_adviser" value="{{$student['first_period_adviser']}}" />
+                                        <span class="text-danger">@error('first_period_adviser'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="mb-3"></div>
                             <div class="row mt-2 mb-3">
-                                <div class="col-md-6">
+                                <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">2nd PERIOD</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="second_period" value="{{$student['second_period_sub']}}" readonly/>
+                                        <input type="text" id="form6Example2" class="form-control" name="second_period_sub" value="{{$student['second_period_sub']}}" />
                                         <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Schedule<label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="second_period_schedule" value="{{$student['time_second_period_sub']}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="second_period_sched" value="{{$student['second_period_sched']}}" />
+                                        <span class="text-danger">@error('second_period_sched'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col mt-4">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Adviser</label><label class="text-danger">*</label>
+                                        <input type="text" id="form6Example2" class="form-control" name="second_period_adviser" value="{{$student['second_period_adviser']}}" />
+                                        <span class="text-danger">@error('second_period_adviser'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="mt-3"></div>
                             <div class="row mt-2 mb-3">
-                                <div class="col-md-6">
+                                <div class="col mt-4">
                                     <div class="form-outline">
-                                        <label class="form-label" for="form6Example1">3rd PERIOD</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="third_period" value="{{$student['third_period_sub']}}" readonly />
+                                        <label class="form-label" for="form6Example1">3rd Period</label>
+                                        <input type="text" id="form6Example2" class="form-control" name="third_period_sub" value="{{$student['third_period_sub']}}"/>
                                         <span class="text-danger">@error('third_period'){{$message}} @enderror</span>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Schedule<label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="third_period_schedule" value="{{$student['time_third_period_sub']}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="third_period_sched" value="{{$student['third_period_sched']}}"/>
+                                        <span class="text-danger">@error('third_period_sched'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col mt-4">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Adviser</label><label class="text-danger">*</label>
+                                        <input type="text" id="form6Example2" class="form-control" name="third_period_adviser" value="{{$student['third_period_adviser']}}"/>
+                                        <span class="text-danger">@error('third_period_adviser'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
                         <button type="submit" class="btn btn-primary btn-block mt-4 mb-5">Approve</button>
                     </form>

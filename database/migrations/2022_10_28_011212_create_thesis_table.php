@@ -14,7 +14,7 @@ class CreateThesisTable extends Migration
     public function up()
     {
         Schema::create('thesis', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('thesis_title');
             $table->string('thesis_author');
             $table->timestamps();

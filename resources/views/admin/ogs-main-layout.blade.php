@@ -76,6 +76,7 @@
                     </div>
                 </div>       
             </li>
+            <hr class="sidebar-divider">
             <!-- Nav Item - Student Monitoring -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo">
@@ -87,39 +88,26 @@
                         <h6 class="collapse-header">Student Status:</h6>
                         <a class="collapse-item" href="{{ route('admin.pending')}}">Pending Students</a>
                         <a class="collapse-item" href="{{ route('admin.enrolled')}}">Enrolled Students</a>
+                        <a class="collapse-item" href="{{ route('admin.student-users')}}">Student Users</a>
                     </div>
                 </div>   
             </li>
-            
+            <hr class="sidebar-divider">
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Assigning of Subjects</span>
+                    <span><i class="fas fa-fw fa-wrench"></i>Advising & Assigning</span>
                 </a>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Assigning Subjects:</h6>
-                        <a class="collapse-item" href="{{ route('admin.assign-subjects')}}">Assign Subjects</a>
+                        <h6 class="collapse-header">Advising & Assigning:</h6>
+                        <a class="collapse-item" href="{{ route('admin.advise-assign-subjects')}}">Advising & Assign</a>
                         <a class="collapse-item" href="{{ route('admin.subjects')}}">List of Subject</a>
-                    </div>
-                </div>    
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Advising Of Students</span>
-                </a>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Adivising:</h6>
-                        <a class="collapse-item" href="{{ route('admin.advising')}}">Advising</a>
                         <a class="collapse-item" href="{{ route('admin.instructor')}}">List of Advisers</a>
                     </div>
                 </div>    
             </li>
-
+            <hr class="sidebar-divider">
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive">
@@ -157,6 +145,7 @@
                     <nav class="navbar navbar-expand-lg bg-dark sticky-top navbar-dark">
                         <div class="container">
                             <a class="navbar-brand" href="{{route('auth.logout-admin')}}"><img class="img-logo" style="height:48px; width: 48px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
+                            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>

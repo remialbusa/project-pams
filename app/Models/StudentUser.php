@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\UUID;
 
-class AssignStudent extends Model
+class StudentUser extends Model
 {
+    use UUID;
     use HasFactory;
 
-    protected $table = 'assign_students';
+    protected $table = 'student_users';
 }
