@@ -102,7 +102,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Advising & Assigning:</h6>
                         <a class="collapse-item" href="{{ route('admin.advise-assign-subjects')}}">Advising & Assign</a>
-                        <a class="collapse-item" href="{{ route('admin.subjects')}}">List of Subject</a>
+                        <a class="collapse-item" href="{{ route('admin.programs')}}">List of Programs</a>
+                        <a class="collapse-item" href="{{ route('admin.subjects')}}">List of Subjects</a>
                         <a class="collapse-item" href="{{ route('admin.instructor')}}">List of Advisers</a>
                     </div>
                 </div>    

@@ -26,6 +26,10 @@ class CreateStudentUsersTable extends Migration
             $table->date('birth_date');                                   
             $table->string('mobile_no');
             $table->string('fb_acc_name');
+            $table->string('region');
+            $table->string('province');
+            $table->string('city');
+            $table->string('baranggay');
             $table->string('program');
             $table->string('first_period_sub');
             $table->string('second_period_sub');

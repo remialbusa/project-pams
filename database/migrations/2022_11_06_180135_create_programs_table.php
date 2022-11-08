@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectsTable extends Migration
+class CreateProgramsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
-            $table->id();           
+        Schema::create('programs', function (Blueprint $table) {
+            $table->id();
             $table->string('code');
+            $table->string('degree');
             $table->string('program');
-            $table->string('subject');
             $table->string('description');
-            $table->string('unit');
-            $table->string('period');        
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('programs');
     }
 }

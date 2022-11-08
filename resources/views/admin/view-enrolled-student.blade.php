@@ -86,6 +86,16 @@
                                 <td scope="col" style="width: 60%"><span style="font-weight: 600;">FB Name:</span>{{$student->fb_acc_name}}</td>
                                 <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Program:</span>{{$student->program}}</td>
                             </tr>
+
+                            <tr>
+                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Region:</span>{{$student->region}}</td>
+                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Province:</span>{{$student->province}}</td>
+                            </tr>
+
+                            <tr>
+                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">City:</span>{{$student->city}}</td>
+                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Baranggay:</span>{{$student->baranggay}}</td>
+                            </tr>
                             
                             <table class="table table-bordered">
                                 <thead>

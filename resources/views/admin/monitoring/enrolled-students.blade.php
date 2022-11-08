@@ -23,7 +23,7 @@
                             <th class="col-sm-1">Student Number</th>
                             <th class="col-sm-1">Program</th>
                             <th class="col-sm-1">Contact Number</th>
-                            <th class="col-sm-3">Date Enrolled</th>
+                            <th class="col-sm-2">Date Enrolled</th>
                             <th class="col-sm-3">Action</th>
                         </tr>
                     </thead>               

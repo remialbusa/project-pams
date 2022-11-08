@@ -24,9 +24,11 @@
                     <thead>
                         <tr>
                             <th>Code</th>
+                            <th>Under Program</th>
                             <th>Subject</th>
                             <th>Description</th>
                             <th>Units</th>
+                            <th>Period</th>
                             <th>Action</th>
                         </tr>
                     </thead>               
@@ -34,11 +36,13 @@
                     @foreach ($subjects as $subject)
                         <tr>
                             <td>{{$subject->code}}</td>
+                            <td>{{$subject->program}}</td>
                             <td>{{$subject->subject}}</td>                       
                             <td>{{$subject->description}}</td>
                             <td>{{$subject->unit}}</td>
+                            <td>{{$subject->period}}</td>
                             <td>
-                                <a href="" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
+                                <a href="{{ route('edit-subject', $subject->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
                                 <a href="{{ route('delete-subject', $subject->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>
@@ -76,6 +80,14 @@
                             <label for="floatingInput">Code</label>
                         </div>
                         <div class="form-floating mb-3">
+                            <select class="form-select" aria-label="Default select example" name="program">
+                                <option disabled selected>Select Program</option>
+                                @foreach ($programs as $programs)
+                                    <option value="{{$programs->program}}">{{$programs->program}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="subject" placeholder="Subject">
                             <span class="text-danger">@error('subject'){{$message}} @enderror</span>
                             <label for="floatingInput">Subject</label>
@@ -94,7 +106,17 @@
                             </select>
                             <span class="text-danger">@error('units'){{$message}} @enderror</span>
                             <label for="floatingInput">Units</label>
-                        </div>                      
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select form-select-lg" aria-label="Default select example" name="period">
+                                <option selected disabled>Select Period</option>
+                                <option value="1st Period">1st Period</option>
+                                <option value="2nd Period">2nd Period</option>
+                                <option value="3rd Period">3rd Period</option>
+                            </select>
+                            <span class="text-danger">@error('units'){{$message}} @enderror</span>
+                            <label for="floatingInput">Period</label>
+                        </div>                 
                         <div class="d-grid">
                             <button type="submit" class="btn btn-lg btn-primary shadow-sm btn-login fw-bold mb-2">Save</button>
                         </div>

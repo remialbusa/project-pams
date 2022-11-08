@@ -56,10 +56,12 @@
                             <div class="tab-pane active" id="enrolled-subjects" role="tabpanel" aria-labelledby="enrolled-subjects-tab">
                                     <div class="tab-pane fade active show" id="enrolled-subjects" role="tabpanel" aria-labelledby="enrolled-subjects-tab" style="max-width: 100%;">
                                         <div class="table-wrapper row">
+                                            <hr/>
                                             <h4 class="title mb-2" style="width: 100%;">Enrolled Subjects</h4>
                                             <hr class="default-divider ml-auto mt-1 mb-2">
                                             <hr class="default-divider ml-auto mt-1 mb-2">
                                             <p class="form-header">List of enrolled subjects: </p>
+                                            <hr/>
                                             <table class="table default-table">
                                                 <thead>
                                                     <tr>
@@ -73,7 +75,7 @@
                                                             <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->first_period_sub}}</p>
                                                         </td>
                                                         <td>
-                                                            <p class="status-text" style="text-align: center;">7:30 AM - 10:30 AM</p>
+                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->first_period_sched}}</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -81,7 +83,7 @@
                                                             <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->second_period_sub}}</p>
                                                         </td>
                                                         <td>
-                                                            <p class="status-text" style="text-align: center;">11:00 AM - 2:00 PM</p>
+                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->second_period_sched}}</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -89,7 +91,7 @@
                                                             <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->third_period_sub}}</p>
                                                         </td>
                                                         <td>
-                                                            <p class="status-text" style="text-align: center;">2:00 PM - 5:00 PM</p>
+                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->third_period_sched}}</p>
                                                         </td>
                                                     </tr>
                                                 </tbody>

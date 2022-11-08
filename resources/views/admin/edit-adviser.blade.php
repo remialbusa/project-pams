@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Custom fonts for this template-->
+    <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap Icon-->
@@ -13,14 +19,14 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
-    <!-- ph locations jquery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
-    <script src="https://f001.backblazeb2.com/file/buonzz-assets/jquery.ph-locations-v1.0.0.js"></script>
-
-    <!-- custom css -->
+    <!-- Custom styles for this template-->
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
-    <title>Edit User</title>
+    <link href="{{url('css/sb-admin-2.css')}}" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <title>Edit Adviser</title>
 </head>
 
 <body>
@@ -46,69 +52,50 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9 col-lg-4 mx-auto">
-                        <h3 class="login-heading mb-4">Update User</h3>
+                        <h3 class="login-heading mb-4">Edit Adviser</h3>
                         <!-- login Form -->
-                        <form action="{{route('update-admin')}}" method="POST">
+                        <form action="{{ route('update-adviser') }}" method="POST">
                             @if(Session::get('success'))
                             <div class="alert alert-success">{{Session::get('success')}}</div>
                             @endif
-
+    
                             @if(Session::get('fail'))
                             <div class="alert alert-danger">{{Session::get('fail')}}</div>
                             @endif
-
+    
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="hidden" class="form-control" name="id" placeholder="ID" value="{{$adminData['id']}}">
+                                <input type="hidden" class="form-control" name="id" placeholder="ID" value="{{$adviser['id']}}">
                                 <span class="text-danger">@error('id'){{$message}} @enderror</span>
                                 <label for="floatingInput">ID</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="employee_id" placeholder="Employee ID" value="{{$adminData['employee_id']}}">
-                                <span class="text-danger">@error('employee_id'){{$message}} @enderror</span>
-                                <label for="floatingInput">Employee ID</label>
+                                <input type="text" class="form-control" name="program" placeholder="Program" value="{{$adviser['program']}}">
+                                <span class="text-danger">@error('program'){{$message}} @enderror</span>
+                                <label for="floatingInput">Program</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <select class="form-select form-select-lg" aria-label="Default select example" name="role">
-                                    @if($adminData['role'] == 'Admin')
-                                    <option selected value="Admin">Admin</option>
-                                    <option value="OGS Officer">OGS Officer</option>
-                                    <option value="MIS Officer">MIS Officer</option>
-                                    @elseif($adminData['role'] == 'OGS Officer')
-                                    <option value="Admin">Admin</option>
-                                    <option selected value="OGS Officer">OGS Officer</option>
-                                    <option value="MIS Officer">MIS Officer</option>
-                                    @else
-                                    <option value="Admin">Admin</option>
-                                    <option value="OGS Officer">OGS Officer</option>
-                                    <option selected value="MIS Officer">MIS Officer</option>
-                                    @endif              
-                                </select>
-                                <span class="text-danger">@error('role'){{$message}} @enderror</span>
-                                <label for="floatingInput">Role</label>
+                                <input type="text" class="form-control" name="title" placeholder="Title" value="{{$adviser['title']}}">
+                                <span class="text-danger">@error('title'){{$message}} @enderror</span>
+                                <label for="floatingInput">Title</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="name" placeholder="Name" value="{{$adminData['name']}}">
-                                <span class="text-danger">@error('name'){{$message}} @enderror</span>
-                                <label for="floatingInput">Name</label>
+                                <input type="text" class="form-control" name="first_name" placeholder="First Name" value="{{$adviser['first_name']}}">
+                                <span class="text-danger">@error('first_name'){{$message}} @enderror</span>
+                                <label for="floatingInput">First Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="middle_name" placeholder="Middle Name" value="{{$adminData['middle_name']}}">
+                                <input type="text" class="form-control" name="middle_name" placeholder="Middle Name" value="{{$adviser['middle_name']}}">
                                 <span class="text-danger">@error('middle_name'){{$message}} @enderror</span>
                                 <label for="floatingInput">Middle Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{$adminData['last_name']}}">
+                                <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{$adviser['last_name']}}">
                                 <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
                                 <label for="floatingInput">Last Name</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" name="password" placeholder="Password">
-                                <span class="text-danger">@error('password'){{$message}} @enderror</span>
-                                <label for="floatingPassword">Password</label>
-                            </div>
+                            </div>                    
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Update</button>
+                                <button type="submit" class="btn btn-lg btn-primary shadow-sm btn-login fw-bold mb-2">Update</button>
                             </div>
                         </form>
                     </div>

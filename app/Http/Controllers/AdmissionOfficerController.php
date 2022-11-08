@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\EnrolledStudent;
 use App\Models\Student;
+use App\Models\Program;
 use App\Models\StudentStatus;
 use App\Models\Subject;
 use App\Models\PendingStudent;
 use App\Models\AssignStudent;
 use App\Models\AdvisingStudent;
 use App\Models\StudentUser;
+use App\Models\Adviser;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -121,9 +123,12 @@ class AdmissionOfficerController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
-
+        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
+        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
+        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
+        $programs = Program::all();
         $student = EnrolledStudent::find($id);
-        return view('admin.create-student-users', $data, compact('student'));
+        return view('admin.create-student-users', $data, ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'student'=>$student]);
     }
 
     function createStudentUser(Request $request)
@@ -140,6 +145,10 @@ class AdmissionOfficerController extends Controller
             'birth_date' => 'required', 
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
+            'fb_acc_name' => 'required',
+            'region' => 'required',
+            'province' => 'required',
+            'city' => 'required',
             'program' => 'required',
             'first_period_sub' => 'required',
             'second_period_sub' => 'required',
@@ -165,6 +174,10 @@ class AdmissionOfficerController extends Controller
         $student->birth_date = $request->birth_date;
         $student->mobile_no = $request->mobile_no;
         $student->fb_acc_name = $request->fb_acc_name;
+        $student->region = $request->region;
+        $student->province = $request->province;
+        $student->city = $request->city;
+        $student->baranggay = $request->baranggay;
         $student->program = $request->program;
         $student->first_period_sub = $request->first_period_sub;
         $student->second_period_sub = $request->second_period_sub;
@@ -200,7 +213,7 @@ class AdmissionOfficerController extends Controller
         return view('admin.monitoring.enrolled-students', $data, ['enrolledStudents'=>$enrolledStudents, 'students'=>$student]);
     }
 
-    function subjectList()
+    function programList()
     {
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
@@ -208,9 +221,77 @@ class AdmissionOfficerController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         } 
-        
-        $subjects = Subject::all();
-        return view('admin.advising.subjects', $data, ['subjects'=>$subjects]);
+
+        $programs = Program::all();
+        return view('admin.advising.programs', $data, ['programs'=>$programs]);
+    }
+
+    function programEdit($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        } 
+
+        $programs = Program::find($id);
+        return view('admin.edit-program', $data, ['programs'=>$programs]);
+    }
+
+    function programInsert(Request $request)
+    {
+        $request->validate([
+            'code' => 'required',
+            'degree' => 'required',
+            'program' => 'required',
+            'description' => 'required',
+        ]);
+
+        //insert data
+        $programs = new Program();
+        $programs->code = $request->code;
+        $programs->degree = $request->degree;
+        $programs->program = $request->program;
+        $programs->description = $request->description;
+        $save = $programs->save();
+
+        if($save){
+            return redirect('staff/admin/programs');
+        }else{
+            return back()->with('fail', 'Failed inserting data');
+        }
+    }
+
+    function programUpdate(Request $request)
+    {
+        $request->validate([
+            'code' => 'required',
+            'degree' => 'required',
+            'program' => 'required',
+            'description' => 'required',
+        ]);
+
+        //insert data
+        $programs = Program::find($request->id);
+        $programs->code = $request->code;
+        $programs->degree = $request->degree;
+        $programs->program = $request->program;
+        $programs->description = $request->description;
+        $save = $programs->save();
+
+        if($save){
+            return redirect('staff/admin/programs');
+        }else{
+            return back()->with('fail', 'Failed inserting data');
+        }
+    }
+
+    function programDelete($id)
+    {
+        $program = Program::find($id);
+        $program->delete();
+        return redirect('/staff/admin/programs');
     }
 
     function advisingAndAssigning()
@@ -235,9 +316,14 @@ class AdmissionOfficerController extends Controller
             ];
         }   
 
+        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
+        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
+        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
+        $programs = Program::all();
         $student = PendingStudent::find($id);
         $subject = Subject::all();
-        return view('admin.approve-advising-and-assigning-subject', $data, ['subject'=>$subject,'student'=>$student]);
+        $adviser = Adviser::all();
+        return view('admin.approve-advising-and-assigning-subject', $data, ['adviser'=>$adviser,'programs'=>$programs,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'subject'=>$subject,'student'=>$student]);
     }
 
     function approveAdvisingAndAssigningSubject(Request $request)
@@ -254,6 +340,10 @@ class AdmissionOfficerController extends Controller
             'birth_date' => 'required', 
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
+            'fb_acc_name' => 'required',
+            'region' => 'required',
+            'province' => 'required',
+            'city' => 'required',
             'program' => 'required',
             'first_period_sub' => 'required',
             'second_period_sub' => 'required',
@@ -279,6 +369,10 @@ class AdmissionOfficerController extends Controller
         $student->birth_date = $request->birth_date;
         $student->mobile_no = $request->mobile_no;
         $student->fb_acc_name = $request->fb_acc_name;
+        $student->region = $request->region;
+        $student->province = $request->province;
+        $student->city = $request->city;
+        $student->baranggay = $request->baranggay;
         $student->program = $request->program;
         $student->first_period_sub = $request->first_period_sub;
         $student->second_period_sub = $request->second_period_sub;
@@ -306,8 +400,12 @@ class AdmissionOfficerController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
+        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
+        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
+        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
+        $programs = Program::all();
         $student = Student::find($id);
-        return view('admin.edit-student', $data, ['student'=>$student]);
+        return view('admin.edit-student', $data, ['programs'=>$programs,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'student'=>$student]);
     }
 
     function approveView($id){
@@ -317,27 +415,12 @@ class AdmissionOfficerController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
+        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
+        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
+        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
+        $programs = Program::all();
         $status = PendingStudent::find($id);
-        return view('admin.approve-pending', $data, ['status'=>$status]);
-    }
-
-    function deleteSubjects($id){
-        $subjects = Subject::find($id);
-        $subjects->delete();
-        return redirect('/staff/admin/subjects');
-    }
-
-    function adviserList()
-    {
-        if(session()->has('LoggedAdmin')){
-            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
-            $data = [
-                'LoggedAdminInfo'=>$admin
-            ];
-        } 
-        
-        $subjects = Subject::all();
-        return view('admin.advising.adviser', $data, ['subjects'=>$subjects]);
+        return view('admin.approve-pending', $data, ['programs'=>$programs,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'status'=>$status]);
     }
 
     function studentUsers()
@@ -366,6 +449,10 @@ class AdmissionOfficerController extends Controller
             'birth_date' => 'required', 
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
+            'fb_acc_name' => 'required',
+            'region' => 'required',
+            'province' => 'required',
+            'city' => 'required',
             'program' => 'required',
             'first_period' => 'required',
             'second_period' => 'required',
@@ -386,6 +473,10 @@ class AdmissionOfficerController extends Controller
         $student->birth_date = $request->birth_date;
         $student->mobile_no = $request->mobile_no;
         $student->fb_acc_name = $request->fb_acc_name;
+        $student->region = $request->region;
+        $student->province = $request->province;
+        $student->city = $request->city;
+        $student->baranggay = $request->baranggay;
         $student->program = $request->program;
         $student->first_period_sub = $request->first_period;
         $student->second_period_sub = $request->second_period;
@@ -424,6 +515,10 @@ class AdmissionOfficerController extends Controller
             'birth_date' => 'required', 
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
+            'region' => 'required',
+            'province' => 'required',
+            'city' => 'required',
+            'baranggay' => 'required',
             'program' => 'required',
             'first_period_sub' => 'required',
             'second_period_sub' => 'required',
@@ -450,6 +545,10 @@ class AdmissionOfficerController extends Controller
         $student->birth_date = $request->birth_date;
         $student->mobile_no = $request->mobile_no;
         $student->fb_acc_name = $request->fb_acc_name;
+        $student->region = $request->region;
+        $student->province = $request->province;
+        $student->city = $request->city;
+        $student->baranggay = $request->baranggay;
         $student->program = $request->program;
         $student->first_period_sub = $request->first_period_sub;
         $student->second_period_sub = $request->second_period_sub;
@@ -506,28 +605,92 @@ class AdmissionOfficerController extends Controller
     public function deletePreEnrollee($id){
         $student = Student::find($id);
         $student->delete();
-        return redirect('/staff/admin/dashboard');
+        return redirect('staff/admin/pre-enrollment/continuing');
+    }
+
+    function subjectList()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        } 
+        $programs = Program::all();
+        $subjects = Subject::all();
+        return view('admin.advising.subjects', $data, ['programs'=>$programs,'subjects'=>$subjects]);
+    }
+
+    function editSubjects($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $programs = Program::all();
+        $subject = Subject::find($id);
+        return view('admin.edit-subject', $data, ['programs'=>$programs,'subject'=>$subject]);
+    }
+
+    function deleteSubjects($id){
+        $subjects = Subject::find($id);
+        $subjects->delete();
+        return redirect('/staff/admin/subjects');
+    }
+
+    function updateSubject(Request $request){
+        //validate info
+        $request->validate([
+            'code' => 'required',
+            'program' => 'required',
+            'subject' => 'required',
+            'description' => 'required',
+            'units' => 'required',
+            'period' => 'required',
+        ]);
+
+        //update subject
+        $subject = Subject::find($request->id);
+        $subject->code = $request->code;
+        $subject->program = $request->program;
+        $subject->subject = $request->subject;
+        $subject->description = $request->description;
+        $subject->unit = $request->units;    
+        $subject->period = $request->period;   
+        $save = $subject->update();
+
+        if ($save) {
+            return redirect('staff/admin/subjects');
+        } else {
+            return back()->with('fail', 'failed adding subject');
+        }
     }
 
     function saveSubject(Request $request){
         //validate info
         $request->validate([
             'code' => 'required',
+            'program' => 'required',
             'subject' => 'required',
             'description' => 'required',
             'units' => 'required',
+            'period' => 'required',
         ]);
 
         //insert subject
         $subject = new Subject();
         $subject->code = $request->code;
+        $subject->program = $request->program;
         $subject->subject = $request->subject;
         $subject->description = $request->description;
-        $subject->unit = $request->units;       
+        $subject->unit = $request->units;    
+        $subject->period = $request->period;  
         $save = $subject->save();
 
         if ($save) {
-            return back()->with('success', 'subject added successfuly');
+            return back()->with('success', 'Subject added successfuly');
         } else {
             return back()->with('fail', 'failed adding subject');
         }
@@ -553,8 +716,12 @@ class AdmissionOfficerController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
+        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
+        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
+        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
+        $programs = Program::all();
         $student = EnrolledStudent::find($id);
-        return view('admin.edit-enrolled-student', $data, ['student'=>$student]);
+        return view('admin.edit-enrolled-student', $data, ['programs'=>$programs,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'student'=>$student]);
     }
 
     function updateEnrolledStudent(Request $request){
@@ -570,6 +737,10 @@ class AdmissionOfficerController extends Controller
             'birth_date' => 'required', 
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
+            'region' => 'required',
+            'province' => 'required',
+            'city' => 'required',
+            'baranggay' => 'required',
             'program' => 'required',
             'first_period_sub' => 'required',
             'second_period_sub' => 'required',
@@ -595,6 +766,10 @@ class AdmissionOfficerController extends Controller
         $student->birth_date = $request->birth_date;
         $student->mobile_no = $request->mobile_no;
         $student->fb_acc_name = $request->fb_acc_name;
+        $student->region = $request->region;
+        $student->province = $request->province;
+        $student->city = $request->city;
+        $student->baranggay = $request->baranggay;
         $student->program = $request->program;
         $student->first_period_sub = $request->first_period_sub;
         $student->second_period_sub = $request->second_period_sub;
@@ -608,7 +783,7 @@ class AdmissionOfficerController extends Controller
         $save = $student->save();
 
         if ($save) {
-            return back()->with('success', 'Enrolled Student Data Updated Successfuly!');
+            return redirect('/staff/admin/enrolled');
         } else {
             return back()->with('fail', 'failed updating');
         }
@@ -621,6 +796,7 @@ class AdmissionOfficerController extends Controller
         return redirect('/staff/admin/enrolled');
     }
 
+        
     function updateStudentUser(Request $request)
     {
         $request->validate([
@@ -635,6 +811,10 @@ class AdmissionOfficerController extends Controller
             'birth_date' => 'required', 
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
+            'region' => 'required',
+            'province' => 'required',
+            'city' => 'required',
+            'baranggay' => 'required',
             'program' => 'required',
             'first_period_sub' => 'required',
             'second_period_sub' => 'required',
@@ -660,6 +840,10 @@ class AdmissionOfficerController extends Controller
         $student->birth_date = $request->birth_date;
         $student->mobile_no = $request->mobile_no;
         $student->fb_acc_name = $request->fb_acc_name;
+        $student->region = $request->region;
+        $student->province = $request->province;
+        $student->city = $request->city;
+        $student->baranggay = $request->baranggay;
         $student->program = $request->program;
         $student->first_period_sub = $request->first_period_sub;
         $student->second_period_sub = $request->second_period_sub;
@@ -696,5 +880,90 @@ class AdmissionOfficerController extends Controller
         }
         $student = StudentUser::find($id);
         return view('admin.edit-student-users', $data, ['student'=>$student]);
+    }
+
+    function adviserList()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        } 
+        
+        $adviser = Adviser::all();
+        return view('admin.advising.adviser', $data, ['adviser'=>$adviser]);
+    }
+
+    function adviserInsert(Request $request)
+    {
+        $request->validate([
+            'program' => 'required',
+            'title' => 'required',
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required',
+        ]);
+
+        //insert adviser
+        $adviser = new Adviser();
+        $adviser->program = $request->program;
+        $adviser->title = $request->title;
+        $adviser->first_name = $request->first_name;
+        $adviser->middle_name = $request->middle_name;
+        $adviser->last_name = $request->last_name;
+        $save = $adviser->save();
+
+        if ($save) {
+            return back()->with('success', 'successfuly added adviser!');
+        } else {
+            return back()->with('fail', 'failed adding subject');
+        }
+    }
+
+    function adviserUpdate(Request $request)
+    {
+        $request->validate([
+            'program' => 'required',
+            'title' => 'required',
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required',
+        ]);
+
+        //update subject
+        $adviser = Adviser::find($request->id);
+        $adviser->program = $request->program;
+        $adviser->title = $request->title;
+        $adviser->first_name = $request->first_name;
+        $adviser->middle_name = $request->middle_name;
+        $adviser->last_name = $request->last_name;
+        $save = $adviser->update();
+
+        if ($save) {
+            return redirect('/staff/admin/list-of-adviser');
+        } else {
+            return back()->with('fail', 'failed updating subject');
+        }
+    }
+
+    function adviserEdit($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        } 
+
+        $advisers = Adviser::find($id);
+        return view('admin.edit-adviser', $data, ['adviser'=>$advisers]);
+    }
+
+    function adviserDelete($id)
+    {
+        $adviser = Adviser::find($id);
+        $adviser->delete();
+        return redirect('/staff/admin/list-of-adviser');
     }
 }

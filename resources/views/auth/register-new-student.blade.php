@@ -27,7 +27,7 @@
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/imgaes/GradSchoolLogo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -47,8 +47,19 @@
     <section class="details">
         <div class="manage-users-body container mt-5">
             <div class="container h-100">
-                <div class="basic-details px-4 mt-5 mb-5">
+                <div class="px-4 mt-5 mb-5">
                     <h4>PRE-REGISTRATION</h4>
+                    <hr />
+                    <div class="col-sm-8 lh-lg">
+                        <p class="m-0">I. For New Students (Freshmen, Returnees, and Transferees)</p>
+                        <p class="m-0">1. The following medical documents must be submitted to the LNU Health Services Office (HSO) on or before August 19, 2022.</p>
+                        <p class="m-0">1. Accomplished Patient Health Record and Medical Certificate (Page 1 and 2)/p>
+                        <p class="m-0">Download Link: <a href="https://bit.ly/lnu-medform">https://bit.ly/lnu-medform</a></p>
+                        <p class="m-0">1.2.  Copy of the results of the diagnostic tests</p>
+                        <p class="m-0">1.3.  Copy of the Vaccination Card/Certificate (including booster dose/s, if any)</p>
+                        <p class="m-0">IF UNABLE TO PRINT THE MEDICAL FORM ABOVE, YOU MAY ASK A COPY FROM THE OFFICE OF THE GRADUATE SCHOOL.</p>
+                    </div>
+
                     <hr />
                     <form action="{{ route('auth.save') }}" method="POST" enctype="multipart/form-data">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -162,40 +173,36 @@
                             </div>
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="row mt-2 mb-3">
-                                <label class="form-label" for="form6Example2">Address</label>
+                                <label class="form-label">Address</label>
                                 <p>
                                     <i>(Please follow the format Region/Province/City/Barangay.)</i>
                                 </p>
                                 <div class="col">
                                     <div class="form-outline">
-                                        <select class="form-select" aria-label="Default select example" id="region" name="region">
-
-                                        </select>
+                                        <label class="form-label" for="form6Example1">Region <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="region" />
                                         <span class="text-danger">@error('region'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
-                                        <select class="form-select" aria-label="Default select example" id="province" name="province">
-
-                                        </select>
+                                        <label class="form-label" for="form6Example1">Province <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="province" />
                                         <span class="text-danger">@error('province'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
-                                        <select class="form-select" aria-label="Default select example" id="city" name="city">
-
-                                        </select>
+                                        <label class="form-label" for="form6Example1">City <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="city" />
                                         <span class="text-danger">@error('city'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
-                                        <select class="form-select" aria-label="Default select example" id="barangay" name="barangay">
-
-                                        </select>
-                                        <span class="text-danger">@error('barangay'){{$message}} @enderror</span>
+                                        <label class="form-label" for="form6Example1">Baranggay <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="baranggay" />
+                                        <span class="text-danger">@error('baranggay'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                             </div>
@@ -219,9 +226,12 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Select Your Program</label>
-                                        <select class="form-select" aria-label="Default select example" id="slct_program" name="program" onchange="populate(this.id, 'slct_first_period')">
+                                        <select class="form-select" aria-label="Default select example" id="slct_program" name="program" {{-- onchange="populate(this.id, 'slct_first_period')" --}}>
                                             <option disabled selected>N/A</option>
-                                            <option value="MIT">MIT - Master of Information Technology</option>
+                                            @foreach ($programs as $programs)
+                                                <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
+                                            @endforeach
+                                            {{-- <option value="MIT">MIT - Master of Information Technology</option>
                                             <option value="MSIT">MSIT - Master of Science in Information Technology</option>
                                             <option value="ME">ME - Master of English</option>
                                             <option value="MSW">MSW - Master of Social Work</option>
@@ -241,7 +251,7 @@
                                             <option value="MB">DM-HRM - Doctor of Management(Human Resource Management</option>
                                             <option value="MB">Ph.D.-SSR - Doctor of Philosophy(Social Science Research)</option>
                                             <option value="MB">DA-LT - Doctor of Arts(Language Teaching)</option>
-                                            <option value="MB">EdD-EdAd - Doctor of Education(Educational Administration)</option>
+                                            <option value="MB">EdD-EdAd - Doctor of Education(Educational Administration)</option> --}}
                                         </select>
                                         <span class="text-danger">@error('program'){{$message}} @enderror</span>
                                     </div>
@@ -252,9 +262,12 @@
                                 <div class="col-md-6 mt-2">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">1ST PERIOD</label>
-                                        <select class="form-select" aria-label="Default select example" id="slct_first_period" name="first_period" onchange="populateTwo(this.id, 'slct_second_period')">
+                                        <select class="form-select" aria-label="Default select example" id="slct_first_period" name="first_period" {{-- onchange="populateTwo(this.id, 'slct_second_period')" --}}>
                                             <option disabled selected>Select First Period Subject</option>
-                                            <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
+                                            @foreach ($firstPeriod as $subjects)
+                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                            @endforeach
+                                            {{-- <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
                                             <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
                                             <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
                                             <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
@@ -264,7 +277,7 @@
                                             <option value="LIT 501 Literary Theory and Cristism">LIT 501 Literary Theory and Cristism</option>
                                             <option value="LIT 507 Sociolinguistics">LIT 507 Sociolinguistics</option>
                                             <option value="LT 511 Evaluation Procedures in Language and Literature Teaching">LT 511 Evaluation Procedures in Language and Literature Teaching</option>
-                                            <option value="SW 509 Theory and Practice of Community Organization">SW 509 Theory and Practice of Community Organization</option>
+                                            <option value="SW 509 Theory and Practice of Community Organization">SW 509 Theory and Practice of Community Organization</option> --}}
                                         </select>
                                         <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
                                     </div>
@@ -272,16 +285,19 @@
                                 <div class="col-sm-6 mt-2">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">2ND PERIOD</label>
-                                        <select class="form-select" aria-label="Default select example" id="slct_second_period" name="second_period" onchange="populateThree(this.id, 'slct_third_period')">
+                                        <select class="form-select" aria-label="Default select example" id="slct_second_period" name="second_period" {{-- onchange="populateThree(this.id, 'slct_third_period')" --}}>
                                             <option disabled selected>Select Second Period Subject</option>
-                                            <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
+                                            @foreach ($secondPeriod as $subjects)
+                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                            @endforeach
+                                            {{-- <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
                                             <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
                                             <option value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
                                             <option value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
                                             <option value="FD 502 Basic Statistics">FD 502 Basic Statistics</option>
                                             <option value="LT 509 Language Teaching Methodology">LT 509 Language Teaching Methodology</option>
                                             <option value="FD 501 Basic Research">FD 501 Basic Research</option>
-                                            <option value="SW 515 Field Instruction">SW 515 Field Instruction</option>
+                                            <option value="SW 515 Field Instruction">SW 515 Field Instruction</option> --}}
                                         </select>
                                         <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
                                     </div>
@@ -291,14 +307,17 @@
                                         <label class="form-label" for="form6Example2">3RD PERIOD</label>
                                         <select class="form-select" aria-label="Default select example" id="slct_third_period" name="third_period">
                                             <option disabled selected>Select Third Period Subject</option>
-                                            <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
+                                            @foreach ($thirdPeriod as $subjects)
+                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                            @endforeach
+                                            {{-- <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
                                             <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
                                             <option value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
                                             <option value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
                                             <option value="LT 513 Foundations of Language Education (Issues and Trends in ESL)">LT 513 Foundations of Language Education (Issues and Trends in ESL)</option>
                                             <option value="LIT 504 Strategies and Methods in Teaching Literature (Petitioned Subject)">LIT 504 Strategies and Methods in Teaching Literature (Petitioned Subject)</option>
                                             <option value="FD 502 Basic Statistics">FD 502 Basic Statistics</option>
-                                            <option value="SW 516 Thesis Writing">SW 516 Thesis Writing</option>
+                                            <option value="SW 516 Thesis Writing">SW 516 Thesis Writing</option> --}}
                                         </select>
                                         <span class="text-danger">@error('third_period'){{$message}} @enderror</span>
                                     </div>

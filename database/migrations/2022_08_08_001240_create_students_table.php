@@ -23,13 +23,13 @@ class CreateStudentsTable extends Migration
             $table->string('vaccination_status');
             $table->string('email');
             $table->string('gender');
-            $table->date('birth_date');                                   
+            $table->date('birth_date');
             $table->string('mobile_no');
             $table->string('fb_acc_name');
-            $table->string('region_code');
-            $table->string('province_code');
-            $table->string('city_code');
-            $table->string('barangay_code');
+            $table->string('region');
+            $table->string('province');
+            $table->string('city');
+            $table->string('baranggay');
             $table->string('program');
             $table->string('file');
             $table->string('first_period_sub');

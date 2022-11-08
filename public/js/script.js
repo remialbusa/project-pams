@@ -1,4 +1,4 @@
-var my_handlers = {
+/* var my_handlers = {
 
     fill_provinces:  function(){
 
@@ -32,7 +32,7 @@ $(function(){
     $('#barangay').ph_locations({'location_type': 'barangays'});
 
     $('#region').ph_locations('fetch_list');
-});
+}); */
 
 // $(document).ready(function(){
 //     var regionVal = 08;
@@ -121,7 +121,7 @@ $(function(){
 // }
 
 
-function populate(s1, s2){
+/* function populate(s1, s2){
     var s1 = document.getElementById(s1);
     var s2 = document.getElementById(s2);
 
@@ -143,7 +143,7 @@ function populate(s1, s2){
         newOption.innerHTML = pair[1];
         s2.options.add(newOption);
     }
-}
+} */
 
 function populate(s1, s2){
     var s1 = document.getElementById(s1);

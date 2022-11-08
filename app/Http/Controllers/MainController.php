@@ -6,8 +6,11 @@ use App\Models\EnrolledStudent;
 use App\Models\StudentUser;
 use App\Models\Student;
 use App\Models\PendingStudent;
+use App\Models\Subject;
+use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
@@ -18,12 +21,22 @@ class MainController extends Controller
 
     function register()
     {
-        return view('auth.register-student');
+        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
+        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
+        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
+        $subjects = Subject::all();
+        $programs = Program::all();
+        return view('auth.register-student', ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'subjects'=>$subjects]);
     }
 
     function registerNewStudent()
     {
-        return view('auth.register-new-student');
+        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
+        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
+        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
+        $subjects = Subject::all();
+        $programs = Program::all();
+        return view('auth.register-new-student', ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'subjects'=>$subjects]);
     }
 
     function saveStudent(Request $request)
@@ -41,11 +54,11 @@ class MainController extends Controller
             'birth_date' => 'required', 
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
-            'file' => 'required|mimes:pdf,xlx,csv|max:2048',
             'region' => 'required',
             'province' => 'required',
             'city' => 'required',
-            'barangay' => 'required',
+            'baranggay' => 'required',
+            'file' => 'required|mimes:pdf,xlx,csv|max:2048',
             'program' => 'required',
             'first_period' => 'required',
             'second_period' => 'required',
@@ -66,10 +79,10 @@ class MainController extends Controller
         $student->birth_date = $request->birth_date;
         $student->mobile_no = $request->mobile_no;
         $student->fb_acc_name = $request->fb_acc_name;
-        $student->region_code = $request->region;
-        $student->province_code = $request->province;
-        $student->city_code = $request->city;
-        $student->barangay_code = $request->barangay;
+        $student->region = $request->region;
+        $student->province = $request->province;
+        $student->city = $request->city;
+        $student->baranggay = $request->baranggay;
         $student->program = $request->program;
         $student->first_period_sub = $request->first_period;
         $student->second_period_sub = $request->second_period;
@@ -93,8 +106,9 @@ class MainController extends Controller
     }
 
     //update student details
-    function updateStudentDetails(Request $request){
-        //validate data
+    function updateStudentProfile(Request $request)
+    {
+        //validate info
         $request->validate([
             'student_type' => 'required',
             'student_id' => 'required',
@@ -107,15 +121,21 @@ class MainController extends Controller
             'birth_date' => 'required', 
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
+            'region' => 'required',
+            'province' => 'required',
+            'city' => 'required',
+            'baranggay' => 'required',
             'file' => 'required|mimes:pdf,xlx,csv|max:2048',
             'program' => 'required',
             'first_period' => 'required',
             'second_period' => 'required',
-            'third_period' => 'required', 
+            'third_period' => 'required',                          
         ]);
+        
 
         //insert data
-        $student = new PendingStudent();
+        $student = new Student();
+        $student->id = $request->id;
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;       
         $student->last_name = $request->last_name;
@@ -127,6 +147,10 @@ class MainController extends Controller
         $student->birth_date = $request->birth_date;
         $student->mobile_no = $request->mobile_no;
         $student->fb_acc_name = $request->fb_acc_name;
+        $student->region = $request->region;
+        $student->province = $request->province;
+        $student->city = $request->city;
+        $student->baranggay = $request->baranggay;
         $student->program = $request->program;
         $student->first_period_sub = $request->first_period;
         $student->second_period_sub = $request->second_period;
@@ -138,13 +162,14 @@ class MainController extends Controller
         $request->file->move('assets',$filename);
 
         $student->file= $filename;
-        
+
         $save = $student->save();
 
-        if($save){
-            return back()->with('success', 'Your Profile has been updated');
-        }else{
-            return back()->with('fail', 'Failed updating student data');
+
+        if ($save) {
+            return back()->with('success', 'Registration complete');
+        } else {
+            return back()->with('fail', 'Failed Registration');
         }
     }
 
@@ -191,8 +216,12 @@ class MainController extends Controller
                 'LoggedUserInfo'=>$student
             ];
         }
+        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
+        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
+        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
+        $programs = Program::all();
         $studentList = StudentUser::all();
-        return view('student.dashboard.profile-dashboard', $data, ['student'=>$studentList]);
+        return view('student.dashboard.profile-dashboard', $data, ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'student'=>$studentList]);
     }
 
     function logout()
@@ -212,20 +241,21 @@ class MainController extends Controller
             ];
         }
         $StudentUser = StudentUser::all();
-        return view('student.dashboard.monitor-enrollment-dashboard', $data, ['StudentUser' => $StudentUser]);
+        $subject = Subject::all();
+        return view('student.dashboard.monitor-enrollment-dashboard', $data, ['subject'=>$subject,'StudentUser' => $StudentUser]);
     }
 
     function test()
     {
         $studentData = Student::all();
-        $studentStatus = StudentStatus::all();
-        return view('test', ['studentData'=>$studentData, 'studentStatus'=>$studentStatus]);
+
+        return view('test', ['studentData'=>$studentData]);
     }
 
     function testEdit($id)
     {
         $studentData = Student::find($id);
-        $studentStatus = StudentStatus::find($id);
-        return view('test-edit', ['studentData'=>$studentData, 'studentStatus'=>$studentStatus]);
+
+        return view('test-edit', ['studentData'=>$studentData]);
     }
 }

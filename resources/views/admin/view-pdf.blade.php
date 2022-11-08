@@ -20,7 +20,7 @@
         <!-- custom css -->
         <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
         <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
-        <title>Edit Thesis</title>
+        <title>View PDF</title>
     </head>
 
 <body>

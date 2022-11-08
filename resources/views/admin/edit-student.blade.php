@@ -28,7 +28,6 @@
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -180,6 +179,42 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row mt-2 mb-3">
+                                <label class="form-label">Address</label>
+                                <p>
+                                    <i>(Please follow the format Region/Province/City/Barangay.)</i>
+                                </p>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Region <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="region" value="{{$student->region}}"/>
+                                        <span class="text-danger">@error('region'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Province <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="province" value="{{$student['province']}}"/>
+                                        <span class="text-danger">@error('province'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">City <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="city" value="{{$student['city']}}"/>
+                                        <span class="text-danger">@error('city'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Baranggay <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="baranggay" value="{{$student['baranggay']}}"/>
+                                        <span class="text-danger">@error('baranggay'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+
                             <h5 class="mt-5 lead">COURSE/S</h5>
                             <div class="col mt-4 mb-3">
                                 <div class="col">
@@ -187,13 +222,13 @@
                                         <label class="form-label" for="form6Example2">Select Your Program</label>
                                         <select class="form-select" aria-label="Default select example" name="program">
                                             @if($student['program'] == 'MIT')
-                                            <option selected value="MIT">MIT - Master of Information Technology</option>
-                                            @elseif($student['program'] == 'MSIT')
-                                            <option selected value="MSIT">MSIT - Master of Science in Information Technology</option>
-                                            @elseif($student['program'] == 'ME')
-                                            <option selected value="ME">ME - Master in English</option>
+                                                @foreach ($programs as $programs)
+                                                    <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
+                                                @endforeach
                                             @else
-                                            <option selected value="MB">MB - Master in Biology</option>
+                                                @foreach ($programs as $programs)
+                                                    <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
+                                                @endforeach
                                             @endif
                                         </select>
                                         <span class="text-danger">@error('program'){{$message}} @enderror</span>
@@ -204,64 +239,16 @@
                             <div class="row mt-4 mb-3">
                                 <div class="col-md-6 mt-2">
                                     <div class="form-outline">
-                                        <label class="form-label" for="form6Example1">1ST PERIOD - 7:30 a.m. - 10:30 a.m.</label>
+                                        <label class="form-label" for="form6Example1">1ST PERIOD </label>
                                         <select class="form-select" aria-label="Default select example" name="first_period">
                                             @if($student['first_period_sub'] == 'MIT 501 Advanced Programming I')
-                                            <option disabled>Select</option>
-                                            <option selected value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
-                                            <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
-                                            <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
-                                            <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
-                                            <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
-                                            <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
-                                            @elseif($student['first_period_sub'] == 'MIT 505 Advanced Data Structure and Algorithm')
-                                            <option disabled>Select</option>
-                                            <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
-                                            <option selected value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
-                                            <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
-                                            <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
-                                            <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
-                                            <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
-                                            @elseif($student['first_period_sub'] == 'MIT 506 Advanced Multimedia Communication')
-                                            <option disabled>Select</option>
-                                            <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
-                                            <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
-                                            <option selected value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
-                                            <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
-                                            <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
-                                            <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
-                                            @elseif($student['first_period_sub'] == 'MSIT 501 Advanced Programming I')
-                                            <option disabled>Select</option>
-                                            <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
-                                            <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
-                                            <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
-                                            <option selected value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
-                                            <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
-                                            <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
-                                            @elseif($student['first_period_sub'] == 'MSIT 505 Advanced Data Structure & Algorithm')
-                                            <option disabled>Select</option>
-                                            <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
-                                            <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
-                                            <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
-                                            <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
-                                            <option selected value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
-                                            <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
-                                            @elseif($student['first_period_sub'] == 'MSIT 506 Advanced Multimedia Communication')
-                                            <option disabled>Select</option>
-                                            <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
-                                            <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
-                                            <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
-                                            <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
-                                            <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
-                                            <option selected value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
+                                                @foreach ($firstPeriod as $subjects)
+                                                    <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                @endforeach
                                             @else
-                                            <option selected disabled>Select</option>
-                                            <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
-                                            <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
-                                            <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
-                                            <option value="MSIT 501 Advanced Programming I">MSIT 501 Advanced Programming I</option>
-                                            <option value="MSIT 505 Advanced Data Structure & Algorithm">MSIT 505 Advanced Data Structure & Algorithm</option>
-                                            <option value="MSIT 506 Advanced Multimedia Communication">MSIT 506 Advanced Multimedia Communication</option>
+                                                @foreach ($firstPeriod as $subjects)
+                                                    <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                @endforeach
                                             @endif
                                         </select>
                                         <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
@@ -269,38 +256,16 @@
                                 </div>
                                 <div class="col-sm-6 mt-2">
                                     <div class="form-outline">
-                                        <label class="form-label" for="form6Example2">2ND PERIOD - 11:00 a.m. - 2:00 p.m.</label>
+                                        <label class="form-label" for="form6Example2">2ND PERIOD</label>
                                         <select class="form-select" aria-label="Default select example" name="second_period">
                                             @if($student['second_period_sub'] == 'MIT 502 Methods of Research for IT')
-                                            <option disabled>Select</option>
-                                            <option selected value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
-                                            <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
-                                            <option value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
-                                            <option value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
-                                            @elseif($student['second_period_sub'] == 'MIT 507 System Analysis and Design')
-                                            <option disabled>Select</option>
-                                            <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
-                                            <option selected value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
-                                            <option value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
-                                            <option value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
-                                            @elseif($student['second_period_sub'] == 'MSIT 502 Methods of Research for IT')
-                                            <option disabled>Select</option>
-                                            <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
-                                            <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
-                                            <option selected value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
-                                            <option value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
-                                            @elseif($student['second_period_sub'] == 'MSIT 507 System Analysis and Design')
-                                            <option disabled>Select</option>
-                                            <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
-                                            <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
-                                            <option value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
-                                            <option selected value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
+                                                @foreach ($secondPeriod as $subjects)
+                                                    <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                @endforeach
                                             @else
-                                            <option selected disabled>Select</option>
-                                            <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
-                                            <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
-                                            <option value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
-                                            <option value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
+                                                @foreach ($secondPeriod as $subjects)
+                                                    <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                @endforeach
                                             @endif
                                         </select>
                                         <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
@@ -308,38 +273,16 @@
                                 </div>
                                 <div class="col mt-3 mt-2">
                                     <div class="form-outline">
-                                        <label class="form-label" for="form6Example2">3RD PERIOD - 2:00 p.m. - 5:00 p.m.</label>
+                                        <label class="form-label" for="form6Example2">3RD PERIOD</label>
                                         <select class="form-select" aria-label="Default select example" name="third_period">
                                             @if($student['third_period_sub'] == 'MIT 503 Statistics for IT Research')
-                                            <option disabled>Select</option>
-                                            <option selected value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
-                                            <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
-                                            <option value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
-                                            <option value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
-                                            @elseif($student['third_period_sub'] == 'MSIT 503 Statistics for IT Research')
-                                            <option disabled>Select</option>
-                                            <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
-                                            <option selected value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
-                                            <option value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
-                                            <option value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
-                                            @elseif($student['third_period_sub'] == 'TW 001 Statistics for IT Research')
-                                            <option disabled>Select</option>
-                                            <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
-                                            <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
-                                            <option selected value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
-                                            <option value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
-                                            @elseif($student['third_period_sub'] == 'TW 002 Statistics for IT Research')
-                                            <option disabled>Select</option>
-                                            <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
-                                            <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
-                                            <option value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
-                                            <option selected value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
+                                                @foreach ($thirdPeriod as $subjects)
+                                                    <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                @endforeach
                                             @else
-                                            <option selected disabled>Select</option>
-                                            <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
-                                            <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
-                                            <option value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
-                                            <option value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
+                                                @foreach ($thirdPeriod as $subjects)
+                                                    <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                @endforeach
                                             @endif
                                         </select>
                                         <span class="text-danger">@error('third_period'){{$message}} @enderror</span>

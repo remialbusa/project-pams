@@ -69,12 +69,20 @@
                     <span>System Configuration</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <div class="bg-white py-2 collapse-inner rounded">                                              
                         <a class="collapse-item" href="/staff/admin/system-configuration/announcements">Announcements</a>
                         <a class="collapse-item" href="/staff/admin/system-configuration/faqs">FAQ's</a>
                         <a class="collapse-item" href="/staff/admin/system-configuration/technicalsupport">Technical Support</a>
+                        <a class="collapse-item" href="">Event Calendar</a>
                     </div>
                 </div>   
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('auth.active-semester')}}">
+                    <i class="bi bi-eye-fill"></i>
+                    <span>Active Semester</span>
+                </a>              
             </li>
             
             <!-- Nav Item - Utilities Collapse Menu -->

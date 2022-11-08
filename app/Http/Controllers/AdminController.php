@@ -177,4 +177,16 @@ class AdminController extends Controller
         }
     }
 
+    function activeSemester()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $enrolledStudent = EnrolledStudent::all();
+        return view('admin.system-configuration.active-semester', $data, ['enrolledStudent'=>$enrolledStudent]);
+    }
+
 }

@@ -68,17 +68,11 @@
                 <hr class="sidebar-divider my-0">
     
                 <!-- Nav Item - Student Profile -->
-                <li class="nav-item mt-3">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne">
+                <li class="nav-item">
+                    <a class="nav-link" href="/student/auth/student-profile">
                         <i class="bi bi-person-lines-fill"></i>
                         <span>Student Profile</span>
-                    </a>
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Student Profile:</h6>
-                            <a class="collapse-item" href="/student/auth/student-profile">Profile</a>
-                        </div>
-                    </div>    
+                    </a>              
                 </li>
     
                 <!-- Divider -->

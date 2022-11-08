@@ -178,6 +178,42 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row mt-2 mb-3">
+                                <label class="form-label">Address</label>
+                                <p>
+                                    <i>(Please follow the format Region/Province/City/Barangay.)</i>
+                                </p>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Region <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="region" value="{{$student->region}}"/>
+                                        <span class="text-danger">@error('region'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Province <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="province" value="{{$student['province']}}"/>
+                                        <span class="text-danger">@error('province'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">City <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="city" value="{{$student['city']}}"/>
+                                        <span class="text-danger">@error('city'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Baranggay <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="baranggay" value="{{$student['baranggay']}}"/>
+                                        <span class="text-danger">@error('baranggay'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+
                             <h5 class="mt-5 lead">COURSE/S</h5>
                             <div class="col mt-4 mb-3">
                                 <div class="col">
@@ -185,13 +221,13 @@
                                         <label class="form-label" for="form6Example2">Program</label>
                                         <select readonly class="form-select" aria-label="Default select example" name="program">
                                             @if($student['program'] == 'MIT')
-                                            <option selected value="MIT">MIT - Master of Information Technology</option>
-                                            @elseif($student['program'] == 'MSIT')
-                                            <option selected value="MSIT">MSIT - Master of Science in Information Technology</option>
-                                            @elseif($student['program'] == 'ME')
-                                            <option selected value="ME">ME - Master in English</option>
+                                                @foreach ($programs as $programs)
+                                                    <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
+                                                @endforeach
                                             @else
-                                            <option selected value="MB">MB - Master in Biology</option>
+                                                @foreach ($programs as $programs)
+                                                    <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
+                                                @endforeach
                                             @endif
                                         </select>
                                         <span class="text-danger">@error('program'){{$message}} @enderror</span>
@@ -218,7 +254,20 @@
                                 <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Adviser</label><label class="text-danger">*</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="first_period_adviser" value="{{$student['first_period_adviser']}}" />
+                                        <select class="form-select" aria-label="Default select example" id="slct_first_period" name="first_period_adviser">
+                                            <option disabled selected>Select Adviser</option>
+                                            @if($student['adviser'] == 'MIT')
+                                                @foreach ($adviser as $advisers)
+                                                    <option value=" {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}">
+                                                        {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
+                                                @endforeach
+                                            @else
+                                                @foreach ($adviser as $advisers)
+                                                <option value=" {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}">
+                                                    {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
                                         <span class="text-danger">@error('first_period_adviser'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -242,7 +291,20 @@
                                 <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Adviser</label><label class="text-danger">*</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="second_period_adviser" value="{{$student['second_period_adviser']}}" />
+                                        <select class="form-select" aria-label="Default select example" id="slct_second_period" name="second_period_adviser">
+                                            <option disabled selected>Select Adviser</option>
+                                            @if($student['adviser'] == 'MIT')
+                                                @foreach ($adviser as $advisers)
+                                                    <option value=" {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}">
+                                                        {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
+                                                @endforeach
+                                            @else
+                                                @foreach ($adviser as $advisers)
+                                                <option value=" {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}">
+                                                    {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
                                         <span class="text-danger">@error('second_period_adviser'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -266,7 +328,20 @@
                                 <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Adviser</label><label class="text-danger">*</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="third_period_adviser" value="{{$student['third_period_adviser']}}"/>
+                                        <select class="form-select" aria-label="Default select example" id="slct_third_period" name="third_period_adviser">
+                                            <option disabled selected>Select Adviser</option>
+                                            @if($student['adviser'] == 'MIT')
+                                                @foreach ($adviser as $advisers)
+                                                    <option value=" {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}">
+                                                        {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
+                                                @endforeach
+                                            @else
+                                                @foreach ($adviser as $advisers)
+                                                <option value=" {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}">
+                                                    {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
                                         <span class="text-danger">@error('third_period_adviser'){{$message}} @enderror</span>
                                     </div>
                                 </div>

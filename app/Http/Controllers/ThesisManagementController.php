@@ -9,6 +9,7 @@ use App\Models\AdmissionOfficer;
 use App\Models\StudentStatus;
 use App\Models\Subject;
 use App\Models\Thesis;
+use App\Models\StudentUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -18,27 +19,27 @@ class ThesisManagementController extends Controller
     function studentThesisDirectory()
     {
         if (session()->has('LoggedUser')) {
-            $student = Student::where('id', '=', session('LoggedUser'))->first();
+            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
             $data = [
                 'LoggedUserInfo' => $student
             ];
         }
-        $enrolledStudent = EnrolledStudent::all();
+
         $thesis = Thesis::all();     
-        return view('student.dashboard.thesismanagement.student-thesis-directory', $data, ['enrolledStudent' => $enrolledStudent, 'thesis' => $thesis]);
+        return view('student.dashboard.thesismanagement.student-thesis-directory', $data, ['thesis' => $thesis]);
     }
 
     function studentThesisSchedule()
     {
         if (session()->has('LoggedUser')) {
-            $student = Student::where('id', '=', session('LoggedUser'))->first();
+            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
             $data = [
                 'LoggedUserInfo' => $student
             ];
         }
-        $enrolledStudent = EnrolledStudent::all();
+        
         $thesis = Thesis::all();     
-        return view('student.dashboard.thesismanagement.student-thesis-schedule', $data, ['enrolledStudent' => $enrolledStudent, 'thesis' => $thesis]);
+        return view('student.dashboard.thesismanagement.student-thesis-schedule', $data, ['thesis' => $thesis]);
     }
 
     function thesisDirectory()

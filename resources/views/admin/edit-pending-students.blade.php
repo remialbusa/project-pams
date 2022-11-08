@@ -20,7 +20,7 @@
     <!-- custom css -->
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
-    <title>Student Information</title>
+    <title>Student Status</title>
 </head>
 
 <body>
@@ -79,9 +79,9 @@
                                         <select class="form-select" aria-label="Default select example" name="submitted_form">
                                             @if($status['submitted_form'] == 'Pending')
                                             <option value="Pending">Pending</option>
-                                            <option value="Submitted">Submitted</option>
+                                            <option value="Done">Done</option>
                                             @else
-                                            <option value="Submitted">Submitted</option>
+                                            <option value="Done">Done</option>
                                             <option value="Pending">Pending</option>
                                             @endif
                                         </select>
@@ -96,13 +96,13 @@
                                         <select class="form-select" aria-label="Default select example" name="payment">
                                             @if($status['payment'] == 'Pending')
                                             <option value="Pending">Pending</option>
-                                            <option value="Paid">Paid</option>
+                                            <option value="Done">Done</option>
                                             @else
-                                            <option value="Paid">Paid</option>
+                                            <option value="Done">Done</option>
                                             <option value="Pending">Pending</option>
                                             @endif
                                         </select>
-                                        <div class="mt-3"><a href="" class="edit mx-2 bi bi-eye">View Proof of Payment</a></div>
+                                        
                                         <span class="text-danger">@error('payment'){{$message}} @enderror</span>
                                     </div>
                                 </div>
