@@ -21,7 +21,7 @@
 
 <body>
     
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark border-bottom border-white">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark border-bottom border-black">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
