@@ -1,7 +1,8 @@
 /* MAIN STYLE CSS */
 .hero-main {
     height: 90vh;
-    background: linear-gradient(90deg, rgb(11, 125, 255) 20%, rgb(0, 68, 255) 60%, rgb(76, 17, 185));
+    background: linear-gradient(90deg, rgb(11, 125, 255, 0.65) 20%, rgb(0, 68, 255, 0.65) 60%, rgb(76, 17, 185, 0.65)),
+                url('/images/LNU.jpg') no-repeat center center / cover;
 
 }
 

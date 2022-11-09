@@ -27,7 +27,7 @@
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/imgaes/GradSchoolLogo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -220,28 +220,31 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Select Your Program</label>
                                         <select class="form-select" aria-label="Default select example" id="slct_program" name="program" onchange="populate(this.id, 'slct_first_period')">
-                                            <option disabled selected>N/A</option>
-                                            <option value="MIT">MIT - Master of Information Technology</option>
+                                        <option style="color:orange"disabled>Masters Programs WITH THESIS</option>
+                                            <option value="WithMALT">MAT-LT - Master of Arts in Teaching(Language Teaching)</option>
+                                            <option value="WithMATFIL">MAT-FIL - Master of Arts in Education(Filipino)</option>
+                                            <option value="WithMATRDG">MAT-RDG - Master of Arts in Teaching(Reading)</option>
+                                            <option value="WithMATNATSCI">MAT-NAT SCI - Master of Arts in Teaching(Natural Science)</option>
+                                            <option value="WithMATSOCSCI">MAT-SOC SCI - Master of Arts in Teaching(Social Science)</option>
+                                            <option value="WithMAEDEDM">MAED-EDM - Master of Arts in Education(Educational Management)</option>
+                                            <option value="WithMAEDMATH">MAED-MATH - Master of Arts in Education(Mathematics)</option>
+                                            <option value="WithMAPREELEM">MA-PRE-ELEM - Master of Arts in Education(Pre-Elementary Education</option>
+                                            <option value="WithMPE">MPE - Master in Physical Education</option>  
                                             <option value="MSIT">MSIT - Master of Science in Information Technology</option>
-                                            <option value="ME">ME - Master of English</option>
                                             <option value="MSW">MSW - Master of Social Work</option>
-                                            <option value="MB">MB - Master in Biology</option>
-                                            <option value="MB">MPE - Master in Physical Education</option>
-                                            <option value="MB">MA-SPED - Master of Arts (Special Education)</option>
-                                            <option value="MB">MM - Master in Management</option>
-                                            <option value="MB">MED-MATHEMATICS - Master in Education (Mathematics)</option>
-                                            <option value="MB">MA-PRE-ELEM - Master of Arts in Education(Pre-Elementary Education</option>
-                                            <option value="MB">MAED-EDM - Master of Arts in Education(Educational Management)</option>
-                                            <option value="MB">MAED-MATH - Master of Arts in Education(Mathematics)</option>
-                                            <option value="MB">MAT-FILIPINO - Master of Arts in Education(Filipino)</option>
-                                            <option value="MB">MAT-SOC SCI - Master of Arts in Teaching(Social Science)</option>
-                                            <option value="MB">MAT-NAT SCI - Master of Arts in Teaching(Natural Science)</option>
-                                            <option value="MB">MAT-READING - Master of Arts in Teaching(Reading)</option>
-                                            <option value="MB">MAT-LT - Master of Arts in Teaching(Language Teaching)</option>
-                                            <option value="MB">DM-HRM - Doctor of Management(Human Resource Management</option>
-                                            <option value="MB">Ph.D.-SSR - Doctor of Philosophy(Social Science Research)</option>
-                                            <option value="MB">DA-LT - Doctor of Arts(Language Teaching)</option>
-                                            <option value="MB">EdD-EdAd - Doctor of Education(Educational Administration)</option>
+                                                <option style="color:orange"disabled>Masters Programs NON-THESIS</option>
+                                                <option value="NonMEDMATH">MED-MATH - Master in Education (Mathematics)</option>
+                                                <option value="NonMASPED">MA-SPED - Master of Arts (Special Education)</option>
+                                                <option value="NonMM">MM - Master in Management</option>
+                                                <option value="NonME">ME - Master of English</option>
+                                                <option value="NonMB">MB - Master in Biology</option>
+                                                <option value="MIT">MIT - Master of Information Technology</option>
+                                            <option style="color:orange"disabled>Doctoral Programs</option>
+                                            <option value="DocDMHRM">DM-HRM - Doctor of Management(Human Resource Management</option>
+                                            <option value="DocPHDSSR">Ph.D.-SSR - Doctor of Philosophy(Social Science Research)</option>
+                                            <option value="DocDALT">DA-LT - Doctor of Arts(Language Teaching)</option>
+                                            <option value="DocEDDEDAD">EDD-ED AD - Doctor of Education(Educational Administration)</option>
+                                            <option disabled selected>N/A</option>
                                         </select>
                                         <span class="text-danger">@error('program'){{$message}} @enderror</span>
                                     </div>

@@ -41,17 +41,35 @@
     </nav>
 
     <section class="faqs-details">
+<<<<<<< HEAD
         <!-- <h1 class="text-center mt-5" style="color: #f7d05c">FREQUENTLY ASK QUESTIONS</h1>
+=======
+        <h1 class="text-center mt-5" style="color: #f7d05c"><b>FREQUENTLY ASK QUESTIONS</b></h1>
+>>>>>>> 6937ac4b487dbda67483dc5b210bc8794f329245
         <div class="admission-body container mt-5">
             <div class="col-sm-8 px-5 mt-5">
             </div>
 
+<<<<<<< HEAD
             <h4 class="text-center px-5 mt-5" style="color: #0b7dff">FREQUENTLY ASK QUESTIONS ABOUT THE WRITTEN COMPREHENSIVE EXAMS</h4> -->
         <!-- <div class="admission-requirements row px-5 mb-5 mt-3">
                 <div class="admission-body container mt-5">
                     <div class="col-sm-8 px-5 mt-5">
                     </div>
                     <h5 class="col-sm-10"><strong>WHO CAN TAKE THE WRITTEN COMPREHENSIVE EXAM</strong></h5>
+=======
+            <h4 class="text-center px-5 mt-5" style="color: #0b7dff"><b>FREQUENTLY ASK QUESTIONS ABOUT THE WRITTEN COMPREHENSIVE EXAMS</b></h4>
+            <div class="admission-requirements row px-5 mb-5 mt-3">
+                <div class="col-sm-8 px-5 mt-5">
+                </div>
+                <h5 class="col-sm-10"><strong>WHO CAN TAKE THE WRITTEN COMPREHENSIVE EXAM</strong></h5>
+                
+                <div class="col-sm-8 lh-lg">
+                    <p class="m-0">- Students who have completed ALL of their Academic Subjects and must not have any lacking grades in any of their subjects</p>
+                    <p class="m-0">- They must also be enrolled in Residency on the same semester they plan to take the exams</p>
+                </div>
+            </div>
+>>>>>>> 6937ac4b487dbda67483dc5b210bc8794f329245
 
                     <div class="col-sm-8 lh-lg">
                         <p class="m-0">- Students who have completed ALL of their Academic Subjects and must not have any lacking grades in any of their subjects</p>
