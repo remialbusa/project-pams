@@ -326,13 +326,13 @@
                                 <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Schedule</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="first_period_sched" value="{{$status['first_period_sched']}}" readonly/>
+                                        <input type="text" id="form6Example2" class="form-control" name="first_period_sched" value="{{$status['first_period_sched']}}" />
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Adviser</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="first_period_adviser" value="{{$status['first_period_adviser']}}" readonly/>
+                                        <input type="text" id="form6Example2" class="form-control" name="first_period_adviser" value="{{$status['first_period_adviser']}}"/>
                                         <span class="text-danger">@error('first_period_adviser'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -381,13 +381,13 @@
                                 <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Schedule</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="second_period_sched" value="{{$status['second_period_sched']}}" readonly/>
+                                        <input type="text" id="form6Example2" class="form-control" name="second_period_sched" value="{{$status['second_period_sched']}}"/>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Adviser</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="second_period_adviser" value="{{$status['second_period_adviser']}}" readonly/>
+                                        <input type="text" id="form6Example2" class="form-control" name="second_period_adviser" value="{{$status['second_period_adviser']}}"/>
                                         <span class="text-danger">@error('second_period_adviser'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -436,13 +436,13 @@
                                 <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example2">Schedule</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="third_period_sched" value="{{$status['third_period_sched']}}" readonly/>
+                                        <input type="text" id="form6Example2" class="form-control" name="third_period_sched" value="{{$status['third_period_sched']}}"/>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="form6Example1">Adviser</label>
-                                        <input type="text" id="form6Example2" class="form-control" name="third_period_adviser" value="{{$status['third_period_adviser']}}" readonly/>
+                                        <input type="text" id="form6Example2" class="form-control" name="third_period_adviser" value="{{$status['third_period_adviser']}}"/>
                                         <span class="text-danger">@error('third_period_adviser'){{$message}} @enderror</span>
                                     </div>
                                 </div>

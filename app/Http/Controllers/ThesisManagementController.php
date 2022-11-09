@@ -12,7 +12,7 @@ use App\Models\Thesis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-
+ 
 class ThesisManagementController extends Controller
 {
     function studentThesisDirectory()
@@ -20,7 +20,8 @@ class ThesisManagementController extends Controller
         if (session()->has('LoggedUser')) {
             $student = Student::where('id', '=', session('LoggedUser'))->first();
             $data = [
-                'LoggedUserInfo' => $student
+                'LoggedUserInfo' => $student 
+                
             ];
         }
         $enrolledStudent = EnrolledStudent::all();

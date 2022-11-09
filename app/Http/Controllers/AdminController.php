@@ -161,7 +161,7 @@ class AdminController extends Controller
     }
 
      
-
+ 
     function systemTechnicalsupport(){
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();

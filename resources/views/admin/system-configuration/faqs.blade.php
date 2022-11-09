@@ -38,19 +38,19 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <!-- <form action="{{ route('save-faqs') }}" method="POST" enctype="multipart/form-data"> -->
-                                        <!-- 2 column grid layout with text inputs for the first and last names -->
-                                     <!--    @if(Session::get('success'))
+                                   <form action="{{ route('save-faqs') }}" method="POST" enctype="multipart/form-data"> 
+                                    <!-- 2 column grid layout with text inputs for the first and last names --> 
+                                       @if(Session::get('success'))
                                         <div class="alert alert-success text-center">{{Session::get('success')}}</div>
                                         @endif
 
                                         @if(Session::get('fail'))
                                         <div class="alert alert-danger text-center">{{Session::get('fail')}}</div>
                                         @endif
-                                    </form> -->
+                                    </form>
                                     <thead>
                                         <tr>
-        
+
                                             <th>CATEGORIES</th>
                                             <th>QUESTIONS</th>
                                             <th>ANSWER</th>
@@ -63,11 +63,11 @@
                                             <td>{{$faqs['categories']}}</td>
                                             <td>{{$faqs['questions']}}</td>
                                             <td>{{$faqs['answer']}}</td>
-                                            
+
                                             <td>
 
                                                 <a href="" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
-                                                <a href="" class="delete"><i class="bi bi-trash3"></i></a>
+                                                <a href="{{ route('delete-faqs', $faqs->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -97,7 +97,7 @@
                                         @endif
 
                                         @csrf
-            
+
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control" name="categories" placeholder="categories">
                                             <span class="text-danger">@error('thesis_title'){{$message}} @enderror</span>
@@ -118,11 +118,16 @@
                                         </div>
                                     </form>
                                 </div>
+
                             </div>
                         </div>
-                    </div>
 
+
+
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
                 @endsection
+
+                <form>

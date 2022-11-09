@@ -136,16 +136,16 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   
-                                <ul class="navbar-nav ms-auto font-weight-semibold">
+                                <ul class="navbar-nav ms-auto font-weight-semibold"> 
                                     <li class="nav-item px-2">
-                                        <a class="nav-link-1">Welcome, <b>{{$LoggedUserInfo->first_name}} {{$LoggedUserInfo->last_name}}</b></a>
+                                        <a class="nav-link-1">Welcome, <b></b></a>
                                     </li>
                                     </li>
                                     <li class="nav-item px-2">
                                         <a class="nav-link-1" href="{{route('auth.logout-student')}}">Logout</a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> 
                         </div>
                     </nav>
 

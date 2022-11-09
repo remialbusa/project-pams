@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Faqs;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FaqsController extends Controller
 {
-    function faqsStudent(){
-        return view('auth.faqs-student');
+    function faqsStudent()
+    {
+        $faqs = faqs::all();
+        return view('auth.faqs-student',['faqs'=>$faqs]);
     }
+
 
     function saveFaqs(Request $request)
     {
@@ -33,5 +37,10 @@ class FaqsController extends Controller
         } else {
             return back()->with('fail', 'failed inserting admin data');
         }
+    }
+    function deleteFaqs($id){
+        $faqs = faqs::find($id);
+        $faqs->delete();
+        return redirect('staff/admin/system-configuration/faqs');
     }
 }

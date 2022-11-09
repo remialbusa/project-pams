@@ -408,12 +408,39 @@ class AdmissionOfficerController extends Controller
         }else{
             return back()->with('fail', 'Failed inserting student data');
         }
-<<<<<<< HEAD
          
-=======
     }
 
+    public function deletePending($id){
+        $student = PendingStudent::find($id);
+        $student->delete();
+        return redirect('/staff/admin/pending');
+    } 
     
+    function updatePending(Request $request){
+        $request->validate([
+            'student_id' => 'required',
+            'submitted_form' => 'required',          
+            'payment' => 'required',
+            'status' => 'required',
+        ]);
+
+        //update data
+        $pendingStudent = PendingStudent::find($request->id);
+        $pendingStudent->student_id = $request->student_id;
+        $pendingStudent->submitted_form = $request->submitted_form;       
+        $pendingStudent->payment = $request->payment;
+        $pendingStudent->status = $request->status;
+        $save = $pendingStudent->save();
+
+        if($save){
+            return redirect('staff/admin/pending');
+        }else{
+            return back()->with('fail', 'Failed inserting student data');
+        }
+        
+    }
+
     function approvePending(Request $request){
         $request->validate([
             'student_type' => 'required',
@@ -470,37 +497,6 @@ class AdmissionOfficerController extends Controller
 
         if($save){
             return redirect('staff/admin/enrolled');
-        }else{
-            return back()->with('fail', 'Failed inserting student data');
-        }
-        
->>>>>>> f6a170acd3b1943cf09a5ded26d965b7f4f714ec
-    }
-
-    public function deletePending($id){
-        $student = PendingStudent::find($id);
-        $student->delete();
-        return redirect('/staff/admin/pending');
-    }
-    
-    function updatePending(Request $request){
-        $request->validate([
-            'student_id' => 'required',
-            'submitted_form' => 'required',          
-            'payment' => 'required',
-            'status' => 'required',
-        ]);
-
-        //update data
-        $pendingStudent = PendingStudent::find($request->id);
-        $pendingStudent->student_id = $request->student_id;
-        $pendingStudent->submitted_form = $request->submitted_form;       
-        $pendingStudent->payment = $request->payment;
-        $pendingStudent->status = $request->status;
-        $save = $pendingStudent->save();
-
-        if($save){
-            return redirect('staff/admin/pending');
         }else{
             return back()->with('fail', 'Failed inserting student data');
         }

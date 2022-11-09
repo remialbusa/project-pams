@@ -41,13 +41,13 @@
     </nav>
 
     <section class="faqs-details">
-        <h1 class="text-center mt-5" style="color: #f7d05c">FREQUENTLY ASK QUESTIONS</h1>
+        <!-- <h1 class="text-center mt-5" style="color: #f7d05c">FREQUENTLY ASK QUESTIONS</h1>
         <div class="admission-body container mt-5">
             <div class="col-sm-8 px-5 mt-5">
             </div>
 
-            <h4 class="text-center px-5 mt-5" style="color: #0b7dff">FREQUENTLY ASK QUESTIONS ABOUT THE WRITTEN COMPREHENSIVE EXAMS</h4>
-                <div class="admission-requirements row px-5 mb-5 mt-3">
+            <h4 class="text-center px-5 mt-5" style="color: #0b7dff">FREQUENTLY ASK QUESTIONS ABOUT THE WRITTEN COMPREHENSIVE EXAMS</h4> -->
+        <!-- <div class="admission-requirements row px-5 mb-5 mt-3">
                 <div class="admission-body container mt-5">
                     <div class="col-sm-8 px-5 mt-5">
                     </div>
@@ -57,25 +57,25 @@
                         <p class="m-0">- Students who have completed ALL of their Academic Subjects and must not have any lacking grades in any of their subjects</p>
                         <p class="m-0">- They must also be enrolled in Residency on the same semester they plan to take the exams</p>
                     </div>
+                </div> -->
+        <!-- </div>
+        <div class="admission-requirements row px-5 mb-5 mt-1">
+            <div class="admission-body container mt-5">
+                <div class="col-sm-8 px-5 mt-5">
                 </div>
-            </div>
-            <div class="admission-requirements row px-5 mb-5 mt-3">
-                <div class="admission-body container mt-5">
-                    <div class="col-sm-8 px-5 mt-5">
-                    </div>
-                    <h5 class="col-sm-10"><strong>WHAT ARE THE PROCESS TO BE ABLE TO APPLY FOR THE WRITTEN COMPREHENSIVE EXAMS?</strong></h5>
+                @foreach ($faqs as $faqsData)
+                <h5 class="text-center col-sm-15"><strong>{{$faqsData['categories']}}</strong></h5>
 
-                    <div class="col-sm-8 lh-lg">
-                        <p class="m-0">1.During the enrolment period, student must Pre-Register online and choose RESIDENCY as his/her enrolled subject.</p>
-                        <p class="m-0">2.Student must visit the office of the Graduate School for the next steps of the enrolment.</p>
-                        <p class="m-0">3.Student must visit the MIS for the printing of the Enrollment & Assesment Form (EAF).</p>
-                        <p class="m-0">4.Student must visit the Accounting and Cashier's Office for the payment of their total assesment.</p>
-                        <p class="m-0">5.After enrolling and paying for the Residency, student may now proceed applying for the Written Comprehensive Exam by visiting Office Graduate School and filling out the Application Form.</p>
-                        <p class="m-0">6.If approved by the Dean of the Graduate School, student may now pay for the Written Comprehensive Exams (WCE).</p>
-                        <p class="m-0">7.After paying, student must return the copy of their application to the Secretary of the Graduate School.</p>
-                    </div>
+                <div class="text-center col-sm-5 lh-lg">
+                    <p class="m-0">{{$faqsData['questions']}}</p>
                 </div>
-                <div class="admission-requirements row px-5 mb-5 mt-3">
+                <div class="text-center col-sm-6 lh-lg">
+                    <p class="m-0">{{$faqsData['answer']}}</p>
+                </div>
+                @endforeach
+            </div> -->
+
+        <!--  <div class="admission-requirements row px-5 mb-5 mt-3">
                     <div class="col-sm-8 px-5 mt-5">
                     </div>
                     <h5 class="col-sm-10"><strong>WHEN IS THE SCHEDULE FOR THE NEXT WRITTEN COMPREHENSIVE EXAMS (WCE)?</strong></h5>
@@ -114,13 +114,60 @@
                     <div class="col-sm-8 lh-lg">
                         <p class="m-0">For student who are from the region or country and unable to attend physically, please inform us during your application.</p>
                     </div>
+                </div> -->
+
+
+        </div>
+        <div class="wrapper bg-white rounded shadow">
+            <div class="h2 text-center fw-bold">FREQUENTLY ASK QUESTIONS</div>
+            <div class="h3 text-primary text-center">How can we help you?</div>
+            <!-- <div class="d-flex justify-content-center">
+        <div class="search w-75 d-flex align-items-center"> <span class="fas fa-search text-dark"></span> <input type="text" class="form-control" placeholder="Describe your issue"> </div>
+    </div> -->
+            @foreach ($faqs as $faqsData)
+            <div class="card shadow" style="width: auto">
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="#" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#categoryModalForm">category 1</a>
+                        <br>
+                        @endforeach
+                    </div>
+                    <div class="admission-requirements row px-5 mb-5 mt-5">
+                        <p class="bi bi-envelope-fill" style="font-size: 1rem; margin-right: 10px;"> gradschool@lnu.edu.ph</p>
+                        <p class="bi bi-facebook" style="font-size: 1rem; margin-right: 10px;"> LNU Graduate School 2022</p>
+                    </div>
                 </div>
 
-                <div class="admission-requirements row px-5 mb-5 mt-3">
-                    <p class="bi bi-envelope-fill" style="font-size: 1rem; margin-right: 10px;"> gradschool@lnu.edu.ph</p>
-                    <p class="bi bi-facebook" style="font-size: 1rem; margin-right: 10px;"> LNU Graduate School 2022</p>
+
+
+                <!-- Insert Thesis Modal -->
+                <div class="modal fade" id="categoryModalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                @foreach ($faqs as $faqsData)
+                                <h5 class="modal-title" id="exampleModalLabel">Category 1</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Insert Form -->
+
+
+                                <div class="form-floating mb-3">
+                                    <p class="m-0">{{$faqsData['questions']}}</p>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <p class="m-0">{{$faqsData['answer']}}</p>
+                                </div>
+                                @endforeach
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
-            </div>
     </section>
 
     <footer class="footer mb-0">
@@ -138,7 +185,7 @@
                                 <li><a><b>Email:</b>info@lnu.edu.ph</a></li>
                             </ul>
                         </div>
-                        <div class="col col-12 col-sm-3">
+                        <div class="col col-12 col-sm-6">
                             <h5>Useful Links</h5>
                             <ul>
                                 <li><a href="#">LNU Official Website</a></li>
@@ -148,7 +195,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-5 my-auto">
+                <div class="col-12 col-md-6 my-auto">
                     <img class="footer-logo" src="https://www.enrollment.lnu.edu.ph/assets/images/lnu_logo.png" alt="logo" />
                     <p>Follow our official social media platforms:</p>
                     <div class="row">
