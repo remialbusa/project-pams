@@ -39,7 +39,9 @@
         </div>
     </nav>
     <section class="details">
-        <div class="admission-body container mt-5">
+        <div class="container-fluid">
+          <div class="card shadow mb-5">
+            <div class="card-header py-3">
             <h1 class="text-center mt-5" style="color: #0b7dff">ADMISSION REQUIREMENTS</h1>
             <div class="col-sm-8 px-5 mt-5">
 

@@ -66,7 +66,7 @@
 
                                             <td>
 
-                                                <a href="" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
+                                                <a href="{{ route('edit-faqs', $faqs->id) }}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
                                                 <a href="{{ route('delete-faqs', $faqs->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
                                             </td>
                                         </tr>

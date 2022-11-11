@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Faqs;
 use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class FaqsController extends Controller
 {
@@ -43,4 +45,38 @@ class FaqsController extends Controller
         $faqs->delete();
         return redirect('staff/admin/system-configuration/faqs');
     }
+    function editFaqs($id){
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $faqs = faqs::find($id);
+        return view('admin.edit-faqs', $data, ['faqs'=>$faqs]);
+    }
+    function faqsUpdate(Request $request){
+        //validate info
+        $request->validate([
+            'categories' => 'required',
+            'questions' => 'required',
+            'answer' => 'required'
+        ]);
+
+        //update data
+        $faqs = faqs::find($request->id);
+        $faqs -> categories = $request->categories;
+        $faqs -> questions = $request->questions;
+        $faqs -> answer = $request->answer;
+        $save = $faqs->save();
+
+        if($save){
+            return redirect('staff/admin/system-configuration/faqs');
+        }else{
+            return back()->with('fail', 'Failed inserting student data');
+        }
+    }
+
+
+
 }

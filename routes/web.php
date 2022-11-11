@@ -22,7 +22,7 @@ use App\Http\Controllers\FullCalendarController;
 |
 */
 
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -55,9 +55,12 @@ Route::get('/student/auth/student-thesis/directory', [ThesisManagementController
 Route::get('/student/auth/student-thesis/schedule', [ThesisManagementController::class, 'studentThesisSchedule'])->middleware('isLoggedStudent');
 
 //faqs routes
-Route::get('/faqs',[FaqsController::class, 'faqsStudent']);
-Route::post('/staff/admin/system-configuration/faqs',[FaqsController::class, 'saveFaqs'])->name('save-faqs'); 
-Route::get('/staff/admin/system-configuration/faqs/{id}', [FaqsController::class, 'deleteFaqs'])->name('delete-faqs')->middleware('isLoggedAdmin');
+Route::get('/faqs', [FaqsController::class, 'faqsStudent']);
+Route::post('/staff/admin/system-configuration/faqs', [FaqsController::class, 'saveFaqs'])->name('save-faqs');
+Route::get('/staff/admin/system-configuration/faqs/delete{id}', [FaqsController::class, 'deleteFaqs'])->name('delete-faqs')->middleware('isLoggedAdmin');
+Route::get('/staff/admin/system-configuration/faqs/edit{id}', [FaqsController::class, 'editFaqs'])->name('edit-faqs')->middleware('isLoggedAdmin');;
+Route::post('/staff/admin/system-configuration/faqs/edit', [FaqsController::class, 'faqsUpdate'])->name('update-faqs')->middleware('isLoggedAdmin');
+
 
 
 
@@ -120,7 +123,7 @@ Route::get('/staff/admin/thesis-directory/edit/{id}', [ThesisManagementControlle
 Route::post('/staff/admin/thesis-directory/edit', [ThesisManagementController::class, 'thesisUpdate'])->name('thesis-update')->middleware('isLoggedAdmin');
 Route::post('/staff/admin/thesis-directory/save', [ThesisManagementController::class, 'thesisSave'])->name('thesis-save')->middleware('isLoggedAdmin');
 
- 
+
 //Students
 //delete pending students
 Route::get('/staff/admin/pre-enrollment/delete/{id}', [AdmissionOfficerController::class, 'deletePreEnrollee'])->name('student-delete')->middleware('isLoggedAdmin');
@@ -148,4 +151,3 @@ Route::get('/process', [ProcessController::class, 'process'])->name('process');
 
 //Calender Event
 Route::get('/welcome', [FullCalendarController::class, 'index']);
-
