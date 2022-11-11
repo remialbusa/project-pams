@@ -64,7 +64,6 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-
   text-align: left;
   background-color: #fff;
 }
@@ -1826,6 +1825,8 @@ pre code {
 }
 
 .form-control {
+  /* color: #6e707e; */
+  border-radius: 0;
   display: block;
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
@@ -1835,8 +1836,6 @@ pre code {
   line-height: 1.5;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #d1d3e2;
-  border-radius: 0.35rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -1857,11 +1856,11 @@ pre code {
 }
 
 .form-control:focus {
-  color: #6e707e;
+  
   background-color: #fff;
   border-color: #bac8f3;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  box-shadow: none;
 }
 
 .form-control::-webkit-input-placeholder {
@@ -9899,8 +9898,7 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-color: #4e73df;
-  background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+  background: rgba(19, 13, 211, 0.9);
   background-size: cover;
 }
 

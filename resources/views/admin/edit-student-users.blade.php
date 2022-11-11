@@ -70,7 +70,7 @@
                                 <h5 class="lead">Student User Information</h5>
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
                                 <div class="col mt-4">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Student Type</label>
                                         <select class="form-select" aria-label="Default select example" name="student_type">
                                             @if($student['student_type'] == 'New Student')
@@ -84,14 +84,14 @@
                                 </div>
                                 <div class="row mt-4 mb-3">
                                     <div class="col-md-6">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
                                             <input type="text" id="form6Example1" class="form-control" name="student_id" value="{{$student['student_id']}}" />
                                             <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Last name (Password) <label class="text-danger">*</label></label>
                                             <input type="text" id="form6Example2" class="form-control" name="last_name" value="{{$student['last_name']}}" />
                                             <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
@@ -99,7 +99,9 @@
                                     </div>
                                 </div>
                             </div> 
-                        <button type="submit" class="btn btn-primary btn-block mt-4 mb-5">Update</button>
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary btn-block mt-5 mb-3 btn-long">Update</button>
+                        </div>
                         </div>
                     </form>
                 </div>

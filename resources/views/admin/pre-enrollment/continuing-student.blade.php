@@ -20,7 +20,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                 <form action="{{ route('approve-student') }}" method="POST" enctype="multipart/form-data">
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     @if(Session::get('success'))
@@ -50,7 +50,7 @@
                         <td>{{$student->mobile_no}}</td>
                         <td>{{$student->created_at}}</td>
                         <td>
-                            <a href="{{ route('student-edit', $student->id)}}" class="mx-3 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                            <a href="{{ route('student-edit', $student->id)}}" class="mx-3 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-check-circle"></i></a>
                             <a href="{{ route('student-delete', $student->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                             {{-- <a href="{{ route('admin.download-pdf', $student->file)}}" class="edit mx-2 bi bi-eye">Download</a> --}}
                         </td>

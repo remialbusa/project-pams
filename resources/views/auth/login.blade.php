@@ -41,46 +41,56 @@
         </div>
     </nav>
 
-    <div class="container-fluid ps-md-0 mt-5">
-        <div class="login d-flex py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-9 col-lg-4 mx-auto">
-                        <h3 class="login-heading mb-4">Student login</h3>
-                        <!-- login Form -->
-                        <form action="{{ route('auth.verify-student') }}" method="POST">
-                            @if(Session::get('fail'))
-                            <div class="alert alert-danger">{{Session::get('fail')}}</div>
-                            @endif
+    <div id="hero-login"></div>
+    <section class="login-container mt-5">
+        <h3 class="login-heading mb-4">Student login <i class="bi bi-2x bi-question-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></h3></i>
+        <!-- login Form -->
+        <form action="{{ route('auth.verify-student') }}" method="POST">
+            @if(Session::get('fail'))
+            <div class="alert alert-danger">{{Session::get('fail')}}</div>
+            @endif
 
-                            @csrf
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="student_id" placeholder="Student ID" value="{{ old('student_id') }}">
-                                <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
-                                <label for="floatingInput">Student ID</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" name="password" placeholder="Password">
-                                <span class="text-danger">@error('password'){{$message}} @enderror</span>
-                                <label for="floatingPassword">Password</label>
-                            </div>
+            @csrf
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="student_id" placeholder="Student ID" value="{{ old('student_id') }}">
+                <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
+                <label for="floatingInput">Student ID</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" name="password" placeholder="Password">
+                <span class="text-danger">@error('password'){{$message}} @enderror</span>
+                <label for="floatingPassword">Password</label>
+            </div>
 
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                                <label class="form-check-label" for="rememberPasswordCheck">
-                                    Remember password
-                                </label>
-                            </div>
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Login</button>
-                                <div class="text-center">
-                                    <a class="small" href="#">Forgot password?</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+                <label class="form-check-label" for="rememberPasswordCheck">
+                    Remember password
+                </label>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Login</button>
+                <div class="text-center">
+                    <a class="small" href="#">Forgot password?</a>
                 </div>
             </div>
+        </form>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Student Login Info</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span class="fw-bold">Student ID: </span>(e.g. ID Number)</p>
+                <span class="fw-bold">Password: </span>(e.g. Family Name)</p>
+            </div>
+        </div>
         </div>
     </div>
 

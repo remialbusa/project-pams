@@ -28,7 +28,7 @@ Route::get('/welcome', function () {
 Route::get('/test', [MainController::class, 'test']);
 Route::get('/test/edit/{id}', [MainController::class, 'testEdit'])->name('test-edit');
 
-
+Route::post('/welcome', [MainController::class, 'saveForm'])->name('submit-form');
 
 //students routes
 Route::get('/student/auth/login', [MainController::class, 'login'])->name('student.login');
@@ -40,7 +40,9 @@ Route::get('/student/auth/register-new-student', [MainController::class, 'regist
 //student profile routes
 Route::get('/student/auth/student-profile', [MainController::class, 'profileView'])->middleware('isLoggedStudent');
 Route::get('/student/auth/logout', [MainController::class, 'logout'])->name('auth.logout-student');
-Route::get('/student/auth/dashboard', [MainController::class, 'dashboard'])->middleware('isLoggedStudent');
+Route::get('/student/auth/dashboard', [MainController::class, 'dashboard'])->name('student.dashboard')->middleware('isLoggedStudent');
+Route::get('/student/auth/pre-enroll', [MainController::class, 'preEnroll'])->name('student.pre-enroll')->middleware('isLoggedStudent');
+Route::get('/student/auth/comprehensive-exam', [MainController::class, 'comprehensiveExam'])->name('student.comprehensive-exam')->middleware('isLoggedStudent');
 
 //student profile update
 Route::post('/student/auth/student-profile/update', [MainController::class, 'updateStudentProfile'])->name('update-student')->middleware('isLoggedStudent');

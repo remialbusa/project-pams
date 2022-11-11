@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LNU Graduate School PAMS</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,13 +16,10 @@
 
     <!-- custom css -->
     <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
-    <title>Admin Login</title>
+
 </head>
 
 <body>
-
-<div id="hero-login">
-
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
@@ -40,57 +38,68 @@
                     </li>
                 </ul>
             </div>
+        </div>
     </nav>
 
-
-    <section class="admin-login-container mt-5">
-        <h3 class="login-heading mb-4">Admin login</h3>
-        <h6>Login as: </h6>
-        <!-- login Form -->
-        <form action="{{ route('auth.verify-admin') }}" method="POST">
-            @if(Session::get('fail'))
-            <div class="alert alert-danger">{{Session::get('fail')}}</div>
-            @endif
-
-            @csrf
-            <div class="mb-3">
-                <select class="form-select form-select-lg" aria-label="Default select example" name="user_type">
-                    <option value="Admin">Admin</option>
-                    <option value="OGS Officer">OGS Officer</option>
-                    <option value="MIS">MIS Officer</option>
-                </select>
-                <span class="text-danger">@error('user_type'){{$message}} @enderror</span>
+    <section class="container feature pt-5 mt-5">
+        <h1 class="text-center display-6">Enrollment Process</h1>
+        <hr>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7" aria-label="Slide 8"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="8" aria-label="Slide 9"></button>
             </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="employee_id" placeholder="Employee ID" value="{{ old('employee_id') }}">
-                <span class="text-danger">@error('employee_id'){{$message}} @enderror</span>
-                <label for="floatingInput">Employee ID</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" name="password" placeholder="Password">
-                <span class="text-danger">@error('password'){{$message}} @enderror</span>
-                <label for="floatingPassword">Password</label>
-            </div>
-
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                <label class="form-check-label" for="rememberPasswordCheck">
-                    Remember password
-                </label>
-            </div>
-            <div class="d-grid">
-                <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Login</button>
-                <div class="text-center">
-                    <a class="small" href="#">Forgot password?</a>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./images/enrollment-process.png" class="rounded mx-auto d-block w-50" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/SS1_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/SS2_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/SS3_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/SS4_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/SS5_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/SS6_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/SS7_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/Title.png" class="rounded mx-auto d-block w-50" alt="...">
                 </div>
             </div>
-        </form>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </section>
 
     <footer class="footer mb-0">
         <div class="container">
             <div class="row">
-                <div class="col col-12 col-md-8">
+                <div class="col col-12 col-md-5">
                     <div class="row text-white">
                         <div class="col col-12 col-sm-6">
                             <h5>Contact Us</h5>
@@ -112,11 +121,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 my-auto">
+                <div class="col-12 col-md-5 my-auto">
                     <img class="footer-logo" src="https://www.enrollment.lnu.edu.ph/assets/images/lnu_logo.png" alt="logo" />
                     <p>Follow our official social media platforms:</p>
                     <div class="row">
-                        <div class="col col-xs-6 ml-2">
+                        <div class="col col-xs-6 ml-5">
                             <i class="bi bi-facebook" style="font-size: 2rem; margin-right: 20px;"></i>
                             <i class="bi bi-youtube" style="font-size: 2rem;"></i>
                         </div>
@@ -127,7 +136,7 @@
                 <p class="text-light text-center">© Copyright <b>Leyte Normal university</b> . All Rights Reserved 2022</p>
             </div>
     </footer>
-</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 

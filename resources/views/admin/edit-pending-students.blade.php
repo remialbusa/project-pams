@@ -46,7 +46,7 @@
         <div class="manage-users-body container mt-5">
             <div class="container h-100">
                 <div class="px-4 mt-5 mb-5">
-                    <h4>MANAGE STUDENT DATA</h4>
+                    <h4>Student Status</h4>
                     <hr />
                     <form action="{{route('admin.edit-pending')}}" method="POST" enctype="multipart/form-data">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -59,24 +59,18 @@
                         @endif
 
                         @csrf
-                        <div class="form-floating mb-3">
-                            <input type="hidden" class="form-control" name="id" placeholder="ID" value="{{$student['id']}}">
-                            <span class="text-danger">@error('id'){{$message}} @enderror</span>
-                            <label for="floatingInput"></label>
-                        </div>
                         <div class="profile mt-5">
                             <div class="form-floating mb-3">
                                 <input type="hidden" class="form-control" name="id" placeholder="ID" value="{{$student['id']}}">
                                 <span class="text-danger">@error('id'){{$message}} @enderror</span>
                                 <label for="floatingInput"></label>
                             </div>
-                            <h5 class="lead">Edit Pending Students</h5>
-                            <h5 class="mt-5 lead">Student Status</h5>
+                            <h5 class="lead">Edit Pending Student Status</h5>
                             <div class="row">
                                 <div class="col mt-4">
-                                    <div class="form-outline">
+                                    <div class="form-outline ">
                                         <label class="form-label" for="form6Example2">Submitted Form</label>
-                                        <select class="form-select" aria-label="Default select example" name="submitted_form">
+                                        <select class="form-select form-line" aria-label="Default select example" name="submitted_form">
                                             @if($status['submitted_form'] == 'Pending')
                                             <option value="Pending">Pending</option>
                                             <option value="Done">Done</option>
@@ -85,15 +79,15 @@
                                             <option value="Pending">Pending</option>
                                             @endif
                                         </select>
-                                        <div class="mt-3"><a href="{{ route('admin.view-pdf', $student->id)}}" class="edit mx-2 bi bi-eye">View Requirements</a></div>
+                                        <div class="mt-3"><a href="{{ route('admin.view-pdf', $student->id)}}" class="edit mx-2 bi bi-eye" target="_blank">View Requirements</a></div>
                                         <span class="text-danger">@error('submitted_form'){{$message}} @enderror</span>
                                     </div>
                                 </div>
 
                                 <div class="col mt-4">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="form6Example2">Payment</label>
-                                        <select class="form-select" aria-label="Default select example" name="payment">
+                                    <div class="form-outline ">
+                                        <label class="form-label " for="form6Example2">Payment</label>
+                                        <select class="form-select form-line" aria-label="Default select example" name="payment">
                                             @if($status['payment'] == 'Pending')
                                             <option value="Pending">Pending</option>
                                             <option value="Done">Done</option>
@@ -108,9 +102,9 @@
                                 </div>
                                 
                                 <div class="col mt-4">
-                                    <div class="form-outline">
+                                    <div class="form-outline ">
                                         <label class="form-label" for="form6Example2">Status Form</label>
-                                        <select class="form-select" aria-label="Default select example" name="status">
+                                        <select class="form-select form-line" aria-label="Default select example" name="status">
                                             @if($status['status'] == 'Pending')
                                             <option value="Pending">Pending</option>
                                             <option value="Done">Done</option>
@@ -124,14 +118,16 @@
                                 </div>
                             </div> 
                             <div class="col mt-4">
-                                <div class="form-outline">
+                                <div class="form-outline form-line">
                                     <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
-                                    <input readonly type="text" id="form6Example1" class="form-control" name="student_id" value="{{$student['student_id']}}" />
+                                    <input type="text" id="form6Example1" class="form-control" name="student_id" value="{{$student['student_id']}}" />
                                     <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
                                 </div>
                             </div>
                         </div> 
-                        <button type="submit" class="btn btn-primary btn-block mt-4 mb-5">Update</button>
+                        <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary btn-block mt-5 mb-3 btn-long">Update</button>
+                        </div>
                     </form>
                 </div>
             </div>

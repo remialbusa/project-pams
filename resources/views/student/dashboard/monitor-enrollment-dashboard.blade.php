@@ -104,87 +104,80 @@
 
                                 {{-- Enrollment Process/Status Tab --}}
                                 <div class="tab-pane fade" id="enrollment-process" role="tabpanel" aria-labelledby="enrollment-process-tab">
-                                    @if($LoggedUserInfo->student_type == 'Continuing')
+                                    
                                     <div class="table-wrapper row">
                                         <table class="table default-table">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" style="width: 60%">Enrollment Procedure</th>
-                                                    <th scope="col" style="width: 40%; text-align: center;">Current Status</th>
+                                                    <th scope="col" sstyle="width: 50%; text-align: left;">Enrollment Procedure</th>
+                                                    <th scope="col" style="width: 20%; text-align: center;">Current Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>               
                                                 <tr>
                                                     <td>
-                                                        <p class="sub-text">1. SUBMISSION OF CLEARANCE TO OGS:</i></p>
+                                                        <p class="sub-text mt-3" style="text-align: left;">1. Subject advisement by the Enrolling Teacher:</i></p>
                                                     </td>
                                                     <td>
-                                                        <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
-                                                                <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
+                                                        @if($LoggedUserInfo['status'] == 'Done')
+                                                        <p class="status-text" style="text-align: center;"><span style="font-weight: 600; font-size: 12px; color: #13a166">
+                                                            <i class="bi bi-check-circle"></i> 
+                                                            <option value="Done">Done {{$LoggedUserInfo->created_at}}</option>
+                                                        </span></p>
+                                                        </p>
+                                                        @else
+                                                        <p class="status-text" style="text-align: center;"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                                                            <i class="bi bi-x-circle"></i> 
+                                                            <option value="Pending">Pending</option>
+                                                        </span></p>
+                                                        </p>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <p class="sub-text">2. SIGNING OF DRF AND PRINTING ENROLLMENT AND ASSESSMENT FORM:</p>
+                                                        <p class="sub-text mt-3" style="text-align: left;">2. Subject Enlistment at the Management Information System Office:</i></p>
                                                     </td>
                                                     <td>
-                                                        <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #13a166">
-                                                                <i class="bx bx-check-circle" style="margin-left: 150px;"></i> N/A</span></p>
+                                                        @if($LoggedUserInfo['status'] == 'Done')
+                                                        <p class="status-text" style="text-align: center;"><span style="font-weight: 600; font-size: 12px; color: #13a166">
+                                                            <i class="bi bi-check-circle"></i> 
+                                                            <option value="Done">Done {{$LoggedUserInfo->created_at}}</option>
+                                                        </span></p>
+                                                        </p>
+                                                        @else
+                                                        <p class="status-text" style="text-align: center;"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                                                            <i class="bi bi-x-circle"></i> 
+                                                            <option value="Pending">Pending</option>
+                                                        </span></p>
+                                                        </p>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <p class="sub-text">3. SUBMISSION COPY OF DRF TO OGS:</p>
+                                                        <p class="sub-text mt-3" style="text-align: left;">3. Validation and issuance of the Entrance Slip:</i></p>
                                                     </td>
                                                     <td>
-                                                        <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
-                                                                <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
+                                                        @if($LoggedUserInfo['status'] == 'Done')
+                                                        <p class="status-text" style="text-align: center;"><span style="font-weight: 600; font-size: 12px; color: #13a166">
+                                                            <i class="bi bi-check-circle"></i> 
+                                                            <option value="Done">Done {{$LoggedUserInfo->created_at}}</option>
+                                                        </span></p>
+                                                        </p>
+                                                        @else
+                                                        <p class="status-text" style="text-align: center;"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
+                                                            <i class="bi bi-x-circle"></i> 
+                                                            <option value="Pending">Pending</option>
+                                                        </span></p>
+                                                        </p>
+                                                        @endif
                                                     </td>
                                                 </tr>                                                                                                                                                                                  
                                             </tbody>
                                         </table>
                                     </div>
-                                    @else
-                                    <div class="table-wrapper row">
-                                        <table class="table default-table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col" style="width: 60%">Enrollment Procedure</th>
-                                                    <th scope="col" style="width: 40%; text-align: center;">Current Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>               
-                                                <tr>
-                                                    <td>
-                                                        <p class="sub-text">1. FILLED OUT FORM FOR ADMISSION:</i></p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
-                                                                <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <p class="sub-text">2. SIGNING OF DRF AND PRINTING ENROLLMENT AND ASSESSMENT FORM::</p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #13a166">
-                                                                <i class="bx bx-check-circle" style="margin-left: 150px;"></i> N/A</span></p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <p class="sub-text ml-4">3. SUBMISSION OF ORIGINAL ENTRANCE DOCUMENTS TO REGISTRAR"S OFFICE:</p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="status-text"><span style="font-weight: 600; font-size: 12px; color: #c70e42">
-                                                                <i class="bx bx-x-circle" style="margin-left: 150px;"></i> N/A</span></p>
-                                                    </td>
-                                                </tr>                                                                                                                                            
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    @endif
+
                                 </div>                          
                             </div>
                         </div>

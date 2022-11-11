@@ -21,7 +21,7 @@
 
 <body>
     
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark shadow-5-strong">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
@@ -50,12 +50,12 @@
                     </ul>
                 </div>
             </div>
+        </div>
     </nav>
     <section class="hero-main">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col col-xs-6 my-auto">
-                    <!-- sign up form -->
                     <div class="card bg-none text-white">
                         <div class="card-title">
                             <h1 class="pt-3">
@@ -78,63 +78,131 @@
                         </div>
                     </div>
                 </div>
-                <div class="col col-xs-9 my-auto hero-img-col">
-                    <img class="hero-img" src="./images/teaching.svg" alt="hero-img" />
-                </div>
             </div>
         </div>
     </section>
 
-    <section class="container feature pt-5 mt-5">
+    <section class="container feature pt-5 mt-5 mb-5">
+
         <!-- what we do -->
-        <h1 class="text-center display-6">Enrollment Updates</h1>
+        <h1 class="text-center display-6">Event Calendar</h1>
+        <hr/>
+        <div class="container h-100">
+            <img src="./images/handshake-colour-thumbnail.png" class="rounded mx-auto d-block img-fit" alt="...">
+        </div>
         <hr>
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </section>
+
+    <section class="hero-body pt-5 mt-5 mb-5">
+        <div class="container h-100">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item text-center active">
+                        <img src="./images/handshake-colour-thumbnail.png" class="rounded mx-auto d-block img-fit" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>First slide label</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item text-center">
+                        <img src="./images/responsive.png" class="rounded d-block mx-auto img-fit" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Second slide label</h5>
+                            <p>Some representative placeholder content for the second slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item text-center">
+                        <img src="./images/customisable.jpg" class="rounded d-block mx-auto img-fit" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Third slide label</h5>
+                            <p>Some representative placeholder content for the third slide.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="./images/handshake-colour-thumbnail.png" class="d-block w-50" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="./images/responsive.png" class="d-block w-50" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="./images/customisable.jpg" class="d-block w-50" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
     </section>
 
     <section class="container feature pt-5 mt-5">
-        <div class="container h-100">
-            <h1 class="text-center display-6">Events Calender</h1>
-            <hr>
+
+        <!-- what we do -->
+        <h1 class="text-center display-6">Technical Support</h1>
+        <hr/>
+        <div class="row mt-5 d-flex justify-content-end" data-aos="fade-right" data-aos-delay="100">
+            <div class="col card-wrap mb-1 mt-4">
+                <img src="./images/Technical_Support.jpg" class="rounded mx-auto d-block technical-img" alt="...">
+            </div>
+            <div class="col-lg-6 mb-2">
+                <div class="forum" style="text-align: center">
+                    <form action="{{ route('submit-form') }}" method="POST">
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        @if(Session::get('success'))
+                        <div class="alert alert-success text-center">{{Session::get('success')}}</div>
+                        @endif
+
+                        @if(Session::get('fail'))
+                        <div class="alert alert-danger text-center">{{Session::get('fail')}}</div>
+                        @endif
+
+                        @csrf
+                        <div class="lead">
+                            <h3>Message Us</h3>
+                        </div>
+                        <div class="mb-3">
+                            <div>
+                                
+                                <input type="text" class="technical-form mt-2 mt-1 border-strong" name="program" placeholder="Program">
+                                <span class="text-danger">@error('program'){{$message}} @enderror</span>
+                            </div>
+                            
+                            <div>
+                                
+                                <input type="text" class="technical-form mt-1 border-strong" name="id_no" placeholder="ID Number">
+                                <span class="text-danger">@error('id_no'){{$message}} @enderror</span>
+                            </div>
+
+                            <div>
+                                
+                                <input type="text" class="technical-form mt-1 border-strong" name="name" placeholder="Name">
+                                <span class="text-danger">@error('name'){{$message}} @enderror</span>
+                            </div>
+
+                            <div>
+                                
+                                <input type="text" class="technical-form mt-1 mt-1 border-strong" name="email" placeholder="Email">
+                                <span class="text-danger">@error('email'){{$message}} @enderror</span>
+                            </div>
+
+                            <div>
+                                
+                                <input style="height: 100px;" class="technical-form mt-1 mt-1 border-strong" name="concern" placeholder="Concern">
+                                <span class="text-danger">@error('concern'){{$message}} @enderror</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="mt-3 technical-btn btn btn-warning">Submit</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
         </div>
+        <hr>
     </section>
+
 
     <footer class="footer mb-0">
         <div class="container">
@@ -169,7 +237,6 @@
                             <i class="bi bi-facebook" style="font-size: 2rem; margin-right: 20px;"></i>
                             <i class="bi bi-youtube" style="font-size: 2rem;"></i>
                         </div>
-
                     </div>
                 </div>
                 <hr>

@@ -61,42 +61,42 @@
                             <span class="text-danger">@error('id'){{$message}} @enderror</span>
                             <label for="floatingInput"></label>
                         </div>
-                        <table class="table default-table">
+                        <table class="table default-table" >
                             <tr>
-                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Student Type:</span>{{$student->student_type}}</td>
-                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Student ID:</span>{{$student->student_id}}</td>
+                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Student Type: </span>{{$student->student_type}}</td>
+                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Student ID: </span>{{$student->student_id}}</td>
                             </tr>
 
                             <tr>
-                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Name:</span> {{$student->first_name}} {{$student->middle_name}} {{$student->last_name}}</td>
-                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Vaccination Status:</span>{{$student->vaccination_status}}</td>
+                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Name :</span> {{$student->first_name}} {{$student->middle_name}} {{$student->last_name}}</td>
+                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Vaccination Status: </span>{{$student->vaccination_status}}</td>
                             </tr>
 
                             <tr>
-                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Email:</span> {{$student->email}}</td>
-                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Gender</span> {{$student->gender}}</td>
+                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Email: </span> {{$student->email}}</td>
+                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Gender: </span> {{$student->gender}}</td>
                             </tr>
 
                             <tr>
-                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Birthdate:</span>{{$student->birth_date}}</td>
-                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Contact No:</span>{{$student->mobile_no}}</td>
+                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Birthdate: </span>{{$student->birth_date}}</td>
+                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Contact No: </span>{{$student->mobile_no}}</td>
                             </tr>
 
                             <tr>
-                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">FB Name:</span>{{$student->fb_acc_name}}</td>
-                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Program:</span>{{$student->program}}</td>
+                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">FB Name: </span>{{$student->fb_acc_name}}</td>
+                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Program: </span>{{$student->program}}</td>
                             </tr>
 
                             <tr>
-                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Region:</span>{{$student->region}}</td>
-                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Province:</span>{{$student->province}}</td>
+                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Region: </span>{{$student->region}}</td>
+                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Province: </span>{{$student->province}}</td>
                             </tr>
 
                             <tr>
-                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">City:</span>{{$student->city}}</td>
-                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Baranggay:</span>{{$student->baranggay}}</td>
+                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">City: </span>{{$student->city}}</td>
+                                <td scope="col" style="width: 60%"><span style="font-weight: 600;">Baranggay: </span>{{$student->baranggay}}</td>
                             </tr>
-                            
+
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>

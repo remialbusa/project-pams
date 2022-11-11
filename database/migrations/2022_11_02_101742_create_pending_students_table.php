@@ -43,6 +43,9 @@ class CreatePendingStudentsTable extends Migration
             $table->string('submitted_form');
             $table->string('payment'); 
             $table->string('status'); 
+            $table->string('first_procedure');
+            $table->string('second_procedure');
+            $table->string('third_procedure');
             $table->timestamps();
         });
     }

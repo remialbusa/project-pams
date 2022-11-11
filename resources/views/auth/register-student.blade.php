@@ -65,7 +65,7 @@
                             <h5 class="lead">Student Information</h5>
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="col mt-4">
-                                <div class="form-outline">
+                                <div class="form-outline form-line">
                                     <label class="form-label" for="form6Example1">Student Type</label>
                                     <select class="form-select" aria-label="Default select example" name="student_type">
 
@@ -76,14 +76,14 @@
                             </div>
                             <div class="row mt-4 mb-3">
                                 <div class="col-md-6">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example1" class="form-control" name="student_id" />
                                         <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Last name <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example2" class="form-control" name="last_name" />
                                         <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
@@ -93,14 +93,14 @@
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="row mt-2 mb-3">
                                 <div class="col-md-6">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">First name <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example1" class="form-control" name="first_name" />
                                         <span class="text-danger">@error('first_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Middle name <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example2" class="form-control" name="middle_name" />
                                         <span class="text-danger">@error('middle_name'){{$message}} @enderror</span>
@@ -110,7 +110,7 @@
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="row mt-2 mb-3">
                                 <div class="col-md-6">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
                                         <select class="form-select" aria-label="Default select example" name="vaccination_status">
                                             <option disabled selected>N/A</option>
@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Email <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example2" class="form-control" name="email" />
                                         <span class="text-danger">@error('email'){{$message}} @enderror</span>
@@ -132,7 +132,7 @@
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="row mt-2 mb-3">
                                 <div class="col-md-6">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Gender</label>
                                         <select class="form-select" aria-label="Default select example" name="gender">
                                             <option disabled selected>N/A</option>
@@ -143,7 +143,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Birthdate</label>
                                         <input type="date" id="form6Example1" class="form-control" name="birth_date" />
                                         <span class="text-danger">@error('birth_date'){{$message}} @enderror</span>
@@ -153,14 +153,14 @@
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="row mt-2 mb-3">
                                 <div class="col-md-6">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Mobile Number <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example1" class="form-control" name="mobile_no" />
                                         <span class="text-danger">@error('mobile_no'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Facebook Account Name <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example2" class="form-control" name="fb_acc_name" />
                                         <span class="text-danger">@error('fb_acc_name'){{$message}} @enderror</span>
@@ -174,28 +174,28 @@
                                     <i>(Please follow the format Region/Province/City/Barangay.)</i>
                                 </p>
                                 <div class="col">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Region <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example1" class="form-control" name="region" />
                                         <span class="text-danger">@error('region'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Province <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example1" class="form-control" name="province" />
                                         <span class="text-danger">@error('province'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">City <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example1" class="form-control" name="city" />
                                         <span class="text-danger">@error('city'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Baranggay <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example1" class="form-control" name="baranggay" />
                                         <span class="text-danger">@error('baranggay'){{$message}} @enderror</span>
@@ -205,7 +205,7 @@
 
                             <div class="row mt-4">
                                 <div class="col-md-12">
-                                    <div class="form-group">
+                                    <div class="form-group form-line">
                                         <label class="form-label" for="form6Example1">List of Requirements: <label class="text-danger">*</label></label>
                                         <p>
                                             <i>(Kindly upload the soft copy of your entrance payment receipt, credentials, registration, consent, and promissory note in one PDF file.)</i>
@@ -220,7 +220,7 @@
                             <h5 class="mt-5 lead">COURSE/S</h5>
                             <div class="col mt-4 mb-3">
                                 <div class="col">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Select Your Program</label>
                                         <select class="form-select" aria-label="Default select example" id="slct_program" name="program" {{-- onchange="populate(this.id, 'slct_first_period')" --}}>
                                             <option disabled selected>N/A</option>
@@ -256,7 +256,7 @@
 
                             <div class="row mt-4 mb-3">
                                 <div class="col-md-6 mt-2">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">1ST PERIOD</label>
                                         <select class="form-select" aria-label="Default select example" id="slct_first_period" name="first_period" {{-- onchange="populateTwo(this.id, 'slct_second_period')" --}}>
                                             <option disabled selected>Select First Period Subject</option>
@@ -279,7 +279,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 mt-2">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">2ND PERIOD</label>
                                         <select class="form-select" aria-label="Default select example" id="slct_second_period" name="second_period" {{-- onchange="populateThree(this.id, 'slct_third_period')" --}}>
                                             <option disabled selected>Select Second Period Subject</option>
@@ -299,7 +299,7 @@
                                     </div>
                                 </div>
                                 <div class="col mt-3 mt-2">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">3RD PERIOD</label>
                                         <select class="form-select" aria-label="Default select example" id="slct_third_period" name="third_period">
                                             <option disabled selected>Select Third Period Subject</option>
@@ -320,7 +320,9 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block mt-4 mb-5">Register</button>
+                        <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary btn-block mt-5 mb-3 btn-long">Register</button>
+                        </div>
                     </form>
                 </div>
             </div>

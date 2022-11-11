@@ -1,9 +1,134 @@
 
 /* MAIN STYLE CSS */
-.hero-main {
-    height: 90vh;
-    background: linear-gradient(90deg, rgb(11, 125, 255) 20%, rgb(0, 68, 255) 60%, rgb(76, 17, 185));
 
+
+
+.card-wrap
+{
+    position: relative;
+    width: 100%;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    background: white;
+}
+
+.input-medium
+{
+    width: 58%;
+}
+.btn-medium
+{
+    width: 10%;
+}
+.technical-form{
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+.border-strong
+{
+    border: 2px solid rgb(180, 180, 180);
+}
+.technical-btn
+{
+    border: 0;
+    padding: 10px 32px;
+    color: #070372;
+    border-radius: 50px;
+    border: 2px solid #070372;
+    background: #fff;
+    text-align: right;
+}
+
+.login-container
+{
+    width: 40%;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background: #ffff;
+    margin: 0 auto;
+    float: none;
+    padding: 3em 6em;
+}
+
+.admin-login-container
+{
+    width: 40%;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background: #ffff;
+    margin: 0 auto;
+    float: none;
+    padding: 2em 6em;
+}
+
+#hero-login
+{
+    height: 120%;
+    width: 100%;
+    background: linear-gradient(rgba(7, 3, 114, 0.8), rgba(7, 3, 114, 0.9)), url(../images/new-lnu-building.png) fixed center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.9;
+    position: absolute;
+}
+
+.hero-main {
+    background: url('/images/LNU.jpg') top center;
+    width: 100%;
+    height: 88vh;
+    position: relative;
+    background-size: cover;
+}
+
+.img-fit {
+    height: 40%;
+    width: 40%;
+}
+
+.technical-img
+{
+    width: 80%;
+    height: 80%;
+    background-size:cover;
+    object-fit: cover;
+}
+
+.hero-body {
+    height: 90vh;
+    background: linear-gradient(rgba(7, 3, 114, 0.8), rgba(7, 3, 114, 0.9)), url(../images/new-lnu-building.png) fixed center center;
+    background-size: cover;
+    padding: 60px 0;
+    background-attachment: scroll;
+}
+
+
+
+.hero-main::before{
+    content: "";
+    background: rgba(13, 17, 139, 0.8);
+    position: absolute;
+    height: 88vh;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 .carousel-control-next,
@@ -19,7 +144,7 @@
 }
 
 .navbar {
-    background: linear-gradient(90deg, rgb(11, 125, 255) 20%, rgb(0, 68, 255) 60%, rgb(76, 17, 185));
+    background: rgba(7, 3, 114);
 }
 
 .img-logo {
@@ -110,9 +235,10 @@
     color: white;
     margin-top: 5rem;
     margin-bottom: 50px;
-    background: linear-gradient(90deg, rgb(11, 125, 255) 20%, rgb(0, 68, 255) 60%, rgb(76, 17, 185));
+    background: rgba(7, 3, 114);
     padding: 2rem;
 }
+
 
 footer a {
     color: white;

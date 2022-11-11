@@ -1,9 +1,81 @@
-.table {
-    border-collapse: separate;
+
+.form-select{
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.btn-long{
+    width: 80%;
+}
+
+.border-divider
+{
+    opacity: 100;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.border-divider-2
+{
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: none;
+}
+
+.table-bordered {
     border-spacing:0 20px;
 }
 
+.form-select:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: none;
+}
+
+/* .form-select {
+    color: #6e707e
+} */
+.form-line
+{
+    border-bottom: 2px solid rgba(7, 3, 114, 1);
+    width: 100%;
+}
+
+.form-control
+{
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.form-label
+{
+    color: #6e707e
+}
+
+.no-border{
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing:0 20px;
+    --bs-table-striped-color: var(--bs-body-color);
+    --bs-table-striped-bg: none;
+}
+
 .manage-users-body {
+    
     width: 60vw;
     font-family: 'Varela Round', sans-serif;
     border-radius: 15px;
@@ -16,7 +88,7 @@ p{
 
 .basic-details{
     height: 75vh;
-    overflow-y:scroll;
+    overflow-y: scroll;
     font-size: 14px;
 }
 
@@ -24,9 +96,13 @@ p{
     margin-top: 30px;
     border-radius: 3px 3px 0 0;
 }
+.navbar-bg
+{
+    background: rgba(7, 3, 114);
+}
 
 .navbar {
-    background: linear-gradient(90deg, rgb(11, 125, 255) 20%, rgb(0, 68, 255) 60%, rgb(76, 17, 185));
+    background: rgba(7, 3, 150);
 }
 
 .navbar-dark .navbar-nav .nav-link-1 {

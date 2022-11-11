@@ -8,6 +8,7 @@ use App\Models\Student;
 use App\Models\PendingStudent;
 use App\Models\Subject;
 use App\Models\Program;
+use App\Models\TechnicalForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -134,7 +135,7 @@ class MainController extends Controller
         
 
         //insert data
-        $student = new Student();
+        $student = StudentUser::find($request->id);
         $student->id = $request->id;
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;       
@@ -220,8 +221,7 @@ class MainController extends Controller
         $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
         $programs = Program::all();
-        $studentList = StudentUser::all();
-        return view('student.dashboard.profile-dashboard', $data, ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'student'=>$studentList]);
+        return view('student.profile-dashboard', $data, ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs]);
     }
 
     function logout()
@@ -240,10 +240,45 @@ class MainController extends Controller
                 'LoggedUserInfo' => $student
             ];
         }
-        $StudentUser = StudentUser::all();
+        $studentUser = StudentUser::all();
         $subject = Subject::all();
-        return view('student.dashboard.monitor-enrollment-dashboard', $data, ['subject'=>$subject,'StudentUser' => $StudentUser]);
+        return view('student.dashboard.monitor-enrollment-dashboard', $data, ['subject'=>$subject,'studentUser' => $studentUser]);
     }
+
+    function preEnroll()
+    {
+        if (session()->has('LoggedUser')) {
+            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $data = [
+                'LoggedUserInfo' => $student
+            ];
+        }
+
+        $studentUser = StudentUser::all();
+        $student = Student::all();
+        $enrolledStudent = EnrolledStudent::all();
+        $programs = Program::all();
+        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
+        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
+        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
+        return view('student.dashboard.pre-enroll.pre-enrollment', $data, ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
+    }
+
+    function comprehensiveExam()
+    {
+        if (session()->has('LoggedUser')) {
+            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $data = [
+                'LoggedUserInfo' => $student
+            ];
+        }
+
+        $studentUser = StudentUser::all();
+        $student = Student::all();
+        $enrolledStudent = EnrolledStudent::all();
+        return view('student.dashboard.pre-enroll.comprehensive-exam', $data, ['studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
+    }
+
 
     function test()
     {
@@ -258,4 +293,32 @@ class MainController extends Controller
 
         return view('test-edit', ['studentData'=>$studentData]);
     }
+
+    function saveForm(Request $request)
+    {
+        $request->validate([
+            'program' => 'required',
+            'id_no' => 'required',
+            'name' => 'required',
+            'email' => 'required',                         
+            'concern' => 'required',
+        ]);
+
+        $form = new TechnicalForm();
+        $form->program = $request->program;
+        $form->id_no = $request->id_no;
+        $form->name = $request->name;
+        $form->email = $request->email;
+        $form->concern = $request->concern;
+
+        $save = $form->save();
+
+
+        if ($save) {
+            return back()->with('success', 'Form Submitted Successfuly!');
+        } else {
+            return back()->with('fail', 'Failed Registration');
+        }
+    }
+
 }

@@ -71,7 +71,7 @@
                                     <div class="col mt-4">
                                         <div class="form-outline">
                                             <label class="form-label" for="form6Example2">Submitted Form</label>
-                                            <select class="form-select" aria-label="Default select example" name="submitted_form">
+                                            <select class="form-select  form-line" aria-label="Default select example" name="submitted_form">
                                                 @if($status['submitted_form'] == 'Done')
                                                 <option value="Done">Done</option>
                                                 
@@ -87,7 +87,7 @@
                                     <div class="col mt-4">
                                         <div class="form-outline">
                                             <label class="form-label" for="form6Example2">Payment</label>
-                                            <select class="form-select" aria-label="Default select example" name="payment">
+                                            <select class="form-select form-line" aria-label="Default select example" name="payment">
                                                 @if($status['payment'] == 'Done')
                                                 <option value="Done">Done</option>
                                                 
@@ -102,7 +102,7 @@
                                     <div class="col mt-4">
                                         <div class="form-outline">
                                             <label class="form-label" for="form6Example2">Status Form</label>
-                                            <select class="form-select" aria-label="Default select example" name="status">
+                                            <select class="form-select form-line" aria-label="Default select example" name="status">
                                                 @if($status['status'] == 'Done')
                                                 <option value="Done">Done</option>
                                                 @else
@@ -112,19 +112,13 @@
                                         </div>
                                     </div>
                                 </div> 
-                            <!-- 2 column grid layout with text inputs for the first and last names -->
-                            <div class="form-floating mb-3">
-                                <input type="hidden" class="form-control" name="id" placeholder="ID" value="{{$status['id']}}">
-                                <span class="text-danger">@error('id'){{$message}} @enderror</span>
-                                <label for="floatingInput"></label>
-                            </div>
                             <div class="profile mt-5">
                                 <h5 class="lead">Student Information</h5>
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
                                 <div class="col mt-4">
-                                    <div class="form-outline">
+                                    <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Student Type</label>
-                                        <select class="form-select" aria-label="Default select example" name="student_type">
+                                        <select class="no-border form-select" aria-label="Default select example" name="student_type">
                                             @if($status['student_type'] == 'New Student')
                                             <option selected value="New Student">New Student</option>
                                             @else
@@ -136,16 +130,16 @@
                                 </div>
                                 <div class="row mt-4 mb-3">
                                     <div class="col-md-6">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
-                                            <input type="text" id="form6Example1" class="form-control" name="student_id" value="{{$status['student_id']}}" />
+                                            <input type="text" id="form6Example1" class="no-border form-control" name="student_id" value="{{$status['student_id']}}" />
                                             <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Last name <label class="text-danger">*</label></label>
-                                            <input type="text" id="form6Example2" class="form-control" name="last_name" value="{{$status['last_name']}}" />
+                                            <input type="text" id="form6Example2" class="no-border form-control" name="last_name" value="{{$status['last_name']}}" />
                                             <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
                                         </div>
                                     </div>
@@ -153,16 +147,16 @@
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
                                 <div class="row mt-2 mb-3">
                                     <div class="col-md-6">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">First name <label class="text-danger">*</label></label>
-                                            <input type="text" id="form6Example1" class="form-control" name="first_name" value="{{$status['first_name']}}" />
+                                            <input type="text" id="form6Example1" class="no-border form-control" name="first_name" value="{{$status['first_name']}}" />
                                             <span class="text-danger">@error('first_name'){{$message}} @enderror</span>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Middle name <label class="text-danger">*</label></label>
-                                            <input type="text" id="form6Example2" class="form-control" name="middle_name" value="{{$status['middle_name']}}" />
+                                            <input type="text" id="form6Example2" class="no-border form-control" name="middle_name" value="{{$status['middle_name']}}" />
                                             <span class="text-danger">@error('middle_name'){{$message}} @enderror</span>
                                         </div>
                                     </div>
@@ -170,9 +164,9 @@
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
                                 <div class="row mt-2 mb-3">
                                     <div class="col-md-6">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
-                                            <select class="form-select" aria-label="Default select example" name="vaccination_status">
+                                            <select class="no-border form-select" aria-label="Default select example" name="vaccination_status">
                                                 @if($status['vaccination_status'] == 'Vaccinated')
                                                 <option selected value="Vaccinated">Vaccinated</option>
                                                 @elseif($status['student_type'] == 'Not Vaccinated')
@@ -185,9 +179,9 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Email <label class="text-danger">*</label></label>
-                                            <input type="text" id="form6Example2" class="form-control" name="email" value="{{$status['email']}}" />
+                                            <input type="text" id="form6Example2" class="no-border form-control" name="email" value="{{$status['email']}}" />
                                             <span class="text-danger">@error('email'){{$message}} @enderror</span>
                                         </div>
                                     </div>
@@ -195,9 +189,9 @@
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
                                 <div class="row mt-2 mb-3">
                                     <div class="col-md-6">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Gender</label>
-                                            <select class="form-select" aria-label="Default select example" name="gender">
+                                            <select class="no-border form-select" aria-label="Default select example" name="gender">
                                                 @if($status['gender'] == 'Male')
                                                 <option value="Male">Male</option>
                                                 @else
@@ -208,9 +202,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Birthdate</label>
-                                            <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{$status['birth_date']}}" />
+                                            <input type="date" id="form6Example1" class="no-border form-control" name="birth_date" value="{{$status['birth_date']}}" />
                                             <span class="text-danger">@error('birth_date'){{$message}} @enderror</span>
                                         </div>
                                     </div>
@@ -218,16 +212,16 @@
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
                                 <div class="row mt-2 mb-3">
                                     <div class="col-md-6">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Mobile Number <label class="text-danger">*</label></label>
-                                            <input type="text" id="form6Example1" class="form-control" name="mobile_no" value="{{$status['mobile_no']}}" />
+                                            <input type="text" id="form6Example1" class="no-border form-control" name="mobile_no" value="{{$status['mobile_no']}}" />
                                             <span class="text-danger">@error('mobile_no'){{$message}} @enderror</span>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Facebook Account Name <label class="text-danger">*</label></label>
-                                            <input type="text" id="form6Example2" class="form-control" name="fb_acc_name" value="{{$status['fb_acc_name']}}" />
+                                            <input type="text" id="form6Example2" class="no-border form-control" name="fb_acc_name" value="{{$status['fb_acc_name']}}" />
                                             <span class="text-danger">@error('fb_acc_name'){{$message}} @enderror</span>
                                         </div>
                                     </div>
@@ -239,30 +233,30 @@
                                         <i>(Please follow the format Region/Province/City/Barangay.)</i>
                                     </p>
                                     <div class="col">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Region <label class="text-danger">*</label></label>
-                                            <input type="text" id="form6Example1" class="form-control" name="region" value="{{$status->region}}"/>
+                                            <input type="text" id="form6Example1" class="no-border form-control" name="region" value="{{$status->region}}"/>
                                             <span class="text-danger">@error('region'){{$message}} @enderror</span>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Province <label class="text-danger">*</label></label>
-                                            <input type="text" id="form6Example1" class="form-control" name="province" value="{{$status['province']}}"/>
+                                            <input type="text" id="form6Example1" class="no-border form-control" name="province" value="{{$status['province']}}"/>
                                             <span class="text-danger">@error('province'){{$message}} @enderror</span>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">City <label class="text-danger">*</label></label>
-                                            <input type="text" id="form6Example1" class="form-control" name="city" value="{{$status['city']}}"/>
+                                            <input type="text" id="form6Example1" class="no-border form-control" name="city" value="{{$status['city']}}"/>
                                             <span class="text-danger">@error('city'){{$message}} @enderror</span>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Baranggay <label class="text-danger">*</label></label>
-                                            <input type="text" id="form6Example1" class="form-control" name="baranggay" value="{{$status['baranggay']}}"/>
+                                            <input type="text" id="form6Example1" class="no-border form-control" name="baranggay" value="{{$status['baranggay']}}"/>
                                             <span class="text-danger">@error('baranggay'){{$message}} @enderror</span>
                                         </div>
                                     </div>
@@ -271,9 +265,9 @@
                                 <h5 class="mt-5 lead">COURSE/S</h5>
                                 <div class="col mt-4 mb-3">
                                     <div class="col">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Select Your Program</label>
-                                            <select class="form-select" aria-label="Default select example" name="program">
+                                            <select class="no-border form-select" aria-label="Default select example" name="program">
                                                 @if($status['program'] == 'MIT')
                                                     @foreach ($programs as $programs)
                                                         <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
@@ -290,9 +284,9 @@
                                 </div>
                                 <div class="row mt-2 mb-3">
                                     <div class="col mt-4">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">1ST PERIOD</label>
-                                            <select class="form-select" aria-label="Default select example" name="first_period_sub">
+                                            <select class="no-border form-select" aria-label="Default select example" name="first_period_sub">
                                                 @if($status['first_period_sub'] == 'MIT 501 Advanced Programming I')
                                                     @foreach ($firstPeriod as $subjects)
                                                         <option value="{{$subjects->subject}}{{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
@@ -307,15 +301,15 @@
                                         </div>
                                     </div>
                                     <div class="col mt-4">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Schedule</label>
-                                            <input type="text" id="form6Example2" class="form-control" name="first_period_sched" value="{{$status['first_period_sched']}}" readonly/>
+                                            <input type="text" id="form6Example2" class="no-border form-control" name="first_period_sched" value="{{$status['first_period_sched']}}" readonly/>
                                         </div>
                                     </div>
                                     <div class="col mt-4">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Adviser</label>
-                                            <input type="text" id="form6Example2" class="form-control" name="first_period_adviser" value="{{$status['first_period_adviser']}}" readonly/>
+                                            <input type="text" id="form6Example2" class="no-border form-control" name="first_period_adviser" value="{{$status['first_period_adviser']}}" readonly/>
                                             <span class="text-danger">@error('first_period_adviser'){{$message}} @enderror</span>
                                         </div>
                                     </div>
@@ -323,9 +317,9 @@
                                 <div class="mb-3"></div>
                                 <div class="row mt-2 mb-3">
                                     <div class="col mt-4">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">2ND PERIOD</label>
-                                            <select class="form-select" aria-label="Default select example" name="second_period_sub">
+                                            <select class="no-border form-select" aria-label="Default select example" name="second_period_sub">
                                                 @if($status['second_period_sub'] == 'MIT 502 Methods of Research for IT')
                                                     @foreach ($secondPeriod as $subjects)
                                                         <option value="{{$subjects->subject}}">{{$subjects->subject}} - {{$subjects->description}}</option>
@@ -340,15 +334,15 @@
                                         </div>
                                     </div>
                                     <div class="col mt-4">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Schedule</label>
-                                            <input type="text" id="form6Example2" class="form-control" name="second_period_sched" value="{{$status['second_period_sched']}}" readonly/>
+                                            <input type="text" id="form6Example2" class="no-border form-control" name="second_period_sched" value="{{$status['second_period_sched']}}" readonly/>
                                         </div>
                                     </div>
                                     <div class="col mt-4">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Adviser</label>
-                                            <input type="text" id="form6Example2" class="form-control" name="second_period_adviser" value="{{$status['second_period_adviser']}}" readonly/>
+                                            <input type="text" id="form6Example2" class="no-border form-control" name="second_period_adviser" value="{{$status['second_period_adviser']}}" readonly/>
                                             <span class="text-danger">@error('second_period_adviser'){{$message}} @enderror</span>
                                         </div>
                                     </div>
@@ -356,9 +350,9 @@
                                 <div class="mt-3"></div>
                                 <div class="row mt-2 mb-3">
                                     <div class="col mt-4">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">3RD PERIOD</label>
-                                            <select class="form-select" aria-label="Default select example" name="third_period_sub">
+                                            <select class="no-border form-select " aria-label="Default select example" name="third_period_sub">
                                                 @if($status['third_period_sub'] == 'MIT 503 Statistics for IT Research')
                                                     @foreach ($thirdPeriod as $subjects)
                                                         <option value="{{$subjects->subject}}{{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
@@ -373,21 +367,23 @@
                                         </div>
                                     </div>
                                     <div class="col mt-4">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Schedule</label>
-                                            <input type="text" id="form6Example2" class="form-control" name="third_period_sched" value="{{$status['third_period_sched']}}" readonly/>
+                                            <input type="text" id="form6Example2" class="no-border form-control" name="third_period_sched" value="{{$status['third_period_sched']}}" readonly/>
                                         </div>
                                     </div>
                                     <div class="col mt-4">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Adviser</label>
-                                            <input type="text" id="form6Example2" class="form-control" name="third_period_adviser" value="{{$status['third_period_adviser']}}" readonly/>
+                                            <input type="text" id="form6Example2" class="no-border form-control" name="third_period_adviser" value="{{$status['third_period_adviser']}}" readonly/>
                                             <span class="text-danger">@error('third_period_adviser'){{$message}} @enderror</span>
                                         </div>
                                     </div> 
                                 </div>
                             </div> 
-                        <button type="submit" class="btn btn-primary btn-block mt-4 mb-5">Enroll</button>
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary btn-block mt-5 mb-3 btn-long">Enroll</button>
+                        </div>
                     </form>
                 </div>
             </div>

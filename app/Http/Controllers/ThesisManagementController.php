@@ -26,7 +26,7 @@ class ThesisManagementController extends Controller
         }
 
         $thesis = Thesis::all();     
-        return view('student.dashboard.thesismanagement.student-thesis-directory', $data, ['thesis' => $thesis]);
+        return view('student.thesismanagement.student-thesis-directory', $data, ['thesis' => $thesis]);
     }
 
     function studentThesisSchedule()
@@ -37,9 +37,9 @@ class ThesisManagementController extends Controller
                 'LoggedUserInfo' => $student
             ];
         }
-        
+        $student = StudentUser::all();
         $thesis = Thesis::all();     
-        return view('student.dashboard.thesismanagement.student-thesis-schedule', $data, ['thesis' => $thesis]);
+        return view('student.dashboard.thesismanagement.student-thesis-schedule', $data, ['student'=>$student,'thesis' => $thesis]);
     }
 
     function thesisDirectory()
@@ -61,8 +61,9 @@ class ThesisManagementController extends Controller
             $data = [
                 'LoggedAdminInfo'=>$admin
             ];
-        }  
-        return view('admin.thesis-management.thesis-scheduling', $data);
+        }
+        $student = StudentUser::all();  
+        return view('admin.thesis-management.thesis-scheduling', $data, ['student'=>$student]);
     }
 
     function thesisDelete($id){

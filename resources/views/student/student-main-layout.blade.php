@@ -42,13 +42,15 @@
 
 
 <body>
+    
     <body id="page-top">
 
         <!-- Page Wrapper -->
         <div id="wrapper">
+            
     
             <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" aria-expanded="false">
+            <ul class="sticky-top navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" aria-expanded="false">
     
                 <!-- Sidebar -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center">
@@ -63,27 +65,42 @@
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span></a>
                 </li>
-    
-                <!-- Divider -->
-                <hr class="sidebar-divider my-0">
-    
-                <!-- Nav Item - Student Profile -->
+                
+                <hr class="sidebar-divider">
+
                 <li class="nav-item">
                     <a class="nav-link" href="/student/auth/student-profile">
                         <i class="bi bi-person-lines-fill"></i>
                         <span>Student Profile</span>
                     </a>              
                 </li>
-    
                 <!-- Divider -->
                 <hr class="sidebar-divider">
-    
-                <!-- Nav Item - Monitor Enrollment -->
+                
+                <!-- Nav Item - Student Profile -->
                 <li class="nav-item">
                     <a class="nav-link" href="/student/auth/monitor-enrollment">
                         <i class="bi bi-eye-fill"></i>
                         <span>Monitor Enrollment</span>
                     </a>              
+                </li>
+                
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+    
+                <!-- Nav Item - Monitor Enrollment -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne">
+                        <i class="bi bi-pencil"></i>
+                        <span>Pre-Enrollment</span>
+                    </a>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Fill up:</h6>
+                            <a class="collapse-item" href="/student/auth/pre-enroll">Pre-Enroll</a>
+                            <a class="collapse-item" href="/student/auth/comprehensive-exam">Comprehensive Exam</a>
+                        </div>
+                    </div>    
                 </li>
                 <hr class="sidebar-divider">
                 <!-- Nav Item - Thesis -->
@@ -116,12 +133,13 @@
             <!-- End of Sidebar -->
     
             <!-- Content Wrapper -->
+            
             <div id="content-wrapper" class="d-flex flex-column">
             
                 <div id="content">
                     
                     <!-- Top Bar -->
-                    <nav class="navbar navbar-expand-lg bg-dark sticky-top navbar-dark">
+                    <nav class="navbar navbar-expand-lg sticky-top navbar-dark shadow-5-strong">
                         <div class="container">
                             <a class="navbar-brand" href="{{route('auth.logout-student')}}"><img class="img-logo" style="height:48px; width: 48px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
                             <a class="navbar-brand" href="{{route('auth.logout-student')}}"><img class="img-logo" style="height:48px; width: 48px" src="/images/GradSchoolLogo.png" alt=""></a>

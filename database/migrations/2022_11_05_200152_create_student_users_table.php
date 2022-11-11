@@ -40,6 +40,7 @@ class CreateStudentUsersTable extends Migration
             $table->string('first_period_adviser');
             $table->string('second_period_adviser');
             $table->string('third_period_adviser');
+            $table->string('status');
             $table->timestamps();
         });
     }
