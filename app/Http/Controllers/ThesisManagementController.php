@@ -26,7 +26,7 @@ class ThesisManagementController extends Controller
         }
 
         $thesis = Thesis::all();     
-        return view('student.thesismanagement.student-thesis-directory', $data, ['thesis' => $thesis]);
+        return view('student.dashboard.thesismanagement.student-thesis-directory', $data, ['thesis' => $thesis]);
     }
 
     function studentThesisSchedule()

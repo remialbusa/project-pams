@@ -160,7 +160,6 @@ class AdmissionOfficerController extends Controller
             'first_period_adviser' => 'required',
             'second_period_adviser' => 'required',
             'third_period_adviser' => 'required',
-            'status' => 'required',
         ]);
 
         $student = new StudentUser();
@@ -190,8 +189,6 @@ class AdmissionOfficerController extends Controller
         $student->first_period_adviser = $request->first_period_adviser;
         $student->second_period_adviser = $request->second_period_adviser;
         $student->third_period_adviser = $request->third_period_adviser;
-        $student->status = $request->student;
-
         $save = $student->save();
 
         

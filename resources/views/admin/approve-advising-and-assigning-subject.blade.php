@@ -261,7 +261,7 @@
                                 <div class="col mt-4">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Schedule<label class="text-danger">*</label></label>
-                                        <input readonly type="text" id="form6Example2" class="form-control" name="first_period_sched" value="{{$student['first_period_sched']}}" />
+                                        <input type="text" id="form6Example2" class="form-control" name="first_period_sched" value="{{$student['first_period_sched']}}" />
                                         <span class="text-danger">@error('first_period_sched'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -308,7 +308,7 @@
                                 <div class="col mt-4">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Schedule<label class="text-danger">*</label></label>
-                                        <input readonly type="text" id="form6Example2" class="form-control" name="second_period_sched" value="{{$student['second_period_sched']}}" />
+                                        <input type="text" id="form6Example2" class="form-control" name="second_period_sched" value="{{$student['second_period_sched']}}" />
                                         <span class="text-danger">@error('second_period_sched'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -355,7 +355,7 @@
                                 <div class="col mt-4">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Schedule<label class="text-danger">*</label></label>
-                                        <input readonly type="text" id="form6Example2" class="form-control" name="third_period_sched" value="{{$student['third_period_sched']}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="third_period_sched" value="{{$student['third_period_sched']}}"/>
                                         <span class="text-danger">@error('third_period_sched'){{$message}} @enderror</span>
                                     </div>
                                 </div>
