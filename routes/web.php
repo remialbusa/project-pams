@@ -56,6 +56,11 @@ Route::get('/student/auth/student-thesis/schedule', [ThesisManagementController:
 
 //faqs routes
 Route::get('/faqs',[FaqsController::class, 'faqsStudent']);
+Route::post('/staff/admin/system-configuration/faqs', [FaqsController::class, 'saveFaqs'])->name('save-faqs');
+Route::get('/staff/admin/system-configuration/faqs/delete{id}', [FaqsController::class, 'deleteFaqs'])->name('delete-faqs')->middleware('isLoggedAdmin');
+Route::get('/staff/admin/system-configuration/faqs/edit{id}', [FaqsController::class, 'editFaqs'])->name('edit-faqs')->middleware('isLoggedAdmin');;
+Route::post('/staff/admin/system-configuration/faqs/edit', [FaqsController::class, 'faqsUpdate'])->name('update-faqs')->middleware('isLoggedAdmin');
+
 
 
 //Admin routes

@@ -80,7 +80,7 @@ class AdminController extends Controller
         $admin->save();
         return redirect('staff/admin/manage-users');
     }
-
+ 
     function deleteAdminUser($id){
         $admin = Admin::find($id);
         $admin->delete();
