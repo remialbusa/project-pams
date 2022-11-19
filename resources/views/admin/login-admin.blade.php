@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo-grad" src="/images/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,6 +41,7 @@
                 </ul>
             </div>
     </nav>
+ 
 
 
     <section class="admin-login-container mt-5">
@@ -57,7 +58,7 @@
                 <select class="form-select form-select-lg" aria-label="Default select example" name="user_type">
                     <option value="Admin">Admin</option>
                     <option value="OGS Officer">OGS Officer</option>
-                    <option value="MIS">MIS Officer</option>
+                    {{-- <option value="MIS">MIS Officer</option> --}}
                 </select>
                 <span class="text-danger">@error('user_type'){{$message}} @enderror</span>
             </div>

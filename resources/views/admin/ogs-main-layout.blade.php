@@ -73,11 +73,16 @@
                         <h6 class="collapse-header">Student Type:</h6>
                         <a class="collapse-item" href="{{ route('admin.pre-enrollment-new')}}">New</a>
                         <a class="collapse-item" href="{{ route('admin.pre-enrollment-continuing')}}">Continuing</a>
+                        <h6 class="collapse-header">Process:</h6>
+                        <a class="collapse-item" href="{{ route('admin.pending')}}">Pending Students</a>
+                        <a class="collapse-item" href="{{ route('admin.advise-assign-subjects')}}">Advising & Assign</a>
                     </div>
                 </div>       
             </li>
+            
             <hr class="sidebar-divider">
-            <!-- Nav Item - Student Monitoring -->
+            <!-- Nav Item - Utilities Collapse Menu -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo">
                     <i class="fas fa-fw fa-wrench"></i>
@@ -85,8 +90,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Student Status:</h6>
-                        <a class="collapse-item" href="{{ route('admin.pending')}}">Pending Students</a>
+                        <h6 class="collapse-header">Monitoring:</h6>
                         <a class="collapse-item" href="{{ route('admin.enrolled')}}">Enrolled Students</a>
                         <a class="collapse-item" href="{{ route('admin.student-users')}}">Student Users</a>
                     </div>
@@ -96,15 +100,15 @@
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree">
-                    <span><i class="fas fa-fw fa-wrench"></i>Advising & Assigning</span>
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Units</span>
                 </a>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Advising & Assigning:</h6>
-                        <a class="collapse-item" href="{{ route('admin.advise-assign-subjects')}}">Advising & Assign</a>
-                        <a class="collapse-item" href="{{ route('admin.programs')}}">List of Programs</a>
-                        <a class="collapse-item" href="{{ route('admin.subjects')}}">List of Subjects</a>
-                        <a class="collapse-item" href="{{ route('admin.instructor')}}">List of Advisers</a>
+                        <h6 class="collapse-header">Units:</h6>
+                        <a class="collapse-item" href="{{ route('admin.programs')}}">Programs</a>
+                        <a class="collapse-item" href="{{ route('admin.subjects')}}">Subjects</a>
+                        <a class="collapse-item" href="{{ route('admin.instructor')}}">Instructors</a>
                     </div>
                 </div>    
             </li>
@@ -127,7 +131,7 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item mb-3">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ route('admin.comprehensive-exam')}}">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Comprehensive Exam</span></a>
             </li>
@@ -153,8 +157,8 @@
                     <!-- Top Bar -->
                     <nav class="navbar navbar-expand-lg sticky-top navbar-dark shadow-5-strong">
                         <div class="container">
-                            <a class="navbar-brand" href="{{route('auth.logout-admin')}}"><img class="img-logo" style="height:48px; width: 48px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
-                            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
+                            <a class="navbar-brand" href="{{route('auth.logout-admin')}}"><img class="img-logo" style="height:40px; width: 40px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
+                            <a class="navbar-brand" href="{{route('auth.logout-admin')}}"><img class="img-logo-grad" style="height:50px; width: 50px" src="/images/GradSchoolLogo.png" alt=""></a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>

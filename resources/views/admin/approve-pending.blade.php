@@ -27,8 +27,8 @@
 
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo" style="height:40px; width: 40px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo-grad" style="height:50px; width: 50px" src="/images/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -76,7 +76,7 @@
                                                 <option value="Done">Done</option>
                                                 
                                                 @else
-                                                
+                                                <option disabled selected value="Pending">Pending</option>
                                                 @endif
                                             </select>
                                             <div class="mt-3"><a href="{{ route('admin.view-pdf', $status->id)}}" class="edit mx-2 bi bi-eye">View Requirements</a></div>
@@ -92,7 +92,7 @@
                                                 <option value="Done">Done</option>
                                                 
                                                 @else
-                                                
+                                                <option disabled selected value="Pending">Pending</option>
                                                 @endif
                                             </select>
                                             <span class="text-danger">@error('payment'){{$message}} @enderror</span>
@@ -106,6 +106,7 @@
                                                 @if($status['status'] == 'Done')
                                                 <option value="Done">Done</option>
                                                 @else
+                                                <option disabled selected value="Pending">Pending</option>
                                                 @endif
                                             </select>
                                             <span class="text-danger">@error('status'){{$message}} @enderror</span>
@@ -268,15 +269,11 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Select Your Program</label>
                                             <select class="no-border form-select" aria-label="Default select example" name="program">
-                                                @if($status['program'] == 'MIT')
-                                                    @foreach ($programs as $programs)
-                                                        <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($programs as $programs)
-                                                        <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
-                                                    @endforeach
-                                                @endif
+                                                @foreach ($programs as $programs)
+                                                <option value="{{$programs->program}}"
+                                                    {{$status->program == $programs->program ? 'selected': ''}}>
+                                                    {{$programs->program}}</option>
+                                                @endforeach
                                             </select>
                                             <span class="text-danger">@error('program'){{$message}} @enderror</span>
                                         </div>
@@ -289,11 +286,11 @@
                                             <select class="no-border form-select" aria-label="Default select example" name="first_period_sub">
                                                 @if($status['first_period_sub'] == 'MIT 501 Advanced Programming I')
                                                     @foreach ($firstPeriod as $subjects)
-                                                        <option value="{{$subjects->subject}}{{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                     @endforeach
                                                 @else
                                                     @foreach ($firstPeriod as $subjects)
-                                                        <option value="{{$subjects->subject}}{{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
@@ -322,11 +319,11 @@
                                             <select class="no-border form-select" aria-label="Default select example" name="second_period_sub">
                                                 @if($status['second_period_sub'] == 'MIT 502 Methods of Research for IT')
                                                     @foreach ($secondPeriod as $subjects)
-                                                        <option value="{{$subjects->subject}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                     @endforeach
                                                 @else
                                                     @foreach ($secondPeriod as $subjects)
-                                                        <option value="{{$subjects->subject}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
@@ -355,11 +352,11 @@
                                             <select class="no-border form-select " aria-label="Default select example" name="third_period_sub">
                                                 @if($status['third_period_sub'] == 'MIT 503 Statistics for IT Research')
                                                     @foreach ($thirdPeriod as $subjects)
-                                                        <option value="{{$subjects->subject}}{{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                     @endforeach
                                                 @else
                                                     @foreach ($thirdPeriod as $subjects)
-                                                        <option value="{{$subjects->subject}}{{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                     @endforeach
                                                 @endif
                                             </select>

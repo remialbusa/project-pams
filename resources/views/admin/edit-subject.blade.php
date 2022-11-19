@@ -32,8 +32,8 @@
 <body>
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo" style="height:40px; width: 40px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo-grad" style="height:50px; width: 50px" src="/images/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,7 +41,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/staff/admin/manage-users">Back</a>
+                        <a class="nav-link" href="/staff/admin/subjects">Back</a>
                     </li>
                 </ul>
             </div>
@@ -71,15 +71,11 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="program">
-                                    @if($subject['program'] == 'MIT')
-                                        @foreach ($programs as $programs)
-                                            <option value="{{$programs->program}}">{{$programs->program}}</option>
-                                        @endforeach
-                                    @else
-                                        @foreach ($programs as $programs)
-                                            <option value="{{$programs->program}}">{{$programs->program}}</option>
-                                        @endforeach
-                                    @endif
+                                    @foreach ($programs as $programs)
+                                        <option value="{{$programs->program}}"
+                                            {{$subject->program == $programs->program ? 'selected': ''}}>
+                                            {{$programs->program}}</option>
+                                    @endforeach
                                 </select>
                                 <span class="text-danger">@error('program'){{$message}} @enderror</span>
                                 <label for="floatingInput">Program</label>
@@ -95,25 +91,15 @@
                                 <label for="floatingInput">Subject</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="description" placeholder="description" value="{{$subject['description']}}">
-                                <span class="text-danger">@error('description'){{$message}} @enderror</span>
-                                <label for="floatingInput">Description</label>
-                            </div>
-                            <div class="form-floating mb-3">
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="units">
                                     @if($subject['unit'] == '1')
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                        <option value="1">1</option>
                                     @elseif(($subject['unit'] == '2'))
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                        <option value="2">2</option>
                                     @else
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                        <option value="3">3</option>
                                     @endif
+                                    
                                 </select>
                                 <span class="text-danger">@error('units'){{$message}} @enderror</span>
                                 <label for="floatingInput">Units</label>
@@ -123,15 +109,9 @@
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="period">
                                     @if($subject['period'] == '1st Period')
                                     <option value="1st Period">1st Period</option>
-                                    <option value="2nd Period">2nd Period</option>
-                                    <option value="3rd Period">3rd Period</option>
                                     @elseif(($subject['period'] == '2nd Period'))
-                                    <option value="1st Period">1st Period</option>
                                     <option value="2nd Period">2nd Period</option>
-                                    <option value="3rd Period">3rd Period</option>
                                     @else
-                                    <option value="1st Period">1st Period</option>
-                                    <option value="2nd Period">2nd Period</option>
                                     <option value="3rd Period">3rd Period</option>
                                     @endif
                                 </select>

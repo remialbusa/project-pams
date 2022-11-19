@@ -14,6 +14,7 @@ use App\Models\AssignStudent;
 use App\Models\AdvisingStudent;
 use App\Models\StudentUser;
 use App\Models\Adviser;
+use App\Models\ComprehensiveExam;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -88,7 +89,6 @@ class AdmissionOfficerController extends Controller
         }   
 
         $pendingStudent = PendingStudent::all();
-
         return view('admin.monitoring.pending-students', $data, ['pendingStudents'=>$pendingStudent]);
     }
 
@@ -420,7 +420,8 @@ class AdmissionOfficerController extends Controller
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
         $programs = Program::all();
         $status = PendingStudent::find($id);
-        return view('admin.approve-pending', $data, ['programs'=>$programs,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'status'=>$status]);
+        $student = Student::find($id);
+        return view('admin.approve-pending', $data, ['student'=>$student,'programs'=>$programs,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'status'=>$status]);
     }
 
     function studentUsers()
@@ -559,7 +560,6 @@ class AdmissionOfficerController extends Controller
         $student->first_period_adviser = $request->first_period_adviser;
         $student->second_period_adviser = $request->second_period_adviser;
         $student->third_period_adviser = $request->third_period_adviser;
-        $student->status = "";
         $save = $student->save();
 
         $this->deletePending($request->id);
@@ -647,7 +647,6 @@ class AdmissionOfficerController extends Controller
             'code' => 'required',
             'program' => 'required',
             'subject' => 'required',
-            'description' => 'required',
             'units' => 'required',
             'period' => 'required',
         ]);
@@ -657,7 +656,6 @@ class AdmissionOfficerController extends Controller
         $subject->code = $request->code;
         $subject->program = $request->program;
         $subject->subject = $request->subject;
-        $subject->description = $request->description;
         $subject->unit = $request->units;    
         $subject->period = $request->period;   
         $save = $subject->update();
@@ -675,7 +673,6 @@ class AdmissionOfficerController extends Controller
             'code' => 'required',
             'program' => 'required',
             'subject' => 'required',
-            'description' => 'required',
             'units' => 'required',
             'period' => 'required',
         ]);
@@ -685,7 +682,6 @@ class AdmissionOfficerController extends Controller
         $subject->code = $request->code;
         $subject->program = $request->program;
         $subject->subject = $request->subject;
-        $subject->description = $request->description;
         $subject->unit = $request->units;    
         $subject->period = $request->period;  
         $save = $subject->save();
@@ -891,9 +887,9 @@ class AdmissionOfficerController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         } 
-        
+        $programs = Program::all();
         $adviser = Adviser::all();
-        return view('admin.advising.adviser', $data, ['adviser'=>$adviser]);
+        return view('admin.advising.adviser', $data, ['programs'=>$programs,'adviser'=>$adviser]);
     }
 
     function adviserInsert(Request $request)
@@ -956,9 +952,9 @@ class AdmissionOfficerController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         } 
-
+        $programs = Program::all();
         $advisers = Adviser::find($id);
-        return view('admin.edit-adviser', $data, ['adviser'=>$advisers]);
+        return view('admin.edit-adviser', $data, ['programs'=>$programs,'adviser'=>$advisers]);
     }
 
     function adviserDelete($id)
@@ -966,5 +962,37 @@ class AdmissionOfficerController extends Controller
         $adviser = Adviser::find($id);
         $adviser->delete();
         return redirect('/staff/admin/list-of-adviser');
+    }
+
+    function comprehensiveExam(Request $request)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        } 
+        $cexam = ComprehensiveExam::all();
+        return view('admin.comprehensive-exam.comprehensive-exam', $data, ['cexam'=>$cexam]);
+    }
+
+    function comprehensiveExamView($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $cexam = ComprehensiveExam::find($id);
+        $program = Program::all();
+        return view('admin.view-comprehensive-exam', $data, ['programs'=>$program,'cexam'=>$cexam]);
+    }
+
+    function comprehensiveExamDelete($id)
+    {
+        $cexam = ComprehensiveExam::find($id);
+        $cexam->delete();
+        return redirect('/staff/admin/comprehensive-exam');
     }
 }

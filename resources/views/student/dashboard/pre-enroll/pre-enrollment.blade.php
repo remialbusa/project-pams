@@ -223,17 +223,12 @@
                                             <div class="col">
                                                 <div class="form-outline form-line">
                                                     <label class="form-label" for="form6Example2">Select Your Program</label>
-                                                    <select class="form-select no-border" aria-label="Default select example" id="slct_program" name="program" {{-- onchange="populate(this.id, 'slct_first_period')" --}}>
-                                                        
-                                                        @if($LoggedUserInfo['program'] == 'MIT')
+                                                    <select class="form-select" aria-label="Default select example" id="slct_program" name="program" {{-- onchange="populate(this.id, 'slct_first_period')" --}}>
                                                         @foreach ($programs as $programs)
-                                                            <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($programs as $programs)
-                                                                <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
-                                                            @endforeach
-                                                        @endif
+                                                        <option value="{{$programs->program}}"
+                                                            {{$LoggedUserInfo->program  == $programs->program ? 'selected': ''}}>
+                                                            {{$programs->program}}</option>
+                                                        @endforeach
                                                     </select>
                                                     <span class="text-danger">@error('program'){{$message}} @enderror</span>
                                                 </div>
@@ -244,15 +239,15 @@
                                             <div class="col-md-6 mt-2">
                                                 <div class="form-outline form-line">
                                                     <label class="form-label" for="form6Example1">1ST PERIOD</label>
-                                                    <select class="form-select no-border" aria-label="Default select example" id="slct_first_period" name="first_period" {{-- onchange="populateTwo(this.id, 'slct_second_period')" --}}>
+                                                    <select class="form-select" aria-label="Default select example" id="slct_first_period" name="first_period" {{-- onchange="populateTwo(this.id, 'slct_second_period')" --}}>
                                                         
                                                         @if($LoggedUserInfo['first_period_sub'] == '')
                                                             @foreach ($firstPeriod as $subjects)
-                                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @else
                                                             @foreach ($firstPeriod as $subjects)
-                                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @endif
                                                     </select>
@@ -262,15 +257,15 @@
                                             <div class="col-sm-6 mt-2">
                                                 <div class="form-outline form-line">
                                                     <label class="form-label" for="form6Example2">2ND PERIOD</label>
-                                                    <select class="form-select no-border" aria-label="Default select example" id="slct_second_period" name="second_period" {{-- onchange="populateThree(this.id, 'slct_third_period')" --}}>
+                                                    <select class="form-select" aria-label="Default select example" id="slct_second_period" name="second_period" {{-- onchange="populateThree(this.id, 'slct_third_period')" --}}>
                                                         
                                                         @if($LoggedUserInfo['second_period_sub'] == '')
                                                             @foreach ($secondPeriod as $subjects)
-                                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @else
-                                                            @foreach ($secondPeriod as $subjects)
-                                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                            @foreach ($firstPeriod as $subjects)
+                                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @endif
                                                     </select>
@@ -280,15 +275,15 @@
                                             <div class="col mt-3 mt-2">
                                                 <div class="form-outline form-line">
                                                     <label class="form-label" for="form6Example2">3RD PERIOD</label>
-                                                    <select class="form-select no-border" aria-label="Default select example" id="slct_third_period" name="third_period">
+                                                    <select class="form-select" aria-label="Default select example" id="slct_third_period" name="third_period">
                                                         
                                                         @if($LoggedUserInfo['third_period_sub'] == '')
                                                             @foreach ($thirdPeriod as $subjects)
-                                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @else
-                                                            @foreach ($thirdPeriod as $subjects)
-                                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                            @foreach ($firstPeriod as $subjects)
+                                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @endif
                                                     </select>
@@ -296,7 +291,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                                 <hr class="border-divider">
                                 <button type="submit" class="btn btn-primary btn-block mt-4 mb-5">Register</button>

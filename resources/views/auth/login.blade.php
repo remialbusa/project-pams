@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo-grad" src="/images/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,46 +42,47 @@
     </nav>
 
     <div id="hero-login"></div>
-    <section class="login-container mt-5">
-        <h3 class="login-heading mb-4">Student login <i class="bi bi-2x bi-question-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></h3></i>
-        <!-- login Form -->
-        <form action="{{ route('auth.verify-student') }}" method="POST">
-            @if(Session::get('fail'))
-            <div class="alert alert-danger">{{Session::get('fail')}}</div>
-            @endif
+    <section class="details">
+        <div class="login-container mt-5">
+            <h3 class="login-heading mb-4">Student login <i class="bi bi-2x bi-question-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></h3></i>
+            <!-- login Form -->
+            <form action="{{ route('auth.verify-student') }}" method="POST">
+                @if(Session::get('fail'))
+                <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                @endif
 
-            @csrf
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="student_id" placeholder="Student ID" value="{{ old('student_id') }}">
-                <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
-                <label for="floatingInput">Student ID</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" name="password" placeholder="Password">
-                <span class="text-danger">@error('password'){{$message}} @enderror</span>
-                <label for="floatingPassword">Password</label>
-            </div>
-
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                <label class="form-check-label" for="rememberPasswordCheck">
-                    Remember password
-                </label>
-            </div>
-            <div class="d-grid">
-                <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Login</button>
-                <div class="text-center">
-                    <a class="small" href="#">Forgot password?</a>
+                @csrf
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="student_id" placeholder="Student ID" value="{{ old('student_id') }}">
+                    <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
+                    <label for="floatingInput">Student ID</label>
                 </div>
-            </div>
-        </form>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                    <span class="text-danger">@error('password'){{$message}} @enderror</span>
+                    <label for="floatingPassword">Password</label>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+                    <label class="form-check-label" for="rememberPasswordCheck">
+                        Remember password
+                    </label>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Login</button>
+                    <div class="text-center">
+                        <a class="small" href="#">Forgot password?</a>
+                    </div>
+                </div>
+            </form>
+        </div>
     </section>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div style="overflow-y: scroll" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            
             <div class="modal-header">
             <h5 class="modal-title" id="staticBackdropLabel">Student Login Info</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

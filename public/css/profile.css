@@ -1,3 +1,8 @@
+.border-exist{
+    border-radius: 1;
+    border-left: 1;
+    border-right: 1;
+}
 
 .form-select{
     border-radius: 0;
@@ -116,8 +121,13 @@ p{
 }
 
 .img-logo {
-    height: 48px;
-    width: 48px;
+    height: 40px;
+    width: 40px;
+}
+
+.img-logo-grad {
+    height: 50px;
+    width: 50px;
 }
 
 @media screen and (max-width:767px) {

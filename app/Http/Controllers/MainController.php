@@ -9,9 +9,11 @@ use App\Models\PendingStudent;
 use App\Models\Subject;
 use App\Models\Program;
 use App\Models\TechnicalForm;
+use App\Models\ComprehensiveExam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
@@ -276,7 +278,8 @@ class MainController extends Controller
         $studentUser = StudentUser::all();
         $student = Student::all();
         $enrolledStudent = EnrolledStudent::all();
-        return view('student.dashboard.pre-enroll.comprehensive-exam', $data, ['studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
+        $program = Program::all();
+        return view('student.dashboard.pre-enroll.comprehensive-exam', $data, ['programs'=>$program,'studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
     }
 
 
@@ -321,4 +324,35 @@ class MainController extends Controller
         }
     }
 
+    function insertComprehensiveExam(Request $request)
+    {
+        $request->validate([
+            'student_id' => 'required',
+            'program' => 'required',
+            'name' => 'required',
+            'exam_status' => 'required',
+            'file' => 'required|mimes:pdf,xlx,csv|max:2048',                         
+        ]);
+
+        $cexam = new ComprehensiveExam();
+        $cexam->student_id = $request->student_id;
+        $cexam->program = $request->program;
+        $cexam->name = $request->name;
+        $cexam->exam_status = $request->exam_status;
+
+        $file = $request->file;
+        
+        $filename=$file->getClientOriginalName();
+        $request->file->move('assets',$filename);
+
+        $cexam->file= $filename;
+
+        $save = $cexam->save();
+
+        if ($save) {
+            return back()->with('success', 'Form Submitted Successfuly!');
+        } else {
+            return back()->with('fail', 'Failed Registration');
+        }
+    }
 }

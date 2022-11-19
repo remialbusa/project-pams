@@ -18,7 +18,6 @@ class CreateSubjectsTable extends Migration
             $table->string('code');
             $table->string('program');
             $table->string('subject');
-            $table->string('description');
             $table->string('unit');
             $table->string('period');        
             $table->timestamps();

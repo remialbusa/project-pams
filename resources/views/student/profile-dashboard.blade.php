@@ -134,8 +134,8 @@
                                                         <option selected value="Male">Male</option>
                                                         <option value="Female">Female</option>
                                                     @else
-                                                        <option value="Male">Male</option>
                                                         <option selected value="Female">Female</option>
+                                                        <option value="Male">Male</option>
                                                     @endif
                                                 </select>
                                                 <span class="text-danger">@error('gender'){{$message}} @enderror</span>
@@ -214,16 +214,11 @@
                                                 <div class="form-outline form-line">
                                                     <label class="form-label" for="form6Example2">Select Your Program</label>
                                                     <select class="form-select" aria-label="Default select example" id="slct_program" name="program" {{-- onchange="populate(this.id, 'slct_first_period')" --}}>
-                                                        
-                                                        @if($LoggedUserInfo['program'] == 'MIT')
                                                         @foreach ($programs as $programs)
-                                                            <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($programs as $programs)
-                                                                <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
-                                                            @endforeach
-                                                        @endif
+                                                        <option value="{{$programs->program}}"
+                                                            {{$LoggedUserInfo->program  == $programs->program ? 'selected': ''}}>
+                                                            {{$programs->program}}</option>
+                                                        @endforeach
                                                     </select>
                                                     <span class="text-danger">@error('program'){{$message}} @enderror</span>
                                                 </div>
@@ -238,11 +233,11 @@
                                                         
                                                         @if($LoggedUserInfo['first_period_sub'] == '')
                                                             @foreach ($firstPeriod as $subjects)
-                                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @else
                                                             @foreach ($firstPeriod as $subjects)
-                                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @endif
                                                     </select>
@@ -256,11 +251,11 @@
                                                         
                                                         @if($LoggedUserInfo['second_period_sub'] == '')
                                                             @foreach ($secondPeriod as $subjects)
-                                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @else
-                                                            @foreach ($secondPeriod as $subjects)
-                                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                            @foreach ($firstPeriod as $subjects)
+                                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @endif
                                                     </select>
@@ -274,11 +269,11 @@
                                                         
                                                         @if($LoggedUserInfo['third_period_sub'] == '')
                                                             @foreach ($thirdPeriod as $subjects)
-                                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @else
-                                                            @foreach ($thirdPeriod as $subjects)
-                                                                <option value="{{$subjects->subject}} - {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                            @foreach ($firstPeriod as $subjects)
+                                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @endif
                                                     </select>

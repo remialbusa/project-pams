@@ -24,7 +24,7 @@
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark shadow-5-strong">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo-grad" src="/images/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -52,6 +52,7 @@
             </div>
         </div>
     </nav>
+    
     <section class="hero-main">
         <div class="container h-100">
             <div class="row h-100">
@@ -71,10 +72,10 @@
                                 is currently on going! Pre-enrollment period:
                                 July 16 - August 7, 2022. Enrollment Period: August 08 - 19, 2022.
                                 Classes will start on August 22, 2022.
-                                
+
                             </p>
-                            <a href="{{ route('enrollment') }}" class="btn btn-warning bg-warning btn-block mt-3">Enroll now</a>
-                            <a href="{{ route('process')}}" class="btn btn-warning bg-warning btn-block mt-3">Enrollment process</a>
+                            <a href="{{ route('enrollment') }}" class="button1">Enroll now</a>
+                            <a href="{{ route('process') }}" class="button">Enrollment process</a>
                         </div>
                     </div>
                 </div>
@@ -85,15 +86,8 @@
     <section class="container feature pt-5 mt-5 mb-5">
 
         <!-- what we do -->
-        <h1 class="text-center display-6">Event Calendar</h1>
+        <h1 class="text-center display-6">Announcements</h1>
         <hr/>
-        <div class="container h-100">
-            <img src="./images/handshake-colour-thumbnail.png" class="rounded mx-auto d-block img-fit" alt="...">
-        </div>
-        <hr>
-    </section>
-
-    <section class="hero-body pt-5 mt-5 mb-5">
         <div class="container h-100">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
                 <div class="carousel-indicators">
@@ -132,6 +126,17 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+            </div>
+        </div>
+        <hr>
+    </section>
+
+    <section class="hero-body pt-5 mt-5 mb-5">
+        <h1 style="color:white;"class="text-center display-6">Event Calendar</h1>
+        <hr/>
+        <div class="container h-100 mt-5">
+            <div class="text-center">
+                <img src="./images/handshake-colour-thumbnail.png" class="rounded mx-auto d-block img-fit" alt="...">
             </div>
         </div>
     </section>

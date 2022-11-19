@@ -33,7 +33,7 @@
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo-grad" src="/images/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,7 +41,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/staff/admin/manage-users">Back</a>
+                        <a class="nav-link" href="/staff/admin/programs">Back</a>
                     </li>
                 </ul>
             </div>
@@ -75,7 +75,21 @@
                                 <label for="floatingInput">Code</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="degree" placeholder="Degree" value="{{$programs['degree']}}">
+                                <select class="form-select form-select-lg" aria-label="Default select example" name="degree">
+                                    @if($programs['degree'] == 'Doctoral')
+                                    <option value="Doctoral">Doctoral Degree</option>
+                                    <option value="Thesis Master’s">Thesis Master’s</option>
+                                    <option value="Non-Thesis Master’s">Non-Thesis Master’s</option>
+                                    @elseif($programs['degree'] == 'Thesis Master’s')
+                                    <option value="Thesis Master’s">Thesis Master’s</option>
+                                    <option value="Non-Thesis Master’s">Non-Thesis Master’s</option>
+                                    <option value="Doctoral">Doctoral Degree</option>
+                                    @else
+                                    <option value="Non-Thesis Master’s">Non-Thesis Master’s</option>
+                                    <option value="Doctoral">Doctoral Degree</option>
+                                    <option value="Thesis Master’s">Thesis Master’s</option>
+                                    @endif
+                                </select>
                                 <span class="text-danger">@error('degree'){{$message}} @enderror</span>
                                 <label for="floatingInput">Degree</label>
                             </div>

@@ -27,8 +27,8 @@
 
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradSchoolLogo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo" style="height:40px; width: 40px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo-grad" style="height:50px; width: 50px" src="/images/GradSchoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -117,11 +117,25 @@
                                     </div>
                                 </div>
                             </div> 
-                            <div class="col mt-4">
-                                <div class="form-outline form-line">
-                                    <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
-                                    <input type="text" id="form6Example1" class="form-control" name="student_id" value="{{$student['student_id']}}" />
-                                    <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
+                            <div class="row mt-2 mb-3">
+                                <div class="col-md-5">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example1">Student Type</label>
+                                        <select class="no-border form-select" aria-label="Default select example" name="student_type">
+                                            @if($student['student_type'] == 'New Student')
+                                            <option selected value="New Student">New Student</option>
+                                            @else
+                                            <option value="Continuing">Continuing</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col ">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="student_id" value="{{$student['student_id']}}" />
+                                        <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
+                                    </div>
                                 </div>
                             </div>
                         </div> 

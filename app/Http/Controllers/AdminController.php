@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\EnrolledStudent;
 use App\Models\Student;
+use App\Models\Faqs;
+use App\Models\TechnicalForm;
+use App\Models\Announcement;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+
 
 class AdminController extends Controller
 {
@@ -144,8 +149,9 @@ class AdminController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
+        $announcement = Announcement::all();
         $adminList = Admin::all();
-        return view('admin.system-configuration.announcements', $data, ['admins'=>$adminList]);
+        return view('admin.system-configuration.announcements', $data, ['announcement'=>$announcement,'admins'=>$adminList]);
     }
 
     function systemFaqs(){
@@ -155,8 +161,9 @@ class AdminController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
+        $faqs = Faqs::all();
         $adminList = Admin::all();
-        return view('admin.system-configuration.faqs', $data, ['admins'=>$adminList]);
+        return view('admin.system-configuration.faqs', $data, ['faqs'=>$faqs, 'admins'=>$adminList]);
     }
 
     function systemTechnicalsupport(){
@@ -166,8 +173,14 @@ class AdminController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
-        $adminList = Admin::all();
-        return view('admin.system-configuration.technical-support', $data, ['admins'=>$adminList]);
+        $technicalForm = TechnicalForm::all();
+        return view('admin.system-configuration.technical-support', $data, ['technicalForm'=>$technicalForm]);
+    }
+
+    function deleteTechnicalForm($id){
+        $technicalForm = TechnicalForm::find($id);
+        $technicalForm->delete();
+        return redirect('/staff/admin/system-configuration/technicalsupport');
     }
 
     function logoutAdmin(){
@@ -187,6 +200,45 @@ class AdminController extends Controller
         }
         $enrolledStudent = EnrolledStudent::all();
         return view('admin.system-configuration.active-semester', $data, ['enrolledStudent'=>$enrolledStudent]);
+    }
+
+    function insertAnnouncements(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'file' => 'required|mimes:png,jpeg|max:2048',
+        ]);
+
+        $announcement = new Announcement;
+        $announcement->name = $request->name;
+        
+        $file = $request->file;
+        
+        $filename=$file->getClientOriginalName();
+        $request->file->move('assets',$filename);
+
+        $announcement->file= $filename;
+
+        $save = $announcement->save();
+
+
+        if ($save) {
+            return back()->with('success', 'Registration complete');
+        } else {
+            return back()->with('fail', 'Failed Registration');
+        }
+    }
+
+    function viewImage($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $announcement = Announcement::find($id);
+        return view('admin.view-image', $data, compact('announcement')); 
     }
 
 }

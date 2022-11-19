@@ -56,7 +56,21 @@ Route::get('/student/auth/student-thesis/schedule', [ThesisManagementController:
 
 //faqs routes
 Route::get('/faqs',[FaqsController::class, 'faqsStudent']);
+Route::post('/staff/admin/system-configuration/faqs', [FaqsController::class, 'saveFaqs'])->name('save-faqs');
+Route::get('/staff/admin/system-configuration/faqs/delete/{id}', [FaqsController::class, 'deleteFaqs'])->name('delete-faqs')->middleware('isLoggedAdmin');
+Route::get('/staff/admin/system-configuration/faqs/edit/{id}', [FaqsController::class, 'editFaqs'])->name('edit-faqs')->middleware('isLoggedAdmin');;
+Route::post('/staff/admin/system-configuration/faqs/edit', [FaqsController::class, 'faqsUpdate'])->name('update-faqs')->middleware('isLoggedAdmin');
 
+//announcements routes
+Route::get('/staff/admin/system-configuration/announcements', [AdminController::class, 'systemAnnouncements'])->middleware('isLoggedAdmin');
+Route::post('/staff/admin/system-configuration/announcement/insert', [AdminController::class, 'insertAnnouncements'])->name('admin.insert-announcements')->middleware('isLoggedAdmin');
+Route::get('/staff/admin/system-configuration/announcements/view-image/{id}', [AdminController::class, 'viewImage'])->name('admin.view-image')->middleware('isLoggedAdmin');
+
+//comprehensive routes
+Route::get('/staff/admin/comprehensive-exam', [AdmissionOfficerController::class, 'comprehensiveExam'])->name('admin.comprehensive-exam')->middleware('isLoggedAdmin');
+Route::post('/staff/admin/comprehensive-exam', [MainController::class, 'insertComprehensiveExam'])->name('insert-comprehensive-exam')->middleware('isLoggedAdmin');
+Route::get('/staff/admin/comprehensive-exam/delete/{id}', [AdmissionOfficerController::class, 'comprehensiveExamDelete'])->name('exam-delete')->middleware('isLoggedAdmin');
+Route::get('/staff/admin/comprehensive-exam/{id}', [AdmissionOfficerController::class, 'comprehensiveExamView'])->name('admin.exam-view')->middleware('isLoggedAdmin');
 
 //Admin routes
 Route::get('/staff/auth/login', [AdminController::class, 'loginAdmin']);
@@ -73,9 +87,9 @@ Route::get('/staff/admin/delete/{id}', [AdminController::class, 'deleteAdminUser
 //Verify and login admin routes
 Route::post('/staff/auth/verify', [AdminController::class, 'verify'])->name('auth.verify-admin');
 Route::get('/staff/admin/manage-users', [AdminController::class, 'manageUsersView'])->middleware('isLoggedAdmin');
-Route::get('/staff/admin/system-configuration/announcements', [AdminController::class, 'systemAnnouncements'])->middleware('isLoggedAdmin');
 Route::get('/staff/admin/system-configuration/faqs', [AdminController::class, 'systemFaqs'])->middleware('isLoggedAdmin');
 Route::get('/staff/admin/system-configuration/technicalsupport', [AdminController::class, 'systemTechnicalsupport'])->middleware('isLoggedAdmin');
+Route::get('/staff/admin/system-configuration/technicalsupport/delete/{id}', [AdminController::class, 'deleteTechnicalForm'])->name('technicalform-delete')->middleware('isLoggedAdmin');
 Route::get('/staff/auth/logout', [AdminController::class, 'logoutAdmin'])->name('auth.logout-admin');
 Route::get('/staff/auth/system-configuration/active-semester', [AdminController::class, 'activeSemester'])->name('auth.active-semester')->middleware('isLoggedAdmin');
 

@@ -24,9 +24,8 @@
                     <thead>
                         <tr>
                             <th>Code</th>
-                            <th>Under Program</th>
+                            <th>Program</th>
                             <th>Subject</th>
-                            <th>Description</th>
                             <th>Units</th>
                             <th>Period</th>
                             <th>Action</th>
@@ -38,7 +37,6 @@
                             <td>{{$subject->code}}</td>
                             <td>{{$subject->program}}</td>
                             <td>{{$subject->subject}}</td>                       
-                            <td>{{$subject->description}}</td>
                             <td>{{$subject->unit}}</td>
                             <td>{{$subject->period}}</td>
                             <td>
@@ -91,11 +89,6 @@
                             <input type="text" class="form-control" name="subject" placeholder="Subject">
                             <span class="text-danger">@error('subject'){{$message}} @enderror</span>
                             <label for="floatingInput">Subject</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="description" placeholder="Description">
-                            <span class="text-danger">@error('description'){{$message}} @enderror</span>
-                            <label for="floatingInput">Description</label>
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select form-select-lg" aria-label="Default select example" name="units">

@@ -19,6 +19,7 @@
 
     <!-- custom css -->
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
+    <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
     <title>Pre-registration</title>
 </head>
@@ -26,8 +27,8 @@
 <body>
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
-            <a class="navbar-brand" href="/welcome"><img class="img-logo" src="/images/GradschoolLogo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo" style="height:40px; width: 40px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/welcome"><img class="img-logo-grad" style="height:50px; width: 50px" src="/images/GradschoolLogo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -223,7 +224,6 @@
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Select Your Program</label>
                                         <select class="form-select" aria-label="Default select example" id="slct_program" name="program" {{-- onchange="populate(this.id, 'slct_first_period')" --}}>
-                                            <option disabled selected>N/A</option>
                                             @foreach ($programs as $programs)
                                                 <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
                                             @endforeach
@@ -258,11 +258,12 @@
                                 <div class="col-md-6 mt-2">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">1ST PERIOD</label>
-                                        <select class="form-select" aria-label="Default select example" id="slct_first_period" name="first_period" {{-- onchange="populateTwo(this.id, 'slct_second_period')" --}}>
+                                        <select class="form-select" aria-label="Default select example" id="slct_first_period" name="first_period">
                                             <option disabled selected>Select First Period Subject</option>
                                             @foreach ($firstPeriod as $subjects)
-                                                <option value="{{$subjects->subject}} {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                <option value="{{$subjects->code}} {{$subjects->program}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                             @endforeach
+
                                             {{-- <option value="MIT 501 Advanced Programming I">MIT 501 - Advanced Programming I</option>
                                             <option value="MIT 505 Advanced Data Structure and Algorithm">MIT 505 - Advanced Data Structure & Algorithm</option>
                                             <option value="MIT 506 Advanced Multimedia Communication">MIT 506 - Advanced Multimedia Communication</option>
@@ -281,10 +282,10 @@
                                 <div class="col-sm-6 mt-2">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">2ND PERIOD</label>
-                                        <select class="form-select" aria-label="Default select example" id="slct_second_period" name="second_period" {{-- onchange="populateThree(this.id, 'slct_third_period')" --}}>
+                                        <select class="form-select" aria-label="Default select example" id="slct_second_period" name="second_period">
                                             <option disabled selected>Select Second Period Subject</option>
                                             @foreach ($secondPeriod as $subjects)
-                                                <option value="{{$subjects->subject}} {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                             @endforeach
                                             {{-- <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
                                             <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
@@ -304,7 +305,7 @@
                                         <select class="form-select" aria-label="Default select example" id="slct_third_period" name="third_period">
                                             <option disabled selected>Select Third Period Subject</option>
                                             @foreach ($thirdPeriod as $subjects)
-                                                <option value="{{$subjects->subject}} {{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
+                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                             @endforeach
                                             {{-- <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
                                             <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>

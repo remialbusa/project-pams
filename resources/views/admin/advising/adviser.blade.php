@@ -16,7 +16,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">List of subjects</h6>
+            <h6 class="m-0 font-weight-bold text-primary">List of Instructors</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,7 +34,7 @@
                         <tr>
                             <td>{{$adviser->program}}</td>
                             <td>{{$adviser->title}}</td>
-                            <td>{{$adviser->first_name}} {{$adviser->middle_name}} {{$adviser->last_name}}</td>                       >
+                            <td>{{$adviser->first_name}} {{$adviser->middle_name}} {{$adviser->last_name}}</td>
                             <td>
                                 <a href="{{ route('edit-adviser', $adviser->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
                                 <a href="{{ route('delete-adviser', $adviser->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
@@ -69,7 +69,12 @@
 
                         @csrf
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="program" placeholder="Program">
+                            <select class="form-select" aria-label="Default select example" name="program">
+                                <option disabled selected>Select Program</option>
+                                @foreach ($programs as $programs)
+                                    <option value="{{$programs->program}}">{{$programs->program}}</option>
+                                @endforeach
+                            </select>
                             <span class="text-danger">@error('program'){{$message}} @enderror</span>
                             <label for="floatingInput">Program</label>
                         </div>

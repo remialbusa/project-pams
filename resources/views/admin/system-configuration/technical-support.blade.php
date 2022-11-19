@@ -16,7 +16,32 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                
+                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Program</th>
+                            <th>ID No</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Concern</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>               
+                    <tbody>
+                    @foreach ($technicalForm as $technicalForm)
+                        <tr>
+                            <td>{{$technicalForm->program}}</td>
+                            <td>{{$technicalForm->id_no}}</td>                       
+                            <td>{{$technicalForm->name}}</td>
+                            <td>{{$technicalForm->email}}</td>
+                            <td>{{$technicalForm->concern}}</td>
+                            <td>
+                                <a href="{{ route('technicalform-delete', $technicalForm->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach                                                    
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

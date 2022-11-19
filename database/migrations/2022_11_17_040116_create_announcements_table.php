@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateThesisTable extends Migration
+class CreateAnnouncementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateThesisTable extends Migration
      */
     public function up()
     {
-        Schema::create('thesis', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('thesis_title');
-            $table->string('thesis_author');
+        Schema::create('announcements', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
             $table->string('file');
             $table->timestamps();
         });
@@ -29,6 +28,6 @@ class CreateThesisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('thesis');
+        Schema::dropIfExists('announcements');
     }
 }

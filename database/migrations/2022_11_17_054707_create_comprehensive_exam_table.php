@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateThesisTable extends Migration
+class CreateComprehensiveExamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateThesisTable extends Migration
      */
     public function up()
     {
-        Schema::create('thesis', function (Blueprint $table) {
+        Schema::create('comprehensive_exam', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('thesis_title');
-            $table->string('thesis_author');
-            $table->string('file');
+            $table->string('student_id');
+            $table->string('program');
+            $table->string('name');
+            $table->string('exam_status');
+            $tabel->string('file');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateThesisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('thesis');
+        Schema::dropIfExists('comprehensive_exam');
     }
 }

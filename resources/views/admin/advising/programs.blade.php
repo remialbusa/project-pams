@@ -77,7 +77,12 @@
                             <label for="floatingInput">Code</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="degree" placeholder="Degree">
+                            <select class="form-select form-select-lg" aria-label="Default select example" name="degree">
+                                <option selected disabled>Select Degree</option>
+                                <option value="Doctoral">Doctoral Degree</option>
+                                <option value="Thesis Master’s">Thesis Master’s</option>
+                                <option value="Non-Thesis Master’s">Non-Thesis Master’s</option>
+                            </select>
                             <span class="text-danger">@error('degree'){{$message}} @enderror</span>
                             <label for="floatingInput">Degree</label>
                         </div>
