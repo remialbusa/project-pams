@@ -127,9 +127,17 @@ function populate(s1, s2){
 
     s2.innerHTML = "";
     if(s1.value == "MIT"){
-        var optionArray = ["sahdjakj | Hakdog"];
+        var optionArray = ["Hakdog | Hakdog"];
     }else if(s1.value == "MSIT"){
         var optionArray = ["MSIT | MSIT"];
+   /*  }else if(s1.value == "MSIT"){
+        var optionArray = ["MSIT | MSIT"];
+    }else if(s1.value == "MSIT"){
+        var optionArray = ["MSIT | MSIT"];
+    }else if(s1.value == "MSIT"){
+        var optionArray = ["MSIT | MSIT"];
+    }else if(s1.value == "MSIT"){
+        var optionArray = ["MSIT | MSIT"]; */
     }
     
     for(var option in optionArray){
@@ -141,29 +149,6 @@ function populate(s1, s2){
     }
 }
 
-/* function populate(s1, s2){
-    var s1 = document.getElementById(s1);
-    var s2 = document.getElementById(s2);
-
-    s2.innerHTML = "";
-    if(s1.value == "MIT"){
-        var optionArray = ["MIT 501 Advanced Programming I|MIT 501 - Advanced Programming I", 
-        "MIT 505 Advanced Data Structure and Algorithm|MIT 505 - Advanced Data Structure & Algorithm", 
-        "MIT 506 Advanced Multimedia Communication|MIT 506 - Advanced Multimedia Communication"];
-    }else if(s1.value == "MSIT"){
-        var optionArray = ["MSIT 501 Advanced Programming I|MSIT 501 Advanced Programming I", 
-        "MSIT 505 Advanced Data Structure & Algorithm|MSIT 505 Advanced Data Structure & Algorithm", 
-        "MSIT 506 Advanced Multimedia Communication|MSIT 506 Advanced Multimedia Communication"];
-    }
-    
-    for(var option in optionArray){
-        var pair = optionArray[option].split("|");
-        var newOption = document.createElement("option");
-        newOption.value = pair[0];
-        newOption.innerHTML = pair[1];
-        s2.options.add(newOption);
-    }
-} */
 
 function populateTwo(s2, s3){
     var s2 = document.getElementById(s2);

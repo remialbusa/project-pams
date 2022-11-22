@@ -21,7 +21,6 @@ console.log(message.value);
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-2 text-gray-800">FAQ's</h1>
-        <a class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#categoryModalForm"><i class="material-icons">&#xE147;</i> Add</a>
     </div>
 
     <p class="mb-4"></p>
@@ -61,23 +60,25 @@ console.log(message.value);
                         </form>
                         <thead>
                             <tr>
-                                <th>Title</th>
-                                <th>Questions</th>
-                                <th>Answer</th>
+                                <th>Program</th>
+                                <th>Name</th>
+                                <th>ID Number</th>
+                                <th>Email</th>
+                                <th>Question</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($faqs as $faqs)
                             <tr>
-                                <td>{{$faqs['categories']}}</td>
-                                <td>{{$faqs['questions']}}</td>
-                                <td>{{$faqs['answer']}}</td>
+                                <td>{{$faqs['program']}}</td>
+                                <td>{{$faqs['name']}}</td>
+                                <td>{{$faqs['id_no']}}</td>
+                                <td>{{$faqs['email']}}</td>
+                                <td>{{$faqs['question']}}</td>
 
                                 <td>
-
-                                    <a href="{{ route('edit-faqs', $faqs->id) }}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
-                                    <a href="{{ route('delete-faqs', $faqs->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
+                                    <a href="{{ route('delete-faqs', $faqs->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                                 </td>
                             </tr>
                             @endforeach

@@ -46,7 +46,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="student/auth/login">Student</a></li>
-                        <li><a class="dropdown-item" href="staff/auth/login">Employee</a></li>
+                        <li><a class="dropdown-item" href="staff/auth/login">Staff</a></li>
                     </ul>
                 </div>
             </div>

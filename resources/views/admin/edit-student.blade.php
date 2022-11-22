@@ -122,12 +122,36 @@
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
                                         <select class="form-select" aria-label="Default select example" name="vaccination_status">
-                                            @if($student['vaccination_status'] == 'Vaccinated')
-                                            <option selected value="Vaccinated">Vaccinated</option>
-                                            @elseif($student['student_type'] == 'Not Vaccinated')
-                                            <option selected value="Not Vaccinated">Not Vaccinated</option>
+                                            @if($student->vaccination_status == 'Vaccinated')
+                                                <option value="Vaccinated">Vaccinated</option>
+                                                <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                <option value="Not Vaccinated">Not Vaccinated</option>
+                                                <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                            @elseif($student->vaccination_status == 'Partially Vaccinated')
+                                                <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                                <option value="Vaccinated">Vaccinated</option>
+                                                <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                <option value="Not Vaccinated">Not Vaccinated</option>
+                                            @elseif($student->vaccination_status == 'Vaccinated w/ 1 Booster')
+                                                <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                                <option value="Vaccinated">Vaccinated</option>
+                                                <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                <option value="Not Vaccinated">Not Vaccinated</option>
+                                            @elseif($student->vaccination_status == 'Vaccinated w/ 2 Boosters')
+                                                <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                                <option value="Vaccinated">Vaccinated</option>
+                                                <option value="Not Vaccinated">Not Vaccinated</option>
                                             @else
-                                            <option selected value="Partially Vaccinated">Partially Vaccinated</option>
+                                                <option selected value="Not Vaccinated">Not Vaccinated</option>
+                                                <option value="Vaccinated">Vaccinated</option>
+                                                <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                                <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                             @endif
                                         </select>
                                         <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
@@ -145,7 +169,7 @@
                             <div class="row mt-2 mb-3">
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example2">Gender</label>
+                                        <label class="form-label" for="form6Example2">Sex</label>
                                         <select class="form-select" aria-label="Default select example" name="gender">
                                             @if($student['gender'] == 'Male')
                                             <option value="Male">Male</option>
@@ -217,7 +241,7 @@
                                 </div>
                             </div>
                             <hr class="border-divider-2 mt-5"/>
-                            <h5 class="mt-3 lead">COURSE/S</h5>
+                            <h5 class="mt-3 lead">Programs & Subjects</h5>
                             <div class="col mt-4 mb-3">
                                 <div class="col">
                                     <div class="form-outline form-line">

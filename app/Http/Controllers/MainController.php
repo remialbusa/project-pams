@@ -38,8 +38,20 @@ class MainController extends Controller
         $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
         $subjects = Subject::all();
-        $programs = Program::all();
-        return view('auth.register-new-student', ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'subjects'=>$subjects]);
+        $programs['data'] = Program::orderby("program","asc")
+        ->select('program','description')
+        ->get();
+
+        return view('auth.register-new-student', ['programs'=>$programs,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'subjects'=>$subjects]);
+    }
+
+    function getSubjects($program=0)
+    {
+        $subjects['data'] = Subject::orderby("program","asc")
+        ->select('program','subject')
+        ->where('program',$program)
+        ->get();
+        return response()->json($subjects);
     }
 
     function saveStudent(Request $request)

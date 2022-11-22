@@ -100,12 +100,28 @@
                                                 <label class="form-label" for="form6Example3">Vaccination Status <label class="text-danger">*</label></label>
                                                 <select class="form-select" aria-label="Default select example" name="vaccination_status">
                                                     @if($LoggedUserInfo->vaccination_status == 'Vaccinated')
-                                                        <option selected value="Vaccinated">Vaccinated</option>
-                                                        <option value="Partially Vaccinated">Partially Vaccinated</option>
-                                                        <option value="Not Vaccinated">Not Vaccinated</option>
-                                                    @elseif($LoggedUserInfo->vaccination_status == 'Partially Vaccinated')
                                                         <option value="Vaccinated">Vaccinated</option>
-                                                        <option selected value="Partially Vaccinated">Partially Vaccinated</option>
+                                                        <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                        <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                        <option value="Not Vaccinated">Not Vaccinated</option>
+                                                        <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                                    @elseif($LoggedUserInfo->vaccination_status == 'Partially Vaccinated')
+                                                        <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                                        <option value="Vaccinated">Vaccinated</option>
+                                                        <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                        <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                        <option value="Not Vaccinated">Not Vaccinated</option>
+                                                    @elseif($LoggedUserInfo->vaccination_status == 'Vaccinated w/ 1 Booster')
+                                                        <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                        <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                                        <option value="Vaccinated">Vaccinated</option>
+                                                        <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                        <option value="Not Vaccinated">Not Vaccinated</option>
+                                                    @elseif($LoggedUserInfo->vaccination_status == 'Vaccinated w/ 2 Boosters')
+                                                        <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                        <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                        <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                                        <option value="Vaccinated">Vaccinated</option>
                                                         <option value="Not Vaccinated">Not Vaccinated</option>
                                                     @else
                                                         <option value="Vaccinated">Vaccinated</option>
@@ -128,7 +144,7 @@
                                     <div class="row mt-2 mb-3">
                                         <div class="col-md-6">
                                             <div class="form-outline form-line">
-                                                <label class="form-label" for="form6Example5">Gender</label>
+                                                <label class="form-label" for="form6Example5">Sex</label>
                                                 <select class="form-select" aria-label="Default select example" name="gender">>
                                                     @if($LoggedUserInfo->gender == 'Male')
                                                         <option selected value="Male">Male</option>

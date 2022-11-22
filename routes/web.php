@@ -36,6 +36,7 @@ Route::get('/student/auth/register-student', [MainController::class, 'register']
 Route::post('/student/auth/register-student/save', [MainController::class, 'saveStudent'])->name('auth.save');
 Route::post('/student/auth/verify', [MainController::class, 'verify'])->name('auth.verify-student');
 Route::get('/student/auth/register-new-student', [MainController::class, 'registerNewStudent']);
+Route::get('/student/auth/register-new-student/{id}', [MainController::class, 'getSubjects'])->name('auth.getSubjects');
 
 //student profile routes
 Route::get('/student/auth/student-profile', [MainController::class, 'profileView'])->middleware('isLoggedStudent');
@@ -142,7 +143,10 @@ Route::get('/staff/admin/thesis-directory/delete/{id}', [ThesisManagementControl
 Route::get('/staff/admin/thesis-directory/edit/{id}', [ThesisManagementController::class, 'thesisEdit'])->name('thesis-edit')->middleware('isLoggedAdmin');
 Route::post('/staff/admin/thesis-directory/edit', [ThesisManagementController::class, 'thesisUpdate'])->name('thesis-update')->middleware('isLoggedAdmin');
 Route::post('/staff/admin/thesis-directory/save', [ThesisManagementController::class, 'thesisSave'])->name('thesis-save')->middleware('isLoggedAdmin');
-
+Route::get('/staff/admin/thesis-scheduling/schedule/{id}', [ThesisManagementController::class, 'schedulingThesis'])->name('student-schedule')->middleware('isLoggedAdmin');
+Route::post('/staff/admin/thesis-scheduling/schedule', [ThesisManagementController::class, 'setSchedule'])->name('set-schedule')->middleware('isLoggedAdmin');
+Route::get('/student/auth/student-thesis/directory/view-pdf/{id}', [ThesisManagementController::class, 'viewStudentThesis'])->name('auth.view-thesis-pdf')->middleware('isLoggedStudent');
+Route::get('/staff/admin/thesis-directory/view-pdf/{id}', [ThesisManagementController::class, 'viewAdminThesis'])->name('admin.view-thesis-pdf')->middleware('isLoggedAdmin');
 
 //Students
 //delete pending students

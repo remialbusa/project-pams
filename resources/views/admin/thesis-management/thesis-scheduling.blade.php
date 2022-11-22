@@ -22,21 +22,18 @@
                             <th>Student ID</th>
                             <th>Name</th>
                             <th>Program</th>
-                            <th>Action</th>
+                            <th class="col-md-1">Action</th>
                         </tr>
                     </thead>               
                     <tbody>
                         @foreach($student as $students)
                         <tr>
-                            
                             <td>{{$students->student_id}}</td>
                             <td>{{$students->first_name}} {{$students->middle_name}} {{$students->last_name}}</td>
                             <td>{{$students->program}}</td>
                             <td>
-                                <a href="" class="edit mx-2"><i class="bi bi-calendar-check"></i></a>
-                                <a href="" class="delete mx-2"><i class="bi bi-trash3"></i></a>
+                                <a href="{{ route('student-schedule', $students->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-calendar-check"></i></a>
                             </td>
-                            
                         </tr> 
                         @endforeach         
                     </tbody>

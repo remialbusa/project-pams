@@ -22,23 +22,27 @@ class FaqsController extends Controller
     { 
         //validate info
         $request->validate([
-            'categories' => 'required',
-            'questions' => 'required',
-            'answer' => 'required',
+            'program' => 'required',
+            'name' => 'required',
+            'id_no' => 'required',
+            'email' => 'required',
+            'question' => 'required',
         ]);
 
 
         //insert admin data
         
         $faqs = new Faqs();
-        $faqs->categories = $request->categories;
-        $faqs->questions = $request->questions;
-        $faqs->answer = $request->answer;
+        $faqs->program = $request->program;
+        $faqs->name = $request->name;
+        $faqs->id_no = $request->id_no;
+        $faqs->email = $request->email;
+        $faqs->question = $request->question;
         $save = $faqs->save();
         
         
         if ($save) {
-            return redirect('staff/admin/system-configuration/faqs');
+            return back()->with('success', 'Succesfully submitted question');
         } else {
             return back()->with('fail', 'failed inserting data');
         }

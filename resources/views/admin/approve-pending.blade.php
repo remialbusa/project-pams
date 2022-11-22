@@ -168,13 +168,37 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
                                             <select class="no-border form-select" aria-label="Default select example" name="vaccination_status">
-                                                @if($status['vaccination_status'] == 'Vaccinated')
-                                                <option selected value="Vaccinated">Vaccinated</option>
-                                                @elseif($status['student_type'] == 'Not Vaccinated')
+                                            @if($status->vaccination_status == 'Vaccinated')
+                                                <option value="Vaccinated">Vaccinated</option>
+                                                <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                <option value="Not Vaccinated">Not Vaccinated</option>
+                                                <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                            @elseif($status->vaccination_status == 'Partially Vaccinated')
+                                                <option valuendife="Partially Vaccinated">Partially Vaccinated</option>
+                                                <option value="Vaccinated">Vaccinated</option>
+                                                <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                <option value="Not Vaccinated">Not Vaccinated</option>
+                                            @elseif($status->vaccination_status == 'Vaccinated w/ 1 Booster')
+                                                <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                                <option value="Vaccinated">Vaccinated</option>
+                                                <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                <option value="Not Vaccinated">Not Vaccinated</option>
+                                            @elseif($status->vaccination_status == 'Vaccinated w/ 2 Boosters')
+                                                <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                                <option value="Vaccinated">Vaccinated</option>
+                                                <option value="Not Vaccinated">Not Vaccinated</option>
+                                            @else
                                                 <option selected value="Not Vaccinated">Not Vaccinated</option>
-                                                @else
-                                                <option selected value="Partially Vaccinated">Partially Vaccinated</option>
-                                                @endif
+                                                <option value="Vaccinated">Vaccinated</option>
+                                                <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                                <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                            @endif
                                             </select>
                                             <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
                                         </div>
@@ -191,12 +215,14 @@
                                 <div class="row mt-2 mb-3">
                                     <div class="col-md-6">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example2">Gender</label>
+                                            <label class="form-label" for="form6Example2">Sex</label>
                                             <select class="no-border form-select" aria-label="Default select example" name="gender">
                                                 @if($status['gender'] == 'Male')
                                                 <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
                                                 @else
                                                 <option value="Female">Female</option>
+                                                <option value="Male">Male</option>
                                                 @endif
                                             </select>
                                             <span class="text-danger">@error('gender'){{$message}} @enderror</span>
@@ -263,7 +289,7 @@
                                     </div>
                                 </div>
 
-                                <h5 class="mt-5 lead">COURSE/S</h5>
+                                <h5 class="mt-5 lead">Programs & Subjects</h5>
                                 <div class="col mt-4 mb-3">
                                     <div class="col">
                                         <div class="form-outline form-line">
@@ -305,7 +331,7 @@
                                     </div>
                                     <div class="col mt-4">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example1">Adviser</label>
+                                            <label class="form-label" for="form6Example1">Instructor</label>
                                             <input type="text" id="form6Example2" class="no-border form-control" name="first_period_adviser" value="{{$status['first_period_adviser']}}" readonly/>
                                             <span class="text-danger">@error('first_period_adviser'){{$message}} @enderror</span>
                                         </div>
@@ -338,7 +364,7 @@
                                     </div>
                                     <div class="col mt-4">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example1">Adviser</label>
+                                            <label class="form-label" for="form6Example1">Instructor</label>
                                             <input type="text" id="form6Example2" class="no-border form-control" name="second_period_adviser" value="{{$status['second_period_adviser']}}" readonly/>
                                             <span class="text-danger">@error('second_period_adviser'){{$message}} @enderror</span>
                                         </div>
@@ -371,7 +397,7 @@
                                     </div>
                                     <div class="col mt-4">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example1">Adviser</label>
+                                            <label class="form-label" for="form6Example1">Instructor</label>
                                             <input type="text" id="form6Example2" class="no-border form-control" name="third_period_adviser" value="{{$status['third_period_adviser']}}" readonly/>
                                             <span class="text-danger">@error('third_period_adviser'){{$message}} @enderror</span>
                                         </div>

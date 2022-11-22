@@ -74,7 +74,7 @@
 
                             <tr>
                                 <td scope="col" style="width: 60%"><span style="font-weight: 600;">Email: </span> {{$student->email}}</td>
-                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Gender: </span> {{$student->gender}}</td>
+                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Sex: </span> {{$student->gender}}</td>
                             </tr>
 
                             <tr>
@@ -102,7 +102,7 @@
                                     <tr>
                                         <th>Subjects</th>
                                         <th>Schedule</th>
-                                        <th>Adviser</th>
+                                        <th>Instructor</th>
                                     </tr>
                                 </thead>
                                 <tbody>

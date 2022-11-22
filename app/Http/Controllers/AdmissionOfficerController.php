@@ -14,6 +14,7 @@ use App\Models\AssignStudent;
 use App\Models\AdvisingStudent;
 use App\Models\StudentUser;
 use App\Models\Adviser;
+use App\Models\Scheduling;
 use App\Models\ComprehensiveExam;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -189,6 +190,18 @@ class AdmissionOfficerController extends Controller
         $student->first_period_adviser = $request->first_period_adviser;
         $student->second_period_adviser = $request->second_period_adviser;
         $student->third_period_adviser = $request->third_period_adviser;
+        $student->title = "";
+        $student->member_1 = "";
+        $student->member_2 = "";
+        $student->member_3 = "";
+        $student->panelist_1 = "";
+        $student->panelist_2 = "";
+        $student->panelist_3 = "";
+        $student->adviser = "";
+        $student->date = "";
+        $student->time = "";
+        $student->venue = "";
+        $student->link = "";
         $save = $student->save();
 
         

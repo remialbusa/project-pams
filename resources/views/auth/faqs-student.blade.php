@@ -42,39 +42,6 @@
 
     <section class="faqs-details">
         <h1 class="text-center mt-5" style="color: #f7d05c">FREQUENTLY ASK QUESTIONS</h1>
-
-            <div class="col-sm-8 px-5 mt-5">
-            </div>
-
-            <div class="admission-requirements row px-5 mb-5 mt-3">
-                @foreach ($faqs as $faqsData)
-                    <div class="admission-body container mt-5">
-                        <div class="col-sm-8 px-5 mt-4">
-                        </div>
-
-                        <h5 class="px-5 mt-5 text-center"><strong>{{ $faqsData['categories'] }}</strong></h5>
-
-                        <div class="admission-requirements row px-5 mb-5 mt-3">
-
-                                <p class="mt-3 m-0"><strong class="">{{ $faqsData['questions'] }}</strong></p>
-
-
-                                <p class="m-5 mt-4">{{ $faqsData['answer'] }}</p>
-
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-            <div class="admission-requirements row px-5 mb-5 mt-3">
-                <p class="bi bi-envelope-fill" style="font-size: 1rem; margin-right: 10px;">  gradschool@lnu.edu.ph</p>
-                <p class="bi bi-facebook" style="font-size: 1rem; margin-right: 10px;">  LNU Graduate School 2022</p>
-            </div>
-
-    </section>
-
-    {{-- <section class="faqs-details">
-        <h1 class="text-center mt-5" style="color: #f7d05c">FREQUENTLY ASK QUESTIONS</h1>
         <div class="admission-body container mt-5">
             <div class="col-sm-8 px-5 mt-5">
             </div>
@@ -150,12 +117,67 @@
             </div>
 
             <div class="admission-requirements row px-5 mb-5 mt-3">
+                
                 <p class="bi bi-envelope-fill" style="font-size: 1rem; margin-right: 10px;">  gradschool@lnu.edu.ph</p>
                 <p class="bi bi-facebook" style="font-size: 1rem; margin-right: 10px;">  LNU Graduate School 2022</p>
+                <div class="col-md-12 text-center"><a style="width: 30%;" class="mb-4 btn technical-btn btn-primary text-center" data-bs-toggle="modal" data-bs-target="#insertModalForm">Send Question</a></div>
             </div>
         </div>
     </section>
- --}}
+
+ <div class="modal fade" id="insertModalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- login Form -->
+                <form action="{{ route('save-faqs') }}" method="POST">
+                    @if(Session::get('success'))
+                    <div class="alert alert-success">{{Session::get('success')}}</div>
+                    @endif
+
+                    @if(Session::get('fail'))
+                    <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                    @endif
+
+                    @csrf
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="program" placeholder="Program">
+                        <span class="text-danger">@error('program'){{$message}} @enderror</span>
+                        <label for="floatingInput">Program</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="name" placeholder="Name">
+                        <span class="text-danger">@error('name'){{$message}} @enderror</span>
+                        <label for="floatingInput">Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="id_no" placeholder="ID Number" >
+                        <span class="text-danger">@error('id_no'){{$message}} @enderror</span>
+                        <label for="floatingInput">ID Number</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="email" placeholder="Email">
+                        <span class="text-danger">@error('email'){{$message}} @enderror</span>
+                        <label for="floatingInput">Email</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="question" placeholder="Question">
+                        <span class="text-danger">@error('question'){{$message}} @enderror</span>
+                        <label for="floatingPassword">Question</label>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>  
+
 
  <footer class="footer mb-0">
     <div class="container">

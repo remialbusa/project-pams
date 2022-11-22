@@ -21,9 +21,9 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Title</th>
                             <th>Author</th>
+                            <th>File</th>
                             <th>Saved Date</th>
                             <th>Updated Date</th>
                         </tr>
@@ -31,9 +31,9 @@
                     <tbody>
                         @foreach ($thesis as $thesis)
                         <tr>
-                            <td>{{$thesis['id']}}</td>
                             <td>{{$thesis['thesis_title']}}</td>
                             <td>{{$thesis['thesis_author']}}</td>
+                            <td><a href="{{ route('auth.view-thesis-pdf', $thesis->id)}}" target="_blank">{{$thesis['file']}}</a></td>
                             <td>{{$thesis['created_at']}}</td>
                             <td>{{$thesis['updated_at']}}</td>
                         </tr>

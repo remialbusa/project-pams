@@ -17,24 +17,26 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="100">
-                    <thead>
-                        <tr>
-                            <th>Thesis Title</th>
-                            <th>Members</th>
-                            <th>Panelists and Advisers</th>
-                            <th>Date / Time and Venue/Google Meet Link</th>
-                        </tr>
-                    </thead>               
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>                                   
-                    </tbody>
-                </table>
+                <div class="table-wrapper">
+                    <h2>
+                        <h5>Thesis Title: {{$LoggedUserInfo->title}}</h5>
+
+                        <h5 class="mt-5">Members:<br/>{{$LoggedUserInfo->member_1}}
+                        <br/>{{$LoggedUserInfo->member_2}}
+                        <br/>{{$LoggedUserInfo->member_3}}</h5>
+                        
+                        <h5 class="mt-5">Panelists:<br/> {{$LoggedUserInfo->panelist_1}}
+                        <br/>{{$LoggedUserInfo->panelist_2}}
+                        <br/>{{$LoggedUserInfo->panelist_3}}</h5>
+
+                        <h5 class="mt-5">Adviser: {{$LoggedUserInfo->adviser}}</h5>
+
+                        <h5 class="mt-5">Date: {{$LoggedUserInfo->date}}</h5>
+                        <h5 class="mt-5">Time: {{$LoggedUserInfo->time}}</h5>
+                        <h5 class="mt-5">Venue: {{$LoggedUserInfo->venue}}</h5>
+                        <h5 class="mt-5">Google Meet Link: <a href="{{$LoggedUserInfo->link}}" target="_blank">{{$LoggedUserInfo->link}}</a></h5>
+                    </h2>
+                </div>
             </div>
         </div>
     </div>

@@ -22,12 +22,12 @@
                 <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            
                             <th>Title</th>
                             <th>Author</th>
+                            <th>File</th>
                             <th>Saved Date</th>
                             <th>Updated Date</th>
-                            <th>Action</th>
+                            <th class="col-sm-2">Action</th>
                         </tr>
                     </thead>               
                     <tbody>
@@ -36,11 +36,12 @@
                             
                             <td>{{$thesis['thesis_title']}}</td>
                             <td>{{$thesis['thesis_author']}}</td>
+                            <td><a href="{{ route('admin.view-thesis-pdf', $thesis->id)}}" target="_blank">{{$thesis['file']}}</a></td>
                             <td>{{$thesis['created_at']}}</td>
                             <td>{{$thesis['updated_at']}}</td>
                             <td>
-                                <a href="{{ route('thesis-edit', $thesis->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
-                                <a href="{{ route('thesis-delete', $thesis->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
+                                <a href="{{ route('thesis-edit', $thesis->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                <a href="{{ route('thesis-delete', $thesis->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>
                         @endforeach                                     
@@ -60,7 +61,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Insert Form -->
-                    <form action="{{ route('thesis-save') }}" method="POST">
+                    <form action="{{ route('thesis-save') }}" method="POST" enctype="multipart/form-data">
                         @if(Session::get('success'))
                         <div class="alert alert-success">{{Session::get('success')}}</div>
                         @endif
@@ -71,11 +72,6 @@
 
                         @csrf
                         <div class="form-floating mb-3">
-                            <input readonly type="text" class="form-control" name="id" placeholder="ID">
-                            <span class="text-danger">@error('id'){{$message}} @enderror</span>
-                            <label for="floatingInput">ID</label>
-                        </div>
-                        <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="thesis_title" placeholder="Thesis Title">
                             <span class="text-danger">@error('thesis_title'){{$message}} @enderror</span>
                             <label for="floatingInput">Title</label>
@@ -85,10 +81,17 @@
                             <span class="text-danger">@error('thesis_author'){{$message}} @enderror</span>
                             <label for="floatingInput">Author</label>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input readonly type="text" class="form-control" name="created_at" placeholder="Created At">
-                            <span class="text-danger">@error('created_at'){{$message}} @enderror</span>
-                            <label for="floatingInput">Saved Date</label>
+                        <div class="row mt-4 mb-4">
+                            <div class="col-md-12">
+                                <div class="form-group form-line">
+                                    <label class="form-label" for="form6Example1">Submit File: <label class="text-danger">*</label></label>
+                                    <p>
+                                        <i>(File type: pdf, xlx, csv)</i>
+                                    </p>
+                                    <input type="file" placeholder="Choose file" class="form-control" name="file">
+                                    <span class="text-danger">@error('file'){{$message}} @enderror</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Add</button>

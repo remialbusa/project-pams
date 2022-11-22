@@ -12,4 +12,8 @@ class Subject extends Model
    public function student(){
         return $this->belongsTo('App\Models\Student');
    }
+
+   protected $fillable = [
+      'code','program','subject','unit','period'
+   ];
 }

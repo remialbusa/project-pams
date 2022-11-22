@@ -19,7 +19,7 @@ class CreateComprehensiveExamTable extends Migration
             $table->string('program');
             $table->string('name');
             $table->string('exam_status');
-            $tabel->string('file');
+            $table->string('file');
             $table->timestamps();
         });
     }

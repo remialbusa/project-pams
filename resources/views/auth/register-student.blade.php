@@ -116,6 +116,8 @@
                                         <select class="form-select" aria-label="Default select example" name="vaccination_status">
                                             <option disabled selected>N/A</option>
                                             <option value="Vaccinated">Vaccinated</option>
+                                            <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                            <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                             <option value="Not Vaccinated">Not Vaccinated</option>
                                             <option value="Partially Vaccinated">Partially Vaccinated</option>
                                         </select>
@@ -134,7 +136,7 @@
                             <div class="row mt-2 mb-3">
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example2">Gender</label>
+                                        <label class="form-label" for="form6Example2">Sex</label>
                                         <select class="form-select" aria-label="Default select example" name="gender">
                                             <option disabled selected>N/A</option>
                                             <option value="Male">Male</option>
@@ -218,7 +220,7 @@
                                 </div>
                             </div>
 
-                            <h5 class="mt-5 lead">COURSE/S</h5>
+                            <h5 class="mt-5 lead">Programs & Subjects</h5>
                             <div class="col mt-4 mb-3">
                                 <div class="col">
                                     <div class="form-outline form-line">

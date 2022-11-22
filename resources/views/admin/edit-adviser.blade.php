@@ -26,7 +26,7 @@
 
     <!-- Custom styles for this page -->
     <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
-    <title>Edit Adviser</title>
+    <title>Edit Instructor</title>
 </head>
 
 <body>
@@ -52,7 +52,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9 col-lg-4 mx-auto">
-                        <h3 class="login-heading mb-4">Edit Adviser</h3>
+                        <h3 class="login-heading mb-4">Edit Instructor</h3>
                         <!-- login Form -->
                         <form action="{{ route('update-adviser') }}" method="POST">
                             @if(Session::get('success'))

@@ -10,6 +10,8 @@ use App\Models\StudentStatus;
 use App\Models\Subject;
 use App\Models\Thesis;
 use App\Models\StudentUser;
+use App\Models\Program;
+use App\Models\Scheduling;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -38,8 +40,9 @@ class ThesisManagementController extends Controller
             ];
         }
         $student = StudentUser::all();
-        $thesis = Thesis::all();     
-        return view('student.dashboard.thesismanagement.student-thesis-schedule', $data, ['student'=>$student,'thesis' => $thesis]);
+        $thesis = Thesis::all();  
+        $schedule = Scheduling::all();   
+        return view('student.dashboard.thesismanagement.student-thesis-schedule', $data, ['schedule'=>$schedule,'student'=>$student,'thesis' => $thesis]);
     }
 
     function thesisDirectory()
@@ -62,8 +65,89 @@ class ThesisManagementController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
-        $student = StudentUser::all();  
-        return view('admin.thesis-management.thesis-scheduling', $data, ['student'=>$student]);
+        $student = StudentUser::all();
+        $schedule = Scheduling::all();  
+        return view('admin.thesis-management.thesis-scheduling', $data, ['schedule'=>$schedule,'student'=>$student]);
+    }
+
+    function schedulingThesis($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $student = StudentUser::find($id);
+        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
+        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
+        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
+        $subjects = Subject::all();
+        $programs = Program::all();
+        return view('admin.defense-scheduling', $data, ['student'=>$student,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'subjects'=>$subjects]);
+    }
+
+    function viewStudentThesis($id)
+    {
+        if (session()->has('LoggedUser')) {
+            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $data = [
+                'LoggedUserInfo' => $student
+            ];
+        }
+        $thesis = Thesis::find($id);
+        return view('admin.view-thesis-pdf', $data, ['thesis'=>$thesis]);
+    }
+
+    function viewAdminThesis($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $thesis = Thesis::find($id);
+        return view('student.view-thesis-pdf', $data, ['thesis'=>$thesis]);
+    }
+
+    function setSchedule(Request $request)
+    {
+        $request->validate([
+            'member_1' => 'required',
+            'member_2' => 'required',
+            'member_3' => 'required',
+            'panelist_1' => 'required',
+            'panelist_2' => 'required',
+            'panelist_3' => 'required',
+            'adviser' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'venue' => 'required',
+            'link' => 'required',
+        ]);
+
+        $student = StudentUser::find($request->id);
+        $student->title = $request->title;
+        $student->member_1 = $request->member_1;
+        $student->member_2 = $request->member_2;
+        $student->member_3 = $request->member_3;
+        $student->panelist_1 = $request->panelist_1;
+        $student->panelist_2 = $request->panelist_2;
+        $student->panelist_3 = $request->panelist_3;
+        $student->adviser = $request->adviser;
+        $student->date = $request->date;
+        $student->time = $request->time;
+        $student->venue = $request->venue;
+        $student->link = $request->link;
+        
+        $save = $student->save();
+
+        if($save){
+            return back()->with('success', 'Succesfully inserted scheduling data');
+        }else{
+            return back()->with('fail', 'Failed inserting student data');
+        }
     }
 
     function thesisDelete($id){
@@ -108,13 +192,22 @@ class ThesisManagementController extends Controller
         //validate info
         $request->validate([
             'thesis_title' => 'required',
-            'thesis_author' => 'required'
+            'thesis_author' => 'required',
+            'file' => 'required|mimes:pdf,xlx,csv|max:2048'
         ]);
 
         //insert data
         $thesis = new Thesis();
         $thesis -> thesis_title = $request->thesis_title;
         $thesis -> thesis_author = $request->thesis_author;
+
+        $file = $request->file;
+        
+        $filename=$file->getClientOriginalName();
+        $request->file->move('assets',$filename);
+
+        $thesis->file= $filename;
+
         $save = $thesis->save();
 
         if ($save) {

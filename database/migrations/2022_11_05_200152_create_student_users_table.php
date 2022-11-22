@@ -40,7 +40,18 @@ class CreateStudentUsersTable extends Migration
             $table->string('first_period_adviser');
             $table->string('second_period_adviser');
             $table->string('third_period_adviser');
-            $table->string('status');
+            $table->string('title');
+            $table->string('member_1');
+            $table->string('member_2');
+            $table->string('member_3');
+            $table->string('panelist_1');
+            $table->string('panelist_2');
+            $table->string('panelist_3');
+            $table->string('adviser');
+            $table->string('date');
+            $table->string('time');
+            $table->string('venue');
+            $table->string('link');
             $table->timestamps();
         });
     }
