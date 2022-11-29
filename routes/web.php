@@ -21,9 +21,12 @@ use App\Http\Controllers\ThesisManagementController;
 |
 */
 
-Route::get('/welcome', function () {
+/* Route::get('/welcome', function () {
     return view('welcome');
-});
+}); */
+
+Route::get('/welcome', [MainController::class, 'index']);
+Route::get('/welcome/getEmployees/{id}', [MainController::class, 'getEmployees']);
 
 Route::get('/test', [MainController::class, 'test']);
 Route::get('/test/edit/{id}', [MainController::class, 'testEdit'])->name('test-edit');
@@ -36,7 +39,7 @@ Route::get('/student/auth/register-student', [MainController::class, 'register']
 Route::post('/student/auth/register-student/save', [MainController::class, 'saveStudent'])->name('auth.save');
 Route::post('/student/auth/verify', [MainController::class, 'verify'])->name('auth.verify-student');
 Route::get('/student/auth/register-new-student', [MainController::class, 'registerNewStudent']);
-Route::get('/student/auth/register-new-student/{id}', [MainController::class, 'getSubjects'])->name('auth.getSubjects');
+Route::get('/student/auth/register-new-student/getSubjects/{id}', [MainController::class, 'getSubjects'])->name('auth.getSubjects');
 
 //student profile routes
 Route::get('/student/auth/student-profile', [MainController::class, 'profileView'])->middleware('isLoggedStudent');
@@ -109,6 +112,8 @@ Route::post('/staff/admin/student-users/create', [AdmissionOfficerController::cl
 Route::get('/staff/admin/student-users/edit/{id}', [AdmissionOfficerController::class, 'editStudentUser'])->name('admin.edit-student-users')->middleware('isLoggedAdmin');
 Route::get('/staff/admin/student-users/edit', [AdmissionOfficerController::class, 'updateStudentUser'])->name('admin.update-student-users')->middleware('isLoggedAdmin');
 Route::get('/staff/admin/student-users/delete/{id}', [AdmissionOfficerController::class, 'deleteStudentUser'])->name('delete-student-users')->middleware('isLoggedAdmin');
+Route::get('/staff/admin/enrolled/export-data', [AdmissionOfficerController::class, 'exportEnrolledStudents'])->name('admin.export-enrolled-students')->middleware('isLoggedAdmin');
+
 //Route Advising and Assigning Subjects
 
 //Adviser
@@ -117,12 +122,14 @@ Route::get('/staff/admin/list-of-adviser/delete/{id}', [AdmissionOfficerControll
 Route::get('/staff/admin/list-of-adviser/edit/{id}', [AdmissionOfficerController::class, 'adviserEdit'])->name('edit-adviser')->middleware('isLoggedAdmin');
 Route::post('/staff/admin/list-of-adviser/edit', [AdmissionOfficerController::class, 'adviserUpdate'])->name('update-adviser')->middleware('isLoggedAdmin');
 Route::post('/staff/admin/list-of-adviser', [AdmissionOfficerController::class, 'adviserInsert'])->name('insert-adviser')->middleware('isLoggedAdmin');
+Route::get('/staff/admin/list-of-adviser/export-data', [AdmissionOfficerController::class, 'exportInstructors'])->name('admin-export-instructors')->middleware('isLoggedAdmin');
 //Subjects
 Route::get('/staff/admin/subjects/delete/{id}', [AdmissionOfficerController::class, 'deleteSubjects'])->name('delete-subject')->middleware('isLoggedAdmin');
 Route::get('/staff/admin/subjects/edit/{id}', [AdmissionOfficerController::class, 'editSubjects'])->name('edit-subject')->middleware('isLoggedAdmin');
 Route::post('/staff/admin/subjects/edit/', [AdmissionOfficerController::class, 'updateSubject'])->name('update-subject')->middleware('isLoggedAdmin');
 Route::get('/staff/admin/subjects', [AdmissionOfficerController::class, 'subjectList'])->name('admin.subjects')->middleware('isLoggedAdmin');
 Route::post('/staff/admin/subjects', [AdmissionOfficerController::class, 'saveSubject'])->name('auth.save-subject')->middleware('isLoggedAdmin');
+Route::get('/staff/admin/subjects/export-data', [AdmissionOfficerController::class, 'exportSubjects'])->name('admin.export-subjects')->middleware('isLoggedAdmin');
 //Advising and Assigning subjects
 Route::get('/staff/admin/advising-assigning', [AdmissionOfficerController::class, 'advisingAndAssigning'])->name('admin.advise-assign-subjects')->middleware('isLoggedAdmin');
 Route::get('/staff/admin/advising-assigning/delete/{id}', [AdmissionOfficerController::class, 'deletePreviousAssignSubject'])->name('delete-advising-assigning-subject')->middleware('isLoggedAdmin');
@@ -134,7 +141,7 @@ Route::get('/staff/admin/programs/edit/{id}', [AdmissionOfficerController::class
 Route::post('/staff/admin/programs/edit', [AdmissionOfficerController::class, 'programUpdate'])->name('update-program')->middleware('isLoggedAdmin');
 Route::post('/staff/admin/programs', [AdmissionOfficerController::class, 'programInsert'])->name('insert-program')->middleware('isLoggedAdmin');
 Route::get('/staff/admin/programs/delete/{id}', [AdmissionOfficerController::class, 'programDelete'])->name('delete-program')->middleware('isLoggedAdmin');
-
+Route::get('/staff/admin/programs/export-data', [AdmissionOfficerController::class, 'exportPrograms'])->name('admin.export-programs')->middleware('isLoggedAdmin');
 
 //Admission Officer ThesisManagement routes
 Route::get('/staff/admin/thesis-directory', [ThesisManagementController::class, 'thesisDirectory'])->name('admin.thesis-directory')->middleware('isLoggedAdmin');

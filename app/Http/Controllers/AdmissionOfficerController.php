@@ -16,6 +16,11 @@ use App\Models\StudentUser;
 use App\Models\Adviser;
 use App\Models\Scheduling;
 use App\Models\ComprehensiveExam;
+use App\Exports\EnrolledStudentExport;
+use App\Exports\SubjectExport;
+use App\Exports\ProgramExport;
+use App\Exports\InstructorExport;
+use Excel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -34,7 +39,8 @@ class AdmissionOfficerController extends Controller
         $pendingStudents = DB::table('pending_students')->count();
         $enrolledStudents = DB::table('enrolled_students')->count();
         $subjects = DB::table('subjects')->count();
-        return view('admin.dashboard.dashboard', $data, compact('subjects','newStudents', 'continuingStudents', 'pendingStudents', 'enrolledStudents'));
+        $programs = DB::table('programs')->count();
+        return view('admin.dashboard.dashboard', $data, compact('programs','subjects','newStudents', 'continuingStudents', 'pendingStudents', 'enrolledStudents'));
     }
 
     function preEnrollmentNew()
@@ -62,8 +68,8 @@ class AdmissionOfficerController extends Controller
         }   
 
         $continuingStudents = DB::table('students')->where('student_type', 'Continuing')->get();
-
-        return view('admin.pre-enrollment.continuing-student', $data, ['continuingStudents'=>$continuingStudents]);
+        $programs = Program::all();
+        return view('admin.pre-enrollment.continuing-student', $data, ['programs'=>$programs,'continuingStudents'=>$continuingStudents]);
     }
 
     /* Edit Pending Student */
@@ -140,7 +146,6 @@ class AdmissionOfficerController extends Controller
             'student_id' => 'required',
             'last_name' => 'required',          
             'first_name' => 'required',
-            'middle_name' => 'required',
             'vaccination_status' => 'required',
             'email' => 'required',
             'gender' => 'required',  
@@ -346,7 +351,6 @@ class AdmissionOfficerController extends Controller
             'student_id' => 'required',
             'last_name' => 'required',          
             'first_name' => 'required',
-            'middle_name' => 'required',
             'vaccination_status' => 'required',
             'email' => 'required',
             'gender' => 'required',  
@@ -417,8 +421,9 @@ class AdmissionOfficerController extends Controller
         $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
         $programs = Program::all();
+        $subjects = Subject::all();
         $student = Student::find($id);
-        return view('admin.edit-student', $data, ['programs'=>$programs,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'student'=>$student]);
+        return view('admin.edit-student', $data, ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'subjects'=>$subjects,'programs'=>$programs,'student'=>$student]);
     }
 
     function approveView($id){
@@ -456,7 +461,6 @@ class AdmissionOfficerController extends Controller
             'student_id' => 'required',
             'last_name' => 'required',          
             'first_name' => 'required',
-            'middle_name' => 'required',
             'vaccination_status' => 'required',
             'email' => 'required',
             'gender' => 'required',  
@@ -522,7 +526,6 @@ class AdmissionOfficerController extends Controller
             'student_id' => 'required',
             'last_name' => 'required',          
             'first_name' => 'required',
-            'middle_name' => 'required',
             'vaccination_status' => 'required',
             'email' => 'required',
             'gender' => 'required',  
@@ -740,7 +743,6 @@ class AdmissionOfficerController extends Controller
             'student_id' => 'required',
             'last_name' => 'required',          
             'first_name' => 'required',
-            'middle_name' => 'required',
             'vaccination_status' => 'required',
             'email' => 'required',
             'gender' => 'required',  
@@ -814,7 +816,6 @@ class AdmissionOfficerController extends Controller
             'student_id' => 'required',
             'last_name' => 'required',          
             'first_name' => 'required',
-            'middle_name' => 'required',
             'vaccination_status' => 'required',
             'email' => 'required',
             'gender' => 'required',  
@@ -911,7 +912,6 @@ class AdmissionOfficerController extends Controller
             'program' => 'required',
             'title' => 'required',
             'first_name' => 'required',
-            'middle_name' => 'required',
             'last_name' => 'required',
         ]);
 
@@ -937,7 +937,6 @@ class AdmissionOfficerController extends Controller
             'program' => 'required',
             'title' => 'required',
             'first_name' => 'required',
-            'middle_name' => 'required',
             'last_name' => 'required',
         ]);
 
@@ -1007,5 +1006,25 @@ class AdmissionOfficerController extends Controller
         $cexam = ComprehensiveExam::find($id);
         $cexam->delete();
         return redirect('/staff/admin/comprehensive-exam');
+    }
+
+    function exportEnrolledStudents()
+    {
+        return Excel::download(new EnrolledStudentExport, 'enrolled-students.xlsx');
+    }
+
+    function exportSubjects()
+    {
+        return Excel::download(new SubjectExport, 'subjects.xlsx');
+    }
+
+    function exportPrograms()
+    {
+        return Excel::download(new ProgramExport, 'programs.xlsx');
+    }
+
+    function exportInstructors()
+    {
+        return Excel::download(new InstructorExport, 'instructors.xlsx');
     }
 }

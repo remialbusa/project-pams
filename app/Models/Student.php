@@ -10,8 +10,5 @@ class Student extends Model
 {
     use UUID;
     use HasFactory;
-
-    function subject(){
-        return $this->hasMany('App\Models\Subject');
-    }
+    
 }

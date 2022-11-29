@@ -16,7 +16,7 @@
     <!-- ph locations jquery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
     <script src="https://f001.backblazeb2.com/file/buonzz-assets/jquery.ph-locations-v1.0.0.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
 
     <!-- custom css -->
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
@@ -230,10 +230,10 @@
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Select Your Program</label>
-                                        <select class="form-select" aria-label="Default select example" id="program" name="program" {{-- onchange="populate(this.id, 'slct_first_period')" --}}>
-                                            <option disabled selected>Select Program</option>
-                                            @foreach ($programs['data'] as $programs)
-                                                <option value="{{$programs->program}}">{{$programs->program}} - {{$programs->description}}</option>
+                                        <select class="form-select" aria-label="Default select example" id="sel_program" name="program">
+                                            <option disabled selected>-- Select Program --</option>
+                                            @foreach ($programData['data'] as $program)
+                                                <option value="{{$program->id}}">{{$program->program}} - {{$program->description}}</option>
                                             @endforeach
                                         </select>
                                         <span class="text-danger">@error('program'){{$message}} @enderror</span>
@@ -245,8 +245,8 @@
                                 <div class="col-md-6 mt-2">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">1ST PERIOD</label>
-                                        <select class="form-select" aria-label="Default select example" id="slct_first_period" name="subject" {{-- onchange="populateTwo(this.id, 'slct_second_period')" --}}>
-                                            <option disabled selected>Select First Period Subject</option>
+                                        <select id='first_period' name='first_period' class="form-select">
+                                            <option disabled selected>-- Select Subject --</option>
                                         </select>
                                         <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
                                     </div>
@@ -254,19 +254,8 @@
                                 <div class="col-sm-6 mt-2">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">2ND PERIOD</label>
-                                        <select class="form-select" aria-label="Default select example" id="slct_second_period" name="second_period" {{-- onchange="populateThree(this.id, 'slct_third_period')" --}}>
-                                            <option disabled selected>Select Second Period Subject</option>
-                                            {{-- @foreach ($secondPeriod as $subjects)
-                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                            @endforeach --}}
-                                            {{-- <option value="MIT 502 Methods of Research for IT">MIT 502 - Methods of Research for IT</option>
-                                            <option value="MIT 507 System Analysis and Design">MIT 507 - System Analysis and Design</option>
-                                            <option value="MSIT 502 Methods of Research for IT">MSIT 502 Methods of Research for IT</option>
-                                            <option value="MSIT 507 System Analysis and Design">MSIT 507 System Analysis and Design</option>
-                                            <option value="FD 502 Basic Statistics">FD 502 Basic Statistics</option>
-                                            <option value="LT 509 Language Teaching Methodology">LT 509 Language Teaching Methodology</option>
-                                            <option value="FD 501 Basic Research">FD 501 Basic Research</option>
-                                            <option value="SW 515 Field Instruction">SW 515 Field Instruction</option> --}}
+                                        <select class="form-select" aria-label="Default select example" id="second_period" name="second_period">
+                                            <option disabled selected>-- Select Subject --</option>
                                         </select>
                                         <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
                                     </div>
@@ -274,19 +263,8 @@
                                 <div class="col mt-3 mt-2">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">3RD PERIOD</label>
-                                        <select class="form-select" aria-label="Default select example" id="slct_third_period" name="third_period">
-                                            <option disabled selected>Select Third Period Subject</option>
-                                            @foreach ($thirdPeriod as $subjects)
-                                                <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                            @endforeach
-                                            {{-- <option value="MIT 503 Statistics for IT Research">MIT 503 - Statistics for IT Research</option>
-                                            <option value="MSIT 503 Statistics for IT Research">MSIT 503 - Statistics for IT Research</option>
-                                            <option value="TW 001 Statistics for IT Research">TW 001 - Thesis Writing I</option>
-                                            <option value="TW 002 Statistics for IT Research">TW 002 - Thesis Writing II Research</option>
-                                            <option value="LT 513 Foundations of Language Education (Issues and Trends in ESL)">LT 513 Foundations of Language Education (Issues and Trends in ESL)</option>
-                                            <option value="LIT 504 Strategies and Methods in Teaching Literature (Petitioned Subject)">LIT 504 Strategies and Methods in Teaching Literature (Petitioned Subject)</option>
-                                            <option value="FD 502 Basic Statistics">FD 502 Basic Statistics</option>
-                                            <option value="SW 516 Thesis Writing">SW 516 Thesis Writing</option> --}}
+                                        <select class="form-select" aria-label="Default select example" id="third_period" name="third_period">
+                                            <option disabled selected>-- Select Subject --</option>
                                         </select>
                                         <span class="text-danger">@error('third_period'){{$message}} @enderror</span>
                                     </div>
@@ -342,51 +320,94 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script type='text/javascript'>
         $(document).ready(function(){
-     
-           // Department Change
-           $('#program').change(function(){
-     
-              // Department id
-              var program = $(this).val();
-              /* alert(program); */
-              // Empty the dropdown
-              $('#subject').find('option').not(':first').remove();
-     
-              // AJAX request 
-              $.ajax({
-                url: '/student/auth/register-new-student/'+program,
+        
+            $('#sel_program').change(function(){
+                // Department id
+                var id = $(this).val();
+        
+                // Empty the dropdown
+                $('#first_period').find('option').not(':first').remove();
+        
+                // AJAX request 
+                $.ajax({
+                url: '/student/auth/register-new-student/getSubjects/'+id,
                 type: 'get',
                 dataType: 'json',
                 success: function(response){
-     
-                  var len = 0;
-                  if(response['data'] != null){
-                     len = response['data'].length;
-                  }
-     
-                  if(len > 0){
-                     // Read data and create <option >
-                     for(var i=0; i<len; i++){
-     
-                        var program = response['data'][i].program;
-                        var subject = response['data'][i].subject;
-     
-                        var option = "<option value='"+program"'>"+subject+"</option>";
-     
-                        $("#subject").append(option); 
-                     }
-                  }
-     
+                    var len = 0;
+                    if(response['data'] != null){
+                        len = response['data'].length;
+                    }
+        
+                    if(len > 0){
+                        // Read data and create <option >
+                        for(var i=0; i<len; i++){
+                            var id = response['data'][i].id;
+                            var code = response['data'][i].code;
+                            var subject = response['data'][i].subject;
+                            var option = "<option value='"+ id +"'>"+ code + "\n" + subject +"</option>"; 
+                            $("#first_period").append(option); 
+                        }
+                    }
                 }
-              });
-           });
+                });
+
+                $('#second_period').find('option').not(':first').remove();
+        
+                // AJAX request 
+                $.ajax({
+                url: '/student/auth/register-new-student/getSubjects/'+id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                    var len = 0;
+                    if(response['data'] != null){
+                        len = response['data'].length;
+                    }
+        
+                    if(len > 0){
+                        // Read data and create <option >
+                        for(var i=0; i<len; i++){
+                            var id = response['data'][i].id;
+                            var code = response['data'][i].code;
+                            var subject = response['data'][i].subject;
+                            var option = "<option value='"+ id +"'>"+ code + "\n" + subject +"</option>"; 
+                            $("#second_period").append(option); 
+                        }
+                    }
+                }
+                });
+
+                $('#third_period').find('option').not(':first').remove();
+        
+                // AJAX request 
+                $.ajax({
+                url: '/student/auth/register-new-student/getSubjects/'+id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                    var len = 0;
+                    if(response['data'] != null){
+                        len = response['data'].length;
+                    }
+        
+                    if(len > 0){
+                        // Read data and create <option >
+                        for(var i=0; i<len; i++){
+                            var id = response['data'][i].id;
+                            var code = response['data'][i].code;
+                            var subject = response['data'][i].subject;
+                            var option = "<option value='"+ id +"'>"+ code + "\n" + subject +"</option>"; 
+                            $("#third_period").append(option); 
+                        }
+                    }
+                }
+                });
+            });
         });
-        </script>
+    </script>
 </body>
 
 </html>

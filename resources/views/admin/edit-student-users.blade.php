@@ -36,7 +36,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/staff/admin/dashboard">Back</a>
+                        <a class="nav-link" href="/staff/admin/student-users">Back</a>
                     </li>
                 </ul>
             </div>

@@ -48,7 +48,7 @@
             <h4 class="px-5 mt-5">ADMISSION REQUIREMENTS</h4>
             <div class="admission-requirements row px-5 mb-5 mt-3">
                 <div class="col-sm-4">
-                    New Students
+                    New Students 
                 </div>
                 <div class="col-sm-8 lh-lg">
                     <p class="m-0">1. Must take the Graduate School Admission Test (GSAT)</p>
@@ -67,7 +67,7 @@
             <h4 class="px-5 mt-5">ENROLLMENT PROCESS</h4>
             <div class="admission-requirements row px-5 mb-5 mt-3">
                 <div class="col-sm-4">
-                    New Students
+                    New Students / Transferees
                 </div>
                 <div class="col-sm-8 lh-lg">
                 <p class="m-0">1. VISIT THE OFFICE OF THE GRADUATE SCHOOL FOR EVALUATION
@@ -97,7 +97,7 @@
             <h4 class="px-5 mt-5">ENROLLMENT PROCESS</h4>
             <div class="admission-requirements row px-5 mb-5 mt-3">
                 <div class="col-sm-4">
-                    Continuining Students
+                    Continuining Students / Returnees
                 </div>
                 <div class="col-sm-8 lh-lg">
                     <p class="m-0">1. SIGNING OF CLEARANCE </p>

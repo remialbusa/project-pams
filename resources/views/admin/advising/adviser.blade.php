@@ -1,5 +1,5 @@
 @extends('admin.ogs-main-layout')
-@section('title', 'List of Advisers')
+@section('title', 'List of Instructor')
 
 @section('content')
 
@@ -8,8 +8,9 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Subjects</h1>
+        <h1 class="h3 mb-2 text-gray-800">Instructors</h1>
         <a class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#modalForm">New Adviser</a>
+        <a href="{{ route('admin-export-instructors') }}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm">Export Data</a>
     </div>
     <p>The list of subjects shown in the table below are the available subjects for the S.Y. 2022-2023.</p>
       
@@ -36,8 +37,8 @@
                             <td>{{$adviser->title}}</td>
                             <td>{{$adviser->first_name}} {{$adviser->middle_name}} {{$adviser->last_name}}</td>
                             <td>
-                                <a href="{{ route('edit-adviser', $adviser->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
-                                <a href="{{ route('delete-adviser', $adviser->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
+                                <a href="{{ route('edit-adviser', $adviser->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                <a href="{{ route('delete-adviser', $adviser->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>
                     @endforeach                                            
@@ -53,7 +54,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New Subject</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">New Instructor</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body mx-4 my-4">

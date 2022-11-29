@@ -36,7 +36,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/staff/admin/dashboard">Back</a>
+                        <a class="nav-link" href="/staff/admin/pending">Back</a>
                     </li>
                 </ul>
             </div>
@@ -122,10 +122,12 @@
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Student Type</label>
                                         <select class="no-border form-select" aria-label="Default select example" name="student_type">
-                                            @if($student['student_type'] == 'New Student')
-                                            <option selected value="New Student">New Student</option>
+                                            @if($status['student_type'] == 'New Student')
+                                            <option value="New Student">New Student</option>
+                                            <option value="Continuing">Continuing</option>
                                             @else
                                             <option value="Continuing">Continuing</option>
+                                            <option value="New Student">New Student</option>
                                             @endif
                                         </select>
                                     </div>
@@ -133,7 +135,7 @@
                                 <div class="col ">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="student_id" value="{{$student['student_id']}}" />
+                                        <input type="text" id="form6Example1" class="form-control" name="student_id" value="{{$status['student_id']}}" />
                                         <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
                                     </div>
                                 </div>

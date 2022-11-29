@@ -130,18 +130,17 @@
 
             <hr class="sidebar-divider">
 
-            <li class="nav-item mb-3">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.comprehensive-exam')}}">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Comprehensive Exam</span></a>
             </li>
 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-    
+            <hr class="sidebar-divider">
 
+            <hr class="sidebar-divider">
                 <!-- Sidebar Toggler (Sidebar) -->
-                <div class="text-center d-none d-md-inline">
+                <div class="text-center d-none d-md-inline mt-3">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
                 

@@ -15,11 +15,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
+
 class MainController extends Controller
 {
     function login()
     {
         return view('auth.login');
+    }
+
+    function index()
+    {
+        return view('welcome');
     }
 
     function register()
@@ -28,8 +34,12 @@ class MainController extends Controller
         $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
         $subjects = Subject::all();
-        $programs = Program::all();
-        return view('auth.register-student', ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'subjects'=>$subjects]);
+
+        $programData['data'] = Program::orderby("program","asc")
+        ->select('id','program','description')
+        ->get();
+
+        return view('auth.register-student', ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programData'=>$programData,'subjects'=>$subjects]);
     }
 
     function registerNewStudent()
@@ -37,19 +47,19 @@ class MainController extends Controller
         $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
         $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
-        $subjects = Subject::all();
-        $programs['data'] = Program::orderby("program","asc")
-        ->select('program','description')
+
+        $programData['data'] = Program::orderby("program","asc")
+        ->select('id','program','description')
         ->get();
 
-        return view('auth.register-new-student', ['programs'=>$programs,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'subjects'=>$subjects]);
+        return view('auth.register-new-student', ['programData'=>$programData,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod]);
     }
 
-    function getSubjects($program=0)
+    function getSubjects($programid=0)
     {
-        $subjects['data'] = Subject::orderby("program","asc")
-        ->select('program','subject')
-        ->where('program',$program)
+        $subjects['data'] = Subject::orderby("code","asc")
+        ->select('id','code','subject')
+        ->where('program',$programid)
         ->get();
         return response()->json($subjects);
     }
@@ -62,11 +72,10 @@ class MainController extends Controller
             'student_id' => 'required',
             'last_name' => 'required',          
             'first_name' => 'required',
-            'middle_name' => 'required',
             'vaccination_status' => 'required',
             'email' => 'required',
             'gender' => 'required',  
-            'birth_date' => 'required', 
+            'birth_date' => 'required|date|before:-23 years', 
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
             'region' => 'required',
@@ -367,4 +376,6 @@ class MainController extends Controller
             return back()->with('fail', 'Failed Registration');
         }
     }
+
+    
 }

@@ -78,12 +78,12 @@
                 </div>   
             </li>
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="{{route('auth.active-semester')}}">
                     <i class="bi bi-eye-fill"></i>
                     <span>Active Semester</span>
                 </a>              
-            </li>
+            </li> --}}
             
             <!-- Nav Item - Utilities Collapse Menu -->
             

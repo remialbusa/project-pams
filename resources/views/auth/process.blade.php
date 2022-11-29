@@ -58,31 +58,31 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="./images/enrollment-process.png" class="rounded mx-auto d-block w-50" alt="...">
+                    <img src="./images/STEP1.png" class="rounded mx-auto d-block w-50" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/SS1_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                    <img src="./images/STEP2.png" class="rounded mx-auto d-block w-50" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/SS2_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                    <img src="./images/STEP3.png" class="rounded mx-auto d-block w-50" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/SS3_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                    <img src="./images/STEP4.jpg" class="rounded mx-auto d-block w-50" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/SS4_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                    <img src="./images/STEP5.jpg" class="rounded mx-auto d-block w-50" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/SS5_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                    <img src="./images/STEP6B.jpg" class="rounded mx-auto d-block w-50" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/SS6_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                    <img src="./images/STEP678.jpg" class="rounded mx-auto d-block w-50" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/SS7_label.png" class="rounded mx-auto d-block w-50" alt="...">
+                    <img src="./images/STEP7B.jpg" class="rounded mx-auto d-block w-50" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/Title.png" class="rounded mx-auto d-block w-50" alt="...">
+                    <img src="./images/STEP8B.jpg" class="rounded mx-auto d-block w-50" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">

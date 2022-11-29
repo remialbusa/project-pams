@@ -18,7 +18,7 @@ class CreateAdvisersTable extends Migration
             $table->string('program');
             $table->string('title');
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->timestamps();
         });

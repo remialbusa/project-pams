@@ -10,6 +10,7 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Subjects</h1>
         <a class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#modalForm">New Subject</a>
+        <a href="{{ route('admin.export-subjects') }}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm">Export Data</a>
     </div>
     <p>The list of subjects shown in the table below are the available subjects for the S.Y. 2022-2023.</p>
       
@@ -40,8 +41,8 @@
                             <td>{{$subject->unit}}</td>
                             <td>{{$subject->period}}</td>
                             <td>
-                                <a href="{{ route('edit-subject', $subject->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
-                                <a href="{{ route('delete-subject', $subject->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
+                                <a href="{{ route('edit-subject', $subject->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                <a href="{{ route('delete-subject', $subject->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>
                     @endforeach                                            
@@ -81,7 +82,7 @@
                             <select class="form-select" aria-label="Default select example" name="program">
                                 <option disabled selected>Select Program</option>
                                 @foreach ($programs as $programs)
-                                    <option value="{{$programs->program}}">{{$programs->program}}</option>
+                                    <option value="{{$programs->id}}">{{$programs->program}}</option>
                                 @endforeach
                             </select>
                         </div>

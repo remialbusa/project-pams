@@ -124,9 +124,11 @@
                                                         <option value="Vaccinated">Vaccinated</option>
                                                         <option value="Not Vaccinated">Not Vaccinated</option>
                                                     @else
+                                                        <option selected value="Not Vaccinated">Not Vaccinated</option>
                                                         <option value="Vaccinated">Vaccinated</option>
                                                         <option value="Partially Vaccinated">Partially Vaccinated</option>
-                                                        <option selected value="Not Vaccinated">Not Vaccinated</option>
+                                                        <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                        <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                                     @endif
                                                 </select>
                                                 <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
@@ -224,7 +226,7 @@
                                     
                                     <!-- column grid layout with text inputs for course/s -->
                                     <div hidden>
-                                    <h5 class="mt-5 lead">COURSE/S</h5>
+                                    <h5 class="mt-5 lead">Programs & Subjects</h5>
                                         <div class="col mt-4 mb-3">
                                             <div class="col">
                                                 <div class="form-outline form-line">

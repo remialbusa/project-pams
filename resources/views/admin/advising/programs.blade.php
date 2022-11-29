@@ -10,6 +10,7 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Programs</h1>
         <a class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#modalForm">New Programs</a>
+        <a href="{{ route('admin.export-programs') }}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm">Export Data</a>
     </div>
     <p>The list of Programs shown in the table below are the available subjects for the current S.Y.</p>
       
@@ -24,11 +25,10 @@
                     <thead>
                         <tr>
                             <th>Code</th>
-                            
                             <th>Degree</th>
                             <th>Program</th>
                             <th>Description</th>
-                            <th>Action</th>
+                            <th class="col-sm-2">Action</th>
                         </tr>
                     </thead>               
                     <tbody>
@@ -39,8 +39,8 @@
                             <td>{{$programs->program}}</td>
                             <td>{{$programs->description}}</td>
                             <td>
-                                <a href="{{route('edit-program', $programs->id)}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
-                                <a href="{{route('delete-program', $programs->id)}}" class="delete"><i class="bi bi-trash3"></i></a>
+                                <a href="{{route('edit-program', $programs->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                <a href="{{route('delete-program', $programs->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>
                     @endforeach                                            
@@ -80,8 +80,8 @@
                             <select class="form-select form-select-lg" aria-label="Default select example" name="degree">
                                 <option selected disabled>Select Degree</option>
                                 <option value="Doctoral">Doctoral Degree</option>
-                                <option value="Thesis Master’s">Thesis Master’s</option>
-                                <option value="Non-Thesis Master’s">Non-Thesis Master’s</option>
+                                <option value="Thesis Master’s">Master's w/ Thesis</option>
+                                <option value="Non-Thesis Master’s">Master’s Non-Thesis </option>
                             </select>
                             <span class="text-danger">@error('degree'){{$message}} @enderror</span>
                             <label for="floatingInput">Degree</label>
