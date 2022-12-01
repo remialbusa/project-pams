@@ -168,8 +168,8 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
                                             <select class="no-border form-select" aria-label="Default select example" name="vaccination_status">
-                                            @if($status->vaccination_status == 'Vaccinated')
-                                                <option value="Vaccinated">Vaccinated</option>
+                                            @if($status->vaccination_status == 'Fully Vaccinated')
+                                                <option value="Fully Vaccinated">Fully Vaccinated</option>
                                                 <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                                 <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                                 <option value="Not Vaccinated">Not Vaccinated</option>
@@ -295,11 +295,7 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Select Your Program</label>
                                             <select class="no-border form-select" aria-label="Default select example" name="program">
-                                                @foreach ($programs as $programs)
-                                                <option value="{{$programs->program}}"
-                                                    {{$status->program == $programs->program ? 'selected': ''}}>
-                                                    {{$programs->program}}</option>
-                                                @endforeach
+                                                <option value="{{$status->program}}">{{$status->getProgramID->program}} - {{$status->getProgramID->description}}</option>
                                             </select>
                                             <span class="text-danger">@error('program'){{$message}} @enderror</span>
                                         </div>
@@ -310,15 +306,7 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">1ST PERIOD</label>
                                             <select class="no-border form-select" aria-label="Default select example" name="first_period_sub">
-                                                @if($status['first_period_sub'] == 'MIT 501 Advanced Programming I')
-                                                    @foreach ($firstPeriod as $subjects)
-                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($firstPeriod as $subjects)
-                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="{{$student->first_period_sub}}">{{$student->getFirstPeriodID->code}} - {{$student->getFirstPeriodID->subject}}</option>
                                             </select>
                                             <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
                                         </div>
@@ -343,15 +331,7 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">2ND PERIOD</label>
                                             <select class="no-border form-select" aria-label="Default select example" name="second_period_sub">
-                                                @if($status['second_period_sub'] == 'MIT 502 Methods of Research for IT')
-                                                    @foreach ($secondPeriod as $subjects)
-                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($secondPeriod as $subjects)
-                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="{{$student->second_period_sub}}">{{$student->getSecondPeriodID->code}} - {{$student->getSecondPeriodID->subject}}</option>
                                             </select>
                                             <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
                                         </div>
@@ -376,15 +356,7 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">3RD PERIOD</label>
                                             <select class="no-border form-select " aria-label="Default select example" name="third_period_sub">
-                                                @if($status['third_period_sub'] == 'MIT 503 Statistics for IT Research')
-                                                    @foreach ($thirdPeriod as $subjects)
-                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($thirdPeriod as $subjects)
-                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="{{$student->third_period_sub}}">{{$student->getThirdPeriodID->code}} - {{$student->getThirdPeriodID->subject}}</option>
                                             </select>
                                             <span class="text-danger">@error('third_period'){{$message}} @enderror</span>
                                         </div>

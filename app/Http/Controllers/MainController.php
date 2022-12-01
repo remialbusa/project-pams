@@ -10,6 +10,7 @@ use App\Models\Subject;
 use App\Models\Program;
 use App\Models\TechnicalForm;
 use App\Models\ComprehensiveExam;
+use App\Models\SchoolYear;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +40,8 @@ class MainController extends Controller
         ->select('id','program','description')
         ->get();
 
-        return view('auth.register-student', ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programData'=>$programData,'subjects'=>$subjects]);
+        $school_year = DB::table('school_year')->where('status', 'Active')->get();
+        return view('auth.register-student', ['school_year'=>$school_year,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programData'=>$programData,'subjects'=>$subjects]);
     }
 
     function registerNewStudent()
@@ -52,14 +54,36 @@ class MainController extends Controller
         ->select('id','program','description')
         ->get();
 
-        return view('auth.register-new-student', ['programData'=>$programData,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod]);
+        $school_year = DB::table('school_year')->where('status', 'Active')->get();
+        return view('auth.register-new-student', ['school_year'=>$school_year,'programData'=>$programData,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod]);
     }
 
-    function getSubjects($programid=0)
+    function getFirstPeriod($programid=0)
     {
         $subjects['data'] = Subject::orderby("code","asc")
-        ->select('id','code','subject')
+        ->select('id','code','subject','unit','period')
         ->where('program',$programid)
+        ->where('period', '1st Period')
+        ->get();
+        return response()->json($subjects);
+    }
+
+    function getSecondPeriod($programid=0)
+    {
+        $subjects['data'] = Subject::orderby("code","asc")
+        ->select('id','code','subject','unit','period')
+        ->where('program',$programid)
+        ->where('period', '2nd Period')
+        ->get();
+        return response()->json($subjects);
+    }
+
+    function getThirdPeriod($programid=0)
+    {
+        $subjects['data'] = Subject::orderby("code","asc")
+        ->select('id','code','subject','unit','period')
+        ->where('program',$programid)
+        ->where('period', '3rd Period')
         ->get();
         return response()->json($subjects);
     }
@@ -229,8 +253,9 @@ class MainController extends Controller
                 'LoggedUserInfo'=>$student
             ];
         }
+        $school_year = SchoolYear::all();
         $studentList = StudentUser::all();
-        return view('student.dashboard.dashboard', $data, ['student'=>$studentList]);
+        return view('student.dashboard.dashboard', $data, ['school_year'=>$school_year,'student'=>$studentList]);
     }
 
     function profileView(){       
@@ -244,7 +269,8 @@ class MainController extends Controller
         $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
         $programs = Program::all();
-        return view('student.profile-dashboard', $data, ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs]);
+        $school_year = DB::table('school_year')->where('status', 'Active')->get();
+        return view('student.profile-dashboard', $data, ['school_year'=>$school_year,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs]);
     }
 
     function logout()
@@ -263,9 +289,10 @@ class MainController extends Controller
                 'LoggedUserInfo' => $student
             ];
         }
+        $school_year = DB::table('school_year')->where('status', 'Active')->get();
         $studentUser = StudentUser::all();
         $subject = Subject::all();
-        return view('student.dashboard.monitor-enrollment-dashboard', $data, ['subject'=>$subject,'studentUser' => $studentUser]);
+        return view('student.dashboard.monitor-enrollment-dashboard', $data, ['school_year'=>$school_year,'subject'=>$subject,'studentUser' => $studentUser]);
     }
 
     function preEnroll()
@@ -277,6 +304,7 @@ class MainController extends Controller
             ];
         }
 
+        $school_year = DB::table('school_year')->where('status', 'Active')->get();
         $studentUser = StudentUser::all();
         $student = Student::all();
         $enrolledStudent = EnrolledStudent::all();
@@ -284,7 +312,12 @@ class MainController extends Controller
         $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
         $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
-        return view('student.dashboard.pre-enroll.pre-enrollment', $data, ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
+
+        $programData['data'] = Program::orderby("program","asc")
+        ->select('id','program','description')
+        ->get();
+
+        return view('student.dashboard.pre-enroll.pre-enrollment', $data, ['school_year'=>$school_year,'programData'=>$programData,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
     }
 
     function comprehensiveExam()
@@ -296,26 +329,12 @@ class MainController extends Controller
             ];
         }
 
+        $school_year = DB::table('school_year')->where('status', 'Active')->get();
         $studentUser = StudentUser::all();
         $student = Student::all();
         $enrolledStudent = EnrolledStudent::all();
         $program = Program::all();
-        return view('student.dashboard.pre-enroll.comprehensive-exam', $data, ['programs'=>$program,'studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
-    }
-
-
-    function test()
-    {
-        $studentData = Student::all();
-
-        return view('test', ['studentData'=>$studentData]);
-    }
-
-    function testEdit($id)
-    {
-        $studentData = Student::find($id);
-
-        return view('test-edit', ['studentData'=>$studentData]);
+        return view('student.dashboard.pre-enroll.comprehensive-exam', $data, ['school_year'=>$school_year,'programs'=>$program,'studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
     }
 
     function saveForm(Request $request)

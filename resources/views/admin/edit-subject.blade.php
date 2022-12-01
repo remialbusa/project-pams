@@ -72,7 +72,7 @@
                             <div class="form-floating mb-3">
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="program">
                                     @foreach ($programs as $programs)
-                                        <option value="{{$programs->program}}"
+                                        <option value="{{$programs->id}}"
                                             {{$subject->program == $programs->program ? 'selected': ''}}>
                                             {{$programs->program}}</option>
                                     @endforeach

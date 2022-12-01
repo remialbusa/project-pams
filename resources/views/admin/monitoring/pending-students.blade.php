@@ -36,7 +36,7 @@
                             <tr>
                                 <td>{{$pendingStudents->first_name}} {{$pendingStudents->middle_name}} {{$pendingStudents->last_name}}</td>
                                 <td>{{$pendingStudents->student_id}}</td>
-                                <td>{{$pendingStudents->program}}</td>
+                                <td>{{$pendingStudents->getProgramID->program}}</td>
                                 @if($pendingStudents->submitted_form == "Pending")
                                 <td><span class="badge badge-warning">{{$pendingStudents->submitted_form}}</span></td>   
                                 @else 

@@ -128,10 +128,9 @@
                 </button>
             </div>
         </div>
-        <hr>
     </section>
 
-    <section class="hero-body pt-5 mt-5 mb-5">
+    {{-- <section class="hero-body pt-5 mt-5 mb-5">
         <h1 style="color:white;"class="text-center display-6">Event Calendar</h1>
         <hr/>
         <div class="container h-100 mt-5">
@@ -139,7 +138,7 @@
                 <img src="./images/handshake-colour-thumbnail.png" class="rounded mx-auto d-block img-fit" alt="...">
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="container feature pt-5 mt-5">
 
@@ -252,6 +251,13 @@
                 <p class="text-light text-center">© Copyright <b>Leyte Normal university</b> . All Rights Reserved 2022</p>
             </div>
     </footer>
+
+
+
+
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>

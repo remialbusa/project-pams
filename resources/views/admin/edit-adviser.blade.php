@@ -41,7 +41,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/staff/admin/manage-users">Back</a>
+                        <a class="nav-link" href="/staff/admin/list-of-adviser">Back</a>
                     </li>
                 </ul>
             </div>
@@ -70,8 +70,13 @@
                                 <label for="floatingInput">ID</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="program" placeholder="Program" value="{{$adviser['program']}}">
-                                <span class="text-danger">@error('program'){{$message}} @enderror</span>
+                                <select class="form-select form-select-lg" aria-label="Default select example" name="program">
+                                    @foreach ($programs as $programs)
+                                        <option value="{{$programs->id}}"
+                                            {{$adviser->program == $programs->program ? 'selected': ''}}>
+                                            {{$programs->program}}</option>
+                                    @endforeach
+                                </select>
                                 <label for="floatingInput">Program</label>
                             </div>
                             <div class="form-floating mb-3">

@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\Faqs;
 use App\Models\TechnicalForm;
 use App\Models\Announcement;
+use App\Models\SchoolYear;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;

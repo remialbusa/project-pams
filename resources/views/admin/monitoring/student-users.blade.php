@@ -31,9 +31,9 @@
                     @foreach ($studentUsers as $students)
                         <tr>
                             <td>{{$students->first_name}} {{$students->middle_name}} {{$students->last_name}}</td>
-                            <td>{{$students->program}}</td>
+                            <td>{{$students->getProgramID->program}}</td>
                             <td>{{$students->student_id}}</td>                       
-                            <td>***********</td>
+                            <td>**********</td>
                             <td>{{$students->mobile_no}}</td>
                             <td>{{$students->created_at}}</td>
                             <td>

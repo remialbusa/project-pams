@@ -36,7 +36,7 @@
                     @foreach ($subjects as $subject)
                         <tr>
                             <td>{{$subject->code}}</td>
-                            <td>{{$subject->program}}</td>
+                            <td>{{$subject->getProgramID->program}}</td>
                             <td>{{$subject->subject}}</td>                       
                             <td>{{$subject->unit}}</td>
                             <td>{{$subject->period}}</td>
@@ -92,16 +92,6 @@
                             <label for="floatingInput">Subject</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-select form-select-lg" aria-label="Default select example" name="units">
-                                <option selected disabled>Select number of units</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                            <span class="text-danger">@error('units'){{$message}} @enderror</span>
-                            <label for="floatingInput">Units</label>
-                        </div>
-                        <div class="form-floating mb-3">
                             <select class="form-select form-select-lg" aria-label="Default select example" name="period">
                                 <option selected disabled>Select Period</option>
                                 <option value="1st Period">1st Period</option>
@@ -110,7 +100,17 @@
                             </select>
                             <span class="text-danger">@error('units'){{$message}} @enderror</span>
                             <label for="floatingInput">Period</label>
-                        </div>                 
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select form-select-lg" aria-label="Default select example" name="units">
+                                <option selected disabled>Select number of units</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <span class="text-danger">@error('units'){{$message}} @enderror</span>
+                            <label for="floatingInput">Units</label>
+                        </div>            
                         <div class="d-grid">
                             <button type="submit" class="btn btn-lg btn-primary shadow-sm btn-login fw-bold mb-2">Save</button>
                         </div>
@@ -120,7 +120,5 @@
         </div>
     </div>
 </div>
-
-
 
 @endsection

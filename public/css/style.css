@@ -5,6 +5,10 @@
     border-right: 1;
 }
 
+.hide{
+    display:none;
+    }
+    
 .button1 {
     font-size: small;
     position: relative;

@@ -14,12 +14,17 @@ class Subject extends Model
       'code','program','subject','unit','period'
    ];
 
-   public static function getAllSubjects()
+    public static function getAllSubjects()
     {
         $result = DB::table('subjects')
         ->select('id','code','program','subject','unit','period')
         ->get()
         ->toArray();
         return $result;
+    }
+
+    public function getProgramID()
+    {
+        return $this->belongsTo(Program::class, 'program', 'id');
     }
 }

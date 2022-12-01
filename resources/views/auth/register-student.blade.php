@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example2">Middle name <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example2">Middle name </label>
                                         <input type="text" id="form6Example2" class="form-control" name="middle_name" />
                                         <span class="text-danger">@error('middle_name'){{$message}} @enderror</span>
                                     </div>
@@ -118,7 +118,7 @@
                                         <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
                                         <select class="form-select" aria-label="Default select example" name="vaccination_status">
                                             <option disabled selected>N/A</option>
-                                            <option value="Vaccinated">Vaccinated</option>
+                                            <option value="Fully Vaccinated">Fully Vaccinated</option>
                                             <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                             <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                             <option value="Not Vaccinated">Not Vaccinated</option>
@@ -332,7 +332,7 @@
         
                 // AJAX request 
                 $.ajax({
-                url: '/student/auth/register-new-student/getSubjects/'+id,
+                url: '/student/auth/register-new-student/getFirstPeriod/'+id,
                 type: 'get',
                 dataType: 'json',
                 success: function(response){
@@ -347,7 +347,7 @@
                             var id = response['data'][i].id;
                             var code = response['data'][i].code;
                             var subject = response['data'][i].subject;
-                            var option = "<option value='"+ id +"'>"+ code + "\n" + subject +"</option>"; 
+                            var option = "<option value='"+ id +"'>"+ code + "\n" + "-" + "\n" + subject +"</option>"; 
                             $("#first_period").append(option); 
                         }
                     }
@@ -358,7 +358,7 @@
         
                 // AJAX request 
                 $.ajax({
-                url: '/student/auth/register-new-student/getSubjects/'+id,
+                url: '/student/auth/register-new-student/getSecondPeriod/'+id,
                 type: 'get',
                 dataType: 'json',
                 success: function(response){
@@ -373,7 +373,7 @@
                             var id = response['data'][i].id;
                             var code = response['data'][i].code;
                             var subject = response['data'][i].subject;
-                            var option = "<option value='"+ id +"'>"+ code + "\n" + subject +"</option>"; 
+                            var option = "<option value='"+ id +"'>"+ code + "\n" + "-" + "\n" + subject +"</option>"; 
                             $("#second_period").append(option); 
                         }
                     }
@@ -384,7 +384,7 @@
         
                 // AJAX request 
                 $.ajax({
-                url: '/student/auth/register-new-student/getSubjects/'+id,
+                url: '/student/auth/register-new-student/getThirdPeriod/'+id,
                 type: 'get',
                 dataType: 'json',
                 success: function(response){
@@ -399,7 +399,7 @@
                             var id = response['data'][i].id;
                             var code = response['data'][i].code;
                             var subject = response['data'][i].subject;
-                            var option = "<option value='"+ id +"'>"+ code + "\n" + subject +"</option>"; 
+                            var option = "<option value='"+ id +"'>"+ code + "\n" + "-" + "\n" + subject +"</option>"; 
                             $("#third_period").append(option); 
                         }
                     }

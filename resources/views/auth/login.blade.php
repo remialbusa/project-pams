@@ -19,7 +19,7 @@
 </head>
 
 <body>
-
+<div id="hero-login">
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
@@ -41,7 +41,7 @@
         </div>
     </nav>
 
-    <div id="hero-login"></div>
+    
     <section class="details">
         <div class="login-container mt-5">
             <h3 class="login-heading mb-4">Student login <i class="bi bi-2x bi-question-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></h3></i>
@@ -135,7 +135,7 @@
                 <p class="text-light text-center">© Copyright <b>Leyte Normal university</b> . All Rights Reserved 2022</p>
             </div>
     </footer>
-
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 

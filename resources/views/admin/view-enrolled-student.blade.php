@@ -84,7 +84,7 @@
 
                             <tr>
                                 <td scope="col" style="width: 60%"><span style="font-weight: 600;">FB Name: </span>{{$student->fb_acc_name}}</td>
-                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Program: </span>{{$student->program}}</td>
+                                <td scope="col" style="width: 40%; text-align: left;"><span style="font-weight: 600;">Program: </span>{{$student->getProgramID->program}} - {{$student->getProgramID->description}}</td>
                             </tr>
 
                             <tr>
@@ -107,21 +107,21 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>{{$student->first_period_sub}}</td>
+                                        <td>{{$student->getFirstPeriodID->code}} - {{$student->getFirstPeriodID->subject}}</td>
                                         <td>{{$student->first_period_sched}}</td>
                                         <td>{{$student->first_period_adviser}}</td>
                                     </tr>
                                 </tbody>
                                 <tbody>
                                     <tr>
-                                        <td>{{$student->second_period_sub}}</td>
+                                        <td>{{$student->getSecondPeriodID->code}} - {{$student->getSecondPeriodID->subject}}</td>
                                         <td>{{$student->second_period_sched}}</td>
                                         <td>{{$student->second_period_adviser}}</td>
                                     </tr>
                                 </tbody>
                                 <tbody>
                                     <tr>
-                                        <td>{{$student->third_period_sub}}</td>
+                                        <td>{{$student->getThirdPeriodID->code}} - {{$student->getThirdPeriodID->subject}}</td>
                                         <td>{{$student->third_period_sched}}</td>
                                         <td>{{$student->third_period_adviser}}</td>
                                     </tr>

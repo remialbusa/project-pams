@@ -4,6 +4,7 @@
 @section('content')
 
 <div>
+    @foreach ($school_year as $school_year)
     <div class="container-fluid">
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -16,7 +17,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"></h6>
+            <h6 class="m-0 font-weight-bold text-primary">S.Y. {{$school_year->school_year}} - {{$school_year->semester}}</h6>
         </div>
         <section class="details">
             <div class=" container mt-5 mb-5">
@@ -33,7 +34,7 @@
                                         </div>
                                         <div class="col-md-5" style="">
                                             <p class="profile-text">Student number: {{$LoggedUserInfo->student_id}}<span style="font-weight: 600; text-transform: uppercase;"> </span> </p>
-                                            <p class="profile-text">Program: {{$LoggedUserInfo->program}}<span style="font-weight: 600;"></span> </p>
+                                            <p class="profile-text">Program: {{$LoggedUserInfo->getProgramID->program}} - {{$LoggedUserInfo->getProgramID->description}}<span style="font-weight: 600;"></span> </p>
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +73,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->first_period_sub}}</p>
+                                                            <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->getFirstPeriodID->code}} - {{$LoggedUserInfo->getFirstPeriodID->subject}}</p>
                                                         </td>
                                                         <td>
                                                             <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->first_period_sched}}</p>
@@ -80,7 +81,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->second_period_sub}}</p>
+                                                            <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->getSecondPeriodID->code}} - {{$LoggedUserInfo->getSecondPeriodID->subject}}</p>
                                                         </td>
                                                         <td>
                                                             <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->second_period_sched}}</p>
@@ -88,7 +89,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->third_period_sub}}</p>
+                                                            <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->getThirdPeriodID->code}} - {{$LoggedUserInfo->getThirdPeriodID->subject}}</p>
                                                         </td>
                                                         <td>
                                                             <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->third_period_sched}}</p>
@@ -187,5 +188,5 @@
         </section>
     </div>
 </div>
-
+@endforeach
 @endsection

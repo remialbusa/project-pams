@@ -27,7 +27,8 @@
     <!-- ph locations jquery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
     <script src="https://f001.backblazeb2.com/file/buonzz-assets/jquery.ph-locations-v1.0.0.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+
     <!-- custom css -->
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
@@ -65,15 +66,7 @@
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span></a>
                 </li>
-                
-                <hr class="sidebar-divider">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/student/auth/student-profile">
-                        <i class="bi bi-person-lines-fill"></i>
-                        <span>Student Profile</span>
-                    </a>              
-                </li>
                 <!-- Divider -->
                 <hr class="sidebar-divider">
                 
@@ -139,7 +132,7 @@
                 <div id="content">
                     
                     <!-- Top Bar -->
-                    <nav class="navbar navbar-expand-lg sticky-top navbar-dark shadow-5-strong">
+                    <nav class="navbar navbar-expand-lg sticky-top topbar navbar-dark shadow-5-strong">
                         <div class="container">
                             <a class="navbar-brand" href="{{route('auth.logout-student')}}"><img class="img-logo" style="height:40px; width: 40px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
                             <a class="navbar-brand" href="{{route('auth.logout-student')}}"><img class="img-logo-grad" style="height:50px; width: 50px" src="/images/GradSchoolLogo.png" alt=""></a>
@@ -147,18 +140,35 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  
-                                <ul class="navbar-nav ms-auto font-weight-semibold">
-                                    <li class="nav-item px-2">
-                                        <a class="nav-link-1">Welcome, <b>{{$LoggedUserInfo->first_name}} {{$LoggedUserInfo->last_name}}</b></a>
-                                    </li>
-                                    </li>
-                                    <li class="nav-item px-2">
-                                        <a class="nav-link-1" href="{{route('auth.logout-student')}}">Logout</a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <ul class="navbar-nav ml-auto">
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-3 d-none d-lg-inline text-gray-600 small">{{$LoggedUserInfo->first_name}} {{$LoggedUserInfo->middle_name}} {{$LoggedUserInfo->last_name}}</span>
+                                    <img class="img-profile rounded-circle mr-2" src="{{URL::asset('/admin/img/undraw_profile.svg')}}">
+                                    <i class="bi bi-caret-down-fill"></i>
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                    
+                                    <a class="dropdown-item" href="{{ route('student.profile')}}">
+                                        <i class="bi bi-person-circle mr-2"></i>
+                                        Profile
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{route('auth.logout-student')}}">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                    
+                                </div>
+                            </li>
+                        </ul>
                     </nav>
 
                     <div class="p-4 d-grid gap-3"></div>
@@ -219,6 +229,94 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
    
-    
+    <script type='text/javascript'>
+        $(document).ready(function(){
+        
+            $('#sel_program').change(function(){
+                // Department id
+                var id = $(this).val();
+        
+                // Empty the dropdown
+                $('#first_period').find('option').not(':first').remove();
+        
+                // AJAX request 
+                $.ajax({
+                url: '/student/auth/pre-enroll/getFirstPeriod/'+id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                    var len = 0;
+                    if(response['data'] != null){
+                        len = response['data'].length;
+                    }
+        
+                    if(len > 0){
+                        // Read data and create <option >
+                        for(var i=0; i<len; i++){
+                            var id = response['data'][i].id;
+                            var code = response['data'][i].code;
+                            var subject = response['data'][i].subject;
+                            var option = "<option value='"+ id +"'>"+ code + "\n" + "-" + "\n" + subject +"</option>"; 
+                            $("#first_period").append(option); 
+                        }
+                    }
+                }
+                });
+
+                $('#second_period').find('option').not(':first').remove();
+        
+                // AJAX request 
+                $.ajax({
+                url: '/student/auth/pre-enroll/getSecondPeriod/'+id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                    var len = 0;
+                    if(response['data'] != null){
+                        len = response['data'].length;
+                    }
+        
+                    if(len > 0){
+                        // Read data and create <option >
+                        for(var i=0; i<len; i++){
+                            var id = response['data'][i].id;
+                            var code = response['data'][i].code;
+                            var subject = response['data'][i].subject;
+                            var option = "<option value='"+ id +"'>"+ code + "\n" + "-" + "\n" + subject +"</option>"; 
+                            $("#second_period").append(option); 
+                        }
+                    }
+                }
+                });
+
+                $('#third_period').find('option').not(':first').remove();
+        
+                // AJAX request 
+                $.ajax({
+                url: '/student/auth/pre-enroll/getThirdPeriod/'+id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                    var len = 0;
+                    if(response['data'] != null){
+                        len = response['data'].length;
+                    }
+        
+                    if(len > 0){
+                        // Read data and create <option >
+                        for(var i=0; i<len; i++){
+                            var id = response['data'][i].id;
+                            var code = response['data'][i].code;
+                            var subject = response['data'][i].subject;
+                            var option = "<option value='"+ id +"'>"+ code + "\n" + "-" + "\n" + subject +"</option>"; 
+                            $("#third_period").append(option); 
+                        }
+                    }
+                }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

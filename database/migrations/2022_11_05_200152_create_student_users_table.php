@@ -54,6 +54,7 @@ class CreateStudentUsersTable extends Migration
             $table->string('link');
             $table->timestamps();
         });
+
     }
 
     /**

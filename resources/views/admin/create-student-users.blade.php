@@ -121,36 +121,21 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
                                             <select class="form-select" aria-label="Default select example" name="vaccination_status">
-                                                @if($student->vaccination_status == 'Vaccinated')
-                                                        <option value="Vaccinated">Vaccinated</option>
-                                                        <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
-                                                        <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
-                                                        <option value="Not Vaccinated">Not Vaccinated</option>
-                                                        <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                                @if($student->vaccination_status == 'Fully Vaccinated')
+                                                        <option value="Fully Vaccinated">Fully Vaccinated</option>
+                                                        
                                                     @elseif($student->vaccination_status == 'Partially Vaccinated')
                                                         <option value="Partially Vaccinated">Partially Vaccinated</option>
-                                                        <option value="Vaccinated">Vaccinated</option>
-                                                        <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
-                                                        <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
-                                                        <option value="Not Vaccinated">Not Vaccinated</option>
+                                                        
                                                     @elseif($student->vaccination_status == 'Vaccinated w/ 1 Booster')
                                                         <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
-                                                        <option value="Partially Vaccinated">Partially Vaccinated</option>
-                                                        <option value="Vaccinated">Vaccinated</option>
-                                                        <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
-                                                        <option value="Not Vaccinated">Not Vaccinated</option>
+                                                        
                                                     @elseif($student->vaccination_status == 'Vaccinated w/ 2 Boosters')
                                                         <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
-                                                        <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
-                                                        <option value="Partially Vaccinated">Partially Vaccinated</option>
-                                                        <option value="Vaccinated">Vaccinated</option>
-                                                        <option value="Not Vaccinated">Not Vaccinated</option>
+                                                        
                                                     @else
                                                         <option selected value="Not Vaccinated">Not Vaccinated</option>
-                                                        <option value="Vaccinated">Vaccinated</option>
-                                                        <option value="Partially Vaccinated">Partially Vaccinated</option>
-                                                        <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
-                                                        <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                        
                                                     @endif
                                             </select>
                                             <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
@@ -182,7 +167,7 @@
                                     <div class="col-md-6">
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Birthdate</label>
-                                            <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{$student['birth_date']}}" />
+                                            <input readonly type="date" id="form6Example1" class="form-control" name="birth_date" value="{{$student['birth_date']}}" />
                                             <span class="text-danger">@error('birth_date'){{$message}} @enderror</span>
                                         </div>
                                     </div>
@@ -246,11 +231,7 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Select Your Program</label>
                                             <select class="form-select" aria-label="Default select example" name="program">
-                                                @foreach ($programs as $programs)
-                                                <option value="{{$programs->program}}"
-                                                    {{$student->program == $programs->program ? 'selected': ''}}>
-                                                    {{$programs->program}}</option>
-                                                @endforeach
+                                                <option value="{{$student->program}}">{{$student->getProgramID->program}} - {{$student->getProgramID->description}}</option>
                                             </select>
                                             <span class="text-danger">@error('program'){{$message}} @enderror</span>
                                         </div>
@@ -261,15 +242,7 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">1ST PERIOD</label>
                                             <select class="form-select" aria-label="Default select example" name="first_period_sub">
-                                                @if($student['first_period_sub'] == 'MIT 501 Advanced Programming I')
-                                                    @foreach ($firstPeriod as $subjects)
-                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($firstPeriod as $subjects)
-                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="{{$student->first_period_sub}}">{{$student->getFirstPeriodID->code}} - {{$student->getFirstPeriodID->subject}}</option>
                                             </select>
                                             <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
                                         </div>
@@ -281,7 +254,7 @@
                                         </div>
                                     </div>
                                     <div class="col mt-4">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Instructor</label>
                                             <input type="text" id="form6Example2" class="form-control" name="first_period_adviser" value="{{$student['first_period_adviser']}}" readonly/>
                                             <span class="text-danger">@error('first_period_adviser'){{$message}} @enderror</span>
@@ -294,15 +267,7 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">2ND PERIOD</label>
                                             <select class="form-select" aria-label="Default select example" name="second_period_sub">
-                                                @if($student['second_period_sub'] == 'MIT 502 Methods of Research for IT')
-                                                    @foreach ($secondPeriod as $subjects)
-                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($secondPeriod as $subjects)
-                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="{{$student->second_period_sub}}">{{$student->getSecondPeriodID->code}} - {{$student->getSecondPeriodID->subject}}</option>
                                             </select>
                                             <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
                                         </div>
@@ -327,15 +292,7 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">3RD PERIOD</label>
                                             <select class="form-select" aria-label="Default select example" name="third_period_sub">
-                                                @if($student['third_period_sub'] == 'MIT 503 Statistics for IT Research')
-                                                    @foreach ($thirdPeriod as $subjects)
-                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($thirdPeriod as $subjects)
-                                                        <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="{{$student->third_period_sub}}">{{$student->getThirdPeriodID->code}} - {{$student->getThirdPeriodID->subject}}</option>
                                             </select>
                                             <span class="text-danger">@error('third_period'){{$message}} @enderror</span>
                                         </div>

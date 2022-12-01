@@ -20,6 +20,7 @@ use App\Exports\EnrolledStudentExport;
 use App\Exports\SubjectExport;
 use App\Exports\ProgramExport;
 use App\Exports\InstructorExport;
+use App\Models\SchoolYear;
 use Excel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -52,10 +53,11 @@ class AdmissionOfficerController extends Controller
             ];
         }   
 
-        $newStudents = DB::table('students')
+        $newStudents = Student::with('getProgramID')
             ->where('student_type', 'New Student')
             ->get();
-        return view('admin.pre-enrollment.new-student', $data, ['newStudents'=>$newStudents]);
+        $students = Student::all();
+        return view('admin.pre-enrollment.new-student', $data, ['students'=>$students,'newStudents'=>$newStudents]);
     }
 
     function preEnrollmentContinuing()
@@ -67,7 +69,7 @@ class AdmissionOfficerController extends Controller
             ];
         }   
 
-        $continuingStudents = DB::table('students')->where('student_type', 'Continuing')->get();
+        $continuingStudents = Student::with('getProgramID')->where('student_type', 'Continuing')->get();
         $programs = Program::all();
         return view('admin.pre-enrollment.continuing-student', $data, ['programs'=>$programs,'continuingStudents'=>$continuingStudents]);
     }
@@ -341,6 +343,7 @@ class AdmissionOfficerController extends Controller
         $student = PendingStudent::find($id);
         $subject = Subject::all();
         $adviser = Adviser::all();
+
         return view('admin.approve-advising-and-assigning-subject', $data, ['adviser'=>$adviser,'programs'=>$programs,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'subject'=>$subject,'student'=>$student]);
     }
 
@@ -901,6 +904,7 @@ class AdmissionOfficerController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         } 
+
         $programs = Program::all();
         $adviser = Adviser::all();
         return view('admin.advising.adviser', $data, ['programs'=>$programs,'adviser'=>$adviser]);

@@ -39,14 +39,19 @@ Route::get('/student/auth/register-student', [MainController::class, 'register']
 Route::post('/student/auth/register-student/save', [MainController::class, 'saveStudent'])->name('auth.save');
 Route::post('/student/auth/verify', [MainController::class, 'verify'])->name('auth.verify-student');
 Route::get('/student/auth/register-new-student', [MainController::class, 'registerNewStudent']);
-Route::get('/student/auth/register-new-student/getSubjects/{id}', [MainController::class, 'getSubjects'])->name('auth.getSubjects');
+Route::get('/student/auth/register-new-student/getFirstPeriod/{id}', [MainController::class, 'getFirstPeriod'])->middleware('isLoggedAdmin');
+Route::get('/student/auth/register-new-student/getSecondPeriod/{id}', [MainController::class, 'getSecondPeriod'])->middleware('isLoggedAdmin');
+Route::get('/student/auth/register-new-student/getThirdPeriod/{id}', [MainController::class, 'getThirdPeriod'])->middleware('isLoggedAdmin');
 
 //student profile routes
-Route::get('/student/auth/student-profile', [MainController::class, 'profileView'])->middleware('isLoggedStudent');
+Route::get('/student/auth/student-profile', [MainController::class, 'profileView'])->name('student.profile')->middleware('isLoggedStudent');
 Route::get('/student/auth/logout', [MainController::class, 'logout'])->name('auth.logout-student');
 Route::get('/student/auth/dashboard', [MainController::class, 'dashboard'])->name('student.dashboard')->middleware('isLoggedStudent');
 Route::get('/student/auth/pre-enroll', [MainController::class, 'preEnroll'])->name('student.pre-enroll')->middleware('isLoggedStudent');
 Route::get('/student/auth/comprehensive-exam', [MainController::class, 'comprehensiveExam'])->name('student.comprehensive-exam')->middleware('isLoggedStudent');
+Route::get('/student/auth/pre-enroll/getFirstPeriod/{id}', [MainController::class, 'getFirstPeriod'])->middleware('isLoggedAdmin');
+Route::get('/student/auth/pre-enroll/getSecondPeriod/{id}', [MainController::class, 'getSecondPeriod'])->middleware('isLoggedAdmin');
+Route::get('/student/auth/pre-enroll/getThirdPeriod/{id}', [MainController::class, 'getThirdPeriod'])->middleware('isLoggedAdmin');
 
 //student profile update
 Route::post('/student/auth/student-profile/update', [MainController::class, 'updateStudentProfile'])->name('update-student')->middleware('isLoggedStudent');
@@ -135,6 +140,8 @@ Route::get('/staff/admin/advising-assigning', [AdmissionOfficerController::class
 Route::get('/staff/admin/advising-assigning/delete/{id}', [AdmissionOfficerController::class, 'deletePreviousAssignSubject'])->name('delete-advising-assigning-subject')->middleware('isLoggedAdmin');
 Route::get('/staff/admin/advising-assigning/approve/{id}', [AdmissionOfficerController::class, 'editAdvisingAndAssignSubject'])->name('edit-advising-assigning-subject')->middleware('isLoggedAdmin');
 Route::post('/staff/admin/advising-assigning/approve/', [AdmissionOfficerController::class, 'approveAdvisingAndAssigningSubject'])->name('advising-and-assign-subject')->middleware('isLoggedAdmin');
+
+
 //Programs
 Route::get('/staff/admin/programs', [AdmissionOfficerController::class, 'programList'])->name('admin.programs')->middleware('isLoggedAdmin');
 Route::get('/staff/admin/programs/edit/{id}', [AdmissionOfficerController::class, 'programEdit'])->name('edit-program')->middleware('isLoggedAdmin');

@@ -37,7 +37,7 @@
                     <tr>
                         <td>{{$student->first_name}} {{$student->middle_name}} {{$student->last_name}}</td>
                         <td>{{$student->student_id}}</td>                       
-                        <td>{{$student->program}}</td>
+                        <td>{{$student->getProgramID->program}}</td>
                         <td>{{$student->mobile_no}}</td>
                         <td>{{$student->created_at}}</td>
                         <td>

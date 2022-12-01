@@ -20,4 +20,24 @@ class EnrolledStudent extends Model
         ->toArray();
         return $result;
     }
+
+    public function getFirstPeriodID()
+    {
+        return $this->belongsTo(Subject::class, 'first_period_sub', 'id');
+    }
+
+    public function getSecondPeriodID()
+    {
+        return $this->belongsTo(Subject::class, 'second_period_sub', 'id');
+    }
+
+    public function getThirdPeriodID()
+    {
+        return $this->belongsTo(Subject::class, 'third_period_sub', 'id');
+    }
+
+    public function getProgramID()
+    {
+        return $this->belongsTo(Program::class, 'program', 'id');
+    }
 }

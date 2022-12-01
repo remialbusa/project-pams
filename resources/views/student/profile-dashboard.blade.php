@@ -99,8 +99,8 @@
                                             <div class="form-outline form-line">
                                                 <label class="form-label" for="form6Example3">Vaccination Status <label class="text-danger">*</label></label>
                                                 <select class="form-select" aria-label="Default select example" name="vaccination_status">
-                                                    @if($LoggedUserInfo->vaccination_status == 'Vaccinated')
-                                                        <option value="Vaccinated">Vaccinated</option>
+                                                    @if($LoggedUserInfo->vaccination_status == 'Fully Vaccinated')
+                                                        <option value="Fully Vaccinated">Fully Vaccinated</option>
                                                         <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                                         <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                                         <option value="Not Vaccinated">Not Vaccinated</option>
