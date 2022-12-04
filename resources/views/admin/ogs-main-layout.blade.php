@@ -101,11 +101,11 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Units</span>
+                    <span>Classification</span>
                 </a>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Units:</h6>
+                        <h6 class="collapse-header">Classification:</h6>
                         <a class="collapse-item" href="{{ route('admin.programs')}}">Programs</a>
                         <a class="collapse-item" href="{{ route('admin.subjects')}}">Subjects</a>
                         <a class="collapse-item" href="{{ route('admin.instructor')}}">Instructors</a>
@@ -155,7 +155,15 @@
                     
                     <!-- Top Bar -->
                     <nav class="navbar navbar-expand-lg sticky-top navbar-dark shadow-5-strong">
+
+                        
+
                         <div class="container">
+
+                            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            
                             <a class="navbar-brand" href="{{route('auth.logout-admin')}}"><img class="img-logo" style="height:40px; width: 40px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
                             <a class="navbar-brand" href="{{route('auth.logout-admin')}}"><img class="img-logo-grad" style="height:50px; width: 50px" src="/images/GradSchoolLogo.png" alt=""></a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -172,6 +180,7 @@
                                         <a class="nav-link-1" href="{{route('auth.logout-admin')}}">Logout</a>
                                     </li>
                                 </ul>
+
                             </div>
                         </div>
                     </nav>

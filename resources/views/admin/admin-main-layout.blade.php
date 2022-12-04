@@ -56,14 +56,15 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pre-enrollment -->
-            <li class="nav-item">
+            <li class="nav-item mb-3">
                 <a class="nav-link" href="staff/admin/manage-users">
                     <i class="bi bi-eye-fill"></i>
                     <span>Manage Users</span>
                 </a>              
             </li>
+            <hr class="sidebar-divider">
             <!-- Nav Item - Student Monitoring -->
-            <li class="nav-item">
+            <li class="nav-item mb-3">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>System Configuration</span>
@@ -77,13 +78,14 @@
                     </div>
                 </div>   
             </li>
+            <hr class="sidebar-divider">
 
-            {{-- <li class="nav-item">
+            <li class="nav-item mb-3">
                 <a class="nav-link" href="{{route('auth.active-semester')}}">
                     <i class="bi bi-eye-fill"></i>
                     <span>Active Semester</span>
                 </a>              
-            </li> --}}
+            </li>
             
             <!-- Nav Item - Utilities Collapse Menu -->
             
@@ -109,6 +111,11 @@
                     <!-- Top Bar -->
                     <nav class="navbar navbar-expand-lg sticky-top navbar-dark shadow-5-strong">
                         <div class="container">
+
+                            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            
                             <a class="navbar-brand" href="{{route('auth.logout-admin')}}"><img class="img-logo" style="height:40px; width: 40px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
                             <a class="navbar-brand" href="{{route('auth.logout-admin')}}"><img class="img-logo-grad" style="height:50px; width: 50px" src="/images/GradSchoolLogo.png" alt=""></a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

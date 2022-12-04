@@ -40,6 +40,9 @@ class CreateEnrolledStudentsTable extends Migration
             $table->string('first_period_adviser');
             $table->string('second_period_adviser');
             $table->string('third_period_adviser');
+            $table->string('first_procedure');
+            $table->string('second_procedure');
+            $table->string('third_procedure');
             $table->timestamps();
         });
     }

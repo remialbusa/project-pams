@@ -15,18 +15,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UserRequest;
 
 
 class MainController extends Controller
 {
     function login()
     {
-        return view('auth.login');
+        return view('auth.student-login');
     }
 
     function index()
     {
-        return view('welcome');
+        $school_year = SchoolYear::all();
+        return view('welcome', ['school_year'=>$school_year]);
     }
 
     function register()
@@ -231,10 +234,10 @@ class MainController extends Controller
         ]);
 
         $studentID = StudentUser::where('student_id', '=', $request->student_id)->first();
-        $studentPassword = StudentUser::where('last_name', '=', $request->password)->first();
+        /* $studentPassword = StudentUser::where('password', '=', $request->password)->first(); */
 
         if ($studentID) { //if student_id exist
-            if ($studentPassword) { //if password exist                
+            if ($studentID && Hash::check($request->password, $studentID->password)) { //if password exist    
                 $request->session()->put('LoggedUser', $studentID->id);
                 return redirect('student/auth/dashboard');
             } else {
@@ -270,7 +273,7 @@ class MainController extends Controller
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
         $programs = Program::all();
         $school_year = DB::table('school_year')->where('status', 'Active')->get();
-        return view('student.profile-dashboard', $data, ['school_year'=>$school_year,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs]);
+        return view('student.profile-settings.student-profile', $data, ['school_year'=>$school_year,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs]);
     }
 
     function logout()
@@ -318,6 +321,72 @@ class MainController extends Controller
         ->get();
 
         return view('student.dashboard.pre-enroll.pre-enrollment', $data, ['school_year'=>$school_year,'programData'=>$programData,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
+    }
+
+    function savePreEnroll(Request $request)
+    {
+        //validate info
+        $request->validate([
+            'student_type' => 'required',
+            'student_id' => 'required',
+            'last_name' => 'required',          
+            'first_name' => 'required',
+            'vaccination_status' => 'required',
+            'email' => 'required',
+            'gender' => 'required',  
+            'birth_date' => 'required|date|before:-23 years', 
+            'mobile_no' => 'required',
+            'fb_acc_name' => 'required',
+            'region' => 'required',
+            'province' => 'required',
+            'city' => 'required',
+            'baranggay' => 'required',
+            'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+            'program' => 'required',
+            'first_period' => 'required',
+            'second_period' => 'required',
+            'third_period' => 'required',                          
+        ]);
+        
+
+        //insert data
+        $student = new Student();
+        $student->id = $request->id;
+        $student->student_type = $request->student_type;
+        $student->student_id = $request->student_id;       
+        $student->last_name = $request->last_name;
+        $student->first_name = $request->first_name;
+        $student->middle_name = $request->middle_name;
+        $student->vaccination_status = $request->vaccination_status;
+        $student->email = $request->email;
+        $student->gender = $request->gender;
+        $student->birth_date = $request->birth_date;
+        $student->mobile_no = $request->mobile_no;
+        $student->fb_acc_name = $request->fb_acc_name;
+        $student->region = $request->region;
+        $student->province = $request->province;
+        $student->city = $request->city;
+        $student->baranggay = $request->baranggay;
+        $student->program = $request->program;
+        $student->first_period_sub = $request->first_period;
+        $student->second_period_sub = $request->second_period;
+        $student->third_period_sub = $request->third_period;
+
+        $file = $request->file;
+        
+        $filename=$file->getClientOriginalName();
+        $request->file->move('assets',$filename);
+
+        $student->file= $filename;
+
+        $save = $student->save();
+
+
+        if ($save) {
+            return back()->with('success', 'Registration complete');
+        } else {
+            return back()->with('fail', 'Failed Registration');
+        }
     }
 
     function comprehensiveExam()
@@ -396,5 +465,36 @@ class MainController extends Controller
         }
     }
 
+    function studentChangePassword($id)
+    {
+        if (session()->has('LoggedUser')) {
+            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $data = [
+                'LoggedUserInfo' => $student
+            ];
+        }
+
+        return view('student.profile-settings.change-password', $data);
+    }
+
+    function updatePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required',
+        ]);
+
+        $user = StudentUser::find($request->id);
+        $user->student_id = $request->student_id;
+        $user->password = Hash::make($request->password);
+
+        $save = $user->save();
+
+        if ($save) {
+            return back()->with('success', 'Successfully Changed Password');
+        } else {
+            return back()->with('fail', 'Failed Changing Password');
+        }
+        
+    }
     
 }

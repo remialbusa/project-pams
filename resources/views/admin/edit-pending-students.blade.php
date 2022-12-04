@@ -117,7 +117,59 @@
                                     </div>
                                 </div>
                             </div> 
-                            <div class="row mt-2 mb-3">
+
+                            <div class="row mt-3">
+                                <div class="col mt-4">
+                                    <div class="form-outline ">
+                                        <label class="form-label" for="form6Example2">First Process</label>
+                                        <select class="form-select form-line" aria-label="Default select example" name="first_procedure">
+                                            @if($status['first_procedure'] == 'Pending')
+                                            <option value="Pending">Pending</option>
+                                            <option value="Done">Done</option>
+                                            @else
+                                            <option value="Done">Done</option>
+                                            <option value="Pending">Pending</option>
+                                            @endif
+                                        </select>
+                                        <span class="text-danger">@error('first_procedure'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+
+                                <div class="col mt-4">
+                                    <div class="form-outline ">
+                                        <label class="form-label " for="form6Example2">Second Process</label>
+                                        <select class="form-select form-line" aria-label="Default select example" name="second_procedure">
+                                            @if($status['second_procedure'] == 'Pending')
+                                            <option value="Pending">Pending</option>
+                                            <option value="Done">Done</option>
+                                            @else
+                                            <option value="Done">Done</option>
+                                            <option value="Pending">Pending</option>
+                                            @endif
+                                        </select>
+                                        
+                                        <span class="text-danger">@error('second_procedure'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="col mt-4">
+                                    <div class="form-outline ">
+                                        <label class="form-label" for="form6Example2">Third Process</label>
+                                        <select class="form-select form-line" aria-label="Default select example" name="third_procedure">
+                                            @if($status['third_procedure'] == 'Pending')
+                                            <option value="Pending">Pending</option>
+                                            <option value="Done">Done</option>
+                                            @else
+                                            <option value="Done">Done</option>
+                                            <option value="Pending">Pending</option>
+                                            @endif
+                                        </select>
+                                        <span class="text-danger">@error('third_procedure'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                            </div> 
+
+                            <div class="row mt-5 mb-3">
                                 <div class="col-md-5">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Student Type</label>

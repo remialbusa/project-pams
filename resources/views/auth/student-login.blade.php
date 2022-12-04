@@ -46,7 +46,7 @@
         <div class="login-container mt-5">
             <h3 class="login-heading mb-4">Student login <i class="bi bi-2x bi-question-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></h3></i>
             <!-- login Form -->
-            <form action="{{ route('auth.verify-student') }}" method="POST">
+            <form action="{{ route('login') }}" method="POST">
                 @if(Session::get('fail'))
                 <div class="alert alert-danger">{{Session::get('fail')}}</div>
                 @endif

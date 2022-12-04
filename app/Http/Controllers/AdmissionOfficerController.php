@@ -22,6 +22,7 @@ use App\Exports\ProgramExport;
 use App\Exports\InstructorExport;
 use App\Models\SchoolYear;
 use Excel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -168,12 +169,16 @@ class AdmissionOfficerController extends Controller
             'first_period_adviser' => 'required',
             'second_period_adviser' => 'required',
             'third_period_adviser' => 'required',
+            'first_procedure' => 'required',
+            'second_procedure' => 'required',
+            'third_procedure' => 'required',
         ]);
 
         $student = new StudentUser();
         $student->id=$request->id;
         $student->student_type = $request->student_type;
-        $student->student_id = $request->student_id;       
+        $student->student_id = $request->student_id;
+        $student->password = Hash::make($request->last_name);
         $student->last_name = $request->last_name;
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
@@ -209,6 +214,10 @@ class AdmissionOfficerController extends Controller
         $student->time = "";
         $student->venue = "";
         $student->link = "";
+        $student->image = "";
+        $student->first_procedure = $request->first_procedure;
+        $student->second_procedure = $request->second_procedure;
+        $student->third_procedure = $request->third_procedure;
         $save = $student->save();
 
         
@@ -256,7 +265,8 @@ class AdmissionOfficerController extends Controller
         } 
 
         $programs = Program::find($id);
-        return view('admin.edit-program', $data, ['programs'=>$programs]);
+        $programData = Program::all();
+        return view('admin.edit-program', $data, ['programData'=>$programData,'programs'=>$programs]);
     }
 
     function programInsert(Request $request)
@@ -374,7 +384,9 @@ class AdmissionOfficerController extends Controller
             'first_period_adviser' => 'required',
             'second_period_adviser' => 'required',
             'third_period_adviser' => 'required',
-
+            'first_procedure' => 'required',
+            'second_procedure' => 'required',
+            'third_procedure' => 'required',
         ]);
 
         $student = PendingStudent::find($request->id);
@@ -403,6 +415,9 @@ class AdmissionOfficerController extends Controller
         $student->first_period_adviser = $request->first_period_adviser;
         $student->second_period_adviser = $request->second_period_adviser;
         $student->third_period_adviser = $request->third_period_adviser;
+        $student->first_procedure = $request->first_procedure;
+        $student->second_procedure = $request->second_procedure;
+        $student->third_procedure = $request->third_procedure;
 
         $save = $student->save();
 
@@ -511,6 +526,9 @@ class AdmissionOfficerController extends Controller
         $student->submitted_form = "Pending";
         $student->payment = "Pending";
         $student->status = "Pending";
+        $student->first_procedure = "Pending";
+        $student->second_procedure = "Pending";
+        $student->third_procedure = "Pending";
 
         $save = $student->save();
 
@@ -549,6 +567,9 @@ class AdmissionOfficerController extends Controller
             'first_period_adviser' => 'required',
             'second_period_adviser' => 'required',
             'third_period_adviser' => 'required',
+            'first_procedure' => 'required',
+            'second_procedure' => 'required',
+            'third_procedure' => 'required',
         ]);
 
         //insert data
@@ -579,6 +600,9 @@ class AdmissionOfficerController extends Controller
         $student->first_period_adviser = $request->first_period_adviser;
         $student->second_period_adviser = $request->second_period_adviser;
         $student->third_period_adviser = $request->third_period_adviser;
+        $student->first_procedure = $request->first_procedure;
+        $student->second_procedure = $request->second_procedure;
+        $student->third_procedure = $request->third_procedure;
         $save = $student->save();
 
         $this->deletePending($request->id);
@@ -604,6 +628,9 @@ class AdmissionOfficerController extends Controller
             'submitted_form' => 'required',          
             'payment' => 'required',
             'status' => 'required',
+            'first_procedure' => 'required',
+            'second_procedure' => 'required',
+            'third_procedure' => 'required',
         ]);
 
         //update data
@@ -612,6 +639,9 @@ class AdmissionOfficerController extends Controller
         $pendingStudent->submitted_form = $request->submitted_form;       
         $pendingStudent->payment = $request->payment;
         $pendingStudent->status = $request->status;
+        $pendingStudent->first_procedure = $request->first_procedure;
+        $pendingStudent->second_procedure = $request->second_procedure;
+        $pendingStudent->third_procedure = $request->third_procedure;
         $save = $pendingStudent->save();
 
         if($save){
@@ -1031,4 +1061,6 @@ class AdmissionOfficerController extends Controller
     {
         return Excel::download(new InstructorExport, 'instructors.xlsx');
     }
+
+    
 }

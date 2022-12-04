@@ -36,9 +36,8 @@
                             <td>{{$announcement->file}}</td>                       
                             <td>{{$announcement->created_at}}</td>
                             <td>
-                                <a href="" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
-                                <a href="{{ route('admin.view-image', $announcement->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-eye"></i></a>
-                                <a href="" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
+                                <a href="{{ route('admin.view-image', $announcement->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-success shadow-sm"><i class="bi bi-eye"></i></a>
+                                <a href="{{ route('admin.delete-announcements', $announcement->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>
                     @endforeach                                                    

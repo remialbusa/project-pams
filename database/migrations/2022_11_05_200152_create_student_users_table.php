@@ -17,6 +17,7 @@ class CreateStudentUsersTable extends Migration
             $table->uuid('id')->primary();
             $table->string('student_type');         
             $table->string('student_id')->nullable();
+            $table->string('password');
             $table->string('last_name');
             $table->string('first_name');
             $table->string('middle_name')->nullable();
@@ -52,6 +53,10 @@ class CreateStudentUsersTable extends Migration
             $table->string('time');
             $table->string('venue');
             $table->string('link');
+            $table->string('image');
+            $table->string('first_procedure');
+            $table->string('second_procedure');
+            $table->string('third_procedure');
             $table->timestamps();
         });
 

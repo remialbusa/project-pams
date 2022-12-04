@@ -37,7 +37,7 @@ Route::post('/welcome', [MainController::class, 'saveForm'])->name('submit-form'
 Route::get('/student/auth/login', [MainController::class, 'login'])->name('student.login');
 Route::get('/student/auth/register-student', [MainController::class, 'register'])->name('auth.save-continue');
 Route::post('/student/auth/register-student/save', [MainController::class, 'saveStudent'])->name('auth.save');
-Route::post('/student/auth/verify', [MainController::class, 'verify'])->name('auth.verify-student');
+Route::post('/student/auth/verify', [MainController::class, 'verify'])->name('login');
 Route::get('/student/auth/register-new-student', [MainController::class, 'registerNewStudent']);
 Route::get('/student/auth/register-new-student/getFirstPeriod/{id}', [MainController::class, 'getFirstPeriod'])->middleware('isLoggedAdmin');
 Route::get('/student/auth/register-new-student/getSecondPeriod/{id}', [MainController::class, 'getSecondPeriod'])->middleware('isLoggedAdmin');
@@ -49,9 +49,12 @@ Route::get('/student/auth/logout', [MainController::class, 'logout'])->name('aut
 Route::get('/student/auth/dashboard', [MainController::class, 'dashboard'])->name('student.dashboard')->middleware('isLoggedStudent');
 Route::get('/student/auth/pre-enroll', [MainController::class, 'preEnroll'])->name('student.pre-enroll')->middleware('isLoggedStudent');
 Route::get('/student/auth/comprehensive-exam', [MainController::class, 'comprehensiveExam'])->name('student.comprehensive-exam')->middleware('isLoggedStudent');
-Route::get('/student/auth/pre-enroll/getFirstPeriod/{id}', [MainController::class, 'getFirstPeriod'])->middleware('isLoggedAdmin');
-Route::get('/student/auth/pre-enroll/getSecondPeriod/{id}', [MainController::class, 'getSecondPeriod'])->middleware('isLoggedAdmin');
-Route::get('/student/auth/pre-enroll/getThirdPeriod/{id}', [MainController::class, 'getThirdPeriod'])->middleware('isLoggedAdmin');
+Route::get('/student/auth/pre-enroll/getFirstPeriod/{id}', [MainController::class, 'getFirstPeriod'])->middleware('isLoggedStudent');
+Route::get('/student/auth/pre-enroll/getSecondPeriod/{id}', [MainController::class, 'getSecondPeriod'])->middleware('isLoggedStudent');
+Route::get('/student/auth/pre-enroll/getThirdPeriod/{id}', [MainController::class, 'getThirdPeriod'])->middleware('isLoggedStudent');
+Route::get('/student/auth/settings/change-password/{id}', [MainController::class, 'studentChangePassword'])->name('student.change-password')->middleware('isLoggedStudent');
+Route::post('/student/auth/settings/change-password', [MainController::class, 'updatePassword'])->name('student.save-change-password')->middleware('isLoggedStudent');
+Route::post('/student/auth/pre-enroll', [MainController::class, 'savePreEnroll'])->name('student.save.pre-enroll')->middleware('isLoggedStudent');
 
 //student profile update
 Route::post('/student/auth/student-profile/update', [MainController::class, 'updateStudentProfile'])->name('update-student')->middleware('isLoggedStudent');
@@ -74,6 +77,7 @@ Route::post('/staff/admin/system-configuration/faqs/edit', [FaqsController::clas
 Route::get('/staff/admin/system-configuration/announcements', [AdminController::class, 'systemAnnouncements'])->middleware('isLoggedAdmin');
 Route::post('/staff/admin/system-configuration/announcement/insert', [AdminController::class, 'insertAnnouncements'])->name('admin.insert-announcements')->middleware('isLoggedAdmin');
 Route::get('/staff/admin/system-configuration/announcements/view-image/{id}', [AdminController::class, 'viewImage'])->name('admin.view-image')->middleware('isLoggedAdmin');
+Route::get('/staff/admin/system-configuration/announcements/delete/{id}', [AdminController::class, 'deleteAnnouncements'])->name('admin.delete-announcements')->middleware('isLoggedAdmin');
 
 //comprehensive routes
 Route::get('/staff/admin/comprehensive-exam', [AdmissionOfficerController::class, 'comprehensiveExam'])->name('admin.comprehensive-exam')->middleware('isLoggedAdmin');

@@ -30,7 +30,7 @@
                                 {{-- <p></p>
                                 <hr class="border-divider"> --}}
                                 
-                                <form action="{{ route('auth.save') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('student.save.pre-enroll') }}" method="POST" enctype="multipart/form-data">
                                     <!-- 2 column grid layout with text inputs for the first and last names -->
                                     @if(Session::get('success'))
                                     <div class="alert alert-success text-center">{{Session::get('success')}}</div>
@@ -241,50 +241,50 @@
                                         <hr class="border-divider">
                                         <!-- column grid layout with text inputs for course/s -->
                                         <h5 class="mt-5 lead">Programs & Subjects</h5>
-                                <div class="col mt-4 mb-3">
-                                    <div class="col">
-                                        <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example2">Select Your Program</label>
-                                            <select class="form-select" aria-label="Default select example" id="sel_program" name="program">
-                                                <option disabled selected>-- Select Program --</option>
-                                                @foreach ($programData['data'] as $program)
-                                                    <option value="{{$program->id}}">{{$program->program}} - {{$program->description}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="text-danger">@error('program'){{$message}} @enderror</span>
+                                        <div class="col mt-4 mb-3">
+                                            <div class="col">
+                                                <div class="form-outline form-line">
+                                                    <label class="form-label" for="form6Example2">Select Your Program</label>
+                                                    <select class="form-select" aria-label="Default select example" id="sel_program" name="program">
+                                                        <option disabled selected>-- Select Program --</option>
+                                                        @foreach ($programData['data'] as $program)
+                                                            <option value="{{$program->id}}">{{$program->program}} - {{$program->description}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span class="text-danger">@error('program'){{$message}} @enderror</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div class="row mt-4 mb-3">
-                                    <div class="col-md-6 mt-2">
-                                        <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example1">1ST PERIOD</label>
-                                            <select id='first_period' name='first_period' class="form-select">
-                                                <option disabled selected>-- Select Subject --</option>
-                                            </select>
-                                            <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
+                                        <div class="row mt-4 mb-3">
+                                            <div class="col-md-6 mt-2">
+                                                <div class="form-outline form-line">
+                                                    <label class="form-label" for="form6Example1">1ST PERIOD</label>
+                                                    <select id='first_period' name='first_period' class="form-select">
+                                                        <option disabled selected>-- Select Subject --</option>
+                                                    </select>
+                                                    <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 mt-2">
+                                                <div class="form-outline form-line">
+                                                    <label class="form-label" for="form6Example2">2ND PERIOD</label>
+                                                    <select class="form-select" aria-label="Default select example" id="second_period" name="second_period">
+                                                        <option disabled selected>-- Select Subject --</option>
+                                                    </select>
+                                                    <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
+                                                </div>
+                                            </div>
+                                            <div class="col mt-3 mt-2">
+                                                <div class="form-outline form-line">
+                                                    <label class="form-label" for="form6Example2">3RD PERIOD</label>
+                                                    <select class="form-select" aria-label="Default select example" id="third_period" name="third_period">
+                                                        <option disabled selected>-- Select Subject --</option>
+                                                    </select>
+                                                    <span class="text-danger">@error('third_period'){{$message}} @enderror</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 mt-2">
-                                        <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example2">2ND PERIOD</label>
-                                            <select class="form-select" aria-label="Default select example" id="second_period" name="second_period">
-                                                <option disabled selected>-- Select Subject --</option>
-                                            </select>
-                                            <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
-                                        </div>
-                                    </div>
-                                    <div class="col mt-3 mt-2">
-                                        <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example2">3RD PERIOD</label>
-                                            <select class="form-select" aria-label="Default select example" id="third_period" name="third_period">
-                                                <option disabled selected>-- Select Subject --</option>
-                                            </select>
-                                            <span class="text-danger">@error('third_period'){{$message}} @enderror</span>
-                                        </div>
-                                    </div>
-                                </div>
                                     </div>
                                     <hr class="border-divider">
                                     <button type="submit" class="btn btn-primary btn-block mt-4 mb-5">Register</button>

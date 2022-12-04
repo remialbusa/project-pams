@@ -16,7 +16,36 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                
+                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>School Year</th>
+                            <th>Semester</th>
+                            <th>Status</th>
+                            <th>Toggle</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>               
+                    <tbody>
+                        @foreach ($school_year as $school_year)
+                        <tr>
+                            
+                            <td>{{$school_year->school_year}}</td>
+                            <td>{{$school_year->semester}}</td>                       
+                            <td>{{$school_year->status}}</td>
+                            <td>
+                                <div class="ml-3 form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                </div>
+                            </td>
+                            <td>
+                                <a href="" class="mx-1 d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
+                            </td>
+                            
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

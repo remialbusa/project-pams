@@ -150,6 +150,7 @@ class AdminController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
+        
         $announcement = Announcement::all();
         $adminList = Admin::all();
         return view('admin.system-configuration.announcements', $data, ['announcement'=>$announcement,'admins'=>$adminList]);
@@ -199,8 +200,9 @@ class AdminController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
+        $school_year = SchoolYear::all();
         $enrolledStudent = EnrolledStudent::all();
-        return view('admin.system-configuration.active-semester', $data, ['enrolledStudent'=>$enrolledStudent]);
+        return view('admin.system-configuration.active-semester', $data, ['school_year'=>$school_year,'enrolledStudent'=>$enrolledStudent]);
     }
 
     function insertAnnouncements(Request $request)
@@ -228,6 +230,13 @@ class AdminController extends Controller
         } else {
             return back()->with('fail', 'Failed Registration');
         }
+    }
+
+    function deleteAnnouncements($id)
+    {
+        $announcement = Announcement::find($id);
+        $announcement->delete();
+        return redirect('/staff/admin/system-configuration/announcements');
     }
 
     function viewImage($id)

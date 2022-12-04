@@ -32,9 +32,9 @@
                         <tr>
                             <td>{{$students->student_id}}</td>                       
                             <td>{{$students->getProgramID->program}}</td>
-                            <td>{{$students->getFirstPeriodID->subject}} / {{$students->first_period_sched}} / {{$students->first_period_adviser}}</td>
-                            <td>{{$students->getSecondPeriodID->subject}} / {{$students->second_period_sched}} / {{$students->second_period_adviser}}</td>
-                            <td>{{$students->getThirdPeriodID->subject}} / {{$students->third_period_sched}} / {{$students->third_period_adviser}}</td>
+                            <td>{{$students->getFirstPeriodID->code}} - {{$students->getFirstPeriodID->subject}} / {{$students->first_period_sched}} / {{$students->first_period_adviser}}</td>
+                            <td>{{$students->getSecondPeriodID->code}} - {{$students->getSecondPeriodID->subject}} / {{$students->second_period_sched}} / {{$students->second_period_adviser}}</td>
+                            <td>{{$students->getThirdPeriodID->code}} - {{$students->getThirdPeriodID->subject}} / {{$students->third_period_sched}} / {{$students->third_period_adviser}}</td>
                             <td>
                                 <a href="{{ route('edit-advising-assigning-subject', $students->id)}}" class="mx-3 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
                                 <a href="{{ route('delete-advising-assigning-subject', $students->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>

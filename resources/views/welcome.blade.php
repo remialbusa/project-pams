@@ -32,7 +32,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a href="" class="nav-link">Home</a>
+                        <a href="" class="nav-link">Dashboard</a>
                     </li>
                     <li class="nav-item px-2">
                     </li>
@@ -68,14 +68,18 @@
                                 <b>Graduate School Managment System</b>
                             </p>
                             <p class="card-text">
-                                The pre-enrollment for 1st Semester S.Y. 2022 - 2023
-                                is currently on going! Pre-enrollment period:
-                                July 16 - August 7, 2022. Enrollment Period: August 08 - 19, 2022.
-                                Classes will start on August 22, 2022.
-
+                                @foreach ($school_year as $school_year)
+                                @if ($school_year->status == 'Active')
+                                    The pre-enrollment for {{$school_year->semester}} S.Y. {{$school_year->school_year}}
+                                    is currently on going! Pre-enrollment period:
+                                    July 16 - August 7, 2022. Enrollment Period: August 08 - 19, 2022.
+                                    Classes will start on August 22, 2022.
+                                @else
+                                @endif
+                                @endforeach
                             </p>
-                            <a href="{{ route('enrollment') }}" class="button1">Enroll now</a>
-                            <a href="{{ route('process') }}" class="button">Enrollment process</a>
+                            <a href="{{ route('enrollment') }}" class="button1 text-decoration-none">Enroll now</a>
+                            <a href="{{ route('process') }}" class="button text-decoration-none">Enrollment process</a>
                         </div>
                     </div>
                 </div>

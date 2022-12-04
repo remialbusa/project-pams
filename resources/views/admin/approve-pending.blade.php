@@ -113,6 +113,57 @@
                                         </div>
                                     </div>
                                 </div> 
+
+                                <div class="row">
+                                    <div class="col mt-4">
+                                        <div class="form-outline ">
+                                            <label class="form-label" for="form6Example2">First Process</label>
+                                            <select class="form-select form-line" aria-label="Default select example" name="first_procedure">
+                                                @if($status['first_procedure'] == 'Pending')
+                                                <option value="Pending">Pending</option>
+                                                <option value="Done">Done</option>
+                                                @else
+                                                <option value="Done">Done</option>
+                                                <option value="Pending">Pending</option>
+                                                @endif
+                                            </select>
+                                            <span class="text-danger">@error('first_procedure'){{$message}} @enderror</span>
+                                        </div>
+                                    </div>
+    
+                                    <div class="col mt-4">
+                                        <div class="form-outline ">
+                                            <label class="form-label " for="form6Example2">Second Process</label>
+                                            <select class="form-select form-line" aria-label="Default select example" name="second_procedure">
+                                                @if($status['second_procedure'] == 'Pending')
+                                                <option value="Pending">Pending</option>
+                                                <option value="Done">Done</option>
+                                                @else
+                                                <option value="Done">Done</option>
+                                                <option value="Pending">Pending</option>
+                                                @endif
+                                            </select>
+                                            
+                                            <span class="text-danger">@error('second_procedure'){{$message}} @enderror</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col mt-4">
+                                        <div class="form-outline ">
+                                            <label class="form-label" for="form6Example2">Third Process</label>
+                                            <select class="form-select form-line" aria-label="Default select example" name="third_procedure">
+                                                @if($status['third_procedure'] == 'Pending')
+                                                <option value="Pending">Pending</option>
+                                                <option value="Done">Done</option>
+                                                @else
+                                                <option value="Done">Done</option>
+                                                <option value="Pending">Pending</option>
+                                                @endif
+                                            </select>
+                                            <span class="text-danger">@error('third_procedure'){{$message}} @enderror</span>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="profile mt-5">
                                 <h5 class="lead">Student Information</h5>
                                 <!-- 2 column grid layout with text inputs for the first and last names -->

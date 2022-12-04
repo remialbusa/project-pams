@@ -12,12 +12,12 @@
         <h1 class="h3 mb-2 text-gray-800">Monitor Enrollment</h1>
         
     </div>
-    <p>The Monitoring of your enrollment status and list of enrolled subjects is shown below for the S.Y. 2022-2023.</p>
+    <p>The Monitoring of your enrollment status and list of enrolled subjects is shown below for the S.Y. {{$school_year->school_year}}  {{$school_year->semester}}.</p>
       
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">S.Y. {{$school_year->school_year}} - {{$school_year->semester}}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">S.Y. {{$school_year->school_year}}  {{$school_year->semester}}</h6>
         </div>
         <section class="details">
             <div class=" container mt-5 mb-5">
@@ -120,10 +120,10 @@
                                                         <p class="sub-text mt-3" style="text-align: left;">1. Subject advisement by the Enrolling Teacher:</i></p>
                                                     </td>
                                                     <td>
-                                                        @if($LoggedUserInfo['status'] == 'Done')
+                                                        @if($LoggedUserInfo['first_procedure'] == 'Done')
                                                         <p class="status-text" style="text-align: center;"><span style="font-weight: 600; font-size: 12px; color: #13a166">
                                                             <i class="bi bi-check-circle"></i> 
-                                                            <option value="Done">Done {{$LoggedUserInfo->created_at}}</option>
+                                                            <option value="Done">Done</option>
                                                         </span></p>
                                                         </p>
                                                         @else
@@ -140,10 +140,10 @@
                                                         <p class="sub-text mt-3" style="text-align: left;">2. Subject Enlistment at the Management Information System Office:</i></p>
                                                     </td>
                                                     <td>
-                                                        @if($LoggedUserInfo['status'] == 'Done')
+                                                        @if($LoggedUserInfo['second_procedure'] == 'Done')
                                                         <p class="status-text" style="text-align: center;"><span style="font-weight: 600; font-size: 12px; color: #13a166">
                                                             <i class="bi bi-check-circle"></i> 
-                                                            <option value="Done">Done {{$LoggedUserInfo->created_at}}</option>
+                                                            <option value="Done">Done</option>
                                                         </span></p>
                                                         </p>
                                                         @else
@@ -160,10 +160,10 @@
                                                         <p class="sub-text mt-3" style="text-align: left;">3. Validation and issuance of the Entrance Slip:</i></p>
                                                     </td>
                                                     <td>
-                                                        @if($LoggedUserInfo['status'] == 'Done')
+                                                        @if($LoggedUserInfo['third_procedure'] == 'Done')
                                                         <p class="status-text" style="text-align: center;"><span style="font-weight: 600; font-size: 12px; color: #13a166">
                                                             <i class="bi bi-check-circle"></i> 
-                                                            <option value="Done">Done {{$LoggedUserInfo->created_at}}</option>
+                                                            <option value="Done">Done</option>
                                                         </span></p>
                                                         </p>
                                                         @else

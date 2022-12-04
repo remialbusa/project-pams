@@ -73,7 +73,7 @@
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="program">
                                     @foreach ($programs as $programs)
                                         <option value="{{$programs->id}}"
-                                            {{$subject->program == $programs->program ? 'selected': ''}}>
+                                            {{$subject->program == $programs->id ? 'selected': ''}}>
                                             {{$programs->program}}</option>
                                     @endforeach
                                 </select>
@@ -93,11 +93,17 @@
                             <div class="form-floating mb-3">
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="units">
                                     @if($subject['unit'] == '1')
-                                        <option value="1">1</option>
-                                    @elseif(($subject['unit'] == '2'))
+                                        <option selected value="1">1</option>
                                         <option value="2">2</option>
-                                    @else
                                         <option value="3">3</option>
+                                    @elseif(($subject['unit'] == '2'))
+                                        <option value="1">1</option>
+                                        <option selected value="2">2</option>
+                                        <option value="3">3</option>
+                                    @else
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option selected value="3">3</option>
                                     @endif
                                     
                                 </select>
@@ -108,11 +114,17 @@
                             <div class="form-floating mb-3">
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="period">
                                     @if($subject['period'] == '1st Period')
-                                    <option value="1st Period">1st Period</option>
-                                    @elseif(($subject['period'] == '2nd Period'))
+                                    <option selected value="1st Period">1st Period</option>
                                     <option value="2nd Period">2nd Period</option>
-                                    @else
                                     <option value="3rd Period">3rd Period</option>
+                                    @elseif(($subject['period'] == '2nd Period'))
+                                    <option value="1st Period">1st Period</option>
+                                    <option selected value="2nd Period">2nd Period</option>
+                                    <option value="3rd Period">3rd Period</option>
+                                    @else
+                                    <option value="1st Period">1st Period</option>
+                                    <option value="2nd Period">2nd Period</option>
+                                    <option selected value="3rd Period">3rd Period</option>
                                     @endif
                                 </select>
                                 <span class="text-danger">@error('units'){{$message}} @enderror</span>

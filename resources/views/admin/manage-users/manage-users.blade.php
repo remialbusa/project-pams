@@ -10,7 +10,7 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Active Admin Users</h1>
-                <a class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#insertModalForm">Add User</a>
+                
             </div>
             <p>List below are the admin users.</p>
             
@@ -20,6 +20,10 @@
                     <h6 class="m-0 font-weight-bold text-primary">List of users</h6>
                 </div>
                 <div class="card-body">
+                    <div class="mb-4 mt-1">
+                    <a class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#insertModalForm">Add User</a>
+                    <hr/>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -28,7 +32,7 @@
                                     <th>Employee ID</th>
                                     <th>Name</th>
                                     <th>Role</th>
-                                    <th>Action</th>
+                                    <th class="col-sm-2">Action</th>
                                 </tr>
                             </thead>               
                             <tbody>
@@ -39,8 +43,8 @@
                                     <td>{{$admin->name}}</td>
                                     <td>{{$admin->role}}</td>
                                     <td>
-                                        <a href="{{ route('edit-admin', $admin['id'])}}" class="edit mx-2"><i class="bi bi-pencil-square"></i></a>
-                                        <a href="{{ route('delete-admin', $admin['id'])}}" class="delete"><i class="bi bi-trash3"></i></a>
+                                        <a href="{{ route('edit-admin', $admin['id'])}}" class="edit mx-2 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                        <a href="{{ route('delete-admin', $admin['id'])}}" class="delete  d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
                                     </td>
                                 </tr>
                             @endforeach                                            

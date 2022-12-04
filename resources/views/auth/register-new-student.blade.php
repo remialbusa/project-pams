@@ -159,24 +159,29 @@
                                 </div>
                             </div>
                             <!-- 2 column grid layout with text inputs for the first and last names -->
-                            <div class="row mt-2 mb-3">
-                                <div class="col-md-6">
+                            <div class="row mt-4 mb-3">
+                                <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Mobile Number <label class="text-danger">*</label></label>
                                         <input type="text" id="form6Example1" class="form-control" name="mobile_no" />
                                         <span class="text-danger">@error('mobile_no'){{$message}} @enderror</span>
                                     </div>
                                 </div>
-                                <div class="col">
+                            </div>
+                            <div class="row mt-4 mb-4">
+                                <div class="col ">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Facebook Account Name <label class="text-danger">*</label></label>
+                                        <p>
+                                            <i>(Important: Input your REAL facebook account.)</i>
+                                        </p>
                                         <input type="text" id="form6Example2" class="form-control" name="fb_acc_name" />
                                         <span class="text-danger">@error('fb_acc_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                             </div>
-                            <!-- 2 column grid layout with text inputs for the first and last names -->
-                            <div class="row mt-2 mb-3">
+                            
+                            <div class="row mt-5 mb-3">
                                 <label class="form-label">Address</label>
                                 <p>
                                     <i>(Please follow the format Region/Province/City/Barangay.)</i>

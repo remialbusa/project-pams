@@ -120,6 +120,8 @@
                 <div class="text-center d-none d-md-inline">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
+
+                
                 
     
             </ul>
@@ -132,43 +134,55 @@
                 <div id="content">
                     
                     <!-- Top Bar -->
-                    <nav class="navbar navbar-expand-lg sticky-top topbar navbar-dark shadow-5-strong">
+                    
+                    <nav class="navbar navbar-expand sticky-top navbar-dark shadow-5-strong">
+                        
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        
                         <div class="container">
                             <a class="navbar-brand" href="{{route('auth.logout-student')}}"><img class="img-logo" style="height:40px; width: 40px" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
                             <a class="navbar-brand" href="{{route('auth.logout-student')}}"><img class="img-logo-grad" style="height:50px; width: 50px" src="/images/GradSchoolLogo.png" alt=""></a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            </div>
+
+                            <ul class="topbar navbar-nav ml-auto">
+                                <div class="topbar-divider d-none d-sm-block"></div>
+                                <!-- Nav Item - User Information -->
+                                <li class="nav-item dropdown no-arrow">                                   
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-3 d-none d-lg-inline small" style="color: white;">{{$LoggedUserInfo->first_name}} {{$LoggedUserInfo->middle_name}} {{$LoggedUserInfo->last_name}}</span>
+                                        <img class="img-profile rounded-circle mr-2" src="{{URL::asset('/admin/img/undraw_profile.svg')}}">
+                                        <i class="bi bi-caret-down-fill"></i>
+                                    </a>
+    
+                                    <!-- Dropdown - User Information -->
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                        
+                                        <a class="dropdown-item mb-2 mt-2" href="{{ route('student.profile')}}">
+                                            <i class="bi bi-person-circle mr-2"></i>
+                                            Profile
+                                        </a>
+
+                                        <a class="dropdown-item mb-2" href="{{ route('student.change-password', $LoggedUserInfo->id)}}">
+                                            <i class="bi bi-gear mr-2"></i>
+                                            Change Password
+                                        </a>
+
+                                        <hr>
+    
+                                        <a class="dropdown-item" href="{{route('auth.logout-student')}}">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Logout
+                                        </a>
+                                        
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                        
 
-                        <ul class="navbar-nav ml-auto">
-                            <!-- Nav Item - User Information -->
-                            <li class="nav-item dropdown no-arrow">
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-3 d-none d-lg-inline text-gray-600 small">{{$LoggedUserInfo->first_name}} {{$LoggedUserInfo->middle_name}} {{$LoggedUserInfo->last_name}}</span>
-                                    <img class="img-profile rounded-circle mr-2" src="{{URL::asset('/admin/img/undraw_profile.svg')}}">
-                                    <i class="bi bi-caret-down-fill"></i>
-                                </a>
-                                <!-- Dropdown - User Information -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    
-                                    <a class="dropdown-item" href="{{ route('student.profile')}}">
-                                        <i class="bi bi-person-circle mr-2"></i>
-                                        Profile
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{route('auth.logout-student')}}">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
-                                    </a>
-                                    
-                                </div>
-                            </li>
-                        </ul>
+                        
                     </nav>
 
                     <div class="p-4 d-grid gap-3"></div>
