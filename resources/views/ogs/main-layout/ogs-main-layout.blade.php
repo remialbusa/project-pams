@@ -32,6 +32,7 @@
 
     <!-- Custom styles for this page -->
     <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
 
 </head>
 
@@ -59,25 +60,14 @@
                     <span>Dashboard</span></a>
             </li>
 
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Pre-enrollment -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne">
+            <li class="nav-item mt-3">
+                <a class="nav-link" href="/staff/admin/manage-enrollees">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Pre-Enrollment</span>
-                </a>       
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Student Type:</h6>
-                        <a class="collapse-item" href="{{ route('admin.pre-enrollment-new')}}">New</a>
-                        <a class="collapse-item" href="{{ route('admin.pre-enrollment-continuing')}}">Continuing</a>
-                        <h6 class="collapse-header">Process:</h6>
-                        <a class="collapse-item" href="{{ route('admin.pending')}}">Pending Students</a>
-                        <a class="collapse-item" href="{{ route('admin.advise-assign-subjects')}}">Advising & Assign</a>
-                    </div>
-                </div>       
+                    <span>Manage Enrollees</span></a>
             </li>
             
             <hr class="sidebar-divider">
@@ -127,16 +117,6 @@
                     </div>
                 </div>    
             </li>
-
-            <hr class="sidebar-divider">
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.comprehensive-exam')}}">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Comprehensive Exam</span></a>
-            </li>
-
-            <hr class="sidebar-divider">
 
             <hr class="sidebar-divider">
                 <!-- Sidebar Toggler (Sidebar) -->
@@ -242,6 +222,12 @@
 
     <!-- Page level custom scripts -->
     <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
+
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            $('table.display').DataTable();
+        } );
+    </script>
 
 </body>
 

@@ -14,6 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <!-- custom css -->
     <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
     <title>Pre-registration</title>
 </head>
 
@@ -33,6 +34,9 @@
                     </li>
                     <li class="nav-item px-2">
                         <a class="nav-link" href="/faqs">FAQ's</a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="/welcome" class="nav-link" href="#">Back</a>
                     </li>
                 </ul>
             </div>
@@ -90,8 +94,6 @@
                 </p>
                 <p class="m-0">10. SUBMIT TO THE OGS THE OTHER COPY OF YOUR DRF.
                 </p>
-                <div class="col-sm-8">
-
                 </div>
             </div>
             <h4 class="px-5 mt-5">ENROLLMENT PROCESS</h4>
@@ -116,7 +118,9 @@
                         FURTHER INSTRUCTIONS.</p>
                 </div>
             </div>
+            
         </div>
+        
     </section>
     <footer class="footer mb-0">
         <div class="container">

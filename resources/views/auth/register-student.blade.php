@@ -22,6 +22,7 @@
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
     <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
+    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
     <title>Pre-registration</title>
 </head>
 
@@ -41,6 +42,9 @@
                     </li>
                     <li class="nav-item px-2">
                         <a class="nav-link" href="/faqs">FAQ's</a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="/enrollment">Back</a>
                     </li>
                 </ul>
             </div>
@@ -82,14 +86,14 @@
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="student_id" />
+                                        <input type="text" id="form6Example1" class="form-control" name="student_id" value="{{old('student_id')}}" />
                                         <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Last name <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="last_name" />
+                                        <input type="text" id="form6Example2" class="form-control" name="last_name" value="{{old('last_name')}}"/>
                                         <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -99,14 +103,14 @@
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">First name <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="first_name" />
+                                        <input type="text" id="form6Example1" class="form-control" name="first_name" value="{{old('first_name')}}"/>
                                         <span class="text-danger">@error('first_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Middle name </label>
-                                        <input type="text" id="form6Example2" class="form-control" name="middle_name" />
+                                        <input type="text" id="form6Example2" class="form-control" name="middle_name" value="{{old('middle_name')}}"/>
                                         <span class="text-danger">@error('middle_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -130,7 +134,7 @@
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Email <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="email" />
+                                        <input type="text" id="form6Example2" class="form-control" name="email" value="{{old('email')}}"/>
                                         <span class="text-danger">@error('email'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -140,7 +144,7 @@
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Sex</label>
-                                        <select class="form-select" aria-label="Default select example" name="gender">
+                                        <select class="form-select" aria-label="Default select example" name="gender" value="{{old('gender')}}">
                                             <option disabled selected>N/A</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
@@ -151,7 +155,7 @@
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Birthdate</label>
-                                        <input type="date" id="form6Example1" class="form-control" name="birth_date" />
+                                        <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{old('birth_date')}}"/>
                                         <span class="text-danger">@error('birth_date'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -161,7 +165,7 @@
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Mobile Number <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="mobile_no" />
+                                        <input type="text" id="form6Example1" class="form-control" name="mobile_no" value="{{old('mobile_no')}}"/>
                                         <span class="text-danger">@error('mobile_no'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -173,7 +177,7 @@
                                         <p>
                                             <i>(Important: Input your REAL facebook account.)</i>
                                         </p>
-                                        <input type="text" id="form6Example2" class="form-control" name="fb_acc_name" />
+                                        <input type="text" id="form6Example2" class="form-control" name="fb_acc_name" value="{{old('fb_acc_name')}}"/>
                                         <span class="text-danger">@error('fb_acc_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -187,28 +191,28 @@
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Region <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="region" />
+                                        <input type="text" id="form6Example1" class="form-control" name="region" value="{{old('region')}}"/>
                                         <span class="text-danger">@error('region'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Province <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="province" />
+                                        <input type="text" id="form6Example1" class="form-control" name="province" value="{{old('province')}}"/>
                                         <span class="text-danger">@error('province'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">City <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="city" />
+                                        <input type="text" id="form6Example1" class="form-control" name="city" value="{{old('city')}}"/>
                                         <span class="text-danger">@error('city'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Baranggay <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="baranggay" />
+                                        <input type="text" id="form6Example1" class="form-control" name="baranggay" value="{{old('baranggay')}}"/>
                                         <span class="text-danger">@error('baranggay'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -222,7 +226,7 @@
                                             <i>(Kindly upload the soft copy of your entrance payment receipt, credentials, registration, consent, and promissory note in one PDF file.)</i>
                                             <br><i>(File format name (ex. Lastname-Firstname-MI-Requirements))</i>
                                         </p>
-                                        <input type="file" placeholder="Choose file" class="form-control" name="file">
+                                        <input type="file" placeholder="Choose file" class="form-control" name="file" >
                                         <span class="text-danger">@error('file'){{$message}} @enderror</span>
                                     </div>
                                 </div>

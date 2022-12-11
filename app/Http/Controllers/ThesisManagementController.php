@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 
 class ThesisManagementController extends Controller
 {
+    #Student Thesis Directory
     function studentThesisDirectory()
     {
         if (session()->has('LoggedUser')) {
@@ -31,6 +32,22 @@ class ThesisManagementController extends Controller
         return view('student.dashboard.thesismanagement.student-thesis-directory', $data, ['thesis' => $thesis]);
     }
 
+    
+
+    #Student View Thesis in Directory
+    function viewStudentThesis($id)
+    {
+        if (session()->has('LoggedUser')) {
+            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $data = [
+                'LoggedUserInfo' => $student
+            ];
+        }
+        $thesis = Thesis::find($id);
+        return view('student.view-thesis-pdf', $data, ['thesis'=>$thesis]);
+    }
+
+    #Student Thesis Schedule
     function studentThesisSchedule()
     {
         if (session()->has('LoggedUser')) {
@@ -44,6 +61,7 @@ class ThesisManagementController extends Controller
         return view('student.dashboard.thesismanagement.student-thesis-schedule', $data, ['student'=>$student,'thesis' => $thesis]);
     }
 
+    #OGS Admin Thesis Directory
     function thesisDirectory()
     {
         if(session()->has('LoggedAdmin')){
@@ -53,9 +71,94 @@ class ThesisManagementController extends Controller
             ];
         }  
         $thesis = Thesis::all();
-        return view('admin.thesis-management.thesis-directory', $data, ['thesis' => $thesis]);
+        return view('ogs.thesis-management.thesis-directory', $data, ['thesis' => $thesis]);
+    }
+
+    #OGS Admin Insert Thesis Directory
+    function thesisSave(Request $request){
+
+        //validate info
+        $request->validate([
+            'thesis_title' => 'required',
+            'thesis_author' => 'required',
+            'file' => 'required|mimes:pdf,xlx,csv|max:2048'
+        ]);
+
+        //insert data
+        $thesis = new Thesis();
+        $thesis -> thesis_title = $request->thesis_title;
+        $thesis -> thesis_author = $request->thesis_author;
+
+        $file = $request->file;
+        
+        $filename=$file->getClientOriginalName();
+        $request->file->move('assets',$filename);
+
+        $thesis->file= $filename;
+
+        $save = $thesis->save();
+
+        if ($save) {
+            return back()->with('success', 'thesis inserted successfuly');
+        } else {
+            return back()->with('fail', 'failed inserting thesis data');
+        }
+    }
+
+    #Admin OGS View Thesis in Directory
+    function viewAdminThesis($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $thesis = Thesis::find($id);
+        return view('ogs.view-thesis-pdf', $data, ['thesis'=>$thesis]);
+    }
+
+    #OGS Admin Thesis Edit
+    function thesisEdit($id){
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $thesis = Thesis::find($id);
+        return view('ogs.edit-thesis', $data, ['thesis'=>$thesis]);
+    }
+
+    #OGS Admin Update Thesis
+    function thesisUpdate(Request $request){
+        //validate info
+        $request->validate([
+            'thesis_title' => 'required',
+            'thesis_author' => 'required'
+        ]);
+
+        //update data
+        $thesis = Thesis::find($request->id);
+        $thesis -> thesis_title = $request->thesis_title;
+        $thesis -> thesis_author = $request->thesis_author;
+        $save = $thesis->save();
+
+        if($save){
+            return redirect('staff/admin/thesis-directory');
+        }else{
+            return back()->with('fail', 'Failed inserting student data');
+        }
+    }
+
+    #OGS Admin Thesis Delete
+    function thesisDelete($id){
+        $thesisDatas = Thesis::find($id);
+        $thesisDatas->delete();
+        return redirect('staff/admin/thesis-directory');
     }
     
+    #OGS Admin Thesis Scheduling
     function thesisScheduling()
     {
         if(session()->has('LoggedAdmin')){
@@ -64,9 +167,10 @@ class ThesisManagementController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
-        $student = StudentUser::all(); 
-        return view('admin.thesis-management.thesis-scheduling', $data, ['student'=>$student]);
+        $student = StudentUser::all();
+        return view('ogs.thesis-management.thesis-scheduling', $data, ['student'=>$student]);
     }
+
 
     function schedulingThesis($id)
     {
@@ -85,29 +189,9 @@ class ThesisManagementController extends Controller
         return view('admin.defense-scheduling', $data, ['student'=>$student,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'subjects'=>$subjects]);
     }
 
-    function viewStudentThesis($id)
-    {
-        if (session()->has('LoggedUser')) {
-            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
-            $data = [
-                'LoggedUserInfo' => $student
-            ];
-        }
-        $thesis = Thesis::find($id);
-        return view('admin.view-thesis-pdf', $data, ['thesis'=>$thesis]);
-    }
+    
 
-    function viewAdminThesis($id)
-    {
-        if(session()->has('LoggedAdmin')){
-            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
-            $data = [
-                'LoggedAdminInfo'=>$admin
-            ];
-        }
-        $thesis = Thesis::find($id);
-        return view('student.view-thesis-pdf', $data, ['thesis'=>$thesis]);
-    }
+
 
     function setSchedule(Request $request)
     {
@@ -148,70 +232,11 @@ class ThesisManagementController extends Controller
         }
     }
 
-    function thesisDelete($id){
-        $thesisDatas = Thesis::find($id);
-        $thesisDatas->delete();
-        return redirect('staff/admin/thesis-directory');
-    }
+    
 
-    function thesisEdit($id){
-        if(session()->has('LoggedAdmin')){
-            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
-            $data = [
-                'LoggedAdminInfo'=>$admin
-            ];
-        }
-        $thesis = Thesis::find($id);
-        return view('admin.edit-thesis', $data, ['thesis'=>$thesis]);
-    }
+    
 
-    function thesisUpdate(Request $request){
-        //validate info
-        $request->validate([
-            'thesis_title' => 'required',
-            'thesis_author' => 'required'
-        ]);
+    
 
-        //update data
-        $thesis = Thesis::find($request->id);
-        $thesis -> thesis_title = $request->thesis_title;
-        $thesis -> thesis_author = $request->thesis_author;
-        $save = $thesis->save();
-
-        if($save){
-            return redirect('staff/admin/thesis-directory');
-        }else{
-            return back()->with('fail', 'Failed inserting student data');
-        }
-    }
-
-    function thesisSave(Request $request){
-
-        //validate info
-        $request->validate([
-            'thesis_title' => 'required',
-            'thesis_author' => 'required',
-            'file' => 'required|mimes:pdf,xlx,csv|max:2048'
-        ]);
-
-        //insert data
-        $thesis = new Thesis();
-        $thesis -> thesis_title = $request->thesis_title;
-        $thesis -> thesis_author = $request->thesis_author;
-
-        $file = $request->file;
-        
-        $filename=$file->getClientOriginalName();
-        $request->file->move('assets',$filename);
-
-        $thesis->file= $filename;
-
-        $save = $thesis->save();
-
-        if ($save) {
-            return back()->with('success', 'thesis inserted successfuly');
-        } else {
-            return back()->with('fail', 'failed inserting thesis data');
-        }
-    }
+    
 }

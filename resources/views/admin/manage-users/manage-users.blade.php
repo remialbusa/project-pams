@@ -82,7 +82,6 @@
                                     <select class="form-select form-select-lg" aria-label="Default select example" name="role">
                                         <option value="Admin">Admin</option>
                                         <option value="Admission Officer">OGS Officer</option>
-                                        <option value="MIS Officer">MIS Officer</option>
                                     </select>
                                     <span class="text-danger">@error('role'){{$message}} @enderror</span>
                                     <label for="floatingInput">Role</label>

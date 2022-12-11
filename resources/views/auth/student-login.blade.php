@@ -15,6 +15,7 @@
 
     <!-- custom css -->
     <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
     <title>Student Login</title>
 </head>
 
@@ -36,7 +37,10 @@
                     <li class="nav-item px-2">
                         <a class="nav-link" href="/faqs">FAQ's</a>
                     </li>
-                </ul>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="/welcome">Back</a>
+                    </li>
+                </ul> 
             </div>
         </div>
     </nav>
@@ -79,21 +83,7 @@
         </div>
     </section>
 
-    <!-- Modal -->
-    <div style="overflow-y: scroll" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Student Login Info</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <span class="fw-bold">Student ID: </span>(e.g. ID Number)</p>
-                <span class="fw-bold">Password: </span>(e.g. Family Name)</p>
-            </div>
-        </div>
-        </div>
-    </div>
+    
 
     <footer class="footer mb-0">
         <div class="container">
@@ -137,6 +127,21 @@
     </footer>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Student Login Info</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span class="fw-bold">Student ID: </span>(e.g. ID Number)</p>
+                <span class="fw-bold">Password: </span>(e.g. Family Name)</p>
+            </div>
+        </div>
+        </div>
+    </div>
 </body>
 
 </html>

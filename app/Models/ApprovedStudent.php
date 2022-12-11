@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\UUID;
 
-class PendingStudent extends Model
+class ApprovedStudent extends Model
 {
-    use UUID;
     use HasFactory;
+    use UUID;
+    
+    protected $table = 'approved_students';
 
     public function getFirstPeriodID()
     {

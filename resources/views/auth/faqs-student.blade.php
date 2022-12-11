@@ -36,6 +36,9 @@
                     <li class="nav-item px-2">
                         <a href="" class="nav-link" href="#">FAQ's</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a href="/welcome" class="nav-link" href="#">Back</a>
+                    </li>
                 </ul>
             </div>
     </nav>

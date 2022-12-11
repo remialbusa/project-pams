@@ -35,8 +35,13 @@
                     <li class="nav-item px-2">
                         <a class="nav-link" href="/welcome">Home</a>
                     </li>
+                    
                     <li class="nav-item px-2">
                         <a class="nav-link" href="/faqs">FAQ's</a>
+                    </li>
+
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="/welcome">Back</a>
                     </li>
                 </ul>
             </div>

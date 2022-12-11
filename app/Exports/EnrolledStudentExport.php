@@ -15,6 +15,7 @@ class EnrolledStudentExport implements FromCollection,WithHeadings
     {
         return collect(EnrolledStudent::getAllStudents());
     }
+    
     public function headings():array
     {
         return[

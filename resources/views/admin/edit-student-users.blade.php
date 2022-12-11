@@ -92,9 +92,9 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example2">Last name (Password) <label class="text-danger">*</label></label>
-                                            <input type="text" id="form6Example2" class="form-control" name="last_name" value="{{$student['last_name']}}" />
-                                            <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
+                                            <label class="form-label" for="form6Example2">Password <label class="text-danger">*</label></label>
+                                            <input type="password" id="form6Example2" class="form-control" name="password" value="{{$student['password']}}" />
+                                            <span class="text-danger">@error('password'){{$message}} @enderror</span>
                                         </div>
                                     </div>
                                 </div>

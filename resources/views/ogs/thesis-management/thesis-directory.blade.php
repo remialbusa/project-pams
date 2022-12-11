@@ -1,4 +1,4 @@
-@extends('admin.ogs-main-layout')
+@extends('ogs.main-layout.ogs-main-layout')
 @section('title', 'Thesis Management')
 
 @section('content')
@@ -9,7 +9,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Thesis Management</h1>
-        <a class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#insertModalForm"><i class="material-icons">&#xE147;</i>Add Thesis</a>
+        <a class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#insertModalForm">Add Thesis</a>
     </div>
     
     <!-- DataTales Example -->
@@ -36,12 +36,13 @@
                             
                             <td>{{$thesis['thesis_title']}}</td>
                             <td>{{$thesis['thesis_author']}}</td>
-                            <td><a href="{{ route('admin.view-thesis-pdf', $thesis->id)}}" target="_blank">{{$thesis['file']}}</a></td>
+                            <td>{{$thesis['file']}}</td>
                             <td>{{$thesis['created_at']}}</td>
                             <td>{{$thesis['updated_at']}}</td>
-                            <td>
-                                <a href="{{ route('thesis-edit', $thesis->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
-                                <a href="{{ route('thesis-delete', $thesis->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
+                            <td class="text-center">
+                                <a href="{{ route('admin.view-thesis-pdf', $thesis->id)}}" target="_blank" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-eye-fill"></i></a>
+                                <a href="{{ route('thesis-edit', $thesis->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                <a href="{{ route('thesis-delete', $thesis->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>
                         @endforeach                                     

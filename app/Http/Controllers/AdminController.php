@@ -48,7 +48,7 @@ class AdminController extends Controller
         $save = $admin->save();
 
         if ($save) {
-            return redirect('staff/auth/login');
+            return redirect('staff/admin/manage-users');
         } else {
             return back()->with('fail', 'failed inserting admin data');
         }

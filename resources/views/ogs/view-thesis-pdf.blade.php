@@ -24,5 +24,5 @@
     </head>
 
 <body>
-    <iframe height="1310" width="1310" src="/assets/{{$thesis->file}}"></iframe>
+    <iframe style="height: 100%; width: 100%; position: fixed;" src="/assets/{{$thesis->file}}"></iframe>
 </body>

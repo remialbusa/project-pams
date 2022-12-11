@@ -20,7 +20,7 @@
             <h6 class="m-0 font-weight-bold text-primary">S.Y. {{$school_year->school_year}}  {{$school_year->semester}}</h6>
         </div>
         <section class="details">
-            <div class=" container mt-5 mb-5">
+            <div class="container mt-5 mb-5">
                 <div class="container h-100">
                     <div class=" mt-5 px-4">
                         <div class="row-sm-6">

@@ -21,6 +21,7 @@
         <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
         <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
         <title>View PDF</title>
+        <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
     </head>
 
 <body>

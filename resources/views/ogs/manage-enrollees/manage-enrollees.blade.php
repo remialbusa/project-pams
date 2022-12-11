@@ -1,0 +1,153 @@
+@extends('ogs.main-layout.ogs-main-layout')
+@section('title', 'Manage Enrollees')
+
+@section('content')
+
+<div>
+    <div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Manage Enrollees</h1>
+        
+    </div>
+    
+      
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Manage Enrollees</h6>
+        </div>
+        <section class="details">
+            <div class=" mt-5 px-3">
+                <ul class="nav nav-tabs nav-fill mt-4 mb-2" id="myTab" role="tablist">                      
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link link-dark active" id="pending-students-tab" data-bs-toggle="tab" href="#pending-students" role="tab" aria-controls="pending-students" aria-selected="true">Pending Students</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link link-dark" id="approved-students-tab" data-bs-toggle="tab" href="#approved-students" role="tab" aria-controls="approved-students" aria-selected="false">Approved Students</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link link-dark" id="encoding-students-tab" data-bs-toggle="tab" href="#encoding-students" role="tab" aria-controls="encoding-students" aria-selected="false">Encoding Students</a>
+                    </li>
+                    {{-- <li class="nav-item" role="presentation">
+                        <a class="nav-link link-dark" id="enrollment-process-tab" data-bs-toggle="tab" href="#enrollment-process" role="tab" aria-controls="enrollment-process" aria-selected="false">Enrollment Status</a>
+                    </li> --}}
+                </ul>
+                <div style="font-size: 90%;" class="manage-user-body px-2">
+                    <div class="tab-content mb-5" id="myTabContent">
+
+                        {{-- Pending Students Tab --}}
+                        <div class="tab-pane active" id="pending-students" role="tabpanel" aria-labelledby="pending-students-tab">
+                            <div class="mt-5 tab-pane fade active show" id="pending-students" role="tabpanel" aria-labelledby="pending-students-tab" style="max-width: 100%;">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped display" id="" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-sm-1">Student Type</th>
+                                                <th class="col-sm-3">Name</th>
+                                                <th class="col-sm-1">Student Number</th>
+                                                <th class="col-sm-1">Program</th>
+                                                <th class="col-sm-2">Contact Number</th>
+                                                <th class="col-sm-2">Date</th>
+                                                <th class="col-sm-2">Action</th>
+                                            </tr>
+                                        </thead>               
+                                        <tbody>
+                                        @foreach ($pendingStudents as $student)
+                                            <tr>
+                                                <td>{{$student->student_type}}</td>
+                                                <td>{{$student->first_name}} {{$student->middle_name}} {{$student->last_name}}</td>
+                                                <td>{{$student->student_id}}</td>                     
+                                                <td>{{$student->getProgramID->program}}</td>
+                                                <td>{{$student->mobile_no}}</td>
+                                                <td>{{$student->created_at}}</td>
+                                                <td class="text-center">
+                                                    <a href="{{ route('admin.approving-pending-students', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm"><i class="bi bi-check-circle"></i></a>
+                                                    <a onclick="return confirm('Are you sure?')" href="{{ route('student-delete', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Approved Students Tab --}}
+                        <div class="mt-5 tab-pane fade" id="approved-students" role="tabpanel" aria-labelledby="approved-students-tab">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped display" id="" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-sm-1">Student Type</th>
+                                            <th class="col-sm-3">Name</th>
+                                            <th class="col-sm-1">Student Number</th>
+                                            <th class="col-sm-1">Program</th>
+                                            <th class="col-sm-2">Contact Number</th>
+                                            <th class="col-sm-2">Date</th>
+                                            <th class="col-sm-2">Action</th>
+                                        </tr>
+                                    </thead>               
+                                    <tbody>
+                                    @foreach ($approvedStudents as $student)
+                                        <tr>
+                                            <td>{{$student->student_type}}</td>
+                                            <td>{{$student->first_name}} {{$student->middle_name}} {{$student->last_name}}</td>
+                                            <td>{{$student->student_id}}</td>                     
+                                            <td>{{$student->getProgramID->program}}</td>
+                                            <td>{{$student->mobile_no}}</td>
+                                            <td>{{$student->created_at}}</td>
+                                            <td class="text-center">
+                                                <a href="{{ route('admin.approving-pending-students', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm"><i class="bi bi-check-circle"></i></a>
+                                                <a onclick="return confirm('Are you sure?')" href="{{ route('student-delete', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        {{-- Encoding Students Tab --}}
+                        <div class="mt-5 tab-pane fade" id="encoding-students" role="tabpanel" aria-labelledby="encoding-students-tab">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped display"width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-sm-1">Student Type</th>
+                                            <th class="col-sm-3">Name</th>
+                                            <th class="col-sm-2">Student Number</th>
+                                            <th class="col-sm-1">Program</th>
+                                            <th class="col-sm-2">Contact Number</th>
+                                            <th class="col-sm-2">Date</th>
+                                            <th class="col-sm-2">Action</th>
+                                        </tr>
+                                    </thead>               
+                                    <tbody>
+                                    @foreach ($approvedStudents as $student)
+                                        <tr>
+                                            <td>{{$student->student_type}}</td>
+                                            <td>{{$student->first_name}} {{$student->middle_name}} {{$student->last_name}}</td>
+                                            <td>{{$student->student_id}}</td>                     
+                                            <td>{{$student->getProgramID->program}}</td>
+                                            <td>{{$student->mobile_no}}</td>
+                                            <td>{{$student->created_at}}</td>
+                                            <td class="text-center">
+                                                <a href="{{route('admin.encoding-students', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                                <a href="{{route('view-encode-student-data', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-eye"></i></a>                           
+                                            </td>
+                                        </tr>
+                                    @endforeach                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@endsection

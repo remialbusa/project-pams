@@ -20,6 +20,7 @@
         <!-- custom css -->
         <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
         <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
+        <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
         <title>Edit Thesis</title>
     </head>
 
@@ -35,7 +36,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/staff/admin/dashboard">Back</a>
+                        <a class="nav-link" href="/staff/admin/thesis-directory">Back</a>
                     </li>
                 </ul>
             </div>

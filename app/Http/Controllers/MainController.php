@@ -9,7 +9,6 @@ use App\Models\PendingStudent;
 use App\Models\Subject;
 use App\Models\Program;
 use App\Models\TechnicalForm;
-use App\Models\ComprehensiveExam;
 use App\Models\SchoolYear;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -118,7 +117,7 @@ class MainController extends Controller
         
 
         //insert data
-        $student = new Student();
+        $student = new PendingStudent();
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;       
         $student->last_name = $request->last_name;
@@ -175,12 +174,7 @@ class MainController extends Controller
             'region' => 'required',
             'province' => 'required',
             'city' => 'required',
-            'baranggay' => 'required',
-            'file' => 'required|mimes:pdf,xlx,csv|max:2048',
-            'program' => 'required',
-            'first_period' => 'required',
-            'second_period' => 'required',
-            'third_period' => 'required',                          
+            'baranggay' => 'required',                       
         ]);
         
 
@@ -202,17 +196,6 @@ class MainController extends Controller
         $student->province = $request->province;
         $student->city = $request->city;
         $student->baranggay = $request->baranggay;
-        $student->program = $request->program;
-        $student->first_period_sub = $request->first_period;
-        $student->second_period_sub = $request->second_period;
-        $student->third_period_sub = $request->third_period;
-
-        $file = $request->file;
-        
-        $filename=$file->getClientOriginalName();
-        $request->file->move('assets',$filename);
-
-        $student->file= $filename;
 
         $save = $student->save();
 
@@ -389,23 +372,6 @@ class MainController extends Controller
         }
     }
 
-    function comprehensiveExam()
-    {
-        if (session()->has('LoggedUser')) {
-            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
-            $data = [
-                'LoggedUserInfo' => $student
-            ];
-        }
-
-        $school_year = DB::table('school_year')->where('status', 'Active')->get();
-        $studentUser = StudentUser::all();
-        $student = Student::all();
-        $enrolledStudent = EnrolledStudent::all();
-        $program = Program::all();
-        return view('student.dashboard.pre-enroll.comprehensive-exam', $data, ['school_year'=>$school_year,'programs'=>$program,'studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
-    }
-
     function saveForm(Request $request)
     {
         $request->validate([
@@ -425,38 +391,6 @@ class MainController extends Controller
 
         $save = $form->save();
 
-
-        if ($save) {
-            return back()->with('success', 'Form Submitted Successfuly!');
-        } else {
-            return back()->with('fail', 'Failed Registration');
-        }
-    }
-
-    function insertComprehensiveExam(Request $request)
-    {
-        $request->validate([
-            'student_id' => 'required',
-            'program' => 'required',
-            'name' => 'required',
-            'exam_status' => 'required',
-            'file' => 'required|mimes:pdf,xlx,csv|max:2048',                         
-        ]);
-
-        $cexam = new ComprehensiveExam();
-        $cexam->student_id = $request->student_id;
-        $cexam->program = $request->program;
-        $cexam->name = $request->name;
-        $cexam->exam_status = $request->exam_status;
-
-        $file = $request->file;
-        
-        $filename=$file->getClientOriginalName();
-        $request->file->move('assets',$filename);
-
-        $cexam->file= $filename;
-
-        $save = $cexam->save();
 
         if ($save) {
             return back()->with('success', 'Form Submitted Successfuly!');

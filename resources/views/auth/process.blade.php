@@ -16,7 +16,7 @@
 
     <!-- custom css -->
     <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
-
+    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
 </head>
 
 <body>
@@ -35,6 +35,9 @@
                     </li>
                     <li class="nav-item px-2">
                         <a class="nav-link" href="/faqs">FAQ's</a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="/welcome" class="nav-link" href="#">Back</a>
                     </li>
                 </ul>
             </div>

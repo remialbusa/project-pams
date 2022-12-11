@@ -1,4 +1,4 @@
-@extends('admin.ogs-main-layout')
+@extends('ogs.main-layout.ogs-main-layout')
 @section('title', 'Thesis Management')
 
 @section('content')
@@ -19,10 +19,10 @@
                 <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Student ID</th>
+                            <th class="col-sm-3">Student ID</th>
                             <th>Name</th>
-                            <th>Program</th>
-                            <th class="col-md-1">Action</th>
+                            <th class="col-sm-3">Program</th>
+                            <th class="col-sm-2">Action</th>
                         </tr>
                     </thead>               
                     <tbody>
@@ -33,6 +33,7 @@
                             <td>{{$students->program}}</td>
                             <td>
                                 <a href="{{ route('student-schedule', $students->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-calendar-check"></i></a>
+                                <a href="" class="mx-1 d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a> 
                             </td>
                         </tr> 
                         @endforeach         

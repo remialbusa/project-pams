@@ -17,6 +17,7 @@
     <!-- custom css -->
     <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
 
+    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
 </head>
 
 <body>
@@ -32,7 +33,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a href="" class="nav-link">Dashboard</a>
+                        <a href="/welcome" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item px-2">
                     </li>
@@ -78,8 +79,10 @@
                                 @endif
                                 @endforeach
                             </p>
+
                             <a href="{{ route('enrollment') }}" class="button1 text-decoration-none">Enroll now</a>
                             <a href="{{ route('process') }}" class="button text-decoration-none">Enrollment process</a>
+
                         </div>
                     </div>
                 </div>
@@ -209,12 +212,7 @@
             </div>
         </div>
         <hr>
-
-        
-
-
     </section>
-
 
     <footer class="footer mb-0">
         <div class="container">
@@ -255,13 +253,6 @@
                 <p class="text-light text-center">© Copyright <b>Leyte Normal university</b> . All Rights Reserved 2022</p>
             </div>
     </footer>
-
-
-
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>

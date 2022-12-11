@@ -36,8 +36,7 @@
 
     <!-- Custom styles for this page -->
     <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
-
- 
+    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
 
 </head>
 
@@ -82,19 +81,14 @@
                 <hr class="sidebar-divider">
     
                 <!-- Nav Item - Monitor Enrollment -->
+
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne">
-                        <i class="bi bi-pencil"></i>
-                        <span>Pre-Enrollment</span>
-                    </a>
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Fill up:</h6>
-                            <a class="collapse-item" href="/student/auth/pre-enroll">Pre-Enroll</a>
-                            <a class="collapse-item" href="/student/auth/comprehensive-exam">Comprehensive Exam</a>
-                        </div>
-                    </div>    
+                    <a class="nav-link" href="/student/auth/pre-enroll">
+                        <i class="bi bi-eye-fill"></i>
+                        <span>Pre-enrollment</span>
+                    </a>              
                 </li>
+            
                 <hr class="sidebar-divider">
                 <!-- Nav Item - Thesis -->
                 <li class="nav-item">
