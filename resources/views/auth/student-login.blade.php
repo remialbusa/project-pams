@@ -48,7 +48,7 @@
     
     <section class="details">
         <div class="login-container mt-5">
-            <h3 class="login-heading mb-4">Student login <i class="bi bi-2x bi-question-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></h3></i>
+            <h3 class="login-heading mb-4">Student login <i class="cursor-pointer bi bi-2x bi-question-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></h3></i>
             <!-- login Form -->
             <form action="{{ route('login') }}" method="POST">
                 @if(Session::get('fail'))

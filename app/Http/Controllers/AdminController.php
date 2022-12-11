@@ -143,19 +143,6 @@ class AdminController extends Controller
         return view('admin.manage-users.manage-users', $data, ['admins'=>$adminList]);
     }
 
-    function systemAnnouncements(){
-        if(session()->has('LoggedAdmin')){
-            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
-            $data = [
-                'LoggedAdminInfo'=>$admin
-            ];
-        }
-        
-        $announcement = Announcement::all();
-        $adminList = Admin::all();
-        return view('admin.system-configuration.announcements', $data, ['announcement'=>$announcement,'admins'=>$adminList]);
-    }
-
     function systemFaqs(){
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
@@ -192,6 +179,7 @@ class AdminController extends Controller
         }
     }
 
+    #Active Semester
     function activeSemester()
     {
         if(session()->has('LoggedAdmin')){
@@ -205,50 +193,32 @@ class AdminController extends Controller
         return view('admin.system-configuration.active-semester', $data, ['school_year'=>$school_year,'enrolledStudent'=>$enrolledStudent]);
     }
 
-    function insertAnnouncements(Request $request)
+    #Insert Active Semester
+    function insertSemester(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'file' => 'required|mimes:png,jpeg|max:2048',
+           'school_year' => 'required',
+           'semester' => 'required',
+           'status' => 'required',
         ]);
 
-        $announcement = new Announcement;
-        $announcement->name = $request->name;
-        
-        $file = $request->file;
-        
-        $filename=$file->getClientOriginalName();
-        $request->file->move('assets',$filename);
-
-        $announcement->file= $filename;
-
-        $save = $announcement->save();
-
+        $semester = new SchoolYear();
+        $semester->school_year = $request->school_year;
+        $semester->semester = $request->semester;
+        $semester->status = $request->status;
+        $save = $semester->save();
 
         if ($save) {
-            return back()->with('success', 'Registration complete');
+            return back()->with('success', 'Inserted Semester Successfully!');
         } else {
-            return back()->with('fail', 'Failed Registration');
+            return back()->with('fail', 'Failed Inserting');
         }
     }
 
-    function deleteAnnouncements($id)
+    function deleteSemester($id)
     {
-        $announcement = Announcement::find($id);
-        $announcement->delete();
-        return redirect('/staff/admin/system-configuration/announcements');
+        $semester = SchoolYear::find($id);
+        $semester->delete();
+        return back();
     }
-
-    function viewImage($id)
-    {
-        if(session()->has('LoggedAdmin')){
-            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
-            $data = [
-                'LoggedAdminInfo'=>$admin
-            ];
-        }
-        $announcement = Announcement::find($id);
-        return view('admin.view-image', $data, compact('announcement')); 
-    }
-
 }

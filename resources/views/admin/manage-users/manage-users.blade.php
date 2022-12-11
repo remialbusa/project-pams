@@ -10,18 +10,18 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Active Admin Users</h1>
-                
+                <a class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#insertModalForm">Add User</a>
             </div>
             <p>List below are the admin users.</p>
             
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">List of users</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">List of admin users</h6>
                 </div>
                 <div class="card-body">
                     <div class="mb-4 mt-1">
-                    <a class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#insertModalForm">Add User</a>
+                    
                     <hr/>
                     </div>
                     <div class="table-responsive">

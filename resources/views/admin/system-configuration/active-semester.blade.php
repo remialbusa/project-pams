@@ -6,7 +6,11 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Active Semester</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-2 text-gray-800">Active Semester</h1>
+    <a class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#modalForm">New Semester</a>
+    </div>
+    
     <p class="mb-4"></p>
     
     <!-- DataTales Example -->
@@ -39,7 +43,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="" class="mx-1 d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
+                                <a href="{{route('auth.delete-semester', $school_year->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
                             </td>
                             
                         </tr>
@@ -50,7 +54,53 @@
         </div>
     </div>
     
+    <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Instructor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mx-4 my-4">
+                    <!-- login Form -->
+                    <form action="{{ route('auth.insert-semester') }}" method="POST">
+                        @if(Session::get('success'))
+                        <div class="alert alert-success">{{Session::get('success')}}</div>
+                        @endif
+
+                        @if(Session::get('fail'))
+                        <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                        @endif
+
+                        @csrf
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="school_year" placeholder="School Year">
+                            <span class="text-danger">@error('school_year'){{$message}} @enderror</span>
+                            <label for="floatingInput">School Year</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="semester" placeholder="Semester">
+                            <span class="text-danger">@error('semester'){{$message}} @enderror</span>
+                            <label for="floatingInput">Semester</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" aria-label="Default select example"" name="status" placeholder="Status">
+                                <option disabled selected>N/A</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                            <span class="text-danger">@error('status'){{$message}} @enderror</span>
+                            <label for="floatingInput">Status</label>
+                        </div>     
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-lg btn-primary shadow-sm btn-login fw-bold mb-2">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /.container-fluid -->
-    
+</div>
+
 @endsection

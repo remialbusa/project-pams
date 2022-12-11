@@ -72,12 +72,6 @@ Route::get('/staff/admin/system-configuration/faqs/delete/{id}', [FaqsController
 Route::get('/staff/admin/system-configuration/faqs/edit/{id}', [FaqsController::class, 'editFaqs'])->name('edit-faqs')->middleware('isLoggedAdmin');;
 Route::post('/staff/admin/system-configuration/faqs/edit', [FaqsController::class, 'faqsUpdate'])->name('update-faqs')->middleware('isLoggedAdmin');
 
-//announcements routes
-Route::get('/staff/admin/system-configuration/announcements', [AdminController::class, 'systemAnnouncements'])->middleware('isLoggedAdmin');
-Route::post('/staff/admin/system-configuration/announcement/insert', [AdminController::class, 'insertAnnouncements'])->name('admin.insert-announcements')->middleware('isLoggedAdmin');
-Route::get('/staff/admin/system-configuration/announcements/view-image/{id}', [AdminController::class, 'viewImage'])->name('admin.view-image')->middleware('isLoggedAdmin');
-Route::get('/staff/admin/system-configuration/announcements/delete/{id}', [AdminController::class, 'deleteAnnouncements'])->name('admin.delete-announcements')->middleware('isLoggedAdmin');
-
 //Admin routes
 Route::get('/staff/auth/login', [AdminController::class, 'loginAdmin']);
 Route::get('/staff/auth/register', [AdminController::class, 'register'])->middleware('adminAlreadyLoggedIn');
@@ -98,6 +92,9 @@ Route::get('/staff/admin/system-configuration/technicalsupport', [AdminControlle
 Route::get('/staff/admin/system-configuration/technicalsupport/delete/{id}', [AdminController::class, 'deleteTechnicalForm'])->name('technicalform-delete')->middleware('isLoggedAdmin');
 Route::get('/staff/auth/logout', [AdminController::class, 'logoutAdmin'])->name('auth.logout-admin');
 Route::get('/staff/auth/system-configuration/active-semester', [AdminController::class, 'activeSemester'])->name('auth.active-semester')->middleware('isLoggedAdmin');
+Route::post('/staff/auth/system-configuration/active-semester', [AdminController::class, 'insertSemester'])->name('auth.insert-semester')->middleware('isLoggedAdmin');
+Route::get('/staff/auth/system-configuration/active-semester/delete/{id}', [AdminController::class, 'deleteSemester'])->name('auth.delete-semester')->middleware('isLoggedAdmin');
+
 
 //Admission Officer Course routes
 Route::get('/staff/admin/dashboard', [AdmissionOfficerController::class, 'dashboard'])->name('admin.dashboard')->middleware('isLoggedAdmin');

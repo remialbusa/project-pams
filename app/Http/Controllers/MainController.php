@@ -278,7 +278,7 @@ class MainController extends Controller
         $school_year = DB::table('school_year')->where('status', 'Active')->get();
         $studentUser = StudentUser::all();
         $subject = Subject::all();
-        return view('student.dashboard.monitor-enrollment-dashboard', $data, ['school_year'=>$school_year,'subject'=>$subject,'studentUser' => $studentUser]);
+        return view('student.monitor-enrollment.monitor-enrollment', $data, ['school_year'=>$school_year,'subject'=>$subject,'studentUser' => $studentUser]);
     }
 
     function preEnroll()
@@ -303,7 +303,7 @@ class MainController extends Controller
         ->select('id','program','description')
         ->get();
 
-        return view('student.dashboard.pre-enroll.pre-enrollment', $data, ['school_year'=>$school_year,'programData'=>$programData,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
+        return view('student.pre-enroll.pre-enrollment', $data, ['school_year'=>$school_year,'programData'=>$programData,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
     }
 
     function savePreEnroll(Request $request)

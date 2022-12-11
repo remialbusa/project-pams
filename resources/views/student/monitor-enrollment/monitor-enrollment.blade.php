@@ -1,4 +1,4 @@
-@extends('student.student-main-layout')
+@extends('student.layout.student-main-layout')
 @section('title', 'Monitor Enrollment')
 
 @section('content')
