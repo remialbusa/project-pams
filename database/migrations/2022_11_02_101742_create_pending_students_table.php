@@ -30,8 +30,8 @@ class CreatePendingStudentsTable extends Migration
             $table->string('province');
             $table->string('city');
             $table->string('baranggay');
-            $table->string('program');
             $table->string('file');
+            $table->string('program');
             $table->string('first_period_sub');
             $table->string('second_period_sub');
             $table->string('third_period_sub'); 

@@ -74,18 +74,11 @@
             <!-- Nav Item - Utilities Collapse Menu -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Student Monitoring</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Monitoring:</h6>
-                        <a class="collapse-item" href="{{ route('admin.enrolled')}}">Enrolled Students</a>
-                        <a class="collapse-item" href="{{ route('admin.student-users')}}">Student Users</a>
-                    </div>
-                </div>   
+                <a class="nav-link" href="{{route('admin.student-monitoring')}}">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Student Monitoring</span></a>
             </li>
+            
             <hr class="sidebar-divider">
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">

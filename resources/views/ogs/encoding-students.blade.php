@@ -67,6 +67,98 @@
                             <span class="text-danger">@error('id'){{$message}} @enderror</span>
                             <label for="floatingInput"></label>
                         </div>
+                        
+                        <h5 class="mt-5 lead">Student Status</h5>
+
+                        <div class="mt-4 form-outline form-line">
+                            <label class="form-label" for="form6Example1">Enrollment Status <label class="text-danger">*</label></label>
+                            <select class="form-select" aria-label="Default select example" name="enrollment_status" placeholder="Status">
+                                @if ($students['enrollment_status'] == 'Enrolled')
+                                <option selected value="Enrolled">Enrolled</option>
+                                <option value="Pending">Pending</option>
+                                @elseif($students['enrollment_status'] == 'Pending')
+                                <option value="Enrolled">Enrolled</option>
+                                <option selected value="Pending">Pending</option>
+                                @else
+                                <option disabled selected>N/A</option>
+                                <option value="Enrolled">Enrolled</option>
+                                <option value="Pending">Pending</option>
+                                @endif
+                            </select>
+                            <span class="text-danger">@error('status'){{$message}} @enderror</span>
+                        </div>
+
+                        <div class="row mb-5">
+                            <div class="col mt-4">
+                                <div class="form-outline ">
+                                    <label class="form-label" for="form6Example2">First Process</label>
+                                    <select class="form-select form-line" aria-label="Default select example" name="first_procedure">
+                                        @if ($students['first_procedure'] == 'Done')
+                                            <option selected value="Done">Done</option>
+                                            <option value="Pending">Pending</option>
+                                        @elseif ($students['first_procedure'] == 'Pending')
+                                            <option value="Done">Done</option>
+                                            <option selected value="Pending">Pending</option>
+                                        @else
+                                            <option disabled selected>N/A</option>
+                                            <option value="Done">Done</option>
+                                            <option value="Pending">Pending</option>
+                                        @endif
+                                    </select>
+                                    <span class="text-danger">@error('first_procedure'){{$message}} @enderror</span>
+                                </div>
+                            </div>
+
+                            <div class="col mt-4">
+                                <div class="form-outline ">
+                                    <label class="form-label " for="form6Example2">Second Process</label>
+                                    <select class="form-select form-line" aria-label="Default select example" name="second_procedure">
+                                        @if ($students['second_procedure'] == 'Done')
+                                        <option selected value="Done">Done</option>
+                                        <option value="Pending">Pending</option>
+                                        @elseif ($students['second_procedure'] == 'Pending')
+                                        <option value="Done">Done</option>
+                                        <option selected value="Pending">Pending</option>
+                                        @else
+                                        <option disabled selected>N/A</option>
+                                        <option value="Done">Done</option>
+                                        <option value="Pending">Pending</option>
+                                        @endif
+                                    </select>
+                                    <span class="text-danger">@error('second_procedure'){{$message}} @enderror</span>
+                                </div>
+                            </div>
+                            
+                            <div class="col mt-4">
+                                <div class="form-outline ">
+                                    <label class="form-label" for="form6Example2">Third Process</label>
+                                    <select class="form-select form-line" aria-label="Default select example" name="third_procedure">
+                                        @if ($students['third_procedure'] == 'Done')
+                                        <option selected value="Done">Done</option>
+                                        <option value="Pending">Pending</option>
+                                        @elseif ($students['third_procedure'] == 'Pending')
+                                        <option value="Done">Done</option>
+                                        <option selected value="Pending">Pending</option>
+                                        @else
+                                        <option disabled selected>N/A</option>
+                                        <option value="Done">Done</option>
+                                        <option value="Pending">Pending</option>
+                                        @endif
+                                    </select>
+                                    <span class="text-danger">@error('third_procedure'){{$message}} @enderror</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-12">
+                                <div class="form-group form-line">
+                                    <label class="form-label" for="form6Example1">Entrance Slip File <label class="text-danger">*</label></label>
+                                    <input type="file" placeholder="Choose file" class="form-control" name="file" >
+                                    <span class="text-danger">@error('file'){{$message}} @enderror</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                         <h5 class="mt-4 mb-2 lead">Programs & Subjects</h5>
                         <div class="col mt-4 mb-3">
                             <div class="col">
@@ -197,9 +289,11 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
+                            
                         </div>
-                        <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary btn-block mt-5 mb-3 btn-long">Approve</button>
+                        <div class="col-md-12 text-center mb-5 mt-5">
+                            <button type="submit" class="btn btn-primary btn-block btn-long">Approve</button>
                         </div>
                     </form>
                 </div>

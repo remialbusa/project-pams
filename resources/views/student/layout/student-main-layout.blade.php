@@ -58,13 +58,6 @@
                     <div class="sidebar-brand-text mx-3">Welcome Student!</div>
                     
                 </a>
-                <hr class="sidebar-divider my-0">
-
-                <li class="nav-item mt-3">
-                    <a class="nav-link" href="/student/auth/dashboard">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span></a>
-                </li>
 
                 <!-- Divider -->
                 <hr class="sidebar-divider">
@@ -145,7 +138,6 @@
                                 <li class="nav-item dropdown no-arrow">                                   
                                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="mr-3 d-none d-lg-inline small" style="color: white;">{{$LoggedUserInfo->first_name}} {{$LoggedUserInfo->middle_name}} {{$LoggedUserInfo->last_name}}</span>
-                                        <img class="img-profile rounded-circle mr-2" src="{{URL::asset('/admin/img/undraw_profile.svg')}}">
                                         <i class="bi bi-caret-down-fill"></i>
                                     </a>
     

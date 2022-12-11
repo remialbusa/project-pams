@@ -94,7 +94,8 @@ Route::get('/staff/auth/logout', [AdminController::class, 'logoutAdmin'])->name(
 Route::get('/staff/auth/system-configuration/active-semester', [AdminController::class, 'activeSemester'])->name('auth.active-semester')->middleware('isLoggedAdmin');
 Route::post('/staff/auth/system-configuration/active-semester', [AdminController::class, 'insertSemester'])->name('auth.insert-semester')->middleware('isLoggedAdmin');
 Route::get('/staff/auth/system-configuration/active-semester/delete/{id}', [AdminController::class, 'deleteSemester'])->name('auth.delete-semester')->middleware('isLoggedAdmin');
-
+Route::get('/staff/auth/system-configuration/active-semester/edit/{id}', [AdminController::class, 'editActiveSemester'])->name('auth.edit-active-semester')->middleware('isLoggedAdmin');
+Route::post('/staff/auth/system-configuration/active-semester/edit', [AdminController::class, 'updateSemester'])->name('auth.update-semester')->middleware('isLoggedAdmin');
 
 //Admission Officer Course routes
 Route::get('/staff/admin/dashboard', [AdmissionOfficerController::class, 'dashboard'])->name('admin.dashboard')->middleware('isLoggedAdmin');
@@ -108,14 +109,14 @@ Route::get('/staff/admin/manage-enrollees', [AdmissionOfficerController::class, 
 //Approved Students Routes
 Route::get('staff/admin/pre-enrollment/approved-students/edit/{id}', [AdmissionOfficerController::class, 'editApprovedStudents'])->name('admin.edit-approved')->middleware('isLoggedAdmin');
 Route::get('staff/admin/pre-enrollment/approved-students/delete/{id}', [AdmissionOfficerController::class, 'deleteApprovedStudents'])->name('delete-approved')->middleware('isLoggedAdmin');
-Route::post('staff/admin/pre-enrollment/approved-students/edit', [AdmissionOfficerController::class, 'updateApprovedStudents'])->name('update-approved-student')->middleware('isLoggedAdmin');
+Route::post('staff/admin/pre-enrollment/approved-students/edit', [AdmissionOfficerController::class, 'approveEnrollment'])->name('admin.enroll-student')->middleware('isLoggedAdmin');
 
 //Encode Stundets Routes
 Route::get('staff/admin/pre-enrollment/encode-students/encode/{id}', [AdmissionOfficerController::class, 'encodingStudents'])->name('admin.encoding-students')->middleware('isLoggedAdmin');
 Route::post('staff/admin/pre-enrollment/encode-students/encode', [AdmissionOfficerController::class, 'encodeStudentData'])->name('encode-student-data')->middleware('isLoggedAdmin');
 Route::get('staff/admin/pre-enrollment/encode-students/view/{id}', [AdmissionOfficerController::class, 'viewEncodedStudentData'])->name('view-encode-student-data')->middleware('isLoggedAdmin');
 
-
+Route::get('staff/admin/student-monitoring', [AdmissionOfficerController::class, 'studentMonitoring'])->name('admin.student-monitoring')->middleware('isLoggedAdmin');
 
 Route::get('/staff/admin/enrolled', [AdmissionOfficerController::class, 'enrolledStudents'])->name('admin.enrolled')->middleware('isLoggedAdmin');
 Route::get('/staff/admin/enrolled/view/{id}', [AdmissionOfficerController::class, 'viewEnrolledStudent'])->name('admin.view-enrolled-students')->middleware('isLoggedAdmin');
@@ -190,6 +191,7 @@ Route::post('/staff/admin/pending/approve', [AdmissionOfficerController::class, 
 Route::get('/staff/admin/pending/approve/{id}', [AdmissionOfficerController::class, 'approveView'])->name('approving-pending')->middleware('isLoggedAdmin');
 
 
+Route::get('/student/auth/monitor-enrollment/{file_name}', [AdmissionOfficerController::class, 'viewEntranceSlipPDF'])->name('student.view-entrance-slip-pdf')->middleware('isLoggedStudent');
 
 //Welcome Page
 //Admission routes

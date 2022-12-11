@@ -38,7 +38,7 @@
                             <td>{{$programs->degree}}</td>                       
                             <td>{{$programs->program}}</td>
                             <td>{{$programs->description}}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="{{route('edit-program', $programs->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
                                 <a href="{{route('delete-program', $programs->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                             </td>

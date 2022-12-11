@@ -20,10 +20,10 @@
         <!-- custom css -->
         <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
         <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
-        <title>View PDF</title>
+        <title>View E-SLIP</title>
         <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
     </head>
 
 <body>
-    <iframe style="height: 100%; width: 100%; position: fixed;" src="/assets/{{$thesis->file}}"></iframe>
+    <iframe style="height: 100%; width: 100%; position: fixed;" src="/assets/{{$student->file}}"></iframe>
 </body>

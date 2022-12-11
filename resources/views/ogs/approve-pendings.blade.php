@@ -66,6 +66,11 @@
                                 <span class="text-danger">@error('id'){{$message}} @enderror</span>
                                 <label for="floatingInput"></label>
                             </div>
+                            <div class="form-floating mb-3">
+                                <input type="hidden" class="form-control" name="file" placeholder="file" value="{{$student['file']}}">
+                                <span class="text-danger">@error('file'){{$message}} @enderror</span>
+                                <label for="floatingInput"></label>
+                            </div>
                             <div class="profile mt-5">
                                 <h5 class="lead">Student Information</h5>
                                 <!-- 2 column grid layout with text inputs for the first and last names -->

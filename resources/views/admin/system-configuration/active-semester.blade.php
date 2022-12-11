@@ -26,8 +26,7 @@
                             <th>School Year</th>
                             <th>Semester</th>
                             <th>Status</th>
-                            <th>Toggle</th>
-                            <th>Action</th>
+                            <th class="col-sm-2">Action</th>
                         </tr>
                     </thead>               
                     <tbody>
@@ -37,13 +36,9 @@
                             <td>{{$school_year->school_year}}</td>
                             <td>{{$school_year->semester}}</td>                       
                             <td>{{$school_year->status}}</td>
-                            <td>
-                                <div class="ml-3 form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                </div>
-                            </td>
-                            <td>
-                                <a href="{{route('auth.delete-semester', $school_year->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
+                            <td class="text-center">
+                                <a href="{{route('auth.edit-active-semester', $school_year->id)}}" class=" d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                <a href="{{route('auth.delete-semester', $school_year->id)}}" class=" d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
                             </td>
                             
                         </tr>

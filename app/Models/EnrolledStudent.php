@@ -23,6 +23,27 @@ class EnrolledStudent extends Model
 
     public function getStudentID()
     {
-        return $this->belongsTo(ApprovedStudent::class, 'user_id', 'id');
+        return $this->belongsTo(ApprovedStudent::class, 'enrollment_id', 'id');
     }
+
+    public function getFirstPeriodID()
+    {
+        return $this->belongsTo(Subject::class, 'first_period_sub', 'id');
+    }
+
+    public function getSecondPeriodID()
+    {
+        return $this->belongsTo(Subject::class, 'second_period_sub', 'id');
+    }
+
+    public function getThirdPeriodID()
+    {
+        return $this->belongsTo(Subject::class, 'third_period_sub', 'id');
+    }
+
+    public function getProgramID()
+    {
+        return $this->belongsTo(Program::class, 'program', 'id');
+    }
+    
 }

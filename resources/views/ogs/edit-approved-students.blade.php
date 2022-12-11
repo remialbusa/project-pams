@@ -49,7 +49,7 @@
                 <div class="px-4 mt-5 mb-5">
                     <h4>Edit Approved Student Data</h4>
                     <hr />
-                    <form action="{{route('update-approved-student')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('admin.enroll-student')}}" method="POST" enctype="multipart/form-data">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
                         @if(Session::get('success'))
                         <div class="alert alert-success text-center">{{Session::get('success')}}</div>
@@ -122,25 +122,25 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
                                             <select class="no-border form-select" aria-label="Default select example" name="vaccination_status">
-                                            @if($students->vaccination_status == 'Fully Vaccinated')
+                                            @if($students['vaccination_status'] == 'Fully Vaccinated')
                                                 <option value="Fully Vaccinated">Fully Vaccinated</option>
                                                 <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                                 <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                                 <option value="Not Vaccinated">Not Vaccinated</option>
                                                 <option value="Partially Vaccinated">Partially Vaccinated</option>
-                                            @elseif($students->vaccination_status == 'Partially Vaccinated')
+                                            @elseif($students['vaccination_status'] == 'Partially Vaccinated')
                                                 <option valuendife="Partially Vaccinated">Partially Vaccinated</option>
                                                 <option value="Vaccinated">Vaccinated</option>
                                                 <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                                 <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                                 <option value="Not Vaccinated">Not Vaccinated</option>
-                                            @elseif($students->vaccination_status == 'Vaccinated w/ 1 Booster')
+                                            @elseif($students['vaccination_status'] == 'Vaccinated w/ 1 Booster')
                                                 <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                                 <option value="Partially Vaccinated">Partially Vaccinated</option>
                                                 <option value="Vaccinated">Vaccinated</option>
                                                 <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                                 <option value="Not Vaccinated">Not Vaccinated</option>
-                                            @elseif($students->vaccination_status == 'Vaccinated w/ 2 Boosters')
+                                            @elseif($students['vaccination_status'] == 'Vaccinated w/ 2 Boosters')
                                                 <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                                 <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                                 <option value="Partially Vaccinated">Partially Vaccinated</option>
@@ -242,7 +242,146 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
+                            <hr>
+                            <h5 class="mt-5 lead">Student Status</h5>
+                        <div class="row mb-5">
+                            <div class="col mt-4">
+                                <div class="form-outline ">
+                                    <label class="form-label" for="form6Example2">First Process</label>
+                                    <select class="form-select form-line" aria-label="Default select example" name="first_procedure">
+                                        @if ($students['first_procedure'] == 'Done')
+                                        <option selected value="Done">Done</option>
+                                        @else
+                                        <option selected value="Pending">Pending</option>
+                                        @endif
+                                    </select>
+                                    <span class="text-danger">@error('first_procedure'){{$message}} @enderror</span>
+                                </div>
+                            </div>
+
+                            <div class="col mt-4">
+                                <div class="form-outline ">
+                                    <label class="form-label " for="form6Example2">Second Process</label>
+                                    <select class="form-select form-line" aria-label="Default select example" name="second_procedure">
+                                        @if ($students['second_procedure'] == 'Done')
+                                        <option selected value="Done">Done</option>
+                                        @else
+                                        <option selected value="Pending">Pending</option>
+                                        @endif
+                                    </select>
+                                    <span class="text-danger">@error('second_procedure'){{$message}} @enderror</span>
+                                </div>
+                            </div>
+                            
+                            <div class="col mt-4">
+                                <div class="form-outline ">
+                                    <label class="form-label" for="form6Example2">Third Process</label>
+                                    <select class="form-select form-line" aria-label="Default select example" name="third_procedure">
+                                        @if ($students['third_procedure'] == 'Done')
+                                        <option selected value="Done">Done</option>
+                                        @else
+                                        <option selected value="Pending">Pending</option>
+                                        @endif
+                                    </select>
+                                    <span class="text-danger">@error('third_procedure'){{$message}} @enderror</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h5 class="mt-3 lead">Programs & Subjects</h5>
+                            <div class="col mt-4 mb-3">
+                                <div class="col">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example2">Program</label>
+                                        <select readonly class="form-select" aria-label="Default select example" name="program" id="slct_program">
+                                            <option value="{{$students->program}}">{{$students->getProgramID->program}} - {{$students->getProgramID->description}}</option>
+                                        </select>
+                                        <span class="text-danger">@error('program'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3"></div>
+                            <div class="row mt-2 mb-3">
+                                <div class="col mt-4">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example1">1st PERIOD</label>
+                                        <select class="form-select" aria-label="Default select example" name="first_period_sub" id="slct_first_period">
+                                            <option value="{{$students->first_period_sub}}">{{$students->getFirstPeriodID->code}} - {{$students->getFirstPeriodID->subject}}</option>
+                                        </select>
+                                        <span class="text-danger">@error('first_period_sub'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col mt-4">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example2">Schedule<label class="text-danger">*</label></label>
+                                        <input readonly type="text" id="form6Example2" class="form-control" name="first_period_sched" value="{{$students['first_period_sched']}}" />
+                                        <span class="text-danger">@error('first_period_sched'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col mt-4">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example1">Instructor</label><label class="text-danger">*</label>
+                                        <input readonly type="text" class="form-control" aria-label="Default select example" name="first_period_adviser" value="{{$students['first_period_adviser']}}">
+                                        <span class="text-danger">@error('first_period_adviser'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3"></div>
+                            <div class="row mt-2 mb-3">
+                                <div class="col mt-4">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example1">2nd PERIOD</label>
+                                        <select class="form-select" aria-label="Default select example" name="second_period_sub">
+                                            <option value="{{$students->second_period_sub}}">{{$students->getSecondPeriodID->code}} - {{$students->getSecondPeriodID->subject}}</option>
+                                        </select>
+                                        <span class="text-danger">@error('second_period_sub'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col mt-4">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example2">Schedule<label class="text-danger">*</label></label>
+                                        <input readonly type="text" id="form6Example2" class="form-control" name="second_period_sched" value="{{$students['second_period_sched']}}" />
+                                        <span class="text-danger">@error('second_period_sched'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col mt-4">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example1">Instructor</label><label class="text-danger">*</label>
+                                        <input readonly type="text" class="form-control" aria-label="Default select example" name="second_period_adviser" value="{{$students['second_period_adviser']}}">
+                                        <span class="text-danger">@error('second_period_adviser'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3"></div>
+                            <div class="row mt-2 mb-3">
+                                <div class="col mt-4">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example1">3rd Period</label>
+                                        <select class="form-select" aria-label="Default select example" name="third_period_sub">
+                                            <option value="{{$students->third_period_sub}}">{{$students->getThirdPeriodID->code}} - {{$students->getThirdPeriodID->subject}}</option>
+                                        </select>
+                                        <span class="text-danger">@error('third_period_sub'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col mt-4">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example2">Schedule<label class="text-danger">*</label></label>
+                                        <input readonly type="text" id="form6Example2" class="form-control" name="third_period_sched" value="{{$students['third_period_sched']}}"/>
+                                        <span class="text-danger">@error('third_period_sched'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col mt-4">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example1">Instructor</label><label class="text-danger">*</label>
+                                        <input readonly type="text" class="form-control" aria-label="Default select example" name="third_period_adviser" value="{{$students['third_period_adviser']}}">
+                                        <span class="text-danger">@error('third_period_adviser'){{$message}} @enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="col-md-12 text-center">
                             <button type="submit" class="btn btn-primary btn-block mt-5 mb-3 btn-long">Update</button>
                         </div>

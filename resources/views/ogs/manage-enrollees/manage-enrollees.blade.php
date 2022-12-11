@@ -3,17 +3,14 @@
 
 @section('content')
 
-<div>
-    <div class="container-fluid">
+<div class="container-fluid">
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Manage Enrollees</h1>
         
     </div>
-    
-      
-    <!-- DataTales Example -->
+
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Manage Enrollees</h6>
@@ -25,15 +22,13 @@
                         <a class="nav-link link-dark active" id="pending-students-tab" data-bs-toggle="tab" href="#pending-students" role="tab" aria-controls="pending-students" aria-selected="true">Pending Students</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link link-dark" id="approved-students-tab" data-bs-toggle="tab" href="#approved-students" role="tab" aria-controls="approved-students" aria-selected="false">Approved Students</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
                         <a class="nav-link link-dark" id="encoding-students-tab" data-bs-toggle="tab" href="#encoding-students" role="tab" aria-controls="encoding-students" aria-selected="false">Encoding Students</a>
                     </li>
-                    {{-- <li class="nav-item" role="presentation">
-                        <a class="nav-link link-dark" id="enrollment-process-tab" data-bs-toggle="tab" href="#enrollment-process" role="tab" aria-controls="enrollment-process" aria-selected="false">Enrollment Status</a>
-                    </li> --}}
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link link-dark" id="approved-students-tab" data-bs-toggle="tab" href="#approved-students" role="tab" aria-controls="approved-students" aria-selected="false">Approved Students</a>
+                    </li>
                 </ul>
+
                 <div style="font-size: 90%;" class="manage-user-body px-2">
                     <div class="tab-content mb-5" id="myTabContent">
 
@@ -75,7 +70,7 @@
                         </div>
 
                         {{-- Approved Students Tab --}}
-                        <div class="mt-5 tab-pane fade" id="approved-students" role="tabpanel" aria-labelledby="approved-students-tab">
+                        <div class="mt-5 tab-pane" id="approved-students" role="tabpanel" aria-labelledby="approved-students-tab">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped display" id="" width="100%" cellspacing="0">
                                     <thead>
@@ -86,7 +81,7 @@
                                             <th class="col-sm-1">Program</th>
                                             <th class="col-sm-2">Contact Number</th>
                                             <th class="col-sm-2">Date</th>
-                                            <th class="col-sm-2">Action</th>
+                                            <th style="width: 100%">Action</th>
                                         </tr>
                                     </thead>               
                                     <tbody>
@@ -99,8 +94,9 @@
                                             <td>{{$student->mobile_no}}</td>
                                             <td>{{$student->created_at}}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('admin.approving-pending-students', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm"><i class="bi bi-check-circle"></i></a>
-                                                <a onclick="return confirm('Are you sure?')" href="{{ route('student-delete', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
+                                                <a href="{{ route('admin.edit-approved', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm"><i class="bi bi-check-circle"></i></a>
+                                                <a onclick="return confirm('Are you sure?')" href="{{ route('delete-approved', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
+                                                {{-- <a target="_blank" href="{{ route('admin.view-pdf', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-eye-fill"></i></a> --}}
                                             </td>
                                         </tr>
                                     @endforeach                                        
@@ -108,7 +104,7 @@
                                 </table>
                             </div>
                         </div>
-                        
+
                         {{-- Encoding Students Tab --}}
                         <div class="mt-5 tab-pane fade" id="encoding-students" role="tabpanel" aria-labelledby="encoding-students-tab">
                             <div class="table-responsive">
@@ -143,11 +139,13 @@
                                 </table>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </section>
     </div>
 </div>
+
 
 @endsection

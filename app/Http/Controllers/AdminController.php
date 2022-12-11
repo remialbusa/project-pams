@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\EnrolledStudent;
-use App\Models\Student;
 use App\Models\Faqs;
 use App\Models\TechnicalForm;
-use App\Models\Announcement;
 use App\Models\SchoolYear;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -220,5 +218,38 @@ class AdminController extends Controller
         $semester = SchoolYear::find($id);
         $semester->delete();
         return back();
+    }
+
+    function editActiveSemester($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $school_year = SchoolYear::find($id);
+        return view('admin.edit-active-semester', $data ,['school_year'=>$school_year]);
+    }
+
+    function updateSemester(Request $request)
+    {
+        $request->validate([
+           'school_year' => 'required',
+           'semester' => 'required',
+           'status' => 'required',
+        ]);
+
+        $semester = SchoolYear::find($request->id);
+        $semester->school_year = $request->school_year;
+        $semester->semester = $request->semester;
+        $semester->status = $request->status;
+        $save = $semester->save();
+
+        if ($save) {
+            return redirect('/staff/auth/system-configuration/active-semester');
+        } else {
+            return back()->with('fail', 'Failed Updating');
+        }
     }
 }

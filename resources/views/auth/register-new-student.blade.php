@@ -219,8 +219,8 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row mt-4">
+                            <hr>
+                            <div class="row mt-5">
                                 <div class="col-md-12">
                                     <div class="form-group form-line">
                                         <label class="form-label" for="form6Example1">List of Requirements: <label class="text-danger">*</label></label>
@@ -233,7 +233,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <hr>
                             <h5 class="mt-5 lead">Programs & Subjects</h5>
                             <div class="col mt-4 mb-3">
                                 <div class="col">

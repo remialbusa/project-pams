@@ -30,6 +30,7 @@ class CreateApprovedStudentsTable extends Migration
             $table->string('province');
             $table->string('city');
             $table->string('baranggay');
+            $table->string('file');
             $table->string('program');
             $table->string('first_period_sub');
             $table->string('second_period_sub');
@@ -39,13 +40,11 @@ class CreateApprovedStudentsTable extends Migration
             $table->string('third_period_sched'); 
             $table->string('first_period_adviser');
             $table->string('second_period_adviser');
-            $table->string('third_period_adviser');  
-            $table->string('submitted_form');
-            $table->string('payment'); 
-            $table->string('status'); 
+            $table->string('third_period_adviser');
             $table->string('first_procedure');
             $table->string('second_procedure');
             $table->string('third_procedure');
+            $table->string('enrollment_status')->nullable();
             $table->timestamps();
         });
     }

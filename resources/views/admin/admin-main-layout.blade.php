@@ -73,22 +73,12 @@
                     <div class="bg-white py-2 collapse-inner rounded">                                              
                         <a class="collapse-item" href="/staff/admin/system-configuration/faqs">FAQ's</a>
                         <a class="collapse-item" href="/staff/admin/system-configuration/technicalsupport">Technical Support</a>
+                        <a class="collapse-item" href="{{route('auth.active-semester')}}">Active Semester</a>
                     </div>
                 </div>   
             </li>
-            <hr class="sidebar-divider">
 
-            <li class="nav-item mb-3">
-                <a class="nav-link" href="{{route('auth.active-semester')}}">
-                    <i class="bi bi-eye-fill"></i>
-                    <span>Active Semester</span>
-                </a>              
-            </li>
-            
-            <!-- Nav Item - Utilities Collapse Menu -->
-            
 
-            <!-- Divider -->
             <hr class="sidebar-divider">
 
 

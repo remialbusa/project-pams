@@ -29,7 +29,7 @@
                             <th>Subject</th>
                             <th>Units</th>
                             <th>Period</th>
-                            <th>Action</th>
+                            <th class="col-sm-2">Action</th>
                         </tr>
                     </thead>               
                     <tbody>
@@ -40,7 +40,7 @@
                             <td>{{$subject->subject}}</td>                       
                             <td>{{$subject->unit}}</td>
                             <td>{{$subject->period}}</td>
-                            <td>
+                            <td class="text-center">
                                 <a href="{{ route('edit-subject', $subject->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
                                 <a href="{{ route('delete-subject', $subject->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                             </td>

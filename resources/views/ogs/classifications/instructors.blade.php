@@ -19,24 +19,26 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">List of Instructors</h6>
         </div>
-        <div class="card-body">
+        <div class="card-body" >
             <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Program</th>
-                            <th>Title</th>
+                            <th class="col-sm-2">Program</th>
+                            <th class="col-sm-2">Title</th>
                             <th>Name</th>
-                            <th>Action</th>
+                            <th class="col-sm-3">Date</th>
+                            <th class="col-sm-2">Action</th>
                         </tr>
                     </thead>               
                     <tbody>
                     @foreach ($adviser as $adviser)
                         <tr>
-                            <td>{{$adviser->program}}</td>
+                            <td>{{$adviser->getProgramID->program}}</td>
                             <td>{{$adviser->title}}</td>
                             <td>{{$adviser->first_name}} {{$adviser->middle_name}} {{$adviser->last_name}}</td>
-                            <td>
+                            <td>{{$adviser->created_at}}</td>
+                            <td class="text-center">
                                 <a href="{{ route('edit-adviser', $adviser->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
                                 <a href="{{ route('delete-adviser', $adviser->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                             </td>
@@ -73,7 +75,7 @@
                             <select class="form-select" aria-label="Default select example" name="program">
                                 <option disabled selected>Select Program</option>
                                 @foreach ($programs as $programs)
-                                    <option value="{{$programs->program}}">{{$programs->program}}</option>
+                                    <option value="{{$programs->id}}">{{$programs->program}}</option>
                                 @endforeach
                             </select>
                             <span class="text-danger">@error('program'){{$message}} @enderror</span>

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\EnrolledStudent;
-use App\Models\StudentUser;
-use App\Models\Student;
 use App\Models\PendingStudent;
 use App\Models\Subject;
 use App\Models\Program;
@@ -179,7 +177,7 @@ class MainController extends Controller
         
 
         //insert data
-        $student = StudentUser::find($request->id);
+        $student = EnrolledStudent::find($request->id);
         $student->id = $request->id;
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;       
@@ -216,37 +214,36 @@ class MainController extends Controller
             'password' => 'required'
         ]);
 
-        $studentID = StudentUser::where('student_id', '=', $request->student_id)->first();
-        /* $studentPassword = StudentUser::where('password', '=', $request->password)->first(); */
+        $studentID = EnrolledStudent::where('student_id', '=', $request->student_id)->first();
+        $studentPassword = EnrolledStudent::where('last_name', '=', $request->password)->first();
 
         if ($studentID) { //if student_id exist
-            if ($studentID && Hash::check($request->password, $studentID->password)) { //if password exist    
+            if ($studentPassword) { //if password exist                
                 $request->session()->put('LoggedUser', $studentID->id);
-                return redirect('student/auth/dashboard');
+                return redirect('/student/auth/student-profile');
             } else {
                 return back()->with('fail', 'Incorrect password');
             }
         } else {
             return back()->with('fail', 'Student ID does not exist');
         }
-        
     }
 
     function dashboard(){       
         if(session()->has('LoggedUser')){
-            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $student = EnrolledStudent::where('id', '=', session('LoggedUser'))->first();
             $data = [
                 'LoggedUserInfo'=>$student
             ];
         }
         $school_year = SchoolYear::all();
-        $studentList = StudentUser::all();
+        $studentList = EnrolledStudent::all();
         return view('student.dashboard.dashboard', $data, ['school_year'=>$school_year,'student'=>$studentList]);
     }
 
     function profileView(){       
         if(session()->has('LoggedUser')){
-            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $student = EnrolledStudent::where('id', '=', session('LoggedUser'))->first();
             $data = [
                 'LoggedUserInfo'=>$student
             ];
@@ -270,13 +267,13 @@ class MainController extends Controller
     function enrollmentStatus()
     {
         if (session()->has('LoggedUser')) {
-            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $student = EnrolledStudent::where('id', '=', session('LoggedUser'))->first();
             $data = [
                 'LoggedUserInfo' => $student
             ];
         }
-        $school_year = DB::table('school_year')->where('status', 'Active')->get();
-        $studentUser = StudentUser::all();
+        $school_year = DB::table('school_year')->where('status', 'Active')->first();
+        $studentUser = EnrolledStudent::all();
         $subject = Subject::all();
         return view('student.monitor-enrollment.monitor-enrollment', $data, ['school_year'=>$school_year,'subject'=>$subject,'studentUser' => $studentUser]);
     }
@@ -284,15 +281,14 @@ class MainController extends Controller
     function preEnroll()
     {
         if (session()->has('LoggedUser')) {
-            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $student = EnrolledStudent::where('id', '=', session('LoggedUser'))->first();
             $data = [
                 'LoggedUserInfo' => $student
             ];
         }
 
         $school_year = DB::table('school_year')->where('status', 'Active')->get();
-        $studentUser = StudentUser::all();
-        $student = Student::all();
+        $studentUser = EnrolledStudent::all();
         $enrolledStudent = EnrolledStudent::all();
         $programs = Program::all();
         $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
@@ -303,7 +299,7 @@ class MainController extends Controller
         ->select('id','program','description')
         ->get();
 
-        return view('student.pre-enroll.pre-enrollment', $data, ['school_year'=>$school_year,'programData'=>$programData,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'studentUser'=>$studentUser,'student'=>$student,'enrolledStudent'=>$enrolledStudent]);
+        return view('student.pre-enroll.pre-enrollment', $data, ['school_year'=>$school_year,'programData'=>$programData,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'studentUser'=>$studentUser,'enrolledStudent'=>$enrolledStudent]);
     }
 
     function savePreEnroll(Request $request)
@@ -402,7 +398,7 @@ class MainController extends Controller
     function studentChangePassword($id)
     {
         if (session()->has('LoggedUser')) {
-            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $student = EnrolledStudent::where('id', '=', session('LoggedUser'))->first();
             $data = [
                 'LoggedUserInfo' => $student
             ];
@@ -417,7 +413,7 @@ class MainController extends Controller
             'password' => 'required',
         ]);
 
-        $user = StudentUser::find($request->id);
+        $user = EnrolledStudent::find($request->id);
         $user->student_id = $request->student_id;
         $user->password = Hash::make($request->password);
 

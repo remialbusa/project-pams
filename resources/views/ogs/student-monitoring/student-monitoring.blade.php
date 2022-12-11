@@ -36,8 +36,8 @@
                         <tr>
                             <td>{{$students->first_name}} {{$students->middle_name}} {{$students->last_name}}</td>
                             <td>{{$students->student_id}}</td>
-                            <td>{{$students->getStudentID->getProgramID->program}}</td>
-                            <td>{{$students->getStudentID->mobile_no}}</td>          
+                            <td>{{$students->getProgramID->program}}</td>
+                            <td>{{$students->mobile_no}}</td>          
                             <td>{{$students->created_at}}</td>
                             <td class="text-center">
                                 <a href="" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-eye"></i></a>

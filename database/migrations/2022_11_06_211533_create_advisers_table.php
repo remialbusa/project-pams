@@ -16,7 +16,7 @@ class CreateAdvisersTable extends Migration
         Schema::create('advisers', function (Blueprint $table) {
             $table->id();
             $table->string('program');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');

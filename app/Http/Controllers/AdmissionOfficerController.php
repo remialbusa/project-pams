@@ -115,6 +115,7 @@ class AdmissionOfficerController extends Controller
         $student->province = $request->province;
         $student->city = $request->city;
         $student->baranggay = $request->baranggay;
+        $student->file = $request->file;
         $student->program = $request->program;
         $student->first_period_sub = $request->first_period;
         $student->second_period_sub = $request->second_period;
@@ -125,25 +126,13 @@ class AdmissionOfficerController extends Controller
         $student->first_period_adviser = "";
         $student->second_period_adviser = "";
         $student->third_period_adviser = "";
-        $student->submitted_form = "Pending";
-        $student->payment = "Pending";
-        $student->status = "Pending";
         $student->first_procedure = "Pending";
         $student->second_procedure = "Pending";
         $student->third_procedure = "Pending";
 
+        $this->deletePendingStudent($request->id);
+
         $save = $student->save();
-
-        $student_user = new EnrolledStudent();
-        $student_user->student_type = $request->student_type;
-        $student_user->student_id = $request->student_id;  
-        $student_user->user_id = $request->id;
-        $student_user->password = "";
-        $student_user->last_name = $request->last_name;
-        $student_user->first_name = $request->first_name;
-        $student_user->middle_name = $request->middle_name;
-
-        $insert = $student_user->save();
 
         if($save){
             return redirect('/staff/admin/manage-enrollees');
@@ -152,6 +141,13 @@ class AdmissionOfficerController extends Controller
         }
 
         
+    }
+
+    #Delete Pending Students
+    public function deletePendingStudent($id){
+        $student = PendingStudent::find($id);
+        $student->delete();
+        return back();
     }
 
     #Approved Student Table
@@ -165,6 +161,68 @@ class AdmissionOfficerController extends Controller
         }
         $approvedStudents = ApprovedStudent::all();
         return view('ogs.pre-enrollment.approved-students', $data, ['approvedStudents'=>$approvedStudents]);
+    }
+
+    #Enroll Approved Student
+    function approveEnrollment(Request $request)
+    {
+        $request->validate([
+            'student_type' => 'required',
+            'student_id' => 'required',
+            'last_name' => 'required',          
+            'first_name' => 'required',
+            'vaccination_status' => 'required',
+            'email' => 'required',
+            'gender' => 'required',  
+            'birth_date' => 'required', 
+            'mobile_no' => 'required',
+            'fb_acc_name' => 'required',
+            'fb_acc_name' => 'required',
+            'region' => 'required',
+            'province' => 'required',
+            'city' => 'required',
+            'program' => 'required',
+            'first_period_sub' => 'required',
+            'second_period_sub' => 'required',
+            'third_period_sub' => 'required', 
+        ]);
+
+        $student = new EnrolledStudent();
+        $student->id = $request->id;
+        $student->student_type = $request->student_type;
+        $student->student_id = $request->student_id;       
+        $student->last_name = $request->last_name;
+        $student->first_name = $request->first_name;
+        $student->middle_name = $request->middle_name;
+        $student->vaccination_status = $request->vaccination_status;
+        $student->email = $request->email;
+        $student->gender = $request->gender;
+        $student->birth_date = $request->birth_date;
+        $student->mobile_no = $request->mobile_no;
+        $student->fb_acc_name = $request->fb_acc_name;
+        $student->region = $request->region;
+        $student->province = $request->province;
+        $student->city = $request->city;
+        $student->baranggay = $request->baranggay;
+        $student->program = $request->program;
+        $student->first_period_sub = $request->first_period_sub;
+        $student->second_period_sub = $request->second_period_sub;
+        $student->third_period_sub = $request->third_period_sub;
+        $student->first_period_sched = $request->first_period_sched;
+        $student->second_period_sched = $request->second_period_sched;
+        $student->third_period_sched = $request->third_period_sched;
+        $student->first_period_adviser = $request->first_period_adviser;
+        $student->second_period_adviser = $request->second_period_adviser;
+        $student->third_period_adviser = $request->third_period_adviser;
+        $student->enrollment_id=$request->id;
+
+        $save = $student->save();
+
+        if($save){
+            return redirect('/staff/admin/manage-enrollees');
+        }else{
+            return back()->with('fail', 'Failed inserting student data');
+        }
     }
 
     #Edit Approved Student
@@ -269,18 +327,14 @@ class AdmissionOfficerController extends Controller
     function encodeStudentData(Request $request)
     {
         $request->validate([
-            'first_period_sub' => 'required',
-            'second_period_sub' => 'required',
-            'third_period_sub' => 'required', 
-            'first_period_sched' => 'required',
-            'second_period_sched' => 'required',
-            'third_period_sched' => 'required', 
-            'first_period_adviser' => 'required',
-            'second_period_adviser' => 'required',
-            'third_period_adviser' => 'required',
+            'file' => 'mimes:pdf,xlx,csv|max:2048',
         ]);
 
         $student = ApprovedStudent::find($request->id);
+        $student->enrollment_status = $request->enrollment_status;
+        $student->first_procedure = $request->first_procedure;
+        $student->second_procedure = $request->second_procedure;
+        $student->third_procedure = $request->third_procedure;
         $student->first_period_sub = $request->first_period_sub;
         $student->second_period_sub = $request->second_period_sub;
         $student->third_period_sub = $request->third_period_sub;
@@ -290,6 +344,14 @@ class AdmissionOfficerController extends Controller
         $student->first_period_adviser = $request->first_period_adviser;
         $student->second_period_adviser = $request->second_period_adviser;
         $student->third_period_adviser = $request->third_period_adviser;
+
+        $file = $request->file;
+        
+        $filename=$file->getClientOriginalName();
+        $request->file->move('assets',$filename);
+
+        $student->file = $request->$filename;
+        
 
         $save = $student->save();
 
@@ -313,6 +375,18 @@ class AdmissionOfficerController extends Controller
         return view('ogs.view-encoded-student', $data, ['students'=>$students]);
     }
 
+    #Student Monitoring
+    function studentMonitoring()
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $enrolledStudents = EnrolledStudent::all();
+        return view('ogs.student-monitoring.student-monitoring', $data, ['enrolledStudents'=>$enrolledStudents]);
+    }
     #Enrolled Student
     function enrolledStudents()
     {
@@ -438,7 +512,7 @@ class AdmissionOfficerController extends Controller
         }
         $programs = Program::all();
         $subject = Subject::find($id);
-        return view('admin.edit-subject', $data, ['programs'=>$programs,'subject'=>$subject]);
+        return view('ogs.edit-subject', $data, ['programs'=>$programs,'subject'=>$subject]);
     }
 
     #Delete Subject
@@ -522,7 +596,6 @@ class AdmissionOfficerController extends Controller
     {
         $request->validate([
             'program' => 'required',
-            'title' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
         ]);
@@ -548,7 +621,6 @@ class AdmissionOfficerController extends Controller
     {
         $request->validate([
             'program' => 'required',
-            'title' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
         ]);
@@ -580,7 +652,7 @@ class AdmissionOfficerController extends Controller
         } 
         $programs = Program::all();
         $advisers = Adviser::find($id);
-        return view('admin.edit-adviser', $data, ['programs'=>$programs,'adviser'=>$advisers]);
+        return view('ogs.edit-instructor', $data, ['programs'=>$programs,'adviser'=>$advisers]);
     }
 
     #Adviser Delete
@@ -589,6 +661,19 @@ class AdmissionOfficerController extends Controller
         $adviser = Adviser::find($id);
         $adviser->delete();
         return redirect('/staff/admin/list-of-adviser');
+    }
+
+    function viewEntranceSlipPDF($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }   
+
+        $student = ApprovedStudent::find($id);
+        return view('student.monitor-enrollment.view-enrollment-slip', $data, compact('student'));
     }
 
     function viewPDF($id)
@@ -600,7 +685,7 @@ class AdmissionOfficerController extends Controller
             ];
         }   
 
-        $student = Student::find($id);
+        $student = ApprovedStudent::find($id);
         return view('ogs.view-pdf', $data, compact('student'));
     }
 
@@ -891,11 +976,7 @@ class AdmissionOfficerController extends Controller
         
     }
 
-    public function deletePendingStudent($id){
-        $student = PendingStudent::find($id);
-        $student->delete();
-        return back();
-    }
+    
 
     
 
