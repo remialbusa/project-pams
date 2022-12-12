@@ -33,7 +33,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a href="/welcome" class="nav-link">Home</a>
+                        <a href="/welcome" class="nav-link">Test</a>
                     </li>
                     <li class="nav-item px-2">
                     </li>

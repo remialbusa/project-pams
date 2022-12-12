@@ -20,6 +20,7 @@
     <!-- custom css -->
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
+    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
     <title>Student Defense Scheduling</title>
 </head>
 

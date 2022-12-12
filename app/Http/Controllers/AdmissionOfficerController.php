@@ -38,13 +38,12 @@ class AdmissionOfficerController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
-        $newStudents = DB::table('pending_students')->where('student_type', 'New Student')->count();
-        $continuingStudents = DB::table('pending_students')->where('student_type', 'Continuing')->count();
         $pendingStudents = DB::table('pending_students')->count();
+        $approvedStudents = DB::table('approved_students')->count();
         $enrolledStudents = DB::table('enrolled_students')->count();
         $subjects = DB::table('subjects')->count();
         $programs = DB::table('programs')->count();
-        return view('ogs.dashboard.dashboard', $data, compact('programs','subjects','newStudents', 'continuingStudents', 'pendingStudents', 'enrolledStudents'));
+        return view('ogs.dashboard.dashboard', $data, compact('approvedStudents','programs','subjects','pendingStudents', 'enrolledStudents'));
     }
 
     #Manage Enrollees

@@ -287,7 +287,7 @@ class MainController extends Controller
             ];
         }
 
-        $school_year = DB::table('school_year')->where('status', 'Active')->get();
+        $school_year = DB::table('school_year')->where('status', 'Active')->first();
         $studentUser = EnrolledStudent::all();
         $enrolledStudent = EnrolledStudent::all();
         $programs = Program::all();
