@@ -22,14 +22,14 @@ class ThesisManagementController extends Controller
     function studentThesisDirectory()
     {
         if (session()->has('LoggedUser')) {
-            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $student = EnrolledStudent::where('id', '=', session('LoggedUser'))->first();
             $data = [
                 'LoggedUserInfo' => $student
             ];
         }
 
         $thesis = Thesis::all();     
-        return view('student.dashboard.thesismanagement.student-thesis-directory', $data, ['thesis' => $thesis]);
+        return view('student.thesismanagement.student-thesis-directory', $data, ['thesis' => $thesis]);
     }
 
     
@@ -38,7 +38,7 @@ class ThesisManagementController extends Controller
     function viewStudentThesis($id)
     {
         if (session()->has('LoggedUser')) {
-            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $student = EnrolledStudent::where('id', '=', session('LoggedUser'))->first();
             $data = [
                 'LoggedUserInfo' => $student
             ];
@@ -51,14 +51,14 @@ class ThesisManagementController extends Controller
     function studentThesisSchedule()
     {
         if (session()->has('LoggedUser')) {
-            $student = StudentUser::where('id', '=', session('LoggedUser'))->first();
+            $student = EnrolledStudent::where('id', '=', session('LoggedUser'))->first();
             $data = [
                 'LoggedUserInfo' => $student
             ];
         }
-        $student = StudentUser::all();
+        $student = EnrolledStudent::all();
         $thesis = Thesis::all();    
-        return view('student.dashboard.thesismanagement.student-thesis-schedule', $data, ['student'=>$student,'thesis' => $thesis]);
+        return view('student.thesismanagement.student-thesis-schedule', $data, ['student'=>$student,'thesis' => $thesis]);
     }
 
     #OGS Admin Thesis Directory
@@ -167,7 +167,7 @@ class ThesisManagementController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
-        $student = StudentUser::all();
+        $student = EnrolledStudent::all();
         return view('ogs.thesis-management.thesis-scheduling', $data, ['student'=>$student]);
     }
 
@@ -180,7 +180,7 @@ class ThesisManagementController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
-        $student = StudentUser::find($id);
+        $student = EnrolledStudent::find($id);
         $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
         $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
@@ -189,25 +189,8 @@ class ThesisManagementController extends Controller
         return view('admin.defense-scheduling', $data, ['student'=>$student,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'subjects'=>$subjects]);
     }
 
-    
-
-
-
     function setSchedule(Request $request)
     {
-        $request->validate([
-            'member_1' => 'required',
-            'member_2' => 'required',
-            'member_3' => 'required',
-            'panelist_1' => 'required',
-            'panelist_2' => 'required',
-            'panelist_3' => 'required',
-            'adviser' => 'required',
-            'date' => 'required',
-            'time' => 'required',
-            'venue' => 'required',
-            'link' => 'required',
-        ]);
 
         $student = StudentUser::find($request->id);
         $student->title = $request->title;

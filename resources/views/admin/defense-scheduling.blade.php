@@ -82,21 +82,21 @@
                             <div class="row mt-2 mb-5">
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Member <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Member </label>
                                         <input type="text" id="form6Example1" class="form-control" name="member_1"/>
                                         <span class="text-danger">@error('member_1'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Member <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Member </label>
                                         <input type="text" id="form6Example1" class="form-control" name="member_2"/>
                                         <span class="text-danger">@error('member_2'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Member <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Member </label>
                                         <input type="text" id="form6Example1" class="form-control" name="member_3"/>
                                         <span class="text-danger">@error('member_3'){{$message}} @enderror</span>
                                     </div>
@@ -106,21 +106,21 @@
                             <div class="row mt-2 mb-5">
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Panelist <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Panelist </label>
                                         <input type="text" id="form6Example1" class="form-control" name="panelist_1"/>
                                         <span class="text-danger">@error('panelist_1'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Panelist <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Panelist </label>
                                         <input type="text" id="form6Example1" class="form-control" name="panelist_2"/>
                                         <span class="text-danger">@error('panelist_2'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Panelist <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Panelist </label>
                                         <input type="text" id="form6Example1" class="form-control" name="panelist_3"/>
                                         <span class="text-danger">@error('panelist_3'){{$message}} @enderror</span>
                                     </div>
@@ -130,14 +130,14 @@
                             <div class="row mt-2 mb-5">
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Adviser <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Adviser </label>
                                         <input type="text" id="form6Example1" class="form-control" name="adviser"/>
                                         <span class="text-danger">@error('adviser'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Date <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Date </label>
                                         <input type="date" id="form6Example1" class="form-control" name="date"/>
                                         <span class="text-danger">@error('date'){{$message}} @enderror</span>
                                     </div>
@@ -147,14 +147,14 @@
                             <div class="row mt-2 mb-3">
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Time <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Time </label>
                                         <input type="text" id="form6Example1" class="form-control" name="time"/>
                                         <span class="text-danger">@error('time'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Venue <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Venue </label>
                                         <input type="text" id="form6Example1" class="form-control" name="venue"/>
                                         <span class="text-danger">@error('venue'){{$message}} @enderror</span>
                                     </div>
@@ -165,7 +165,7 @@
                             <div class="row mt-2 mb-3">
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Google Meet Link <label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Google Meet Link </label>
                                         <input type="text" id="form6Example1" class="form-control" name="link" />
                                         <span class="text-danger">@error('link'){{$message}} @enderror</span>
                                     </div>

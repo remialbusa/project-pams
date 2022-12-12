@@ -30,7 +30,7 @@
                         <tr>
                             <td>{{$students->student_id}}</td>
                             <td>{{$students->first_name}} {{$students->middle_name}} {{$students->last_name}}</td>
-                            <td>{{$students->program}}</td>
+                            <td>{{$students->getProgramID->program}}</td>
                             <td>
                                 <a href="{{ route('student-schedule', $students->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-calendar-check"></i></a>
                                 <a href="" class="mx-1 d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a> 

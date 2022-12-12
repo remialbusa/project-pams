@@ -128,12 +128,12 @@ class AdmissionOfficerController extends Controller
         $student->first_procedure = "Pending";
         $student->second_procedure = "Pending";
         $student->third_procedure = "Pending";
-
-        $this->deletePendingStudent($request->id);
+        $student->enrollment_file = "";
 
         $save = $student->save();
 
         if($save){
+            $this->deletePendingStudent($request->id);
             return redirect('/staff/admin/manage-enrollees');
         }else{
             return back()->with('fail', 'Failed inserting student data');
@@ -325,11 +325,10 @@ class AdmissionOfficerController extends Controller
     #Encode Student Data / Insert column datas
     function encodeStudentData(Request $request)
     {
-        $request->validate([
-            'file' => 'mimes:pdf,xlx,csv|max:2048',
-        ]);
 
         $student = ApprovedStudent::find($request->id);
+        $student->student_type = $request->student_type;
+        $student->student_id = $request->student_id;
         $student->enrollment_status = $request->enrollment_status;
         $student->first_procedure = $request->first_procedure;
         $student->second_procedure = $request->second_procedure;
@@ -344,14 +343,6 @@ class AdmissionOfficerController extends Controller
         $student->second_period_adviser = $request->second_period_adviser;
         $student->third_period_adviser = $request->third_period_adviser;
 
-        $file = $request->file;
-        
-        $filename=$file->getClientOriginalName();
-        $request->file->move('assets',$filename);
-
-        $student->file = $request->$filename;
-        
-
         $save = $student->save();
 
         if($save){
@@ -360,6 +351,46 @@ class AdmissionOfficerController extends Controller
             return back()->with('fail', 'Failed inserting student data');
         }
     }
+
+     #Upload Enrollment Slip
+    function uploadEnrollmentSlip(Request $request)
+    {
+        $request->validate([
+            'enrollment_file' => 'required|mimes:pdf,xlx,csv|max:2048',
+        ]);
+ 
+        $student = ApprovedStudent::find($request->id);
+        $file = $request->enrollment_file;
+        
+        $filename=$file->getClientOriginalName();
+        $request->enrollment_file->move('assets',$filename);
+
+        $student->enrollment_file = $filename;
+
+ 
+        $save = $student->save();
+
+        if($save){
+            return redirect('/staff/admin/manage-enrollees');
+        }else{
+            return back()->with('fail', 'Failed inserting student data');
+        }
+     }
+
+    #Uploading Enrollment Slip
+    function enrollmentSlip($id)
+    {
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $students = ApprovedStudent::find($id);
+        return view('ogs.upload-enrollment-slip', $data, ['students'=>$students]);
+    }
+
+   
 
     #View Encoded Student Data
     function viewEncodedStudentData($id)
@@ -386,8 +417,23 @@ class AdmissionOfficerController extends Controller
         $enrolledStudents = EnrolledStudent::all();
         return view('ogs.student-monitoring.student-monitoring', $data, ['enrolledStudents'=>$enrolledStudents]);
     }
-    #Enrolled Student
-    function enrolledStudents()
+
+    #Edit Enrolled Student
+    function editEnrolledStudent($id)
+    {
+        
+        if(session()->has('LoggedAdmin')){
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo'=>$admin
+            ];
+        }
+        $enrolledStudents = EnrolledStudent::find($id);
+        return view('ogs.edit-enrolled-student', $data, ['enrolledStudents'=>$enrolledStudents]);
+    }
+
+    #View Enrolled Student
+    function viewEnrolledStudent($id)
     {
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
@@ -395,8 +441,18 @@ class AdmissionOfficerController extends Controller
                 'LoggedAdminInfo'=>$admin
             ];
         }
-        $enrolledStudents = EnrolledStudent::all();
-        return view('ogs.student-monitoring.enrolled-students', $data, ['enrolledStudents'=>$enrolledStudents]);
+        $student = EnrolledStudent::find($id);
+        return view('admin.view-enrolled-student', $data, ['student'=>$student]);
+    }
+
+    
+
+    #Delete EnrolledStudent
+    function enrolledStudentDelete($id)
+    {
+        $enrolledStudent = EnrolledStudent::find($id);
+        $enrolledStudent->delete();
+        return redirect('/staff/admin/student-monitoring');
     }
 
     #Program Table
@@ -688,17 +744,16 @@ class AdmissionOfficerController extends Controller
         return view('ogs.view-pdf', $data, compact('student'));
     }
 
-    function studentUsers()
+    function viewPending($id)
     {
         if(session()->has('LoggedAdmin')){
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
             $data = [
                 'LoggedAdminInfo'=>$admin
             ];
-        }
-
-        $studentUsers = StudentUser::all();
-        return view('ogs.student-monitoring.student-users', $data, ['studentUsers'=>$studentUsers]);
+        }  
+        $student = PendingStudent::find($id);
+        return view('ogs.view-pending-pdf', $data, compact('student'));
     }
 
     #########################################################################################
@@ -981,33 +1036,7 @@ class AdmissionOfficerController extends Controller
 
     
 
-    function viewEnrolledStudent($id)
-    {
-        if(session()->has('LoggedAdmin')){
-            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
-            $data = [
-                'LoggedAdminInfo'=>$admin
-            ];
-        }
-        $student = EnrolledStudent::find($id);
-        return view('admin.view-enrolled-student', $data, ['student'=>$student]);
-    }
-
-    function editEnrolledStudent($id)
-    {
-        if(session()->has('LoggedAdmin')){
-            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
-            $data = [
-                'LoggedAdminInfo'=>$admin
-            ];
-        }
-        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
-        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
-        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
-        $programs = Program::all();
-        $student = EnrolledStudent::find($id);
-        return view('admin.edit-enrolled-student', $data, ['programs'=>$programs,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'student'=>$student]);
-    }
+    
 
     function updateEnrolledStudent(Request $request){
         $request->validate([

@@ -60,6 +60,7 @@
                                                 <td class="text-center">
                                                     <a href="{{ route('admin.approving-pending-students', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm"><i class="bi bi-check-circle"></i></a>
                                                     <a onclick="return confirm('Are you sure?')" href="{{ route('student-delete', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
+                                                    
                                                 </td>
                                             </tr>
                                         @endforeach                                        
@@ -80,8 +81,7 @@
                                             <th class="col-sm-1">Student Number</th>
                                             <th class="col-sm-1">Program</th>
                                             <th class="col-sm-2">Contact Number</th>
-                                            <th class="col-sm-2">Date</th>
-                                            <th style="width: 100%">Action</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>               
                                     <tbody>
@@ -92,11 +92,10 @@
                                             <td>{{$student->student_id}}</td>                     
                                             <td>{{$student->getProgramID->program}}</td>
                                             <td>{{$student->mobile_no}}</td>
-                                            <td>{{$student->created_at}}</td>
-                                            <td class="text-center">
+                                            <td class="px-1">
                                                 <a href="{{ route('admin.edit-approved', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm"><i class="bi bi-check-circle"></i></a>
                                                 <a onclick="return confirm('Are you sure?')" href="{{ route('delete-approved', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
-                                                {{-- <a target="_blank" href="{{ route('admin.view-pdf', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-eye-fill"></i></a> --}}
+                                                <a target="_blank" href="{{ route('admin.view-pdf', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-file-earmark-arrow-down"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach                                        
@@ -116,8 +115,7 @@
                                             <th class="col-sm-2">Student Number</th>
                                             <th class="col-sm-1">Program</th>
                                             <th class="col-sm-2">Contact Number</th>
-                                            <th class="col-sm-2">Date</th>
-                                            <th class="col-sm-2">Action</th>
+                                            <th class="col-sm-3">Action</th>
                                         </tr>
                                     </thead>               
                                     <tbody>
@@ -128,10 +126,10 @@
                                             <td>{{$student->student_id}}</td>                     
                                             <td>{{$student->getProgramID->program}}</td>
                                             <td>{{$student->mobile_no}}</td>
-                                            <td>{{$student->created_at}}</td>
-                                            <td class="text-center">
+                                            <td class="px-1">
                                                 <a href="{{route('admin.encoding-students', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
-                                                <a href="{{route('view-encode-student-data', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-eye"></i></a>                           
+                                                <a href="{{route('view-encode-student-data', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-eye"></i></a>
+                                                <a href="{{route('admin.uploading-enrollment-slip', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-upload"></i></a>                        
                                             </td>
                                         </tr>
                                     @endforeach                                        

@@ -105,6 +105,8 @@ Route::post('/staff/admin/pre-enrollment/approve', [AdmissionOfficerController::
 
 //Manage Enrollees Routes
 Route::get('/staff/admin/manage-enrollees', [AdmissionOfficerController::class, 'manageEnrollees'])->name('admin.manage-enrollees')->middleware('isLoggedAdmin');
+Route::post('/staff/admin/manage-enrollees/upload', [AdmissionOfficerController::class, 'uploadEnrollmentSlip'])->name('admin.upload-file')->middleware('isLoggedAdmin');
+Route::get('/staff/admin/manage-enrollees/upload/{id}', [AdmissionOfficerController::class, 'enrollmentSlip'])->name('admin.uploading-enrollment-slip')->middleware('isLoggedAdmin');
 
 //Approved Students Routes
 Route::get('staff/admin/pre-enrollment/approved-students/edit/{id}', [AdmissionOfficerController::class, 'editApprovedStudents'])->name('admin.edit-approved')->middleware('isLoggedAdmin');
@@ -116,7 +118,10 @@ Route::get('staff/admin/pre-enrollment/encode-students/encode/{id}', [AdmissionO
 Route::post('staff/admin/pre-enrollment/encode-students/encode', [AdmissionOfficerController::class, 'encodeStudentData'])->name('encode-student-data')->middleware('isLoggedAdmin');
 Route::get('staff/admin/pre-enrollment/encode-students/view/{id}', [AdmissionOfficerController::class, 'viewEncodedStudentData'])->name('view-encode-student-data')->middleware('isLoggedAdmin');
 
+//Student Monitoring Routes
 Route::get('staff/admin/student-monitoring', [AdmissionOfficerController::class, 'studentMonitoring'])->name('admin.student-monitoring')->middleware('isLoggedAdmin');
+Route::get('staff/admin/student-monitoring/delete/{id}', [AdmissionOfficerController::class, 'enrolledStudentDelete'])->name('admin.delete-enrolled-student')->middleware('isLoggedAdmin');
+
 
 Route::get('/staff/admin/enrolled', [AdmissionOfficerController::class, 'enrolledStudents'])->name('admin.enrolled')->middleware('isLoggedAdmin');
 Route::get('/staff/admin/enrolled/view/{id}', [AdmissionOfficerController::class, 'viewEnrolledStudent'])->name('admin.view-enrolled-students')->middleware('isLoggedAdmin');

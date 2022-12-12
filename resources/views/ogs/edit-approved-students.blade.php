@@ -69,6 +69,7 @@
                             
                             <div class="profile mt-5">
                                 <h5 class="lead">Student Information</h5>
+                                
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
                                 <div class="col mt-4">
                                     <div class="form-outline form-line">

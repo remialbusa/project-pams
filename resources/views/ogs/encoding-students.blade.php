@@ -67,9 +67,31 @@
                             <span class="text-danger">@error('id'){{$message}} @enderror</span>
                             <label for="floatingInput"></label>
                         </div>
-                        
+                        <h5 class="mt-5 lead">Student Info</h5>
+                        <div class="col mt-4">
+                            <div class="form-outline form-line">
+                                <label class="form-label" for="form6Example1">Student Type</label>
+                                <select class="form-select" aria-label="Default select example" name="student_type">
+                                    @if($students['student_type'] == 'New Student')
+                                    <option value="New Student">New Student</option>
+                                    <option value="Continuing">Continuing</option>
+                                    @else
+                                    <option value="Continuing">Continuing</option>
+                                    <option value="New Student">New Student</option>
+                                    @endif
+                                </select>
+                                <span class="text-danger">@error('student_type'){{$message}} @enderror</span>
+                            </div>
+                        </div>
+                        <div class="col mt-4">
+                            <div class="form-outline form-line">
+                                <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
+                                <input type="text" id="form6Example1" class="form-control" name="student_id" value="{{$students['student_id']}}" />
+                                <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
+                            </div>
+                        </div>
                         <h5 class="mt-5 lead">Student Status</h5>
-
+                        
                         <div class="mt-4 form-outline form-line">
                             <label class="form-label" for="form6Example1">Enrollment Status <label class="text-danger">*</label></label>
                             <select class="form-select" aria-label="Default select example" name="enrollment_status" placeholder="Status">
@@ -146,15 +168,6 @@
                                         @endif
                                     </select>
                                     <span class="text-danger">@error('third_procedure'){{$message}} @enderror</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-5">
-                            <div class="col-md-12">
-                                <div class="form-group form-line">
-                                    <label class="form-label" for="form6Example1">Entrance Slip File <label class="text-danger">*</label></label>
-                                    <input type="file" placeholder="Choose file" class="form-control" name="file" >
-                                    <span class="text-danger">@error('file'){{$message}} @enderror</span>
                                 </div>
                             </div>
                         </div>
