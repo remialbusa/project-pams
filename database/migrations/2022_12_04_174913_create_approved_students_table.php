@@ -45,6 +45,7 @@ class CreateApprovedStudentsTable extends Migration
             $table->string('second_procedure');
             $table->string('third_procedure');
             $table->string('enrollment_status')->nullable();
+            $table->string('enrollment_file')->nullable();
             $table->timestamps();
         });
     }

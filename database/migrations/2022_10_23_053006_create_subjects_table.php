@@ -19,7 +19,9 @@ class CreateSubjectsTable extends Migration
             $table->string('program');
             $table->string('subject');
             $table->string('unit');
-            $table->string('period');        
+            $table->string('period');
+            $table->string('semester');  
+            $table->string('status');     
             $table->timestamps();
         });
     }

@@ -81,7 +81,17 @@
                     (CSAT)</p>
                 <p class="m-0">2. PAY AND SECURE A SCHEDULE FOR THE GSAT (JULY 27-AUGUST 5, 2022)</p>Pay at the Cashier's Office and visit the LNU Guidance and Testing Office
                 to schedule your GSAT.
-                <p class="m-0">3. FILL OUT ONLINE PRE-REGISTRATION FORM: <a class="small btn btn-warning bg-warning btn-block mt-1" href="student/auth/register-new-student">PRE-REGISTER HERE</a> </p>
+                <p class="m-0">3. FILL OUT ONLINE PRE-REGISTRATION FORM: <a class="small btn btn-warning bg-warning btn-block mt-1" 
+                    @foreach ($school_year as $school_year)
+                    @if ($school_year->status = 'Active')
+                    href="student/auth/register-new-student">PRE-REGISTER HERE</a> </p>
+                    @else
+                    <div class="alert alert-warning d-flex align-items-center mt-4" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                        <span style="font-weight: bold;">Enrollment is not yet Actived. If you think this is wrong please message us in Technical support</span>
+                    </div>
+                    @endif
+                    @endforeach
                 <p class="m-0">4. FILL OUT THE NEEDED FORMS FOR ADMISSION AT THE OGS</p>For successful examinees, fill out the Application for Graduate Admission Form
                 (AFCAF) and the Draft Registration Form (DRF) at the Office of the Graduate School.
                 <p class="m-0">5. GO TO THE MIS FOR THE SIGNING OF YOUR DRF AND PRINTING OF YOUR

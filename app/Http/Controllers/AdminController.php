@@ -109,24 +109,24 @@ class AdminController extends Controller
                 $request->session()->put('LoggedAdmin', $adminInfo->id);
                 return redirect('staff/admin/manage-users');
             } else {
-                return back()->with('fail', 'incorrect password');
+                return back()->with('fail', 'Incorrect password');
             }
         }elseif ($userType == "OGS Officer") {
             if ($adminInfo && Hash::check($request->password, $adminInfo->password)) {
                 $request->session()->put('LoggedAdmin', $adminInfo->id);
                 return redirect('staff/admin/dashboard');
             } else {
-                return back()->with('fail', 'incorrect password');
+                return back()->with('fail', 'Incorrect password');
             }
         }elseif($userType == "MIS Officer") {
             if ($adminInfo && Hash::check($request->password, $adminInfo->password)) {
                 $request->session()->put('LoggedAdmin', $adminInfo->id);
                 return redirect('staff/admission-officer/mis');
             } else {
-                return back()->with('fail', 'incorrect password');
+                return back()->with('fail', 'Incorrect password');
             }
         }else{
-            return back()->with('fail', 'invalid credentials');
+            return back()->with('fail', 'Invalid credentials');
         } 
                   
     }
