@@ -76,7 +76,7 @@
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
                                 <div class="col mt-4">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Student Type</label>
+                                        <label class="form-label" for="form6Example1">Student Type</label><label class="text-danger">*</label></label>
                                         <select class="form-select" aria-label="Default select example" name="student_type">
 
                                             <option selected value="Continuing">Continuing</option>
@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example2">Middle name </label>
+                                            <label class="form-label" for="form6Example2">Middle name </label><label class="text-danger">*</label></label>
                                             <input type="text" id="form6Example2" class="form-control" name="middle_name" value="{{old('middle_name')}}"/>
                                             <span class="text-danger">@error('middle_name'){{$message}} @enderror</span>
                                         </div>
@@ -138,7 +138,7 @@
                                 <div class="row mt-2 mb-3">
                                     <div class="col-md-6">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example2">Sex</label>
+                                            <label class="form-label" for="form6Example2">Sex</label><label class="text-danger">*</label></label>
                                             <select class="form-select" aria-label="Default select example" name="gender" value="{{old('gender')}}">
                                                 <option disabled selected>N/A</option>
                                                 <option value="Male">Male</option>
@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example1">Birthdate</label>
+                                            <label class="form-label" for="form6Example1">Birthdate</label><label class="text-danger">*</label></label>
                                             <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{old('birth_date')}}"/>
                                             <span class="text-danger">@error('birth_date'){{$message}} @enderror</span>
                                         </div>
@@ -239,7 +239,7 @@
                                 <div class="col mt-4 mb-3">
                                     <div class="col">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example2">Select Your Program</label>
+                                            <label class="form-label" for="form6Example2">Select Your Program</label><label class="text-danger">*</label></label>
                                             <select class="form-select" aria-label="Default select example" id="sel_program" name="program">
                                                 <option disabled selected>-- Select Program --</option>
                                                 @foreach ($programData['data'] as $program)
@@ -254,7 +254,7 @@
                                 <div class="row mt-4 mb-3">
                                     <div class="col-md-6 mt-2">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example1">1ST PERIOD</label>
+                                            <label class="form-label" for="form6Example1">1ST PERIOD</label><label class="text-danger">*</label></label>
                                             <select id='first_period' name='first_period' class="form-select">
                                                 <option disabled selected>-- Select Subject --</option>
                                             </select>
@@ -263,7 +263,7 @@
                                     </div>
                                     <div class="col-sm-6 mt-2">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example2">2ND PERIOD</label>
+                                            <label class="form-label" for="form6Example2">2ND PERIOD</label><label class="text-danger">*</label></label>
                                             <select class="form-select" aria-label="Default select example" id="second_period" name="second_period">
                                                 <option disabled selected>-- Select Subject --</option>
                                             </select>
@@ -272,7 +272,7 @@
                                     </div>
                                     <div class="col mt-3 mt-2">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example2">3RD PERIOD</label>
+                                            <label class="form-label" for="form6Example2">3RD PERIOD</label><label class="text-danger">*</label></label>
                                             <select class="form-select" aria-label="Default select example" id="third_period" name="third_period">
                                                 <option disabled selected>-- Select Subject --</option>
                                             </select>

@@ -9,7 +9,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Instructors</h1>
-        <a class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#modalForm">New Adviser</a>
+        <a class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#modalForm">New Instructors</a>
         <a href="{{ route('admin-export-instructors') }}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm">Export Data</a>
     </div>
     <p>The list of subjects shown in the table below are the available subjects for the S.Y. 2022-2023.</p>

@@ -128,7 +128,6 @@ class AdmissionOfficerController extends Controller
         $student->first_procedure = "Pending";
         $student->second_procedure = "Pending";
         $student->third_procedure = "Pending";
-        $student->enrollment_file = "";
 
         $save = $student->save();
 
@@ -345,7 +344,7 @@ class AdmissionOfficerController extends Controller
         $save = $student->save();
 
         if($save){
-            return redirect('/staff/admin/manage-enrollees');
+            return back()->with('success', 'Successfully inserted data');
         }else{
             return back()->with('fail', 'Failed inserting student data');
         }

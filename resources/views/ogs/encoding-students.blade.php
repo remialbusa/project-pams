@@ -207,15 +207,11 @@
                                 <div class="form-outline form-line">
                                     <label class="form-label" for="form6Example1">Instructor</label><label class="text-danger">*</label>
                                     <select class="form-select" aria-label="Default select example" name="first_period_adviser">
-
-                                        @foreach ($adviser as $advisers)
-                                        @if ($adviser == null)
                                         <option disabled selected>Select Instructor</option>
-                                        @else
-                                        <option value="{{$advisers->adviser}}"
+                                        @foreach ($adviser as $advisers)
+                                        <option value="{{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}"
                                             {{$advisers->first_name == $advisers->first_name ? 'selected': ''}}>
                                             {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
-                                        @endif
                                         @endforeach
 
                                     </select>
@@ -247,13 +243,9 @@
                                     <select class="form-select" aria-label="Default select example" name="second_period_adviser">
                                         <option disabled selected>Select Instructor</option>
                                         @foreach ($adviser as $advisers)
-                                        @if ($adviser == null)
-                                        <option disabled selected>Select Instructor</option>
-                                        @else
-                                        <option value="{{$advisers->adviser}}"
+                                        <option value="{{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}"
                                             {{$advisers->first_name == $advisers->first_name ? 'selected': ''}}>
                                             {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
-                                        @endif
                                         @endforeach
                                     </select>
                                     <span class="text-danger">@error('second_period_adviser'){{$message}} @enderror</span>
@@ -283,7 +275,11 @@
                                     <label class="form-label" for="form6Example1">Instructor</label><label class="text-danger">*</label>
                                     <select class="form-select" aria-label="Default select example" id="slct_third_period" name="third_period_adviser">
                                         <option disabled selected>Select Instructor</option>
-                                        
+                                        @foreach ($adviser as $advisers)
+                                        <option value="{{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}"
+                                            {{$advisers->first_name == $advisers->first_name ? 'selected': ''}}>
+                                            {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
+                                        @endforeach
                                     </select>
                                     <span class="text-danger">@error('third_period_adviser'){{$message}} @enderror</span>
                                 </div>
