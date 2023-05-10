@@ -80,7 +80,7 @@
                                 </select>
                                 <span class="text-danger">@error('program'){{$message}} @enderror</span>
                                 <label for="floatingInput">Program</label>
-                             </div>
+                            </div>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="code" placeholder="Code" value="{{$subject['code']}}">
                                 <span class="text-danger">@error('program'){{$message}} @enderror</span>
@@ -131,6 +131,19 @@
                                 <span class="text-danger">@error('units'){{$message}} @enderror</span>
                                 <label for="floatingInput">Period</label>
                             </div>
+
+                            <div class="form-floating mb-3">
+                                <select class="form-select form-select-lg" aria-label="Default select example" name="program">
+                                    @foreach ($semesters as $semesters)
+                                        <option value="{{$programs->id}}"
+                                            {{$subject->semester == $semesters->id ? 'selected': ''}}>
+                                            {{$semesters->semester}}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger">@error('program'){{$message}} @enderror</span>
+                                <label for="floatingInput">Program</label>
+                            </div>
+
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Update</button>
                             </div>

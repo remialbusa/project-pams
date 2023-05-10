@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSchoolYearTable extends Migration
+class CreateFileTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateSchoolYearTable extends Migration
      */
     public function up()
     {
-        Schema::create('school_year', function (Blueprint $table) {
+        Schema::create('file', function (Blueprint $table) {
             $table->id();
-            $table->string('school_year')->nullable();
-            $table->string('semester')->nullable();
-            $table->string('status')->nullable();
+            $table->string('payment');
+            $table->string('credentials');
+            $table->string('registration');
+            $table->string('consent');
+            $table->string('promissory');
+            $table->string('vaccine');
+            $table->string('facebook');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateSchoolYearTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_year');
+        Schema::dropIfExists('file');
     }
 }

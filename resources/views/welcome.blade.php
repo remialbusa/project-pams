@@ -76,6 +76,7 @@
                                     July 16 - August 7, 2022. Enrollment Period: August 08 - 19, 2022.
                                     Classes will start on August 22, 2022.
                                 @else
+                                    School Enrollment Not Yet Activated
                                 @endif
                                 @endforeach
                             </p>

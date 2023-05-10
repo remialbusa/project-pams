@@ -208,17 +208,12 @@
                                     <label class="form-label" for="form6Example1">Instructor</label><label class="text-danger">*</label>
                                     <select class="form-select" aria-label="Default select example" name="first_period_adviser">
                                         <option disabled selected>Select Instructor</option>
-                                        @if($students['adviser'] == 'MIT')
-                                            @foreach ($adviser as $advisers)
-                                                <option value=" {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}">
-                                                    {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
-                                            @endforeach
-                                        @else
-                                            @foreach ($adviser as $advisers)
-                                            <option value=" {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}">
-                                                {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
-                                            @endforeach
-                                        @endif
+                                        @foreach ($adviser as $advisers)
+                                        <option value="{{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}"
+                                            {{$advisers->first_name == $advisers->first_name ? 'selected': ''}}>
+                                            {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
+                                        @endforeach
+
                                     </select>
                                     <span class="text-danger">@error('first_period_adviser'){{$message}} @enderror</span>
                                 </div>
@@ -247,17 +242,11 @@
                                     <label class="form-label" for="form6Example1">Instructor</label><label class="text-danger">*</label>
                                     <select class="form-select" aria-label="Default select example" name="second_period_adviser">
                                         <option disabled selected>Select Instructor</option>
-                                        @if($students['adviser'] == 'MIT')
-                                            @foreach ($adviser as $advisers)
-                                                <option value=" {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}">
-                                                    {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
-                                            @endforeach
-                                        @else
-                                            @foreach ($adviser as $advisers)
-                                            <option value=" {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}">
-                                                {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
-                                            @endforeach
-                                        @endif
+                                        @foreach ($adviser as $advisers)
+                                        <option value="{{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}"
+                                            {{$advisers->first_name == $advisers->first_name ? 'selected': ''}}>
+                                            {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
+                                        @endforeach
                                     </select>
                                     <span class="text-danger">@error('second_period_adviser'){{$message}} @enderror</span>
                                 </div>
@@ -286,17 +275,11 @@
                                     <label class="form-label" for="form6Example1">Instructor</label><label class="text-danger">*</label>
                                     <select class="form-select" aria-label="Default select example" id="slct_third_period" name="third_period_adviser">
                                         <option disabled selected>Select Instructor</option>
-                                        @if($students['adviser'] == 'MIT')
-                                            @foreach ($adviser as $advisers)
-                                                <option value=" {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}">
-                                                    {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
-                                            @endforeach
-                                        @else
-                                            @foreach ($adviser as $advisers)
-                                            <option value=" {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}">
-                                                {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
-                                            @endforeach
-                                        @endif
+                                        @foreach ($adviser as $advisers)
+                                        <option value="{{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}"
+                                            {{$advisers->first_name == $advisers->first_name ? 'selected': ''}}>
+                                            {{$advisers->title}} {{$advisers->first_name}} {{$advisers->middle_name}} {{$advisers->last_name}}</option>
+                                        @endforeach
                                     </select>
                                     <span class="text-danger">@error('third_period_adviser'){{$message}} @enderror</span>
                                 </div>
