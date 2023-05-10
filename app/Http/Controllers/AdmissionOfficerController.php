@@ -427,7 +427,12 @@ class AdmissionOfficerController extends Controller
             ];
         }
         $enrolledStudents = EnrolledStudent::find($id);
-        return view('ogs.edit-enrolled-student', $data, ['enrolledStudents'=>$enrolledStudents]);
+        $programs = Program::all();
+        $subjects = Subject::all();
+        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
+        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
+        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
+        return view('ogs.edit-enrolled-student', $data, ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'student'=>$enrolledStudents,'programs'=>$programs,'subjects'=>$subjects]);
     }
 
     #View Enrolled Student
@@ -1149,11 +1154,6 @@ class AdmissionOfficerController extends Controller
         $student = StudentUser::find($id);
         return view('admin.edit-student-users', $data, ['student'=>$student]);
     }
-
-    
-
-    
-
 
     #Exporting Data Tables
     function exportEnrolledStudents()

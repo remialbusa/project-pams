@@ -37,7 +37,7 @@
 
                 <ul class="navbar-nav ms-auto font-weight-semibold">
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/staff/admin/dashboard">Back</a>
+                        <a class="nav-link" href="/staff/admin/student-monitoring">Back</a>
                     </li>
                 </ul>
             </div>
@@ -267,15 +267,7 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">1ST PERIOD</label>
                                             <select class="form-select" aria-label="Default select example" name="first_period_sub">
-                                                @if($student['first_period_sub'] == 'MIT 501 Advanced Programming I')
-                                                    @foreach ($firstPeriod as $subjects)
-                                                        <option value="{{$subjects->subject}}{{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($firstPeriod as $subjects)
-                                                        <option value="{{$subjects->subject}}{{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="{{$student->first_period_sub}}">{{$student->getFirstPeriodID->code}} - {{$student->getFirstPeriodID->subject}}</option>
                                             </select>
                                             <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
                                         </div>
@@ -287,7 +279,7 @@
                                         </div>
                                     </div>
                                     <div class="col mt-4">
-                                        <div class="form-outline">
+                                        <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Adviser</label>
                                             <input type="text" id="form6Example2" class="form-control" name="first_period_adviser" value="{{$student['first_period_adviser']}}" readonly/>
                                             <span class="text-danger">@error('first_period_adviser'){{$message}} @enderror</span>
@@ -300,15 +292,7 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">2ND PERIOD</label>
                                             <select class="form-select" aria-label="Default select example" name="second_period_sub">
-                                                @if($student['second_period_sub'] == 'MIT 502 Methods of Research for IT')
-                                                    @foreach ($secondPeriod as $subjects)
-                                                        <option value="{{$subjects->subject}}">{{$subjects->subject}} - {{$subjects->description}}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($secondPeriod as $subjects)
-                                                        <option value="{{$subjects->subject}}">{{$subjects->subject}} - {{$subjects->description}}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="{{$student->second_period_sub}}">{{$student->getSecondPeriodID->code}} - {{$student->getSecondPeriodID->subject}}</option>
                                             </select>
                                             <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
                                         </div>
@@ -333,15 +317,7 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">3RD PERIOD</label>
                                             <select class="form-select" aria-label="Default select example" name="third_period_sub">
-                                                @if($student['third_period_sub'] == 'MIT 503 Statistics for IT Research')
-                                                    @foreach ($thirdPeriod as $subjects)
-                                                        <option value="{{$subjects->subject}}{{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($thirdPeriod as $subjects)
-                                                        <option value="{{$subjects->subject}}{{$subjects->description}}">{{$subjects->subject}} - {{$subjects->description}}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="{{$student->third_period_sub}}">{{$student->getThirdPeriodID->code}} - {{$student->getThirdPeriodID->subject}}</option>
                                             </select>
                                             <span class="text-danger">@error('third_period'){{$message}} @enderror</span>
                                         </div>

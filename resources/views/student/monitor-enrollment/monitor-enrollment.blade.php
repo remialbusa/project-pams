@@ -98,26 +98,44 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
+                                                            @if ($LoggedUserInfo->getFirstPeriodID->id !== null)
                                                             <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->getFirstPeriodID->code}} - {{$LoggedUserInfo->getFirstPeriodID->subject}}</p>
+                                                            @else
+                                                            @endif
                                                         </td>
                                                         <td>
-                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->first_period_sched}}</p>
+                                                            @if ($LoggedUserInfo->getStudentID->first_period_sched !== null)
+                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->getStudentID->first_period_sched}}</p>
+                                                            @else
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
+                                                            @if ($LoggedUserInfo->getSecondPeriodID->id !== null)
                                                             <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->getSecondPeriodID->code}} - {{$LoggedUserInfo->getSecondPeriodID->subject}}</p>
+                                                            @else
+                                                            @endif
                                                         </td>
                                                         <td>
-                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->second_period_sched}}</p>
+                                                            @if ($LoggedUserInfo->getStudentID->second_period_sched !== null)
+                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->getStudentID->second_period_sched}}</p>
+                                                            @else
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
+                                                            @if ($LoggedUserInfo->getThirdPeriodID->id !== null)
                                                             <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->getThirdPeriodID->code}} - {{$LoggedUserInfo->getThirdPeriodID->subject}}</p>
+                                                            @else
+                                                            @endif
                                                         </td>
                                                         <td>
-                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->third_period_sched}}</p>
+                                                            @if ($LoggedUserInfo->getStudentID->third_period_sched !== null)
+                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->getStudentID->third_period_sched}}</p>
+                                                            @else
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                 </tbody>

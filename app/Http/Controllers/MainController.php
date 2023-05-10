@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EnrolledStudent;
 use App\Models\PendingStudent;
+use App\Models\ApprovedStudent;
 use App\Models\Subject;
 use App\Models\Program;
 use App\Models\TechnicalForm;
@@ -329,7 +330,7 @@ class MainController extends Controller
         
 
         //insert data
-        $student = new Student();
+        $student = new ApprovedStudent();
         $student->id = $request->id;
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;       
