@@ -8,18 +8,23 @@ use Illuminate\Support\Facades\DB;
 
 class Subject extends Model
 {
-   use HasFactory;
+    use HasFactory;
 
-   protected $fillable = [
-      'code','program','subject','unit','period'
-   ];
+    protected $fillable = [
+        'code',
+        'program',
+        'subject',
+        'unit',
+        'period',
+        'available_slots'
+    ];
 
     public static function getAllSubjects()
     {
         $result = DB::table('subjects')
-        ->select('id','code','program','subject','unit','period','semester')
-        ->get()
-        ->toArray();
+            ->select('id', 'code', 'program', 'subject', 'unit', 'period', 'semester', 'available_slots')
+            ->get()
+            ->toArray();
         return $result;
     }
 

@@ -49,16 +49,17 @@
                     <table class="table table-bordered table-striped display" id="" width="100%" cellspacing="0">
                         <thead class="text-center pl-10">
                             <tr>
-                                <th>Name</th>
                                 <th>Student Type</th>
+                                <th>Name</th>
                                 <th>Admission Files</th>
                                 <th>Vaccination File</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <hr>
                             <tr>
-                                <td class="col-sm-1 text-center pt-4">{{ $student->first_name }} {{ $student->last_name }}</td>
                                 <td class="col-sm-1 text-center pt-4">{{ $student->student_type }}</td>
+                                <td class="col-sm-1 text-center pt-4">{{ $student->first_name }} {{ $student->last_name }}</td>
                                 <td class="col-sm-1 text-center pt-4">
                                     @php
                                     $files = json_decode($student->file, true);
@@ -73,9 +74,10 @@
                                     @endforeach
                                     @endif
                                 </td>
-                                <td class="col-sm-1 text-center pt-4">
-                                    <a href="{{ asset('assets/') . $file }}" target="">{{ $file }}</a><br>
-                                </td>
+                                @php
+                                $vaccination_file = $student->vaccination_file; // Assign the vaccination file path or name to the variable
+                                @endphp
+                                <td class="col-sm-1 text-center pt-4"> <a href="{{ asset('assets/' . $vaccination_file) }}" target="_blank" rel="noopener noreferrer">{{ $vaccination_file }}</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -85,37 +87,6 @@
         </div>
     </div>
 
-    <div class="mt-5 tab-pane" id="approved-students" role="tabpanel" aria-labelledby="approved-students-tab">
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped display" id="" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th class="col-sm-1">Student Type</th>
-                        <th class="col-sm-3">Name</th>
-                        <th class="col-sm-1">Student Number</th>
-                        <th class="col-sm-1">Program</th>
-                        <th class="col-sm-2">Contact Number</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
 
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="px-1">
-                            <a href="{{ route('admin.edit-approved', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm"><i class="bi bi-check-circle"></i></a>
-                            <a onclick="return confirm('Are you sure?')" href="{{ route('delete-approved', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
-                            <a target="" href="{{ route('admin.view-pdf', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-file-earmark-arrow-down"></i></a>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
 
 </body>

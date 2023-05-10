@@ -8,9 +8,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,7 +24,7 @@
 
     <!-- Custom styles for this page -->
     <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
-    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png" />
     <title>Edit Subjects</title>
 </head>
 
@@ -73,14 +71,21 @@
                             <div class="form-floating mb-3">
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="program">
                                     @foreach ($programs as $programs)
-                                        <option value="{{$programs->id}}"
-                                            {{$subject->program == $programs->id ? 'selected': ''}}>
-                                            {{$programs->program}}</option>
+                                    <option value="{{$programs->id}}" {{$subject->program == $programs->id ? 'selected': ''}}>
+                                        {{$programs->program}}
+                                    </option>
                                     @endforeach
                                 </select>
                                 <span class="text-danger">@error('program'){{$message}} @enderror</span>
                                 <label for="floatingInput">Program</label>
                             </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" name="available_slots" placeholder="Enter Available Slots" value="{{ $subject->available_slots }}" max="{{ $subject->no_of_students }}">
+                                <label for="floatingInput">No. of Slots</label>
+                                <span class="text-danger">@error('slots'){{$message}} @enderror</span>
+                            </div>
+
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="code" placeholder="Code" value="{{$subject['code']}}">
                                 <span class="text-danger">@error('program'){{$message}} @enderror</span>
@@ -94,24 +99,24 @@
                             <div class="form-floating mb-3">
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="units">
                                     @if($subject['unit'] == '1')
-                                        <option selected value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <option selected value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
                                     @elseif(($subject['unit'] == '2'))
-                                        <option value="1">1</option>
-                                        <option selected value="2">2</option>
-                                        <option value="3">3</option>
+                                    <option value="1">1</option>
+                                    <option selected value="2">2</option>
+                                    <option value="3">3</option>
                                     @else
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option selected value="3">3</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option selected value="3">3</option>
                                     @endif
-                                    
+
                                 </select>
                                 <span class="text-danger">@error('units'){{$message}} @enderror</span>
                                 <label for="floatingInput">Units</label>
                             </div>
-                            
+
                             <div class="form-floating mb-3">
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="period">
                                     @if($subject['period'] == '1st Period')
@@ -135,9 +140,9 @@
                             <div class="form-floating mb-3">
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="program">
                                     @foreach ($semesters as $semesters)
-                                        <option value="{{$programs->id}}"
-                                            {{$subject->semester == $semesters->id ? 'selected': ''}}>
-                                            {{$semesters->semester}}</option>
+                                    <option value="{{$programs->id}}" {{$subject->semester == $semesters->id ? 'selected': ''}}>
+                                        {{$semesters->semester}}
+                                    </option>
                                     @endforeach
                                 </select>
                                 <span class="text-danger">@error('program'){{$message}} @enderror</span>

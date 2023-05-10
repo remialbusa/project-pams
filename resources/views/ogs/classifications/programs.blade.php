@@ -6,50 +6,54 @@
 <div>
     <div class="container-fluid">
 
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Programs</h1>
-        <a class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#modalForm">New Programs</a>
-        <a href="{{ route('admin.export-programs') }}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm">Export Data</a>
-    </div>
-    <p>The list of Programs shown in the table below are the available subjects for the current S.Y.</p>
-      
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">List of programs</h6>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800">Programs</h1>
+            <a class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#modalForm">New Programs</a>
+            <a href="{{ route('admin.export-programs') }}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm">Export Data</a>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Code</th>
-                            <th>Degree</th>
-                            <th>Program</th>
-                            <th>Description</th>
-                            <th class="col-sm-2">Action</th>
-                        </tr>
-                    </thead>               
-                    <tbody>
-                    @foreach ($programs as $programs)
-                        <tr>
-                            <td>{{$programs->code}}</td>
-                            <td>{{$programs->degree}}</td>                       
-                            <td>{{$programs->program}}</td>
-                            <td>{{$programs->description}}</td>
-                            <td class="text-center">
-                                <a href="{{route('edit-program', $programs->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
-                                <a href="{{route('delete-program', $programs->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
-                            </td>
-                        </tr>
-                    @endforeach                                            
-                    </tbody>
-                </table>
+        <p>The list of Programs shown in the table below are the available subjects for the current S.Y.</p>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">List of programs</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Degree</th>
+                                <th>Program</th>
+                                <th>Description</th>
+                                <th>No. of Students Enrolled</th>
+                                <th>Available Slots</th>
+                                <th class="col-sm-2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($programs as $programs)
+                            <tr>
+                                <td>{{$programs->code}}</td>
+                                <td>{{$programs->degree}}</td>
+                                <td>{{$programs->program}}</td>
+                                <td>{{$programs->description}}</td>
+                                <td class="text-center">{{$programs->no_of_students}}</td>
+                                <td class="text-center">{{$programs->available_slots}}</td>
+                                <td class="text-center">
+                                    <a href="{{route('edit-program', $programs->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="{{route('delete-program', $programs->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>       
-</div>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,7 +99,7 @@
                             <input type="text" class="form-control" name="description" placeholder="description">
                             <span class="text-danger">@error('description'){{$message}} @enderror</span>
                             <label for="floatingInput">Description</label>
-                        </div>               
+                        </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-lg btn-primary shadow-sm btn-login fw-bold mb-2">Save</button>
                         </div>
@@ -109,4 +113,4 @@
 
 
 
-@endsection
+    @endsection
