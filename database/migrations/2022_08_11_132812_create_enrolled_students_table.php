@@ -30,7 +30,6 @@ class CreateEnrolledStudentsTable extends Migration
             $table->string('province');
             $table->string('city');
             $table->string('baranggay');
-            $table->string('file')->nullable();
             $table->string('program');
             $table->string('first_period_sub');
             $table->string('second_period_sub');

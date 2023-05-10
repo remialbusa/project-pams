@@ -138,8 +138,8 @@
                                 <div class="row mt-2 mb-3">
                                     <div class="col-md-6">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example2">Sex</label><label class="text-danger">*</label></label>
-                                            <select class="form-select" aria-label="Default select example" name="gender" value="{{old('gender')}}">
+                                            <label class="form-label" for="form6Example2">Sex</label>
+                                            <select class="form-select" aria-label="Default select example" name="gender">
                                                 <option disabled selected>N/A</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-outline form-line">
-                                            <label class="form-label" for="form6Example1">Birthdate</label><label class="text-danger">*</label></label>
+                                            <label class="form-label" for="form6Example1">Birthdate</label>
                                             <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{old('birth_date')}}"/>
                                             <span class="text-danger">@error('birth_date'){{$message}} @enderror</span>
                                         </div>
@@ -157,7 +157,7 @@
                                 </div>
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
                                 <div class="row mt-4 mb-3">
-                                    <div class="col">
+                                    <div class="col-md-6">
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
                                             <select class="form-select" aria-label="Default select example" name="vaccination_status">
@@ -170,7 +170,13 @@
                                             </select>
                                             <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
                                         </div>
-                                        
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-outline form-line">
+                                            <label class="form-label" for="form6Example1">Upload Vaccination Card: <label class="text-danger">*</label></label>
+                                            <input type="file" placeholder="Input Image" class="form-control" name="vaccination_file">
+                                            <span class="text-danger">@error('vaccination_file'){{$message}} @enderror</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mt-4 mb-4">

@@ -71,6 +71,11 @@
                                 <span class="text-danger">@error('file'){{$message}} @enderror</span>
                                 <label for="floatingInput"></label>
                             </div>
+                            <div class="form-floating mb-3">
+                                <input type="hidden" class="form-control" name="vaccination_file" placeholder="vaccination_file" value="{{$student['vaccination_file']}}">
+                                <span class="text-danger">@error('vaccination_file'){{$message}} @enderror</span>
+                                <label for="floatingInput"></label>
+                            </div>
                             <div class="profile mt-5">
                                 <h5 class="lead">Student Information</h5>
                                 <!-- 2 column grid layout with text inputs for the first and last names -->

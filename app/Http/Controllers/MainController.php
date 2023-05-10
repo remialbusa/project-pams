@@ -98,6 +98,7 @@ class MainController extends Controller
             'last_name' => 'required',          
             'first_name' => 'required',
             'vaccination_status' => 'required',
+            'vaccination_file' => 'required|mimes:pdf,xlx,csv,jpg,jpeg,png|max:2048',
             'email' => 'required',
             'gender' => 'required',  
             'birth_date' => 'required|date|before:-23 years', 
@@ -107,7 +108,7 @@ class MainController extends Controller
             'province' => 'required',
             'city' => 'required',
             'baranggay' => 'required',
-            'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+            'file.*' => 'required|mimes:pdf,xlx,csv|max:2048',
             'program' => 'required',
             'first_period' => 'required',
             'second_period' => 'required',
@@ -137,12 +138,22 @@ class MainController extends Controller
         $student->second_period_sub = $request->second_period;
         $student->third_period_sub = $request->third_period;
 
-        $file = $request->file;
-        
-        $filename=$file->getClientOriginalName();
-        $request->file->move('assets',$filename);
+        $vaccination_file = $request->vaccination_file;
+        $vaccination_file_name = $vaccination_file->getClientOriginalName();
+        $request->vaccination_file->move('assets', $vaccination_file_name);
+        $student->vaccination_file = $vaccination_file_name;
 
-        $student->file= $filename;
+        $student_file = []; // Initialize the variable as an empty array
+        $files = $request->file;
+        foreach ($files as $file) {
+            $extension = $file->getClientOriginalExtension();
+            if (in_array($extension, ['jpg', 'jpeg', 'png', 'pdf'])) {
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->move('assets', $filename);
+                $student_file[] = $filename;
+            }
+        }
+        $student->file = json_encode($student_file);
 
         $save = $student->save();
 

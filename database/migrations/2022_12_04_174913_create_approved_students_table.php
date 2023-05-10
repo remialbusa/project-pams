@@ -21,6 +21,7 @@ class CreateApprovedStudentsTable extends Migration
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('vaccination_status');
+            $table->string('vaccination_file')->nullable();
             $table->string('email');
             $table->string('gender');
             $table->date('birth_date');                                   
@@ -30,7 +31,7 @@ class CreateApprovedStudentsTable extends Migration
             $table->string('province');
             $table->string('city');
             $table->string('baranggay');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->string('program');
             $table->string('first_period_sub');
             $table->string('second_period_sub');
