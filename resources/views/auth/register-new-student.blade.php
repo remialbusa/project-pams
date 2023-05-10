@@ -173,6 +173,7 @@
                                             <option value="Partially Vaccinated">Partially Vaccinated</option>
                                         </select>
                                         <input type="file" placeholder="Input Image" class="form-control" name="vaccination_file">
+                                        
                                         <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
                                     </div>
 
