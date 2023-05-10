@@ -27,7 +27,10 @@ class MainController extends Controller
     function index()
     {
         $school_year = SchoolYear::all();
-        return view('welcome', ['school_year'=>$school_year]);
+        $enrolledStudents = DB::table('enrolled_students')->count();
+        $subjects = DB::table('subjects')->count();
+        $programs = DB::table('programs')->count();
+        return view('welcome', compact('school_year','enrolledStudents','subjects','programs'));
     }
 
     function register()

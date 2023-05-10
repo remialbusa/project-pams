@@ -76,7 +76,6 @@
                                     July 16 - August 7, 2022. Enrollment Period: August 08 - 19, 2022.
                                     Classes will start on August 22, 2022.
                                 @else
-                                    School Enrollment Not Yet Activated
                                 @endif
                                 @endforeach
                             </p>
@@ -90,6 +89,8 @@
             </div>
         </div>
     </section>
+
+    
 
     <section class="container feature pt-5 mt-5 mb-5">
 
@@ -134,6 +135,38 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="dashboard-main mt-5">
+        <br/>
+        <h1 class="text-center display-6 mt-3" style="color: white;"><strong>Graduate School Dashboard</strong></h1>
+        <br/>
+        <div class="row text-center mt-5">
+            <div class="col">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="white" class="bi bi-person-fill" viewBox="0 0 16 16">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                </svg>
+                <div class="col mt-3 dashboard-count">{{$enrolledStudents}}</div>
+                <hr class="mb-3" style="width: 150px; margin: auto; color: white;">
+                <p class="dashboard-detail">Enrolled Students</p>
+            </div>
+            <div class="col">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="white" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                    <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                  </svg>
+                  <div class="col mt-3 dashboard-count">{{$programs}}</div>
+                  <hr class="mb-3" style="width: 150px; margin: auto; color: white;">
+                  <p class="dashboard-detail">Programs Offered</p>
+            </div>
+            <div class="col">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="white" class="bi bi-book-fill" viewBox="0 0 16 16">
+                    <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                  </svg>
+                  <div class="col mt-3 dashboard-count">{{$subjects}}</div>
+                  <hr class="mb-3" style="width: 150px; margin: auto; color: white;">
+                  <p class="dashboard-detail">Subjects Offered</p>
             </div>
         </div>
     </section>

@@ -235,7 +235,7 @@
                                                 <i>(Kindly upload the soft copy of your entrance payment receipt, credentials, registration, consent, and promissory note in one PDF file.)</i>
                                                 <br><i>(File format name (ex. Lastname-Firstname-MI-Requirements))</i>
                                             </p>
-                                            <input multiple type="file" placeholder="Choose file" class="form-control" name="file" >
+                                            <input multiple type="file" placeholder="Choose file" class="form-control" name="file[]" multiple >
                                             <span class="text-danger">@error('file'){{$message}} @enderror</span>
                                         </div>
                                     </div>

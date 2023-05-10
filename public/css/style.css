@@ -377,3 +377,26 @@ footer ul {
     border:1px solid rgb(194, 194, 194);
     
 }
+
+.dashboard-main{
+    background: linear-gradient(rgba(7, 3, 114, 0.8), rgba(7, 3, 114, 0.9)), url('/images/LNU.jpg') fixed;
+    width: 100%;
+    height: 88vh;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dashboard-count{
+    color: #FFF;
+    font-family: "Titillium Web",Sans-serif;
+    font-size: 50px;
+    font-weight: 300;
+}
+
+.dashboard-detail{
+    font-family: "DM Sans",sans-serif !important;
+    font-weight: 400 !important;
+    color: #686868 !important;
+    font-size: 18px !important;
+}
