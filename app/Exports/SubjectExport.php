@@ -19,13 +19,12 @@ class SubjectExport implements FromCollection,WithHeadings
     public function headings():array
     {
         return[
-            'ID',
-            'Code',
-            'Program',
-            'Subject',
-            'Unit',
-            'Period',
-            'Semester',
+            'id',
+            'code',
+            'program',
+            'subject',
+            'unit',
+            'period',
         ];
     }
 }

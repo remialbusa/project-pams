@@ -128,6 +128,7 @@ class AdmissionOfficerController extends Controller
         $student->first_procedure = "Pending";
         $student->second_procedure = "Pending";
         $student->third_procedure = "Pending";
+        $student->enrollment_file = "";
 
         $save = $student->save();
 
@@ -324,6 +325,7 @@ class AdmissionOfficerController extends Controller
     #Encode Student Data / Insert column datas
     function encodeStudentData(Request $request)
     {
+
         $student = ApprovedStudent::find($request->id);
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;
@@ -344,7 +346,7 @@ class AdmissionOfficerController extends Controller
         $save = $student->save();
 
         if($save){
-            return back()->with('success', 'Successfully inserted data');
+            return redirect('/staff/admin/manage-enrollees');
         }else{
             return back()->with('fail', 'Failed inserting student data');
         }
@@ -551,8 +553,7 @@ class AdmissionOfficerController extends Controller
         } 
         $programs = Program::all();
         $subjects = Subject::all();
-        $semester = SchoolYear::all();
-        return view('ogs.classifications.subjects', $data, ['semesters'=>$semester,'programs'=>$programs,'subjects'=>$subjects]);
+        return view('ogs.classifications.subjects', $data, ['programs'=>$programs,'subjects'=>$subjects]);
     }
 
     #Edit Subjects
@@ -566,8 +567,7 @@ class AdmissionOfficerController extends Controller
         }
         $programs = Program::all();
         $subject = Subject::find($id);
-        $semester = SchoolYear::all();
-        return view('ogs.edit-subject', $data, ['semesters'=>$semester,'programs'=>$programs,'subject'=>$subject]);
+        return view('ogs.edit-subject', $data, ['programs'=>$programs,'subject'=>$subject]);
     }
 
     #Delete Subject
@@ -586,7 +586,6 @@ class AdmissionOfficerController extends Controller
             'subject' => 'required',
             'units' => 'required',
             'period' => 'required',
-            'semester' => 'required',
         ]);
 
         //update subject
@@ -595,8 +594,7 @@ class AdmissionOfficerController extends Controller
         $subject->program = $request->program;
         $subject->subject = $request->subject;
         $subject->unit = $request->units;    
-        $subject->period = $request->period;
-        $subject->semester = $request->semester;  
+        $subject->period = $request->period;   
         $save = $subject->update();
 
         if ($save) {
@@ -918,7 +916,9 @@ class AdmissionOfficerController extends Controller
 
     
 
+    
 
+    
     function approvePending(Request $request){
         $request->validate([
             'student_type' => 'required',

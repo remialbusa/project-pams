@@ -50,15 +50,12 @@
             </div>
         </div>
     </nav>
-    
     <section class="details">
         <div class="manage-users-body container mt-5">
             <div class="container h-100">
                 <div class="px-4 mt-5 mb-5">
                     <h4>PRE-REGISTRATION</h4>
                     <hr />
-                    @foreach ($school_year as $school_year)
-                    @if ($school_year->status == 'Active')
                     <div class="col-sm-8 lh-lg">
                         <p class="m-0">I. For New Students (Freshmen, Returnees, and Transferees)</p>
                         <p class="m-0">1. The following medical documents must be submitted to the LNU Health Services Office (HSO) on or before August 19, 2022.</p>
@@ -86,26 +83,19 @@
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="col mt-4">
                                 <div class="form-outline form-line">
-                                    <label class="form-label" for="form6Example1">Student Type</label><label class="text-danger">*</label></label>
+                                    <label class="form-label" for="form6Example1">Student Type</label>
                                     <select class="form-select" aria-label="Default select example" name="student_type">
-
-                                        <option selected value="Continuing">Continuing</option>
+                                        <option selected value="New Student">New Student</option>
                                     </select>
                                     <span class="text-danger">@error('student_type'){{$message}} @enderror</span>
                                 </div>
                             </div>
                             <div class="row mt-4 mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="student_id" value="{{old('student_id')}}" />
-                                        <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
-                                    </div>
-                                </div>
+                                <input type="hidden" type="text" id="form6Example1" class="form-control" name="student_id" value="N/A"/>
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Last name <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="last_name" value="{{old('last_name')}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="last_name" value="{{old('last_name')}}" />
                                         <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -131,9 +121,16 @@
                             <div class="row mt-2 mb-3">
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Mobile Number <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="mobile_no" value="{{old('mobile_no')}}"/>
-                                        <span class="text-danger">@error('mobile_no'){{$message}} @enderror</span>
+                                        <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
+                                        <select class="form-select" aria-label="Default select example" name="vaccination_status">
+                                            <option disabled selected>N/A</option>
+                                            <option value="Fully Vaccinated">Fully Vaccinated</option>
+                                            <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                            <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                            <option value="Not Vaccinated">Not Vaccinated</option>
+                                            <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                        </select>
+                                        <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -148,8 +145,8 @@
                             <div class="row mt-2 mb-3">
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example2">Sex</label><label class="text-danger">*</label></label>
-                                        <select class="form-select" aria-label="Default select example" name="gender" value="{{old('gender')}}">
+                                        <label class="form-label" for="form6Example2">Sex</label>
+                                        <select class="form-select" aria-label="Default select example" name="gender">
                                             <option disabled selected>N/A</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
@@ -159,7 +156,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Birthdate</label><label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">Birthdate</label>
                                         <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{old('birth_date')}}"/>
                                         <span class="text-danger">@error('birth_date'){{$message}} @enderror</span>
                                     </div>
@@ -169,18 +166,10 @@
                             <div class="row mt-4 mb-3">
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
-                                        <select class="form-select" aria-label="Default select example" name="vaccination_status">
-                                            <option disabled selected>N/A</option>
-                                            <option value="Fully Vaccinated">Fully Vaccinated</option>
-                                            <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
-                                            <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
-                                            <option value="Not Vaccinated">Not Vaccinated</option>
-                                            <option value="Partially Vaccinated">Partially Vaccinated</option>
-                                        </select>
-                                        <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
+                                        <label class="form-label" for="form6Example1">Mobile Number <label class="text-danger">*</label></label>
+                                        <input type="text" id="form6Example1" class="form-control" name="mobile_no" value="{{old('mobile_no')}}"/>
+                                        <span class="text-danger">@error('mobile_no'){{$message}} @enderror</span>
                                     </div>
-                                    
                                 </div>
                             </div>
                             <div class="row mt-4 mb-4">
@@ -230,8 +219,8 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row mt-4">
+                            <hr>
+                            <div class="row mt-5">
                                 <div class="col-md-12">
                                     <div class="form-group form-line">
                                         <label class="form-label" for="form6Example1">List of Requirements: <label class="text-danger">*</label></label>
@@ -239,17 +228,17 @@
                                             <i>(Kindly upload the soft copy of your entrance payment receipt, credentials, registration, consent, and promissory note in one PDF file.)</i>
                                             <br><i>(File format name (ex. Lastname-Firstname-MI-Requirements))</i>
                                         </p>
-                                        <input multiple type="file" placeholder="Choose file" class="form-control" name="file" >
+                                        <input type="file" placeholder="Choose file" class="form-control" name="file">
                                         <span class="text-danger">@error('file'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                             </div>
-
+                            <hr>
                             <h5 class="mt-5 lead">Programs & Subjects</h5>
                             <div class="col mt-4 mb-3">
                                 <div class="col">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example2">Select Your Program</label><label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example2">Select Your Program</label>
                                         <select class="form-select" aria-label="Default select example" id="sel_program" name="program">
                                             <option disabled selected>-- Select Program --</option>
                                             @foreach ($programData['data'] as $program)
@@ -264,7 +253,7 @@
                             <div class="row mt-4 mb-3">
                                 <div class="col-md-6 mt-2">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">1ST PERIOD</label><label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example1">1ST PERIOD</label>
                                         <select id='first_period' name='first_period' class="form-select">
                                             <option disabled selected>-- Select Subject --</option>
                                         </select>
@@ -273,7 +262,7 @@
                                 </div>
                                 <div class="col-sm-6 mt-2">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example2">2ND PERIOD</label><label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example2">2ND PERIOD</label>
                                         <select class="form-select" aria-label="Default select example" id="second_period" name="second_period">
                                             <option disabled selected>-- Select Subject --</option>
                                         </select>
@@ -282,7 +271,7 @@
                                 </div>
                                 <div class="col mt-3 mt-2">
                                     <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example2">3RD PERIOD</label><label class="text-danger">*</label></label>
+                                        <label class="form-label" for="form6Example2">3RD PERIOD</label>
                                         <select class="form-select" aria-label="Default select example" id="third_period" name="third_period">
                                             <option disabled selected>-- Select Subject --</option>
                                         </select>
@@ -295,19 +284,10 @@
                         <button type="submit" class="btn btn-primary btn-block mt-5 mb-3 btn-long">Register</button>
                         </div>
                     </form>
-                    @else
-                        <div class="alert alert-warning d-flex align-items-center mt-4" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                            <span style="font-weight: bold;">Enrollment is not yet Actived. If you think this is wrong please message us in Technical support</span>
-                        </div>
-                    @endif
-                    @endforeach
-                    
                 </div>
             </div>
         </div>
     </section>
-    
     <footer class="footer mb-0">
         <div class="container">
             <div class="row">

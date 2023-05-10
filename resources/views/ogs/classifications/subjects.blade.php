@@ -29,8 +29,6 @@
                             <th>Subject</th>
                             <th>Units</th>
                             <th>Period</th>
-                            <th>Semester</th>
-                            <th>Status</th>
                             <th class="col-sm-2">Action</th>
                         </tr>
                     </thead>               
@@ -42,8 +40,6 @@
                             <td>{{$subject->subject}}</td>                       
                             <td>{{$subject->unit}}</td>
                             <td>{{$subject->period}}</td>
-                            <td>{{$subject->semester}}</td>
-                            <td>{{$subject->status}}</td>
                             <td class="text-center">
                                 <a href="{{ route('edit-subject', $subject->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
                                 <a href="{{ route('delete-subject', $subject->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
@@ -96,16 +92,6 @@
                             <label for="floatingInput">Subject</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-select form-select-lg" aria-label="Default select example" name="semester">
-                                <option selected disabled>Semester</option>
-                                @foreach ($semesters as $semesters)
-                                    <option value="{{$semesters->id}}">{{$semesters->semester}}</option>
-                                @endforeach
-                            </select>
-                            <span class="text-danger">@error('semester'){{$message}} @enderror</span>
-                            <label for="floatingInput">Semester</label>
-                        </div>
-                        <div class="form-floating mb-3">
                             <select class="form-select form-select-lg" aria-label="Default select example" name="period">
                                 <option selected disabled>Select Period</option>
                                 <option value="1st Period">1st Period</option>
@@ -124,16 +110,7 @@
                             </select>
                             <span class="text-danger">@error('units'){{$message}} @enderror</span>
                             <label for="floatingInput">Units</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <select class="form-select form-select-lg" aria-label="Default select example" name="status">
-                                <option selected disabled>Select status</option>
-                                <option value="Active">Active</option>
-                                <option value="Dissolved">Dissolved</option>
-                            </select>
-                            <span class="text-danger">@error('status'){{$message}} @enderror</span>
-                            <label for="floatingInput">Status</label>
-                        </div>  
+                        </div>            
                         <div class="d-grid">
                             <button type="submit" class="btn btn-lg btn-primary shadow-sm btn-login fw-bold mb-2">Save</button>
                         </div>

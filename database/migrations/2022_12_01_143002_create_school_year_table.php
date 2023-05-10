@@ -15,9 +15,9 @@ class CreateSchoolYearTable extends Migration
     {
         Schema::create('school_year', function (Blueprint $table) {
             $table->id();
-            $table->string('school_year')->nullable();
-            $table->string('semester')->nullable();
-            $table->string('status')->nullable();
+            $table->string('school_year');
+            $table->string('semester');
+            $table->string('status');
             $table->timestamps();
         });
     }
