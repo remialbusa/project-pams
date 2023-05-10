@@ -40,7 +40,7 @@ class MainController extends Controller
         ->select('id','program','description')
         ->get();
 
-        $school_year = SchoolYear::all();
+        $school_year = DB::table('school_year')->where('status', 'Active')->get();
         return view('auth.register-student', ['school_year'=>$school_year,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programData'=>$programData,'subjects'=>$subjects]);
     }
 
@@ -54,7 +54,7 @@ class MainController extends Controller
         ->select('id','program','description')
         ->get();
 
-        $school_year = SchoolYear::all();
+        $school_year = DB::table('school_year')->where('status', 'Active')->get();
         return view('auth.register-new-student', ['school_year'=>$school_year,'programData'=>$programData,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod]);
     }
 

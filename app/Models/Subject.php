@@ -17,7 +17,7 @@ class Subject extends Model
     public static function getAllSubjects()
     {
         $result = DB::table('subjects')
-        ->select('id','code','program','subject','unit','period','semester')
+        ->select('id','code','program','subject','unit','period')
         ->get()
         ->toArray();
         return $result;
@@ -26,10 +26,5 @@ class Subject extends Model
     public function getProgramID()
     {
         return $this->belongsTo(Program::class, 'program', 'id');
-    }
-
-    public function getSchoolYearId()
-    {
-        return $this->belongsTo(Program::class, 'semester', 'id');
     }
 }
