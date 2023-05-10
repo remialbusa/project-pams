@@ -22,7 +22,7 @@
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
     <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
-    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png" />
     <title>Pre-registration</title>
 </head>
 
@@ -50,7 +50,7 @@
             </div>
         </div>
     </nav>
-    
+
     <section class="details">
         <div class="manage-users-body container mt-5">
             <div class="container h-100">
@@ -64,8 +64,8 @@
                         <p class="m-0">1. The following medical documents must be submitted to the LNU Health Services Office (HSO) on or before August 19, 2022.</p>
                         <p class="m-0">1. Accomplished Patient Health Record and Medical Certificate (Page 1 and 2)/p>
                         <p class="m-0">Download Link: <a href="https://bit.ly/lnu-medform">https://bit.ly/lnu-medform</a></p>
-                        <p class="m-0">1.2.  Copy of the results of the diagnostic tests</p>
-                        <p class="m-0">1.3.  Copy of the Vaccination Card/Certificate (including booster dose/s, if any)</p>
+                        <p class="m-0">1.2. Copy of the results of the diagnostic tests</p>
+                        <p class="m-0">1.3. Copy of the Vaccination Card/Certificate (including booster dose/s, if any)</p>
                         <p class="m-0">IF UNABLE TO PRINT THE MEDICAL FORM ABOVE, YOU MAY ASK A COPY FROM THE OFFICE OF THE GRADUATE SCHOOL.</p>
                     </div>
 
@@ -89,23 +89,17 @@
                                     <label class="form-label" for="form6Example1">Student Type</label><label class="text-danger">*</label></label>
                                     <select class="form-select" aria-label="Default select example" name="student_type">
 
-                                        <option selected value="Continuing">Continuing</option>
+                                        <option selected value="New Student">New Student</option>
                                     </select>
                                     <span class="text-danger">@error('student_type'){{$message}} @enderror</span>
                                 </div>
                             </div>
                             <div class="row mt-4 mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Student ID Number <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="student_id" value="{{old('student_id')}}" />
-                                        <span class="text-danger">@error('student_id'){{$message}} @enderror</span>
-                                    </div>
-                                </div>
+                                <input type="hidden" type="text" id="form6Example1" class="form-control" name="student_id" value="N/A" />
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Last name <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="last_name" value="{{old('last_name')}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="last_name" />
                                         <span class="text-danger">@error('last_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -115,14 +109,14 @@
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">First name <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="first_name" value="{{old('first_name')}}"/>
+                                        <input type="text" id="form6Example1" class="form-control" name="first_name" value="{{old('first_name')}}" />
                                         <span class="text-danger">@error('first_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Middle name </label>
-                                        <input type="text" id="form6Example2" class="form-control" name="middle_name" value="{{old('middle_name')}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="middle_name" value="{{old('middle_name')}}" />
                                         <span class="text-danger">@error('middle_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -132,14 +126,14 @@
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Mobile Number <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="mobile_no" value="{{old('mobile_no')}}"/>
+                                        <input type="text" id="form6Example1" class="form-control" name="mobile_no" value="{{old('mobile_no')}}" />
                                         <span class="text-danger">@error('mobile_no'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Email <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example2" class="form-control" name="email" value="{{old('email')}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="email" value="{{old('email')}}" />
                                         <span class="text-danger">@error('email'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -160,7 +154,7 @@
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Birthdate</label><label class="text-danger">*</label></label>
-                                        <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{old('birth_date')}}"/>
+                                        <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{old('birth_date')}}" />
                                         <span class="text-danger">@error('birth_date'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -178,9 +172,10 @@
                                             <option value="Not Vaccinated">Not Vaccinated</option>
                                             <option value="Partially Vaccinated">Partially Vaccinated</option>
                                         </select>
+                                        <input type="file" placeholder="Input Image" class="form-control" name="vaccination_file">
                                         <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <div class="row mt-4 mb-4">
@@ -190,12 +185,12 @@
                                         <p>
                                             <i>(Important: Input your REAL facebook account.)</i>
                                         </p>
-                                        <input type="text" id="form6Example2" class="form-control" name="fb_acc_name" value="{{old('fb_acc_name')}}"/>
+                                        <input type="text" id="form6Example2" class="form-control" name="fb_acc_name" value="{{old('fb_acc_name')}}" />
                                         <span class="text-danger">@error('fb_acc_name'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="row mt-5 mb-3">
                                 <label class="form-label">Address</label>
                                 <p>
@@ -204,28 +199,28 @@
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Region <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="region" value="{{old('region')}}"/>
+                                        <input type="text" id="form6Example1" class="form-control" name="region" value="{{old('region')}}" />
                                         <span class="text-danger">@error('region'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Province <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="province" value="{{old('province')}}"/>
+                                        <input type="text" id="form6Example1" class="form-control" name="province" value="{{old('province')}}" />
                                         <span class="text-danger">@error('province'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">City <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="city" value="{{old('city')}}"/>
+                                        <input type="text" id="form6Example1" class="form-control" name="city" value="{{old('city')}}" />
                                         <span class="text-danger">@error('city'){{$message}} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Baranggay <label class="text-danger">*</label></label>
-                                        <input type="text" id="form6Example1" class="form-control" name="baranggay" value="{{old('baranggay')}}"/>
+                                        <input type="text" id="form6Example1" class="form-control" name="baranggay" value="{{old('baranggay')}}" />
                                         <span class="text-danger">@error('baranggay'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -239,7 +234,7 @@
                                             <i>(Kindly upload the soft copy of your entrance payment receipt, credentials, registration, consent, and promissory note in one PDF file.)</i>
                                             <br><i>(File format name (ex. Lastname-Firstname-MI-Requirements))</i>
                                         </p>
-                                        <input multiple type="file" placeholder="Choose file" class="form-control" name="file" >
+                                        <input type="file" placeholder="Choose file" class="form-control" name="file[]" multiple>
                                         <span class="text-danger">@error('file'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -253,7 +248,7 @@
                                         <select class="form-select" aria-label="Default select example" id="sel_program" name="program">
                                             <option disabled selected>-- Select Program --</option>
                                             @foreach ($programData['data'] as $program)
-                                                <option value="{{$program->id}}">{{$program->program}} - {{$program->description}}</option>
+                                            <option value="{{$program->id}}">{{$program->program}} - {{$program->description}}</option>
                                             @endforeach
                                         </select>
                                         <span class="text-danger">@error('program'){{$message}} @enderror</span>
@@ -292,22 +287,24 @@
                             </div>
                         </div>
                         <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary btn-block mt-5 mb-3 btn-long">Register</button>
+                            <button type="submit" class="btn btn-primary btn-block mt-5 mb-3 btn-long">Register</button>
                         </div>
                     </form>
                     @else
-                        <div class="alert alert-warning d-flex align-items-center mt-4" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                            <span style="font-weight: bold;">Enrollment is not yet Actived. If you think this is wrong please message us in Technical support</span>
-                        </div>
+                    <div class="alert alert-warning d-flex align-items-center mt-4" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        <span style="font-weight: bold;">Enrollment is not yet Actived. If you think this is wrong please message us in Technical support</span>
+                    </div>
                     @endif
                     @endforeach
-                    
+
                 </div>
             </div>
         </div>
     </section>
-    
+
     <footer class="footer mb-0">
         <div class="container">
             <div class="row">
@@ -351,89 +348,89 @@
     </footer>
 
     <script type='text/javascript'>
-        $(document).ready(function(){
-        
-            $('#sel_program').change(function(){
+        $(document).ready(function() {
+
+            $('#sel_program').change(function() {
                 // Department id
                 var id = $(this).val();
-        
+
                 // Empty the dropdown
                 $('#first_period').find('option').not(':first').remove();
-        
+
                 // AJAX request 
                 $.ajax({
-                url: '/student/auth/register-new-student/getFirstPeriod/'+id,
-                type: 'get',
-                dataType: 'json',
-                success: function(response){
-                    var len = 0;
-                    if(response['data'] != null){
-                        len = response['data'].length;
-                    }
-        
-                    if(len > 0){
-                        // Read data and create <option >
-                        for(var i=0; i<len; i++){
-                            var id = response['data'][i].id;
-                            var code = response['data'][i].code;
-                            var subject = response['data'][i].subject;
-                            var option = "<option value='"+ id +"'>"+ code + "\n" + "-" + "\n" + subject +"</option>"; 
-                            $("#first_period").append(option); 
+                    url: '/student/auth/register-new-student/getFirstPeriod/' + id,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+                        var len = 0;
+                        if (response['data'] != null) {
+                            len = response['data'].length;
+                        }
+
+                        if (len > 0) {
+                            // Read data and create <option >
+                            for (var i = 0; i < len; i++) {
+                                var id = response['data'][i].id;
+                                var code = response['data'][i].code;
+                                var subject = response['data'][i].subject;
+                                var option = "<option value='" + id + "'>" + code + "\n" + "-" + "\n" + subject + "</option>";
+                                $("#first_period").append(option);
+                            }
                         }
                     }
-                }
                 });
 
                 $('#second_period').find('option').not(':first').remove();
-        
+
                 // AJAX request 
                 $.ajax({
-                url: '/student/auth/register-new-student/getSecondPeriod/'+id,
-                type: 'get',
-                dataType: 'json',
-                success: function(response){
-                    var len = 0;
-                    if(response['data'] != null){
-                        len = response['data'].length;
-                    }
-        
-                    if(len > 0){
-                        // Read data and create <option >
-                        for(var i=0; i<len; i++){
-                            var id = response['data'][i].id;
-                            var code = response['data'][i].code;
-                            var subject = response['data'][i].subject;
-                            var option = "<option value='"+ id +"'>"+ code + "\n" + "-" + "\n" + subject +"</option>"; 
-                            $("#second_period").append(option); 
+                    url: '/student/auth/register-new-student/getSecondPeriod/' + id,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+                        var len = 0;
+                        if (response['data'] != null) {
+                            len = response['data'].length;
+                        }
+
+                        if (len > 0) {
+                            // Read data and create <option >
+                            for (var i = 0; i < len; i++) {
+                                var id = response['data'][i].id;
+                                var code = response['data'][i].code;
+                                var subject = response['data'][i].subject;
+                                var option = "<option value='" + id + "'>" + code + "\n" + "-" + "\n" + subject + "</option>";
+                                $("#second_period").append(option);
+                            }
                         }
                     }
-                }
                 });
 
                 $('#third_period').find('option').not(':first').remove();
-        
+
                 // AJAX request 
                 $.ajax({
-                url: '/student/auth/register-new-student/getThirdPeriod/'+id,
-                type: 'get',
-                dataType: 'json',
-                success: function(response){
-                    var len = 0;
-                    if(response['data'] != null){
-                        len = response['data'].length;
-                    }
-        
-                    if(len > 0){
-                        // Read data and create <option >
-                        for(var i=0; i<len; i++){
-                            var id = response['data'][i].id;
-                            var code = response['data'][i].code;
-                            var subject = response['data'][i].subject;
-                            var option = "<option value='"+ id +"'>"+ code + "\n" + "-" + "\n" + subject +"</option>"; 
-                            $("#third_period").append(option); 
+                    url: '/student/auth/register-new-student/getThirdPeriod/' + id,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+                        var len = 0;
+                        if (response['data'] != null) {
+                            len = response['data'].length;
+                        }
+
+                        if (len > 0) {
+                            // Read data and create <option >
+                            for (var i = 0; i < len; i++) {
+                                var id = response['data'][i].id;
+                                var code = response['data'][i].code;
+                                var subject = response['data'][i].subject;
+                                var option = "<option value='" + id + "'>" + code + "\n" + "-" + "\n" + subject + "</option>";
+                                $("#third_period").append(option);
+                            }
                         }
                     }
-                }
                 });
             });
         });

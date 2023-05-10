@@ -26,7 +26,7 @@ class MainController extends Controller
     function index()
     {
         $school_year = SchoolYear::all();
-        return view('welcome', ['school_year'=>$school_year]);
+        return view('welcome', ['school_year' => $school_year]);
     }
 
     function register()
@@ -36,12 +36,12 @@ class MainController extends Controller
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
         $subjects = Subject::all();
 
-        $programData['data'] = Program::orderby("program","asc")
-        ->select('id','program','description')
-        ->get();
+        $programData['data'] = Program::orderby("program", "asc")
+            ->select('id', 'program', 'description')
+            ->get();
 
         $school_year = SchoolYear::all();
-        return view('auth.register-student', ['school_year'=>$school_year,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programData'=>$programData,'subjects'=>$subjects]);
+        return view('auth.register-student', ['school_year' => $school_year, 'firstPeriod' => $firstPeriod, 'secondPeriod' => $secondPeriod, 'thirdPeriod' => $thirdPeriod, 'programData' => $programData, 'subjects' => $subjects]);
     }
 
     function registerNewStudent()
@@ -50,41 +50,41 @@ class MainController extends Controller
         $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
 
-        $programData['data'] = Program::orderby("program","asc")
-        ->select('id','program','description')
-        ->get();
+        $programData['data'] = Program::orderby("program", "asc")
+            ->select('id', 'program', 'description')
+            ->get();
 
         $school_year = SchoolYear::all();
-        return view('auth.register-new-student', ['school_year'=>$school_year,'programData'=>$programData,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod]);
+        return view('auth.register-new-student', ['school_year' => $school_year, 'programData' => $programData, 'firstPeriod' => $firstPeriod, 'secondPeriod' => $secondPeriod, 'thirdPeriod' => $thirdPeriod]);
     }
 
-    function getFirstPeriod($programid=0)
+    function getFirstPeriod($programid = 0)
     {
-        $subjects['data'] = Subject::orderby("code","asc")
-        ->select('id','code','subject','unit','period')
-        ->where('program',$programid)
-        ->where('period', '1st Period')
-        ->get();
+        $subjects['data'] = Subject::orderby("code", "asc")
+            ->select('id', 'code', 'subject', 'unit', 'period')
+            ->where('program', $programid)
+            ->where('period', '1st Period')
+            ->get();
         return response()->json($subjects);
     }
 
-    function getSecondPeriod($programid=0)
+    function getSecondPeriod($programid = 0)
     {
-        $subjects['data'] = Subject::orderby("code","asc")
-        ->select('id','code','subject','unit','period')
-        ->where('program',$programid)
-        ->where('period', '2nd Period')
-        ->get();
+        $subjects['data'] = Subject::orderby("code", "asc")
+            ->select('id', 'code', 'subject', 'unit', 'period')
+            ->where('program', $programid)
+            ->where('period', '2nd Period')
+            ->get();
         return response()->json($subjects);
     }
 
-    function getThirdPeriod($programid=0)
+    function getThirdPeriod($programid = 0)
     {
-        $subjects['data'] = Subject::orderby("code","asc")
-        ->select('id','code','subject','unit','period')
-        ->where('program',$programid)
-        ->where('period', '3rd Period')
-        ->get();
+        $subjects['data'] = Subject::orderby("code", "asc")
+            ->select('id', 'code', 'subject', 'unit', 'period')
+            ->where('program', $programid)
+            ->where('period', '3rd Period')
+            ->get();
         return response()->json($subjects);
     }
 
@@ -94,30 +94,31 @@ class MainController extends Controller
         $request->validate([
             'student_type' => 'required',
             'student_id' => 'required',
-            'last_name' => 'required',          
+            'last_name' => 'required',
             'first_name' => 'required',
             'vaccination_status' => 'required',
+            'vaccination_file' => 'required|mimes:pdf,xlx,csv,jpg,jpeg,png|max:2048',
             'email' => 'required',
-            'gender' => 'required',  
-            'birth_date' => 'required|date|before:-23 years', 
+            'gender' => 'required',
+            'birth_date' => 'required|date|before:-23 years',
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
             'region' => 'required',
             'province' => 'required',
             'city' => 'required',
             'baranggay' => 'required',
-            'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+            'file.*' => 'required|mimes:jpeg,png,pdf|max:2048',
             'program' => 'required',
             'first_period' => 'required',
             'second_period' => 'required',
-            'third_period' => 'required',                          
+            'third_period' => 'required',
         ]);
-        
+
 
         //insert data
         $student = new PendingStudent();
         $student->student_type = $request->student_type;
-        $student->student_id = $request->student_id;       
+        $student->student_id = $request->student_id;
         $student->last_name = $request->last_name;
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
@@ -135,13 +136,23 @@ class MainController extends Controller
         $student->first_period_sub = $request->first_period;
         $student->second_period_sub = $request->second_period;
         $student->third_period_sub = $request->third_period;
+        $vaccination_file = $request->vaccination_file;
+        $vaccination_file_name = $vaccination_file->getClientOriginalName();
+        $request->vaccination_file->move('assets', $vaccination_file_name);
+        $student->vaccination_file = $vaccination_file_name;
 
-        $file = $request->file;
-        
-        $filename=$file->getClientOriginalName();
-        $request->file->move('assets',$filename);
+        $student_file = []; // Initialize the variable as an empty array
+        $files = $request->file;
+        foreach ($files as $file) {
+            $extension = $file->getClientOriginalExtension();
+            if (in_array($extension, ['jpg', 'jpeg', 'png', 'pdf'])) {
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->move('assets', $filename);
+                $student_file[] = $filename;
+            }
+        }
+        $student->file = json_encode($student_file);
 
-        $student->file= $filename;
 
         $save = $student->save();
 
@@ -160,27 +171,27 @@ class MainController extends Controller
         $request->validate([
             'student_type' => 'required',
             'student_id' => 'required',
-            'last_name' => 'required',          
+            'last_name' => 'required',
             'first_name' => 'required',
             'middle_name' => 'required',
             'vaccination_status' => 'required',
             'email' => 'required',
-            'gender' => 'required',  
-            'birth_date' => 'required', 
+            'gender' => 'required',
+            'birth_date' => 'required',
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
             'region' => 'required',
             'province' => 'required',
             'city' => 'required',
-            'baranggay' => 'required',                       
+            'baranggay' => 'required',
         ]);
-        
+
 
         //insert data
         $student = EnrolledStudent::find($request->id);
         $student->id = $request->id;
         $student->student_type = $request->student_type;
-        $student->student_id = $request->student_id;       
+        $student->student_id = $request->student_id;
         $student->last_name = $request->last_name;
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
@@ -229,23 +240,25 @@ class MainController extends Controller
         }
     }
 
-    function dashboard(){       
-        if(session()->has('LoggedUser')){
+    function dashboard()
+    {
+        if (session()->has('LoggedUser')) {
             $student = EnrolledStudent::where('id', '=', session('LoggedUser'))->first();
             $data = [
-                'LoggedUserInfo'=>$student
+                'LoggedUserInfo' => $student
             ];
         }
         $school_year = SchoolYear::all();
         $studentList = EnrolledStudent::all();
-        return view('student.dashboard.dashboard', $data, ['school_year'=>$school_year,'student'=>$studentList]);
+        return view('student.dashboard.dashboard', $data, ['school_year' => $school_year, 'student' => $studentList]);
     }
 
-    function profileView(){       
-        if(session()->has('LoggedUser')){
+    function profileView()
+    {
+        if (session()->has('LoggedUser')) {
             $student = EnrolledStudent::where('id', '=', session('LoggedUser'))->first();
             $data = [
-                'LoggedUserInfo'=>$student
+                'LoggedUserInfo' => $student
             ];
         }
         $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
@@ -253,7 +266,7 @@ class MainController extends Controller
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
         $programs = Program::all();
         $school_year = DB::table('school_year')->where('status', 'Active')->get();
-        return view('student.profile-settings.student-profile', $data, ['school_year'=>$school_year,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs]);
+        return view('student.profile-settings.student-profile', $data, ['school_year' => $school_year, 'firstPeriod' => $firstPeriod, 'secondPeriod' => $secondPeriod, 'thirdPeriod' => $thirdPeriod, 'programs' => $programs]);
     }
 
     function logout()
@@ -263,7 +276,7 @@ class MainController extends Controller
             return redirect('student/auth/login');
         }
     }
-    
+
     function enrollmentStatus()
     {
         if (session()->has('LoggedUser')) {
@@ -275,7 +288,7 @@ class MainController extends Controller
         $school_year = DB::table('school_year')->where('status', 'Active')->first();
         $studentUser = EnrolledStudent::all();
         $subject = Subject::all();
-        return view('student.monitor-enrollment.monitor-enrollment', $data, ['school_year'=>$school_year,'subject'=>$subject,'studentUser' => $studentUser]);
+        return view('student.monitor-enrollment.monitor-enrollment', $data, ['school_year' => $school_year, 'subject' => $subject, 'studentUser' => $studentUser]);
     }
 
     function preEnroll()
@@ -295,11 +308,11 @@ class MainController extends Controller
         $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
 
-        $programData['data'] = Program::orderby("program","asc")
-        ->select('id','program','description')
-        ->get();
+        $programData['data'] = Program::orderby("program", "asc")
+            ->select('id', 'program', 'description')
+            ->get();
 
-        return view('student.pre-enroll.pre-enrollment', $data, ['school_year'=>$school_year,'programData'=>$programData,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'studentUser'=>$studentUser,'enrolledStudent'=>$enrolledStudent]);
+        return view('student.pre-enroll.pre-enrollment', $data, ['school_year' => $school_year, 'programData' => $programData, 'firstPeriod' => $firstPeriod, 'secondPeriod' => $secondPeriod, 'thirdPeriod' => $thirdPeriod, 'programs' => $programs, 'studentUser' => $studentUser, 'enrolledStudent' => $enrolledStudent]);
     }
 
     function savePreEnroll(Request $request)
@@ -308,12 +321,12 @@ class MainController extends Controller
         $request->validate([
             'student_type' => 'required',
             'student_id' => 'required',
-            'last_name' => 'required',          
+            'last_name' => 'required',
             'first_name' => 'required',
             'vaccination_status' => 'required',
             'email' => 'required',
-            'gender' => 'required',  
-            'birth_date' => 'required|date|before:-23 years', 
+            'gender' => 'required',
+            'birth_date' => 'required|date|before:-23 years',
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
             'region' => 'required',
@@ -324,15 +337,15 @@ class MainController extends Controller
             'program' => 'required',
             'first_period' => 'required',
             'second_period' => 'required',
-            'third_period' => 'required',                          
+            'third_period' => 'required',
         ]);
-        
+
 
         //insert data
         $student = new Student();
         $student->id = $request->id;
         $student->student_type = $request->student_type;
-        $student->student_id = $request->student_id;       
+        $student->student_id = $request->student_id;
         $student->last_name = $request->last_name;
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
@@ -352,11 +365,11 @@ class MainController extends Controller
         $student->third_period_sub = $request->third_period;
 
         $file = $request->file;
-        
-        $filename=$file->getClientOriginalName();
-        $request->file->move('assets',$filename);
 
-        $student->file= $filename;
+        $filename = $file->getClientOriginalName();
+        $request->file->move('assets', $filename);
+
+        $student->file = $filename;
 
         $save = $student->save();
 
@@ -374,7 +387,7 @@ class MainController extends Controller
             'program' => 'required',
             'id_no' => 'required',
             'name' => 'required',
-            'email' => 'required',                         
+            'email' => 'required',
             'concern' => 'required',
         ]);
 
@@ -424,7 +437,5 @@ class MainController extends Controller
         } else {
             return back()->with('fail', 'Failed Changing Password');
         }
-        
     }
-    
 }

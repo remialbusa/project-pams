@@ -21,6 +21,7 @@ class CreatePendingStudentsTable extends Migration
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('vaccination_status');
+            $table->string('vaccination_file');
             $table->string('email');
             $table->string('gender');
             $table->date('birth_date');
