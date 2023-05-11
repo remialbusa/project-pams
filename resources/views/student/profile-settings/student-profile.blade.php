@@ -258,6 +258,7 @@
                                                                 <option value="{{$subjects->code}} {{$subjects->subject}}">{{$subjects->code}} {{$subjects->subject}}</option>
                                                             @endforeach
                                                         @endif
+                                                        
                                                     </select>
                                                     <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
                                                 </div>

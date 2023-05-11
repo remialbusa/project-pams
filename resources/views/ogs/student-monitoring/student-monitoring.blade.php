@@ -40,7 +40,8 @@
                             <td>{{$students->mobile_no}}</td>          
                             <td>{{$students->created_at}}</td>
                             <td class="text-center">
-                                <a href="#" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                <a href="{{route('admin.edit-enrolled-students', $students->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                <a href="#" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-eye"></i></a>
                                 <a onclick="return confirm('Are you sure?')" href="{{route('admin.delete-enrolled-student', $students->id)}}" class="d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>

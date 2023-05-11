@@ -1,3 +1,6 @@
+error_reporting(0);
+// or error_reporting(E_ALL & ~E_NOTICE); to show errors but not notices
+
 /* var my_handlers = {
 
     fill_provinces:  function(){

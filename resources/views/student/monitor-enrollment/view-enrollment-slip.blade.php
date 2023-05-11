@@ -20,7 +20,7 @@
         <!-- custom css -->
         <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
         <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
-        <title>View E-SLIP</title>
+        <title>Enrollment Slip</title>
         <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
     </head>
 

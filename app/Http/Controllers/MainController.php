@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EnrolledStudent;
 use App\Models\PendingStudent;
+use App\Models\ApprovedStudent;
 use App\Models\Subject;
 use App\Models\Program;
 use App\Models\TechnicalForm;
@@ -26,7 +27,10 @@ class MainController extends Controller
     function index()
     {
         $school_year = SchoolYear::all();
-        return view('welcome', ['school_year' => $school_year]);
+        $enrolledStudents = DB::table('enrolled_students')->count();
+        $subjects = DB::table('subjects')->count();
+        $programs = DB::table('programs')->count();
+        return view('welcome', compact('school_year','enrolledStudents','subjects','programs'));
     }
 
     function register()
@@ -141,6 +145,11 @@ class MainController extends Controller
         $request->vaccination_file->move('assets', $vaccination_file_name);
         $student->vaccination_file = $vaccination_file_name;
 
+        $vaccination_file = $request->vaccination_file;
+        $vaccination_file_name = $vaccination_file->getClientOriginalName();
+        $request->vaccination_file->move('assets', $vaccination_file_name);
+        $student->vaccination_file = $vaccination_file_name;
+
         $student_file = []; // Initialize the variable as an empty array
         $files = $request->file;
         foreach ($files as $file) {
@@ -152,7 +161,6 @@ class MainController extends Controller
             }
         }
         $student->file = json_encode($student_file);
-
 
         $save = $student->save();
 
@@ -342,7 +350,7 @@ class MainController extends Controller
 
 
         //insert data
-        $student = new Student();
+        $student = new ApprovedStudent();
         $student->id = $request->id;
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;

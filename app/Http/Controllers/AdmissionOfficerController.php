@@ -105,6 +105,7 @@ class AdmissionOfficerController extends Controller
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
         $student->vaccination_status = $request->vaccination_status;
+        $student->vaccination_file = $request->vaccination_file;
         $student->email = $request->email;
         $student->gender = $request->gender;
         $student->birth_date = $request->birth_date;
@@ -427,7 +428,12 @@ class AdmissionOfficerController extends Controller
             ];
         }
         $enrolledStudents = EnrolledStudent::find($id);
-        return view('ogs.edit-enrolled-student', $data, ['enrolledStudents'=>$enrolledStudents]);
+        $programs = Program::all();
+        $subjects = Subject::all();
+        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
+        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
+        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
+        return view('ogs.edit-enrolled-student', $data, ['firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'student'=>$enrolledStudents,'programs'=>$programs,'subjects'=>$subjects]);
     }
 
     #View Enrolled Student
@@ -758,7 +764,6 @@ class AdmissionOfficerController extends Controller
         return view('ogs.view-pending-pdf', $data, compact('student'));
     }
 
-    #########################################################################################
     function downloadPDF(Request $request, $file_name)
     {
         if(session()->has('LoggedAdmin')){
@@ -926,6 +931,7 @@ class AdmissionOfficerController extends Controller
             'last_name' => 'required',          
             'first_name' => 'required',
             'vaccination_status' => 'required',
+            'vaccination_file' => 'required|mimes:pdf,xlx,csv,jpg,jpeg,png|max:2048',
             'email' => 'required',
             'gender' => 'required',  
             'birth_date' => 'required', 
@@ -935,6 +941,7 @@ class AdmissionOfficerController extends Controller
             'province' => 'required',
             'city' => 'required',
             'baranggay' => 'required',
+            'file.*' => 'required|mimes:pdf,xlx,csv|max:2048',
             'program' => 'required',
             'first_period_sub' => 'required',
             'second_period_sub' => 'required',
@@ -1149,11 +1156,6 @@ class AdmissionOfficerController extends Controller
         $student = StudentUser::find($id);
         return view('admin.edit-student-users', $data, ['student'=>$student]);
     }
-
-    
-
-    
-
 
     #Exporting Data Tables
     function exportEnrolledStudents()

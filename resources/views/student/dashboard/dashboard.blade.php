@@ -12,6 +12,7 @@
         <h1 class="h3 mb-0 text-gray-800 mb-4">Navigation</h1>
         
     </div>
+    
 
     <div class="col-xl-10 col-md-6 mb-4">
         <a href="/student/auth/monitor-enrollment">
