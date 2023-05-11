@@ -152,6 +152,7 @@ Route::post('/staff/admin/subjects/edit/', [AdmissionOfficerController::class, '
 Route::get('/staff/admin/subjects', [AdmissionOfficerController::class, 'subjectList'])->name('admin.subjects')->middleware('isLoggedAdmin');
 Route::post('/staff/admin/subjects', [AdmissionOfficerController::class, 'saveSubject'])->name('auth.save-subject')->middleware('isLoggedAdmin');
 Route::get('/staff/admin/subjects/export-data', [AdmissionOfficerController::class, 'exportSubjects'])->name('admin.export-subjects')->middleware('isLoggedAdmin');
+
 //Advising and Assigning subjects
 
 Route::get('/staff/admin/advising-assigning/delete/{id}', [AdmissionOfficerController::class, 'deletePreviousAssignSubject'])->name('delete-advising-assigning-subject')->middleware('isLoggedAdmin');

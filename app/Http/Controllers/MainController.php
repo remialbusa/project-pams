@@ -30,7 +30,7 @@ class MainController extends Controller
         $enrolledStudents = DB::table('enrolled_students')->count();
         $subjects = DB::table('subjects')->count();
         $programs = DB::table('programs')->count();
-        return view('welcome', compact('school_year','enrolledStudents','subjects','programs'));
+        return view('welcome', compact('school_year', 'enrolledStudents', 'subjects', 'programs'));
     }
 
     function register()
@@ -145,10 +145,7 @@ class MainController extends Controller
         $request->vaccination_file->move('assets', $vaccination_file_name);
         $student->vaccination_file = $vaccination_file_name;
 
-        $vaccination_file = $request->vaccination_file;
-        $vaccination_file_name = $vaccination_file->getClientOriginalName();
-        $request->vaccination_file->move('assets', $vaccination_file_name);
-        $student->vaccination_file = $vaccination_file_name;
+
 
         $student_file = []; // Initialize the variable as an empty array
         $files = $request->file;
@@ -162,15 +159,60 @@ class MainController extends Controller
         }
         $student->file = json_encode($student_file);
 
-        $save = $student->save();
+        // Check and update available slots for the selected programs
+        $programs = Program::find($request->program);
+        $hasProgramSlot = $this->checkNoOfSlotsForProgram($programs);
+        // Check and update available slots for the selected subjects
+        $subjectIds = [$request->first_period, $request->second_period, $request->third_period];
+        $subjects = Subject::whereIn('id', $subjectIds)->get();
+        $hasSubjectNames = $this->checkNoOfSlots($subjects);
+        if (!empty($hasSubjectNames) && !$hasProgramSlot) {
+            $error = 'No available slot for PROGRAM: ' .  $programs->program . ' and SUBJECT/S: ' . implode(', ', $hasSubjectNames);
+            return back()->with('fail', $error);
+        }
+
+        if (!empty($hasSubjectNames)) {
+            $error = 'No available subject/s slot for ' . implode(', ', $hasSubjectNames);
+            return back()->with('fail', $error);
+        }
+
+        if (!$hasProgramSlot) {
+            $error = 'No available slot for ' . $programs->program;
+            return back()->with('fail', $error);
+        }
+        $student->save();
+        return back()->with('success', 'Registration complete');
+    }
 
 
-        if ($save) {
-            return back()->with('success', 'Registration complete');
+    //checks the number of slots of subjects
+    function checkNoOfSlots($subjects)
+    {
+
+        $subjectNames = [];
+
+        foreach ($subjects as $subject) {
+            if ($subject->available_slots > 0) {
+                $subject->available_slots -= 1;
+                $subject->save();
+            } else {
+                $subjectNames[] = $subject->subject;
+            }
+        }
+        return $subjectNames;
+    }
+
+    function checkNoOfSlotsForProgram($programs)
+    {
+        if ($programs->available_slots == 0) {
+            return false;
         } else {
-            return back()->with('fail', 'Failed Registration');
+            $programs->available_slots -= 1;
+            $programs->save();
+            return true;
         }
     }
+
 
     //update student details
     function updateStudentProfile(Request $request)

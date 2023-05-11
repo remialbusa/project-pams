@@ -50,10 +50,6 @@
             </div>
         </div>
     </nav>
-<<<<<<< HEAD
-
-=======
->>>>>>> 8e38f3fc77282f426e6273b7e71a673bf68b5626
     <section class="details">
         <div class="manage-users-body container mt-5">
             <div class="container h-100">
@@ -172,7 +168,7 @@
                                             <option value="Not Vaccinated">Not Vaccinated</option>
                                             <option value="Partially Vaccinated">Partially Vaccinated</option>
                                         </select>
-                                    
+                
                                         <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
                                     </div>
                                 </div>

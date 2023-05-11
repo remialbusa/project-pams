@@ -8,9 +8,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,7 +24,7 @@
 
     <!-- Custom styles for this page -->
     <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
-    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png" />
     <title>Edit Programs</title>
 </head>
 
@@ -75,6 +73,13 @@
                                 <span class="text-danger">@error('code'){{$message}} @enderror</span>
                                 <label for="floatingInput">Code</label>
                             </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" name="available_slots" placeholder="Enter Available Slots" value="">
+                                <label for="floatingInput">No. of Slots</label>
+                                <span class="text-danger">@error('slots'){{$message}} @enderror</span>
+                            </div>
+
                             <div class="form-floating mb-3">
                                 <select class="form-select form-select-lg" aria-label="Default select example" name="degree">
                                     @if($programs['degree'] == 'Doctoral')
@@ -104,7 +109,7 @@
                                 <span class="text-danger">@error('description'){{$message}} @enderror</span>
                                 <label for="floatingInput">Description</label>
                             </div>
-                            
+
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-lg btn-warning btn-login fw-bold mb-2">Update</button>
                             </div>
