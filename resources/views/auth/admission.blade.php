@@ -133,7 +133,7 @@
                         copy of your Clearance Form and have them signed by
                         the CS Library and University Registrar.</p>
                     <p class="m-0">2. FILL OUT ONLINE PRE-REGISTRATION:
-                        
+
                     @if ($school_year->status == 'Active')
                     <a class="small btn btn-warning bg-warning btn-block mt-1" href="/student/auth/register-student">PRE-REGISTER HERE</a></p>
                     @else

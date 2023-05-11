@@ -150,8 +150,34 @@ class AdmissionOfficerController extends Controller
     public function deletePendingStudent($id)
     {
         $student = PendingStudent::find($id);
+        if (!$student) {
+            return redirect('/staff/admin/manage-enrollees');
+        }
+
+        $subjectIds = [$student->first_period_sub, $student->second_period_sub, $student->third_period_sub];
+        $subjects = Subject::whereIn('id', $subjectIds)->get();
+        foreach ($subjects as $subject) {
+            $subject->increment('available_slots');
+        }
+
+        $programIds = [$student->program];
+        $programs = Program::whereIn('id', $programIds)->get();
+        foreach ($programs as $program) {
+            $program->increment('available_slots');
+        }
+
         $student->delete();
-        return back();
+        return redirect('/staff/admin/manage-enrollees');
+    }
+
+
+
+    function incrementAvailableSlots($subjects)
+    {
+        foreach ($subjects as $subject) {
+            $subject->available_slots += 1;
+            $subject->save();
+        }
     }
 
     #Approved Student Table
@@ -334,6 +360,10 @@ class AdmissionOfficerController extends Controller
     #Encode Student Data / Insert column datas
     function encodeStudentData(Request $request)
     {
+        $request->validate([
+            'enrollment_file' => 'mimes:pdf,xlx,csv|max:2048',
+        ]);
+
         $student = ApprovedStudent::find($request->id);
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;
@@ -350,6 +380,16 @@ class AdmissionOfficerController extends Controller
         $student->first_period_adviser = $request->first_period_adviser;
         $student->second_period_adviser = $request->second_period_adviser;
         $student->third_period_adviser = $request->third_period_adviser;
+
+        $file = $request->enrollment_file;
+
+        if ($file !== null) {
+            $filename = $file->getClientOriginalName();
+            $request->enrollment_file->move('assets', $filename);
+
+            $student->enrollment_file = $filename;
+        } else {
+        }
 
         $save = $student->save();
         Mail::to($student->email)->send(new NotificationMail($student->email));

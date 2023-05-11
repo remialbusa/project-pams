@@ -114,7 +114,7 @@
                   
                                 <ul class="navbar-nav ms-auto font-weight-semibold">
                                     <li class="nav-item px-2">
-                                        <a class="nav-link-1">Welcome, <b>{{$LoggedAdminInfo}}</b></a>
+                                        <a class="nav-link-1">Welcome, <b>{{$LoggedAdminInfo->name}}</b></a>
                                     </li>
                                     </li>
                                     <li class="nav-item px-2">

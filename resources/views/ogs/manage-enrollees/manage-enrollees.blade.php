@@ -95,7 +95,6 @@
                                             <td class="px-1">
                                                 <a href="{{ route('admin.edit-approved', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm"><i class="bi bi-check-circle"></i></a>
                                                 <a onclick="return confirm('Are you sure?')" href="{{ route('delete-approved', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
-                                                <a target="_blank" href="{{ route('admin.view-pdf', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-file-earmark-arrow-down"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach                                        
@@ -113,8 +112,8 @@
                                             <th class="col-sm-1">Student Type</th>
                                             <th class="col-sm-3">Name</th>
                                             <th class="col-sm-2">Student Number</th>
-                                            <th class="col-sm-1">Program</th>
-                                            <th class="col-sm-2">Contact Number</th>
+                                            <th class="col-sm-1">Vaccination File</th>
+                                            <th class="col-sm-2">Requirement Files</th>
                                             <th class="col-sm-3">Action</th>
                                         </tr>
                                     </thead>               
@@ -124,12 +123,27 @@
                                             <td>{{$student->student_type}}</td>
                                             <td>{{$student->first_name}} {{$student->middle_name}} {{$student->last_name}}</td>
                                             <td>{{$student->student_id}}</td>                     
-                                            <td>{{$student->getProgramID->program}}</td>
-                                            <td>{{$student->mobile_no}}</td>
+                                            @php
+                                            $vaccination_file = $student->vaccination_file; // Assign the vaccination file path or name to the variable
+                                            @endphp
+                                            <td class="col-sm-1 text-center"> <a href="{{ asset('assets/' . $vaccination_file) }}" target="_blank" rel="noopener noreferrer">{{ $vaccination_file }}</a></td>
+                                            <td class="col-sm-1 text-center pt-4">
+                                                @php
+                                                $files = json_decode($student->file, true);
+                                                @endphp
+                                                @if (is_array($files))
+                                                @foreach($files as $file)
+                                                @if (in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png']))
+                                                <a href="{{ asset('assets/') . '/' .  $file }}"><img src="{{ asset('assets/' . $file) }}" style="width: 100px;"></a><br>
+                                                @else
+                                                <a href="{{ asset('assets/') . $file }}" target="">{{ $file }}</a><br>
+                                                @endif
+                                                @endforeach
+                                                @endif
+                                            </td>
                                             <td class="px-1">
                                                 <a href="{{route('admin.encoding-students', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
-                                                <a href="{{route('view-encode-student-data', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-eye"></i></a>
-                                                <a href="{{route('admin.uploading-enrollment-slip', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-upload"></i></a>                        
+                                                <a href="{{route('view-encode-student-data', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-eye"></i></a>                        
                                             </td>
                                         </tr>
                                     @endforeach                                        
