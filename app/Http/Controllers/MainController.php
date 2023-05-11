@@ -184,6 +184,7 @@ class MainController extends Controller
         return back()->with('success', 'Registration complete');
     }
 
+    
 
     //checks the number of slots of subjects
     function checkNoOfSlots($subjects)
