@@ -201,8 +201,6 @@ class AdmissionOfficerController extends Controller
             'student_id' => 'required',
             'last_name' => 'required',
             'first_name' => 'required',
-            'vaccination_status' => 'required',
-            'vaccination_file' => 'required',
             'email' => 'required',
             'gender' => 'required',
             'birth_date' => 'required',
@@ -218,15 +216,13 @@ class AdmissionOfficerController extends Controller
             'third_period_sub' => 'required',
         ]);
 
-        $student = new EnrolledStudent();
+        $student = new ApprovedStudent();
         $student->id = $request->id;
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;
         $student->last_name = $request->last_name;
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
-        $student->vaccination_status = $request->vaccination_status;
-        $student->vaccination_file = $request->vaccination_file;
         $student->email = $request->email;
         $student->gender = $request->gender;
         $student->birth_date = $request->birth_date;
@@ -251,7 +247,7 @@ class AdmissionOfficerController extends Controller
         $save = $student->save();
 
         if ($save) {
-            return redirect('/staff/admin/manage-enrollees');
+            return back()->with('success', 'Successfully inserted student data');
         } else {
             return back()->with('fail', 'Failed inserting student data');
         }
@@ -275,8 +271,24 @@ class AdmissionOfficerController extends Controller
     public function deleteApprovedStudents($id)
     {
         $student = ApprovedStudent::find($id);
+        if (!$student) {
+            return redirect('/staff/admin/manage-enrollees');
+        }
+
+        $subjectIds = [$student->first_period_sub, $student->second_period_sub, $student->third_period_sub];
+        $subjects = Subject::whereIn('id', $subjectIds)->get();
+        foreach ($subjects as $subject) {
+            $subject->increment('available_slots');
+        }
+
+        $programIds = [$student->program];
+        $programs = Program::whereIn('id', $programIds)->get();
+        foreach ($programs as $program) {
+            $program->increment('available_slots');
+        }
+
         $student->delete();
-        return back();
+        return redirect('/staff/admin/manage-enrollees');
     }
 
     #Update Approved Student
@@ -288,7 +300,6 @@ class AdmissionOfficerController extends Controller
             'last_name' => 'required',
             'first_name' => 'required',
             'vaccination_status' => 'required',
-            'vaccination_file' => 'required',
             'email' => 'required',
             'gender' => 'required',
             'birth_date' => 'required',
@@ -308,7 +319,6 @@ class AdmissionOfficerController extends Controller
         $students->first_name = $request->first_name;
         $students->middle_name = $request->middle_name;
         $students->vaccination_status = $request->vaccination_status;
-        $students->vaccination_file = $request->vaccination_file;
         $students->email = $request->email;
         $students->gender = $request->gender;
         $students->birth_date = $request->birth_date;
@@ -328,6 +338,7 @@ class AdmissionOfficerController extends Controller
             return back()->with('fail', 'Failed inserting student data');
         }
     }
+
 
     #Encoded Students
     function encodedStudents()
@@ -365,21 +376,38 @@ class AdmissionOfficerController extends Controller
         ]);
 
         $student = ApprovedStudent::find($request->id);
-        $student->student_type = $request->student_type;
-        $student->student_id = $request->student_id;
-        $student->enrollment_status = $request->enrollment_status;
-        $student->first_procedure = $request->first_procedure;
-        $student->second_procedure = $request->second_procedure;
-        $student->third_procedure = $request->third_procedure;
-        $student->first_period_sub = $request->first_period_sub;
-        $student->second_period_sub = $request->second_period_sub;
-        $student->third_period_sub = $request->third_period_sub;
-        $student->first_period_sched = $request->first_period_sched;
-        $student->second_period_sched = $request->second_period_sched;
-        $student->third_period_sched = $request->third_period_sched;
-        $student->first_period_adviser = $request->first_period_adviser;
-        $student->second_period_adviser = $request->second_period_adviser;
-        $student->third_period_adviser = $request->third_period_adviser;
+
+        $enrolledStudent = new EnrolledStudent();
+
+        $enrolledStudent->student_type = $student->student_type;
+        $enrolledStudent->student_id = $student->student_id;
+        $enrolledStudent->last_name = $student->last_name;
+        $enrolledStudent->first_name = $student->first_name;
+        $enrolledStudent->middle_name = $student->middle_name;
+        $enrolledStudent->vaccination_status = $student->vaccination_status;
+        $enrolledStudent->email = $student->email;
+        $enrolledStudent->gender = $student->gender;
+        $enrolledStudent->birth_date = $student->birth_date;
+        $enrolledStudent->mobile_no = $student->mobile_no;
+        $enrolledStudent->fb_acc_name = $student->fb_acc_name;
+        $enrolledStudent->region = $student->region;
+        $enrolledStudent->province = $student->province;
+        $enrolledStudent->city = $student->city;
+        $enrolledStudent->baranggay = $student->baranggay;
+        $enrolledStudent->program = $student->program;
+        $enrolledStudent->enrollment_status = $student->enrollment_status;
+        $enrolledStudent->first_procedure = $student->first_procedure;
+        $enrolledStudent->second_procedure = $student->second_procedure;
+        $enrolledStudent->third_procedure = $student->third_procedure;
+        $enrolledStudent->first_period_sub = $student->first_period_sub;
+        $enrolledStudent->second_period_sub = $student->second_period_sub;
+        $enrolledStudent->third_period_sub = $student->third_period_sub;
+        $enrolledStudent->first_period_sched = $student->first_period_sched;
+        $enrolledStudent->second_period_sched = $student->second_period_sched;
+        $enrolledStudent->third_period_sched = $student->third_period_sched;
+        $enrolledStudent->first_period_adviser = $student->first_period_adviser;
+        $enrolledStudent->second_period_adviser = $student->second_period_adviser;
+        $enrolledStudent->third_period_adviser = $student->third_period_adviser;
 
         $file = $request->enrollment_file;
 
@@ -387,14 +415,15 @@ class AdmissionOfficerController extends Controller
             $filename = $file->getClientOriginalName();
             $request->enrollment_file->move('assets', $filename);
 
-            $student->enrollment_file = $filename;
+            $enrolledStudent->enrollment_file = $filename;
         } else {
         }
 
-        $save = $student->save();
+        $save = $enrolledStudent->save();
         Mail::to($student->email)->send(new NotificationMail($student->email));
 
         if ($save) {
+            $this->deletePendingStudent($request->id);
             return back()->with('success', 'Successfully inserted data');
         } else {
             return back()->with('fail', 'Failed inserting student data');
