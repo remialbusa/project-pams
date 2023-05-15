@@ -13,7 +13,15 @@
             <a href="{{ route('admin.export-subjects') }}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm">Export Data</a>
         </div>
         <p>The list of subjects shown in the table below are the available subjects for the S.Y. 2022-2023.</p>
+        @if(Session::get('success'))
 
+        <div class="alert alert-success text-center">{{Session::get('success')}}</div>
+
+        @endif
+
+        @if(Session::get('fail'))
+        <div class="alert alert-danger text-center">{{Session::get('fail')}}</div>
+        @endif
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -49,8 +57,10 @@
                                 <td class="text-center">{{$subject->no_of_students}}</td>
                                 <td class="text-center">{{$subject->available_slots}}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('edit-subject', $subject->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
-                                    <a href="{{ route('delete-subject', $subject->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
+
+                                    <a href="{{ route('edit-subject', $subject->id) }}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
+                                    <a onclick="return confirm('Are you sure?')" href="{{ route('delete-subject', $subject->id) }}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
+
                                 </td>
                             </tr>
                             @endforeach

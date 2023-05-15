@@ -44,7 +44,7 @@
                                 <td class="text-center">{{$programs->available_slots}}</td>
                                 <td class="text-center">
                                     <a href="{{route('edit-program', $programs->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
-                                    <a href="{{route('delete-program', $programs->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
+                                    <a onclick="return confirm('Are you sure?')" href="{{route('delete-program', $programs->id)}}" class="mx-1 d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-trash3"></i></a>
                                 </td>
                             </tr>
                             @endforeach

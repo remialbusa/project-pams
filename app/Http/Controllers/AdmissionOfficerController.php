@@ -301,7 +301,7 @@ class AdmissionOfficerController extends Controller
             'program' => 'required',
         ]);
 
-        $students = ApproveStudent::find($request->id);
+        $students = ApprovedStudent::find($request->id);
         $students->student_type = $request->student_type;
         $students->student_id = $request->student_id;
         $students->last_name = $request->last_name;
@@ -680,13 +680,74 @@ class AdmissionOfficerController extends Controller
         return view('ogs.edit-subject', $data, ['semesters' => $semester, 'programs' => $programs, 'subject' => $subject, 'availableSlots' => $availableSlots]);
     }
 
-    #Delete Subject
+    public function getStudentSubjectsAndPrograms($id)
+    {
+        $student = PendingStudent::find($id);
+
+        if (!$student) {
+            return redirect('/students')->with('error', 'Student not found');
+        }
+
+        // Retrieve the subjects for the student (both pending and enrolled)
+        $subjectIds = [$student->first_period_sub, $student->second_period_sub, $student->third_period_sub];
+        $subjects = Subject::whereIn('id', $subjectIds)->get();
+
+        // Retrieve the program for the student
+        $program = Program::find($student->program);
+
+        return view('student', compact('student', 'subjects', 'program'));
+    }
+
+    public function getSubjectsAndProgramsForEnrolledStudents($id)
+    {
+        $student = EnrolledStudent::find($id);
+
+        if (!$student) {
+            return redirect('/students')->with('error', 'Student not found');
+        }
+
+        // Retrieve the subjects for the student (both pending and enrolled)
+        $subjectIds = [$student->first_period_sub, $student->second_period_sub, $student->third_period_sub];
+        $subjects = Subject::whereIn('id', $subjectIds)->get();
+
+        // Retrieve the program for the student
+        $program = Program::find($student->program);
+
+        return view('student', compact('student', 'subjects', 'program'));
+    }
+
+
     function deleteSubjects($id)
     {
-        $subjects = Subject::find($id);
-        $subjects->delete();
-        return redirect('/staff/admin/subjects');
+        $subject = Subject::find($id);
+
+        // Check if there are any pending students associated with the subject
+        $no_of_students = PendingStudent::where(function ($query) use ($subject) {
+            $query->where('first_period_sub', $subject->id)
+                ->orWhere('second_period_sub', $subject->id)
+                ->orWhere('third_period_sub', $subject->id);
+        })->count();
+        $subject->no_of_students = $no_of_students;
+
+        if ($no_of_students >= 1) {
+            return redirect('/staff/admin/subjects')->with('fail', 'Cannot delete subject as it has enrolled students.');
+        }
+
+        $subject->delete();
+        return redirect('/staff/admin/subjects')->with('success', 'Subject has been deleted.');
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     #Update Subject
     function updateSubject(Request $request)
