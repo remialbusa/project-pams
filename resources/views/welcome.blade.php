@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LNU Graduate School Manangement System</title>
+    <title>LNU Graduate School Management System</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -54,21 +54,21 @@
         </div>
     </nav>
     
-    <section class="hero-main">
-        <div class="container h-100">
-            <div class="row h-100">
+    <section id="hero-main">
+        <div class="container h-50">
+            <div class="row ">
                 <div class="col col-xs-6 my-auto">
                     <div class="card bg-none text-white">
                         <div class="card-title">
-                            <h1 class="pt-3">
-                                Welcome to LNU Graduate School Management System
+                            <h1 class="pt-5 text-center" >
+                                Welcome to <strong style="color: #f6b024; font-weight: bold;">LNU-GSMS</strong>
                             </h1>
                         </div>
                         <div class="card-body pt-0">
-                            <p class="card-text">
+                            <p class="card-text text-center">
                                 <b>Graduate School Managment System</b>
                             </p>
-                            <p class="card-text">
+                            <p class="card-text text-center">
                                 @foreach ($school_year as $school_year)
                                 @if ($school_year->status == 'Active')
                                     The pre-enrollment for {{$school_year->semester}} S.Y. {{$school_year->school_year}}
@@ -80,9 +80,17 @@
                                 @endforeach
                             </p>
 
-                            <a href="{{ route('enrollment') }}" class="button1 text-decoration-none">Enroll now</a>
-                            <a href="{{ route('process') }}" class="button text-decoration-none">Enrollment process</a>
-
+                            <div style="margin-top: 30px; text-align: center;" >
+                                <a style="font-weight: bold;" href="student/auth/login" class="btn btn-warning technical-btn btn-get-started animate__animated animate__fadeInUp scrollto">I'm a Student</a>
+                                <a style="font-weight: bold;" href="staff/auth/login" class="btn btn-warning technical-btn btn-get-started animate__animated animate__fadeInUp scrollto">I'm an Employee</a>
+                            </div>
+                            {{-- <div class="text-center">
+                                <a href="student/auth/login" class="button1 text-decoration-none">I'm a Student</a>
+                                <a href="staff/auth/login" class="button btn-md text-decoration-none">I'm an Employee</a>
+                            </div> --}}
+                            {{-- <div>
+                                <button type="submit" class="mt-3 technical-btn btn btn-warning">Submit</button>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -90,7 +98,89 @@
         </div>
     </section>
 
-    
+    <section id="icon-boxes" class="icon-boxes" {{-- style="margin-top: 50px;" --}}>
+        <div class="container">
+
+            <!-- Remove Unavailable Class if page is ready -->
+
+            <div class="row text-center">
+            {{-- <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">
+                <div class="icon-box shadow">
+                <div class="icon unavailable"><i class="bx bx-transfer"></i></div>
+                <h4 class="title unavailable"><a href="">Shifting of Program</a></h4>
+                <p class="description unavailable">Transfer to a degree program of your choice</p>
+                <hr class="default-divider mt-3">
+                <div class="alert alert-dark pt-1 pb-1" style="border-radius: 50px; font-weight: 600; font-size: 10px; width: 70%;"><i class="bx bx-hard-hat pt-1"></i>&nbsp;Page Under Construction</div>
+                </div>
+            </div> --}}
+            <div class="col-sm"></div>
+            <div class="col-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon-box">
+                <div class="icon"><i class="bx bx-file"></i></div>
+                <h4 class="title">Programs Offered</h4>
+                <p class="description">List of programs offering!</p>
+                <hr class="default-divider mt-3">
+                <div class="btn btn-warning" style="border-radius: 50px; width: 70%; font-weight: bold;" data-bs-toggle="modal" data-bs-target="#programModalForm">Show</div>
+                </div>
+            </div>
+
+            {{-- <div class="col-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon-box">
+                <div class="icon"><i class="bx bx-file"></i></div>
+                <h4 class="title">Subjects Offered</h4>
+                <p class="description">List of subjects offering!</p>
+                <hr class="default-divider mt-3">
+                <div class="btn btn-warning" style="border-radius: 50px; width: 70%; font-weight: bold;" data-bs-toggle="modal" data-bs-target="#subjectModalForm">Show</div>
+                </div>
+            </div> --}}
+            <div class="col-sm"></div>
+        </div>
+
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="programModalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Programs Offering</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mx-4 my-4">
+                    @foreach($programList as $programList)
+
+                    <li style="font-weight: bold;">{!! $programList->program !!} -
+                        @if($programList->status == "Active")
+                        <a style="text-decoration: none; border-radius:30px;" class="alert alert-primary"> {!! $programList->status !!} </a>
+                        @elseif($programList->status == "Dissolved")
+                        <a style="text-decoration: none; border-radius:30px;" class="alert alert-danger text-center"> {!! $programList->status !!} </a>
+                        @else
+                        <a style="text-decoration: none; border-radius:30px;" class="alert alert-warning text-center"> Inactive </a>
+                        @endif
+                    </li><br class="mt-5"/>
+                    
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- <!-- Modal -->
+    <div class="modal fade" id="subjectModalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Subjects Offering</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mx-4 my-4">
+                    
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
 
     <section class="container feature pt-5 mt-5 mb-5">
 
@@ -171,6 +261,8 @@
             </div>
         </div>
     </section>
+
+    
 
     {{-- <section class="hero-body pt-5 mt-5 mb-5">
         <h1 style="color:white;"class="text-center display-6">Event Calendar</h1>

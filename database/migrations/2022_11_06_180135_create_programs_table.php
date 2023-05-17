@@ -19,6 +19,8 @@ class CreateProgramsTable extends Migration
             $table->string('degree');
             $table->string('program');
             $table->string('description');
+            $table->string('semester');
+            $table->string('status');
             $table->timestamps();
         });
     }

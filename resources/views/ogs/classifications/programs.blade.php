@@ -28,6 +28,8 @@
                                 <th>Degree</th>
                                 <th>Program</th>
                                 <th>Description</th>
+                                <th>Semester</th>
+                                <th>Status</th>
                                 <th>No. of Students Enrolled</th>
                                 <th>Available Slots</th>
                                 <th class="col-sm-2">Action</th>
@@ -40,6 +42,8 @@
                                 <td>{{$programs->degree}}</td>
                                 <td>{{$programs->program}}</td>
                                 <td>{{$programs->description}}</td>
+                                <td>{{$programs->semester}}</td>
+                                <td>{{$programs->status}}</td>
                                 <td class="text-center">{{$programs->no_of_students}}</td>
                                 <td class="text-center">{{$programs->available_slots}}</td>
                                 <td class="text-center">
@@ -100,6 +104,29 @@
                             <span class="text-danger">@error('description'){{$message}} @enderror</span>
                             <label for="floatingInput">Description</label>
                         </div>
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select form-select-lg" aria-label="Default select example" name="semester">
+                                <option selected disabled>Semester</option>
+                                @foreach ($semester as $semesters)
+                                <option value="{{$semesters->id}}">{{$semesters->semester}}</option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger">@error('semester'){{$message}} @enderror</span>
+                            <label for="floatingInput">Semester</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select form-select-lg" aria-label="Default select example" name="status">
+                                <option selected disabled>Select Status</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                                <option value="Dissolved">Dissolved</option>
+                            </select>
+                            <span class="text-danger">@error('status'){{$message}} @enderror</span>
+                            <label for="floatingInput">Status</label>
+                        </div>
+
                         <div class="d-grid">
                             <button type="submit" class="btn btn-lg btn-primary shadow-sm btn-login fw-bold mb-2">Save</button>
                         </div>

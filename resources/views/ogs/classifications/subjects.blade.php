@@ -99,16 +99,7 @@
                             <span class="text-danger">@error('subject'){{$message}} @enderror</span>
                             <label for="floatingInput">Subject</label>
                         </div>
-                        <div class="form-floating mb-3">
-                            <select class="form-select form-select-lg" aria-label="Default select example" name="semester">
-                                <option selected disabled>Semester</option>
-                                @foreach ($semesters as $semesters)
-                                <option value="{{$semesters->id}}">{{$semesters->semester}}</option>
-                                @endforeach
-                            </select>
-                            <span class="text-danger">@error('semester'){{$message}} @enderror</span>
-                            <label for="floatingInput">Semester</label>
-                        </div>
+                        
                         <div class="form-floating mb-3">
                             <select class="form-select form-select-lg" aria-label="Default select example" name="period">
                                 <option selected disabled>Select Period</option>
@@ -130,9 +121,21 @@
                             <label for="floatingInput">Units</label>
                         </div>
                         <div class="form-floating mb-3">
+                            <select class="form-select form-select-lg" aria-label="Default select example" name="semester">
+                                <option selected disabled>Semester</option>
+                                @foreach ($semesters as $semesters)
+                                <option value="{{$semesters->id}}">{{$semesters->semester}}</option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger">@error('semester'){{$message}} @enderror</span>
+                            <label for="floatingInput">Semester</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
                             <select class="form-select form-select-lg" aria-label="Default select example" name="status">
-                                <option selected disabled>Select status</option>
+                                <option selected disabled>Select Status</option>
                                 <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
                                 <option value="Dissolved">Dissolved</option>
                             </select>
                             <span class="text-danger">@error('status'){{$message}} @enderror</span>

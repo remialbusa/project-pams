@@ -22,7 +22,6 @@ class CreateSubjectsTable extends Migration
             $table->string('period');
             $table->string('semester');
             $table->string('status');
-            $table->string('available_slots');
             $table->timestamps();
         });
     }

@@ -75,7 +75,7 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" name="available_slots" placeholder="Enter Available Slots" value="">
+                                <input type="number" class="form-control" name="available_slots" placeholder="Enter Available Slots" value="{{$programs['available_slots']}}">
                                 <label for="floatingInput">No. of Slots</label>
                                 <span class="text-danger">@error('slots'){{$message}} @enderror</span>
                             </div>
@@ -108,6 +108,43 @@
                                 <input type="text" class="form-control" name="description" placeholder="Description" value="{{$programs['description']}}">
                                 <span class="text-danger">@error('description'){{$message}} @enderror</span>
                                 <label for="floatingInput">Description</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <select class="form-select form-select-lg" aria-label="Default select example" name="semester">
+                                    @foreach ($school_year as $school_year)
+                                    <option value="{{$school_year->semester}}" {{$programs->semester == $school_year->id ? 'selected': ''}}>
+                                        {{$school_year->semester}}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger">@error('semester'){{$message}} @enderror</span>
+                                <label for="floatingInput">Semester</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <select class="form-select form-select-lg" aria-label="Default select example" name="status">
+                                    @if($programs['status'] == 'Active')
+                                    <option selected value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                    <option value="Dissolved">Dissolved</option>
+                                    @elseif(($programs['status'] == 'Inactive'))
+                                    <option value="Active">Active</option>
+                                    <option selected value="Inactive">Inactive</option>
+                                    <option value="Dissolved">Dissolved</option>
+                                    @elseif(($programs['status'] == 'Dissolved'))
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                    <option selected value="Dissolved">Dissolved</option>
+                                    @else
+                                    <option selected disabled>Select Status</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                    <option value="Dissolved">Dissolved</option>
+                                    @endif
+                                </select>
+                                <span class="text-danger">@error('status'){{$message}} @enderror</span>
+                                <label for="floatingInput">Status</label>
                             </div>
 
                             <div class="d-grid">

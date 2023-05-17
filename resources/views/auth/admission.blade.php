@@ -19,6 +19,9 @@
 </head>
 
 <body>
+    @php
+    use App\Models\SchoolYear;
+    @endphp
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
@@ -83,8 +86,9 @@
                 to schedule your GSAT.
                 <p class="m-0">3. FILL OUT ONLINE PRE-REGISTRATION FORM: 
                     
-                    @foreach ($school_year as $school_year)
-                    @if ($school_year->status == 'Active')
+
+                    @if (SchoolYear::exists())
+                    
                     <a class="small btn btn-warning bg-warning btn-block mt-1" href="student/auth/register-new-student">PRE-REGISTER HERE!</a> </p>
                     @else
                     <a class="small btn btn-warning bg-warning btn-block mt-1" data-bs-toggle="modal" data-bs-target="#modalForm">PRE-REGISTER HERE!</a>
@@ -106,7 +110,7 @@
                     </div>
                     
                     @endif
-                    
+
                 <p class="m-0">4. FILL OUT THE NEEDED FORMS FOR ADMISSION AT THE OGS</p>For successful examinees, fill out the Application for Graduate Admission Form
                 (AFCAF) and the Draft Registration Form (DRF) at the Office of the Graduate School.
                 <p class="m-0">5. GO TO THE MIS FOR THE SIGNING OF YOUR DRF AND PRINTING OF YOUR
@@ -133,9 +137,9 @@
                         copy of your Clearance Form and have them signed by
                         the CS Library and University Registrar.</p>
                     <p class="m-0">2. FILL OUT ONLINE PRE-REGISTRATION:
-                        
-                    @if ($school_year->status == 'Active')
-                    <a class="small btn btn-warning bg-warning btn-block mt-1" href="/student/auth/register-student">PRE-REGISTER HERE</a></p>
+                    
+                    @if (SchoolYear::exists())
+                    <a class="small btn btn-warning bg-warning btn-block mt-1" href="student/auth/register-student">PRE-REGISTER HERE!</a> </p>
                     @else
                     <a class="small btn btn-warning bg-warning btn-block mt-1" data-bs-toggle="modal" data-bs-target="#modalForm">PRE-REGISTER HERE!</a>
                     <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -153,9 +157,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>   
+                    </div>
                     @endif
-                    @endforeach
+                    
                     <p class="m-0">3. SUBMIT YOUR CLEARANCE TO THE OGS AND FILL OUT THE
                         DRAFT REGISTRATION FORM (DRF).</p>
                     <p class="m-0">4. GO TO THE MIS FOR THE SIGNING OF YOUR DRF AND PRINTING

@@ -30,44 +30,37 @@ class MainController extends Controller
         $enrolledStudents = DB::table('enrolled_students')->count();
         $subjects = DB::table('subjects')->count();
         $programs = DB::table('programs')->count();
-        return view('welcome', compact('school_year', 'enrolledStudents', 'subjects', 'programs'));
+        $programList = Program::all();
+        return view('welcome', compact('programList','school_year', 'enrolledStudents', 'subjects', 'programs'));
     }
 
     function register()
     {
-        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
-        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
-        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
-        $subjects = Subject::all();
-
         $programData['data'] = Program::orderby("program", "asc")
             ->select('id', 'program', 'description')
             ->get();
 
         $school_year = SchoolYear::all();
-        return view('auth.register-student', ['school_year' => $school_year, 'firstPeriod' => $firstPeriod, 'secondPeriod' => $secondPeriod, 'thirdPeriod' => $thirdPeriod, 'programData' => $programData, 'subjects' => $subjects]);
+        return view('auth.register-student', ['school_year' => $school_year, 'programData' => $programData]);
     }
 
     function registerNewStudent()
     {
-        $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
-        $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
-        $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
-
         $programData['data'] = Program::orderby("program", "asc")
             ->select('id', 'program', 'description')
             ->get();
 
         $school_year = SchoolYear::all();
-        return view('auth.register-new-student', ['school_year' => $school_year, 'programData' => $programData, 'firstPeriod' => $firstPeriod, 'secondPeriod' => $secondPeriod, 'thirdPeriod' => $thirdPeriod]);
+        return view('auth.register-new-student', ['school_year' => $school_year, 'programData' => $programData]);
     }
 
     function getFirstPeriod($programid = 0)
     {
         $subjects['data'] = Subject::orderby("code", "asc")
-            ->select('id', 'code', 'subject', 'unit', 'period')
+            ->select('id', 'code', 'subject', 'unit', 'period', 'semester', 'status')
             ->where('program', $programid)
             ->where('period', '1st Period')
+            ->where('status', 'Active')
             ->get();
         return response()->json($subjects);
     }
@@ -78,6 +71,7 @@ class MainController extends Controller
             ->select('id', 'code', 'subject', 'unit', 'period')
             ->where('program', $programid)
             ->where('period', '2nd Period')
+            ->where('status', 'Active')
             ->get();
         return response()->json($subjects);
     }
@@ -88,6 +82,7 @@ class MainController extends Controller
             ->select('id', 'code', 'subject', 'unit', 'period')
             ->where('program', $programid)
             ->where('period', '3rd Period')
+            ->where('status', 'Active')
             ->get();
         return response()->json($subjects);
     }
@@ -97,16 +92,16 @@ class MainController extends Controller
         //validate info
         $request->validate([
             'student_type' => 'required',
-            'student_id' => 'required',
-            'last_name' => 'required',
-            'first_name' => 'required',
+            'student_id' => 'required|unique:pending_students',
+            'last_name' => 'required|unique:pending_students',
+            'first_name' => 'required|unique:pending_students',
             'vaccination_status' => 'required',
             'vaccination_file' => 'required|mimes:pdf,xlx,csv,jpg,jpeg,png|max:2048',
-            'email' => 'required',
+            'email' => 'required|unique:pending_students',
             'gender' => 'required',
             'birth_date' => 'required|date|before:-23 years',
-            'mobile_no' => 'required',
-            'fb_acc_name' => 'required',
+            'mobile_no' => 'required|unique:pending_students',
+            'fb_acc_name' => 'required|unique:pending_students',
             'region' => 'required',
             'province' => 'required',
             'city' => 'required',

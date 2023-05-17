@@ -5,17 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\EnrolledStudent;
-use App\Models\Student;
 use App\Models\Program;
-use App\Models\StudentStatus;
 use App\Models\Subject;
 use App\Models\PendingStudent;
-use App\Models\AssignStudent;
-use App\Models\AdvisingStudent;
-use App\Models\StudentUser;
 use App\Models\ApprovedStudent;
 use App\Models\Adviser;
-use App\Models\Scheduling;
 use App\Exports\EnrolledStudentExport;
 use App\Exports\SubjectExport;
 use App\Exports\ProgramExport;
@@ -175,8 +169,6 @@ class AdmissionOfficerController extends Controller
             'student_id' => 'required',
             'last_name' => 'required',
             'first_name' => 'required',
-            'vaccination_status' => 'required',
-            'vaccination_file' => 'required',
             'email' => 'required',
             'gender' => 'required',
             'birth_date' => 'required',
@@ -199,8 +191,6 @@ class AdmissionOfficerController extends Controller
         $student->last_name = $request->last_name;
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
-        $student->vaccination_status = $request->vaccination_status;
-        $student->vaccination_file = $request->vaccination_file;
         $student->email = $request->email;
         $student->gender = $request->gender;
         $student->birth_date = $request->birth_date;
@@ -225,7 +215,7 @@ class AdmissionOfficerController extends Controller
         $save = $student->save();
 
         if ($save) {
-            return redirect('/staff/admin/manage-enrollees');
+            return back()->with('success', 'Successfully inserted student data');
         } else {
             return back()->with('fail', 'Failed inserting student data');
         }
@@ -352,7 +342,7 @@ class AdmissionOfficerController extends Controller
         $student->third_period_adviser = $request->third_period_adviser;
 
         $save = $student->save();
-        Mail::to($student->email)->send(new NotificationMail($student->email));
+       /*  Mail::to($student->email)->send(new NotificationMail($student->email)); */
 
         if ($save) {
             return back()->with('success', 'Successfully inserted data');
@@ -489,6 +479,7 @@ class AdmissionOfficerController extends Controller
         }
 
         $programs = Program::all();
+        $semester = SchoolYear::all();
 
         foreach ($programs as $program) {
             $no_of_students = PendingStudent::where(function ($query) use ($program) {
@@ -497,7 +488,7 @@ class AdmissionOfficerController extends Controller
             $program->no_of_students = $no_of_students;
         }
 
-        return view('ogs.classifications.programs', $data, ['programs' => $programs]);
+        return view('ogs.classifications.programs', $data, ['semester'=>$semester,'programs' => $programs]);
     }
 
     #Editing Program
@@ -512,6 +503,7 @@ class AdmissionOfficerController extends Controller
 
         $programs = Program::find($id);
         $programData = Program::all();
+        $school_year = SchoolYear::all();
         $available_slots_program = $programs->available_slots ?? 0;
         if (request()->isMethod('post')) {
             $input_slots = request()->input('available_slots');
@@ -519,7 +511,7 @@ class AdmissionOfficerController extends Controller
             $programs->available_slots = $available_slots_program;
             $programs->save();
         }
-        return view('ogs.edit-program', $data, ['programData' => $programData, 'programs' => $programs]);
+        return view('ogs.edit-program', $data, ['school_year'=>$school_year,'programData' => $programData, 'programs' => $programs]);
     }
 
     #Delete Program
@@ -566,6 +558,8 @@ class AdmissionOfficerController extends Controller
             'degree' => 'required',
             'program' => 'required',
             'description' => 'required',
+            'semester' => 'required',
+            'status' => 'required',
         ]);
 
         //insert data
@@ -575,6 +569,8 @@ class AdmissionOfficerController extends Controller
         $programs->degree = $request->degree;
         $programs->program = $request->program;
         $programs->description = $request->description;
+        $programs->semester = $request->semester;
+        $programs->status = $request->status;
         $save = $programs->save();
 
         if ($save) {
@@ -628,7 +624,7 @@ class AdmissionOfficerController extends Controller
         }
         $programs = Program::all();
         $subject = Subject::find($id);
-        $semester = SchoolYear::all();
+        $school_year = SchoolYear::all();
         $availableSlots = $subject->available_slots ?? 0;
         if (request()->isMethod('post')) {
             $input_slots = request()->input('available_slots');
@@ -637,7 +633,7 @@ class AdmissionOfficerController extends Controller
             $subject->save();
         }
 
-        return view('ogs.edit-subject', $data, ['semesters' => $semester, 'programs' => $programs, 'subject' => $subject, 'availableSlots' => $availableSlots]);
+        return view('ogs.edit-subject', $data, ['school_year' => $school_year, 'programs' => $programs, 'subject' => $subject, 'availableSlots' => $availableSlots]);
     }
 
     #Delete Subject
@@ -659,6 +655,8 @@ class AdmissionOfficerController extends Controller
             'subject' => 'required',
             'units' => 'required',
             'period' => 'required',
+            'semester' => 'required',
+            'status' => 'required',
         ]);
 
         //update subject
@@ -669,6 +667,8 @@ class AdmissionOfficerController extends Controller
         $subject->subject = $request->subject;
         $subject->unit = $request->units;
         $subject->period = $request->period;
+        $subject->semester = $request->semester;
+        $subject->status = $request->status;
         $save = $subject->update();
 
         if ($save) {
@@ -1109,14 +1109,6 @@ class AdmissionOfficerController extends Controller
         }
     }
 
-
-
-
-
-
-
-
-
     function updateEnrolledStudent(Request $request)
     {
         $request->validate([
@@ -1187,28 +1179,6 @@ class AdmissionOfficerController extends Controller
         $student = EnrolledStudent::find($id);
         $student->delete();
         return redirect('/staff/admin/enrolled');
-    }
-
-
-    function updateStudentUser(Request $request)
-    {
-        $request->validate([
-            'student_type' => 'required',
-            'student_id' => 'required',
-            'password' => 'required',
-        ]);
-
-        $student = StudentUser::find($request->id);
-        $student->id = $request->id;
-        $student->student_id = $request->student_id;
-        $student->password = Hash::make($request->password);
-        $save = $student->save();
-
-        if ($save) {
-            return back()->with('success', 'Successfully Changed Password!');
-        } else {
-            return back()->with('fail', 'failed updating');
-        }
     }
 
     function deleteStudentUser($id)

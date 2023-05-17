@@ -19,22 +19,28 @@
             <div class="table-responsive">
                 <div class="table-wrapper">
                     <h2>
-                        <h5>Thesis Title: {{$LoggedUserInfo->title}}</h5>
 
-                        <h5 class="mt-5">Members:<br/>{{$LoggedUserInfo->member_1}}
-                        <br/>{{$LoggedUserInfo->member_2}}
-                        <br/>{{$LoggedUserInfo->member_3}}</h5>
+
+                        @if ($LoggedUserInfo->defense_id !== null)
+                        <h5>Thesis Title: {{$LoggedUserInfo->getDefenseID->title}}</h5>
+
+                        <h5 class="mt-5">Members:<br/>{{$LoggedUserInfo->getDefenseID->member_1}}
+                        <br/>{{$LoggedUserInfo->getDefenseID->member_2}}
+                        <br/>{{$LoggedUserInfo->getDefenseID->member_3}}</h5>
                         
-                        <h5 class="mt-5">Panelists:<br/> {{$LoggedUserInfo->panelist_1}}
-                        <br/>{{$LoggedUserInfo->panelist_2}}
-                        <br/>{{$LoggedUserInfo->panelist_3}}</h5>
+                        <h5 class="mt-5">Panelists:<br/> {{$LoggedUserInfo->getDefenseID->panelist_1}}
+                        <br/>{{$LoggedUserInfo->getDefenseID->panelist_2}}
+                        <br/>{{$LoggedUserInfo->getDefenseID->panelist_3}}</h5>
 
-                        <h5 class="mt-5">Adviser: {{$LoggedUserInfo->adviser}}</h5>
+                        <h5 class="mt-5">Adviser: {{$LoggedUserInfo->getDefenseID->adviser}}</h5>
 
-                        <h5 class="mt-5">Date: {{$LoggedUserInfo->date}}</h5>
-                        <h5 class="mt-5">Time: {{$LoggedUserInfo->time}}</h5>
-                        <h5 class="mt-5">Venue: {{$LoggedUserInfo->venue}}</h5>
-                        <h5 class="mt-5">Google Meet Link: <a href="{{$LoggedUserInfo->link}}" target="_blank">{{$LoggedUserInfo->link}}</a></h5>
+                        <h5 class="mt-5">Date: {{$LoggedUserInfo->getDefenseID->date}}</h5>
+                        <h5 class="mt-5">Time: {{$LoggedUserInfo->getDefenseID->time}}</h5>
+                        <h5 class="mt-5">Venue: {{$LoggedUserInfo->getDefenseID->venue}}</h5>
+                        <h5 class="mt-5">Google Meet Link: <a href="{{$LoggedUserInfo->getDefenseID->link}}" target="_blank">{{$LoggedUserInfo->getDefenseID->link}}</a></h5>
+                        @else
+                        <div class="alert alert-warning text-center">There's no defense schedule at the moment!</div>
+                        @endif
                     </h2>
                 </div>
             </div>

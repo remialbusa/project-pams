@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\EnrolledStudent;
 use App\Models\Student;
+use App\Models\Defense;
 use App\Models\AdmissionOfficer;
 use App\Models\StudentStatus;
 use App\Models\Subject;
@@ -57,8 +58,9 @@ class ThesisManagementController extends Controller
             ];
         }
         $student = EnrolledStudent::all();
-        $thesis = Thesis::all();    
-        return view('student.thesismanagement.student-thesis-schedule', $data, ['student'=>$student,'thesis' => $thesis]);
+        $thesis = Thesis::all();
+        $defense = Defense::all();
+        return view('student.thesismanagement.student-thesis-schedule', $data, ['defense'=>$defense,'student'=>$student,'thesis' => $thesis]);
     }
 
     #OGS Admin Thesis Directory
@@ -168,7 +170,8 @@ class ThesisManagementController extends Controller
             ];
         }
         $student = EnrolledStudent::all();
-        return view('ogs.thesis-management.thesis-scheduling', $data, ['student'=>$student]);
+        $defense = Defense::all();
+        return view('ogs.thesis-management.thesis-scheduling', $data, ['defense'=>$defense,'student'=>$student]);
     }
 
 
@@ -186,13 +189,16 @@ class ThesisManagementController extends Controller
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
         $subjects = Subject::all();
         $programs = Program::all();
-        return view('admin.defense-scheduling', $data, ['student'=>$student,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'subjects'=>$subjects]);
+        $defense = Defense::all();
+        return view('admin.defense-scheduling', $data, ['defense'=>$defense,'student'=>$student,'firstPeriod'=>$firstPeriod,'secondPeriod'=>$secondPeriod,'thirdPeriod'=>$thirdPeriod,'programs'=>$programs,'subjects'=>$subjects]);
     }
 
     function setSchedule(Request $request)
     {
-
-        $student = StudentUser::find($request->id);
+        $schedule = EnrolledStudent::find($request->id);
+        $schedule->defense_id = $request->id;
+        $student = Defense::find($request->id);
+        $student->id = $request->id;
         $student->title = $request->title;
         $student->member_1 = $request->member_1;
         $student->member_2 = $request->member_2;
@@ -206,6 +212,7 @@ class ThesisManagementController extends Controller
         $student->venue = $request->venue;
         $student->link = $request->link;
         
+        $save = $schedule->update();
         $save = $student->save();
 
         if($save){

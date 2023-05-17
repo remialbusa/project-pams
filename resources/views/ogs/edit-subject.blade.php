@@ -133,20 +133,45 @@
                                     <option selected value="3rd Period">3rd Period</option>
                                     @endif
                                 </select>
-                                <span class="text-danger">@error('units'){{$message}} @enderror</span>
+                                <span class="text-danger">@error('period'){{$message}} @enderror</span>
                                 <label for="floatingInput">Period</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <select class="form-select form-select-lg" aria-label="Default select example" name="program">
-                                    @foreach ($semesters as $semesters)
-                                    <option value="{{$programs->id}}" {{$subject->semester == $semesters->id ? 'selected': ''}}>
-                                        {{$semesters->semester}}
+                                <select class="form-select form-select-lg" aria-label="Default select example" name="semester">
+                                    @foreach ($school_year as $school_year)
+                                    <option value="{{$school_year->semester}}" {{$subject->semester == $school_year->id ? 'selected': ''}}>
+                                        {{$school_year->semester}}
                                     </option>
                                     @endforeach
                                 </select>
-                                <span class="text-danger">@error('program'){{$message}} @enderror</span>
-                                <label for="floatingInput">Program</label>
+                                <span class="text-danger">@error('semester'){{$message}} @enderror</span>
+                                <label for="floatingInput">Semester</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <select class="form-select form-select-lg" aria-label="Default select example" name="status">
+                                    @if($subject['status'] == 'Active')
+                                    <option selected value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                    <option value="Dissolved">Dissolved</option>
+                                    @elseif(($subject['status'] == 'Inactive'))
+                                    <option value="Active">Active</option>
+                                    <option selected value="Inactive">Inactive</option>
+                                    <option value="Dissolved">Dissolved</option>
+                                    @elseif(($subject['status'] == 'Dissolved'))
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                    <option selected value="Dissolved">Dissolved</option>
+                                    @else
+                                    <option selected disabled>Select Status</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                    <option value="Dissolved">Dissolved</option>
+                                    @endif
+                                </select>
+                                <span class="text-danger">@error('status'){{$message}} @enderror</span>
+                                <label for="floatingInput">Status</label>
                             </div>
 
                             <div class="d-grid">

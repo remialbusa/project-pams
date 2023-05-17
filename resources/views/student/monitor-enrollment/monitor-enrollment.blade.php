@@ -88,15 +88,16 @@
                                             <hr class="default-divider ml-auto mt-1 mb-2">
                                             <p class="form-header">List of enrolled subjects: </p>
                                             <hr/>
-                                            <table class="table default-table">
+                                            <table class="table default-table" >
                                                 <thead>
-                                                    <tr>
-                                                        <th scope="col" style="width: 50%; text-align: left;">Subject Name</th>
-                                                        <th scope="col" style="width: 20%; text-align: center;">Period</th>
+                                                    <tr >
+                                                        <th scope="col" style="width: 40%; text-align: left;">Subject Name</th>
+                                                        <th scope="col" style="width: 30%; text-align: center;">Adviser</th>
+                                                        <th scope="col" style="width: 30%; text-align: right;">Period</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
+                                                    <tr >
                                                         <td>
                                                             @if ($LoggedUserInfo->getFirstPeriodID->id !== null)
                                                             <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->getFirstPeriodID->code}} - {{$LoggedUserInfo->getFirstPeriodID->subject}}</p>
@@ -104,8 +105,14 @@
                                                             @endif
                                                         </td>
                                                         <td>
+                                                            @if ($LoggedUserInfo->getStudentID->first_period_adviser !== null)
+                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->getStudentID->first_period_adviser}}</p>
+                                                            @else
+                                                            @endif
+                                                        </td>
+                                                        <td>
                                                             @if ($LoggedUserInfo->getStudentID->first_period_sched !== null)
-                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->getStudentID->first_period_sched}}</p>
+                                                            <p class="status-text" style="text-align: right;">{{$LoggedUserInfo->getStudentID->first_period_sched}}</p>
                                                             @else
                                                             @endif
                                                         </td>
@@ -118,8 +125,14 @@
                                                             @endif
                                                         </td>
                                                         <td>
+                                                            @if ($LoggedUserInfo->getStudentID->second_period_adviser !== null)
+                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->getStudentID->second_period_adviser}}</p>
+                                                            @else
+                                                            @endif
+                                                        </td>
+                                                        <td>
                                                             @if ($LoggedUserInfo->getStudentID->second_period_sched !== null)
-                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->getStudentID->second_period_sched}}</p>
+                                                            <p class="status-text" style="text-align: right;">{{$LoggedUserInfo->getStudentID->second_period_sched}}</p>
                                                             @else
                                                             @endif
                                                         </td>
@@ -132,8 +145,14 @@
                                                             @endif
                                                         </td>
                                                         <td>
+                                                            @if ($LoggedUserInfo->getStudentID->third_period_adviser !== null)
+                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->getStudentID->third_period_adviser}}</p>
+                                                            @else
+                                                            @endif
+                                                        </td>
+                                                        <td>
                                                             @if ($LoggedUserInfo->getStudentID->third_period_sched !== null)
-                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->getStudentID->third_period_sched}}</p>
+                                                            <p class="status-text" style="text-align: right;">{{$LoggedUserInfo->getStudentID->third_period_sched}}</p>
                                                             @else
                                                             @endif
                                                         </td>
