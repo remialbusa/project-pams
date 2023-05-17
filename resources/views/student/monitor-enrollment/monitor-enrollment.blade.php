@@ -169,7 +169,7 @@
                                 <div class="tab-pane fade" id="enrollment-process" role="tabpanel" aria-labelledby="enrollment-process-tab">
                                     @if ($LoggedUserInfo->getStudentID['enrollment_status'] == 'Enrolled')
                                         
-                                        @if ($LoggedUserInfo->getStudentID['file'] !== null)
+                                        @if ($LoggedUserInfo->getStudentID->file !== null)
                                         <div class="alert alert-success d-flex align-items-center mt-4" role="alert">
                                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                                             <div>

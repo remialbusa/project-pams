@@ -91,6 +91,16 @@
                             </div>
                         </div>
                         <h5 class="mt-5 lead">Student Status</h5>
+
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <div class="form-group form-line">
+                                    <label class="form-label" for="form6Example1">Entrance Slip File <label class="text-danger">*</label></label>
+                                    <input type="file" placeholder="Choose file" class="form-control" name="enrollment_file" >
+                                    <span class="text-danger">@error('enrollment_file'){{$message}} @enderror</span>
+                                </div>
+                            </div>
+                        </div>
                         
                         <div class="mt-4 form-outline form-line">
                             <label class="form-label" for="form6Example1">Enrollment Status <label class="text-danger">*</label></label>

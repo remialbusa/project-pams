@@ -195,9 +195,16 @@ class ThesisManagementController extends Controller
 
     function setSchedule(Request $request)
     {
+        $request->validate([
+            'id' => 'unique:defense'
+        ]);
+
         $schedule = EnrolledStudent::find($request->id);
         $schedule->defense_id = $request->id;
-        $student = Defense::find($request->id);
+
+        $save = $schedule->update();
+
+        $student = new Defense();
         $student->id = $request->id;
         $student->title = $request->title;
         $student->member_1 = $request->member_1;
@@ -212,7 +219,6 @@ class ThesisManagementController extends Controller
         $student->venue = $request->venue;
         $student->link = $request->link;
         
-        $save = $schedule->update();
         $save = $student->save();
 
         if($save){

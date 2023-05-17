@@ -122,33 +122,33 @@
                                             <div class="form-outline form-line">
                                                 <label class="form-label " for="form6Example3">Vaccination Status <label class="text-danger">*</label></label>
                                                 <select class="form-select no-border" aria-label="Default select example" name="vaccination_status">
-                                                    @if($LoggedUserInfo->vaccination_status == 'Vaccinated')
-                                                        <option value="Vaccinated">Vaccinated</option>
+                                                    @if($LoggedUserInfo->vaccination_status == 'Fully Vaccinated')
+                                                        <option selected value="Fully Vaccinated">Fully Vaccinated</option>
                                                         <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                                         <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                                         <option value="Not Vaccinated">Not Vaccinated</option>
                                                         <option value="Partially Vaccinated">Partially Vaccinated</option>
                                                     @elseif($LoggedUserInfo->vaccination_status == 'Partially Vaccinated')
-                                                        <option value="Partially Vaccinated">Partially Vaccinated</option>
-                                                        <option value="Vaccinated">Vaccinated</option>
+                                                        <option selected value="Partially Vaccinated">Partially Vaccinated</option>
+                                                        <option value="Fully Vaccinated">Fully Vaccinated</option>
                                                         <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                                         <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                                         <option value="Not Vaccinated">Not Vaccinated</option>
                                                     @elseif($LoggedUserInfo->vaccination_status == 'Vaccinated w/ 1 Booster')
-                                                        <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                                        <option selected value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                                         <option value="Partially Vaccinated">Partially Vaccinated</option>
-                                                        <option value="Vaccinated">Vaccinated</option>
+                                                        <option value="Fully Vaccinated">Fully Vaccinated</option>
                                                         <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                                         <option value="Not Vaccinated">Not Vaccinated</option>
                                                     @elseif($LoggedUserInfo->vaccination_status == 'Vaccinated w/ 2 Boosters')
-                                                        <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                                        <option selected value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                                         <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
                                                         <option value="Partially Vaccinated">Partially Vaccinated</option>
-                                                        <option value="Vaccinated">Vaccinated</option>
+                                                        <option value="Fully Vaccinated">Fully Vaccinated</option>
                                                         <option value="Not Vaccinated">Not Vaccinated</option>
                                                     @else
                                                         <option selected value="Not Vaccinated">Not Vaccinated</option>
-                                                        <option value="Vaccinated">Vaccinated</option>
+                                                        <option value="Fully Vaccinated">Fully Vaccinated</option>
                                                         <option value="Partially Vaccinated">Partially Vaccinated</option>
                                                         <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
                                                         <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>

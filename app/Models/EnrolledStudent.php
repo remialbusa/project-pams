@@ -26,6 +26,11 @@ class EnrolledStudent extends Model
         return $this->belongsTo(ApprovedStudent::class, 'enrollment_id', 'id');
     }
 
+    public function getDefenseID()
+    {
+        return $this->belongsTo(Defense::class, 'defense_id', 'id');
+    }
+    
     public function getFirstPeriodID()
     {
         return $this->belongsTo(Subject::class, 'first_period_sub', 'id');

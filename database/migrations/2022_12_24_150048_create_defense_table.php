@@ -14,7 +14,7 @@ class CreateDefenseTable extends Migration
     public function up()
     {
         Schema::create('defense', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('title')->nullable();
             $table->string('member_1')->nullable();
             $table->string('member_2')->nullable();

@@ -217,6 +217,7 @@ class AdmissionOfficerController extends Controller
         $student->last_name = $request->last_name;
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
+        $student->vaccination_status = $request->vaccination_status;
         $student->email = $request->email;
         $student->gender = $request->gender;
         $student->birth_date = $request->birth_date;
