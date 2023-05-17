@@ -144,8 +144,34 @@ class AdmissionOfficerController extends Controller
     public function deletePendingStudent($id)
     {
         $student = PendingStudent::find($id);
+        if (!$student) {
+            return redirect('/staff/admin/manage-enrollees');
+        }
+
+        $subjectIds = [$student->first_period_sub, $student->second_period_sub, $student->third_period_sub];
+        $subjects = Subject::whereIn('id', $subjectIds)->get();
+        foreach ($subjects as $subject) {
+            $subject->increment('available_slots');
+        }
+
+        $programIds = [$student->program];
+        $programs = Program::whereIn('id', $programIds)->get();
+        foreach ($programs as $program) {
+            $program->increment('available_slots');
+        }
+
         $student->delete();
-        return back();
+        return redirect('/staff/admin/manage-enrollees');
+    }
+
+
+
+    function incrementAvailableSlots($subjects)
+    {
+        foreach ($subjects as $subject) {
+            $subject->available_slots += 1;
+            $subject->save();
+        }
     }
 
     #Approved Student Table
@@ -265,7 +291,7 @@ class AdmissionOfficerController extends Controller
             'program' => 'required',
         ]);
 
-        $students = ApproveStudent::find($request->id);
+        $students = ApprovedStudent::find($request->id);
         $students->student_type = $request->student_type;
         $students->student_id = $request->student_id;
         $students->last_name = $request->last_name;
@@ -324,6 +350,10 @@ class AdmissionOfficerController extends Controller
     #Encode Student Data / Insert column datas
     function encodeStudentData(Request $request)
     {
+        $request->validate([
+            'enrollment_file' => 'mimes:pdf,xlx,csv|max:2048',
+        ]);
+
         $student = ApprovedStudent::find($request->id);
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;
@@ -340,6 +370,16 @@ class AdmissionOfficerController extends Controller
         $student->first_period_adviser = $request->first_period_adviser;
         $student->second_period_adviser = $request->second_period_adviser;
         $student->third_period_adviser = $request->third_period_adviser;
+
+        $file = $request->enrollment_file;
+
+        if ($file !== null) {
+            $filename = $file->getClientOriginalName();
+            $request->enrollment_file->move('assets', $filename);
+
+            $student->enrollment_file = $filename;
+        } else {
+        }
 
         $save = $student->save();
        /*  Mail::to($student->email)->send(new NotificationMail($student->email)); */
@@ -636,13 +676,74 @@ class AdmissionOfficerController extends Controller
         return view('ogs.edit-subject', $data, ['school_year' => $school_year, 'programs' => $programs, 'subject' => $subject, 'availableSlots' => $availableSlots]);
     }
 
-    #Delete Subject
+    public function getStudentSubjectsAndPrograms($id)
+    {
+        $student = PendingStudent::find($id);
+
+        if (!$student) {
+            return redirect('/students')->with('error', 'Student not found');
+        }
+
+        // Retrieve the subjects for the student (both pending and enrolled)
+        $subjectIds = [$student->first_period_sub, $student->second_period_sub, $student->third_period_sub];
+        $subjects = Subject::whereIn('id', $subjectIds)->get();
+
+        // Retrieve the program for the student
+        $program = Program::find($student->program);
+
+        return view('student', compact('student', 'subjects', 'program'));
+    }
+
+    public function getSubjectsAndProgramsForEnrolledStudents($id)
+    {
+        $student = EnrolledStudent::find($id);
+
+        if (!$student) {
+            return redirect('/students')->with('error', 'Student not found');
+        }
+
+        // Retrieve the subjects for the student (both pending and enrolled)
+        $subjectIds = [$student->first_period_sub, $student->second_period_sub, $student->third_period_sub];
+        $subjects = Subject::whereIn('id', $subjectIds)->get();
+
+        // Retrieve the program for the student
+        $program = Program::find($student->program);
+
+        return view('student', compact('student', 'subjects', 'program'));
+    }
+
+
     function deleteSubjects($id)
     {
-        $subjects = Subject::find($id);
-        $subjects->delete();
-        return redirect('/staff/admin/subjects');
+        $subject = Subject::find($id);
+
+        // Check if there are any pending students associated with the subject
+        $no_of_students = PendingStudent::where(function ($query) use ($subject) {
+            $query->where('first_period_sub', $subject->id)
+                ->orWhere('second_period_sub', $subject->id)
+                ->orWhere('third_period_sub', $subject->id);
+        })->count();
+        $subject->no_of_students = $no_of_students;
+
+        if ($no_of_students >= 1) {
+            return redirect('/staff/admin/subjects')->with('fail', 'Cannot delete subject as it has enrolled students.');
+        }
+
+        $subject->delete();
+        return redirect('/staff/admin/subjects')->with('success', 'Subject has been deleted.');
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     #Update Subject
     function updateSubject(Request $request)

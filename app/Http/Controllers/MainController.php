@@ -38,6 +38,7 @@ class MainController extends Controller
     {
         $programData['data'] = Program::orderby("program", "asc")
             ->select('id', 'program', 'description')
+            ->where('status', 'Active')
             ->get();
 
         $school_year = SchoolYear::all();
@@ -48,6 +49,7 @@ class MainController extends Controller
     {
         $programData['data'] = Program::orderby("program", "asc")
             ->select('id', 'program', 'description')
+            ->where('status', 'Active')
             ->get();
 
         $school_year = SchoolYear::all();
@@ -179,6 +181,7 @@ class MainController extends Controller
         return back()->with('success', 'Registration complete');
     }
 
+    
 
     //checks the number of slots of subjects
     function checkNoOfSlots($subjects)

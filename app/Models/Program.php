@@ -13,9 +13,9 @@ class Program extends Model
     public static function getAllPrograms()
     {
         $result = DB::table('programs')
-        ->select('id','code','degree','program','description')
-        ->get()
-        ->toArray();
+            ->select('id', 'code', 'degree', 'program', 'description')
+            ->get()
+            ->toArray();
         return $result;
     }
 
@@ -25,6 +25,10 @@ class Program extends Model
         'degree',
         'program',
         'description'
-     ];
+    ];
 
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
 }

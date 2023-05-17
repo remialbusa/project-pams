@@ -45,5 +45,7 @@ class EnrolledStudent extends Model
     {
         return $this->belongsTo(Program::class, 'program', 'id');
     }
+
+    
     
 }

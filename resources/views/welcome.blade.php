@@ -84,6 +84,10 @@
                                 <a style="font-weight: bold;" href="student/auth/login" class="btn btn-warning technical-btn btn-get-started animate__animated animate__fadeInUp scrollto">I'm a Student</a>
                                 <a style="font-weight: bold;" href="staff/auth/login" class="btn btn-warning technical-btn btn-get-started animate__animated animate__fadeInUp scrollto">I'm an Employee</a>
                             </div>
+                            <div style=" text-align: center;" >
+                                <a style="font-weight: bold;" href="{{ route('enrollment') }}" class="btn btn-warning technical-btn btn-get-started animate__animated animate__fadeInUp scrollto">Enrollment</a>
+                                <a style="font-weight: bold;" href="{{ route('process') }}" class="btn btn-warning technical-btn btn-get-started animate__animated animate__fadeInUp scrollto">Process</a>
+                            </div>
                             {{-- <div class="text-center">
                                 <a href="student/auth/login" class="button1 text-decoration-none">I'm a Student</a>
                                 <a href="staff/auth/login" class="button btn-md text-decoration-none">I'm an Employee</a>
