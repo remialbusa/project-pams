@@ -28,10 +28,11 @@ class MainController extends Controller
     {
         $school_year = SchoolYear::all();
         $enrolledStudents = DB::table('enrolled_students')->count();
+        $approvedStudents = DB::table('approved_students')->count();
         $subjects = DB::table('subjects')->count();
         $programs = DB::table('programs')->count();
         $programList = Program::all();
-        return view('welcome', compact('programList','school_year', 'enrolledStudents', 'subjects', 'programs'));
+        return view('welcome', compact('programList', 'school_year', 'enrolledStudents', 'approvedStudents', 'subjects', 'programs'));
     }
 
     function register()
@@ -56,13 +57,23 @@ class MainController extends Controller
         return view('auth.register-new-student', ['school_year' => $school_year, 'programData' => $programData]);
     }
 
+    function getProgram($programid = 0)
+    {
+        $programs['data'] = Subject::orderby("code", "asc")
+            ->select('id', 'code', 'subject', 'unit', 'period', 'semester', 'status')
+            ->where('program', $programid)
+            ->where('status', 'Active')
+            ->get();
+        return response()->json($programs);
+    }
+
     function getFirstPeriod($programid = 0)
     {
         $subjects['data'] = Subject::orderby("code", "asc")
             ->select('id', 'code', 'subject', 'unit', 'period', 'semester', 'status')
             ->where('program', $programid)
             ->where('period', '1st Period')
-            ->where('status', 'Active')
+            ->whereIn('status', ['Active', 'Inactive', 'Dissolved']) // Update this line to include all three statuses
             ->get();
         return response()->json($subjects);
     }
@@ -70,10 +81,10 @@ class MainController extends Controller
     function getSecondPeriod($programid = 0)
     {
         $subjects['data'] = Subject::orderby("code", "asc")
-            ->select('id', 'code', 'subject', 'unit', 'period')
+            ->select('id', 'code', 'subject', 'unit', 'period', 'semester', 'status')
             ->where('program', $programid)
             ->where('period', '2nd Period')
-            ->where('status', 'Active')
+            ->whereIn('status', ['Active', 'Inactive', 'Dissolved']) // Update this line to include all three statuses
             ->get();
         return response()->json($subjects);
     }
@@ -81,10 +92,10 @@ class MainController extends Controller
     function getThirdPeriod($programid = 0)
     {
         $subjects['data'] = Subject::orderby("code", "asc")
-            ->select('id', 'code', 'subject', 'unit', 'period')
+            ->select('id', 'code', 'subject', 'unit', 'period', 'semester', 'status')
             ->where('program', $programid)
             ->where('period', '3rd Period')
-            ->where('status', 'Active')
+            ->whereIn('status', ['Active', 'Inactive', 'Dissolved']) // Update this line to include all three statuses
             ->get();
         return response()->json($subjects);
     }
@@ -174,14 +185,15 @@ class MainController extends Controller
         }
 
         if (!$hasProgramSlot) {
-            $error = 'No available slot for ' . $programs->program;
+            $error = 'No available slot for Program: ' . $programs->program;
             return back()->with('fail', $error);
         }
         $student->save();
         return back()->with('success', 'Registration complete');
     }
 
-    
+
+
 
     //checks the number of slots of subjects
     function checkNoOfSlots($subjects)

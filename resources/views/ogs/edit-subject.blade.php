@@ -81,10 +81,18 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" name="available_slots" placeholder="Enter Available Slots" value="{{ $subject->available_slots }}" max="{{ $subject->no_of_students }}">
+                                <input type="number" class="form-control" name="available_slots" placeholder="Enter Available Slots" value="{{ $subject->available_slots }}" max="{{ $subject->no_of_students }}" min="0" max="100">
                                 <label for="floatingInput">No. of Slots</label>
                                 <span class="text-danger">@error('slots'){{$message}} @enderror</span>
                             </div>
+<!-- 
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" name="remove_available_slots" placeholder="Remove Available Slots"  max="30" pattern="\d+">
+                                <label for="floatingInput">Remove no. of slots</label>
+                                <span class="text-danger">@error('remove_available_slots'){{$message}} @enderror</span>
+                            </div> -->
+
+
 
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="code" placeholder="Code" value="{{$subject['code']}}">

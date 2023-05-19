@@ -40,6 +40,7 @@ Route::post('/student/auth/register-student/save', [MainController::class, 'save
 Route::post('/student/auth/verify', [MainController::class, 'verify'])->name('login');
 Route::get('/student/auth/register-new-student', [MainController::class, 'registerNewStudent']);
 Route::get('/student/auth/register-new-student/getFirstPeriod/{id}', [MainController::class, 'getFirstPeriod']);
+Route::get('/student/auth/register-new-student/getProgram/{id}', [MainController::class, 'getProgram']);
 Route::get('/student/auth/register-new-student/getSecondPeriod/{id}', [MainController::class, 'getSecondPeriod']);
 Route::get('/student/auth/register-new-student/getThirdPeriod/{id}', [MainController::class, 'getThirdPeriod']);
 

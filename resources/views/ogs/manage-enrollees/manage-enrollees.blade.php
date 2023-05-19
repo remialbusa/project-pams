@@ -136,7 +136,7 @@
                                                 @if (in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png']))
                                                 <a href="{{ asset('assets/') . '/' .  $file }}"><img src="{{ asset('assets/' . $file) }}" style="width: 100px;"></a><br>
                                                 @else
-                                                <a href="{{ asset('assets/') . $file }}" target="">{{ $file }}</a><br>
+                                                <a href="{{ asset('assets/') . '/' . $file }}" target="">{{ $file }}</a><br>
                                                 @endif
                                                 @endforeach
                                                 @endif

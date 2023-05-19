@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                             <div class="row mt-4 mb-3">
-                                <input type="hidden" type="text" id="form6Example1" class="form-control" name="student_id" value="N/A"/>
+                                <input type="hidden" type="text" id="form6Example1" class="form-control" name="student_id" value="N/A" />
                                 <div class="col">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">Last name <label class="text-danger">*</label></label>
@@ -150,7 +150,7 @@
                                 <div class="col-md-6">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">Birthdate</label>
-                                        <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{old('birth_date')}}"/>
+                                        <input type="date" id="form6Example1" class="form-control" name="birth_date" value="{{old('birth_date')}}" />
                                         <span class="text-danger">@error('birth_date'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -168,7 +168,7 @@
                                             <option value="Not Vaccinated">Not Vaccinated</option>
                                             <option value="Partially Vaccinated">Partially Vaccinated</option>
                                         </select>
-                
+
                                         <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
                                     </div>
                                 </div>
@@ -257,9 +257,8 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row mt-4 mb-3">
-                                <div class="col-md-6 mt-2">
+                            <div class="row mt-2 mb-3">
+                                <div class="col mt-2">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example1">1ST PERIOD</label>
                                         <select id='first_period' name='first_period' class="form-select">
@@ -268,7 +267,8 @@
                                         <span class="text-danger">@error('first_period'){{$message}} @enderror</span>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 mt-2">
+                                <div></div>
+                                <div class="col mt-2">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">2ND PERIOD</label>
                                         <select class="form-select" aria-label="Default select example" id="second_period" name="second_period">
@@ -277,6 +277,7 @@
                                         <span class="text-danger">@error('second_period'){{$message}} @enderror</span>
                                     </div>
                                 </div>
+                                <div></div>
                                 <div class="col mt-3 mt-2">
                                     <div class="form-outline form-line">
                                         <label class="form-label" for="form6Example2">3RD PERIOD</label>
@@ -340,10 +341,10 @@
 
     <script type='text/javascript'>
         $(document).ready(function() {
-
             $('#sel_program').change(function() {
                 // Department id
                 var id = $(this).val();
+
 
                 // Empty the dropdown
                 $('#first_period').find('option').not(':first').remove();
@@ -365,13 +366,21 @@
                                 var id = response['data'][i].id;
                                 var code = response['data'][i].code;
                                 var subject = response['data'][i].subject;
-                                var option = "<option value='" + id + "'>" + code + "\n" + "-" + "\n" + subject + "</option>";
+                                var status = response['data'][i].status;
+
+                                var option = "<option value='" + id + "'";
+
+                                if (status === 'Dissolved' || status === 'Inactive') {
+                                    option += " disabled";
+                                }
+
+                                option += ">" + code + "\n" + "-" + "\n" + subject  + "-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + status + "</option>";
+
                                 $("#first_period").append(option);
                             }
                         }
                     }
                 });
-
                 $('#second_period').find('option').not(':first').remove();
 
                 // AJAX request 
@@ -391,7 +400,16 @@
                                 var id = response['data'][i].id;
                                 var code = response['data'][i].code;
                                 var subject = response['data'][i].subject;
-                                var option = "<option value='" + id + "'>" + code + "\n" + "-" + "\n" + subject + "</option>";
+                                var status = response['data'][i].status;
+
+                                var option = "<option value='" + id + "'";
+
+                                if (status === 'Dissolved' || status === 'Inactive') {
+                                    option += " disabled";
+                                }
+
+                                option += ">" + code + "\n" + "-" + "\n" + subject  + "-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + status + "</option>";
+
                                 $("#second_period").append(option);
                             }
                         }
@@ -417,7 +435,16 @@
                                 var id = response['data'][i].id;
                                 var code = response['data'][i].code;
                                 var subject = response['data'][i].subject;
-                                var option = "<option value='" + id + "'>" + code + "\n" + "-" + "\n" + subject + "</option>";
+                                var status = response['data'][i].status;
+
+                                var option = "<option value='" + id + "'";
+
+                                if (status === 'Dissolved' || status === 'Inactive') {
+                                    option += " disabled";
+                                }
+
+                                option += ">" + code + "\n" + "-" + "\n" + subject + "-" + "-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + status + "</option>";
+
                                 $("#third_period").append(option);
                             }
                         }

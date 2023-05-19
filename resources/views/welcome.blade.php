@@ -248,6 +248,14 @@
                 <p class="dashboard-detail">Enrolled Students</p>
             </div>
             <div class="col">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="yellow" class="bi bi-person-fill" viewBox="0 0 16 16">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                </svg>
+                <div class="col mt-3 dashboard-count">{{$approvedStudents}}</div>
+                <hr class="mb-3" style="width: 150px; margin: auto; color: white;">
+                <p class="dashboard-detail">Pre-Registered Students</p>
+            </div>
+            <div class="col">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="yellow" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
                     <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
                   </svg>

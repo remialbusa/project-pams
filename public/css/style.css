@@ -451,3 +451,13 @@ footer ul {
     animation-delay: 0.8s;
     border: 2px solid #f6b024;
 }
+
+.status-container {
+    display: inline-block;
+    margin-left: 10px; /* Adjust the margin as needed */
+    padding: 5px;
+    background-color: #f0f0f0; /* Adjust the background color as desired */
+    border: 1px solid #ccc; /* Adjust the border properties as desired */
+    border-radius: 4px; /* Adjust the border radius as desired */
+  }
+  

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class AddAvailableSlotsToSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('programs', function (Blueprint $table) {
-            $table->integer('available_slots');
+        Schema::table('subjects', function (Blueprint $table) {
+            $table->integer('available_slots')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('programs', function (Blueprint $table) {
+        Schema::table('subjects', function (Blueprint $table) {
             //
         });
     }
-};
+}

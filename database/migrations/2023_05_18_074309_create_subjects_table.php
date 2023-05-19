@@ -21,7 +21,7 @@ class CreateSubjectsTable extends Migration
             $table->string('unit');
             $table->string('period');
             $table->string('semester');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

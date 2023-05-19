@@ -20,7 +20,7 @@ class CreateEnrolledStudentsTable extends Migration
             $table->string('last_name');
             $table->string('first_name');
             $table->string('middle_name')->nullable();
-            $table->string('vaccination_status');
+            $table->string('vaccination_status')->nullable();
             $table->string('email');
             $table->string('gender');
             $table->date('birth_date');                                   

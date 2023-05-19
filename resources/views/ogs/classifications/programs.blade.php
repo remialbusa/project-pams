@@ -13,6 +13,15 @@
             <a href="{{ route('admin.export-programs') }}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm">Export Data</a>
         </div>
         <p>The list of Programs shown in the table below are the available subjects for the current S.Y.</p>
+        @if(Session::get('success'))
+
+        <div class="alert alert-success text-center">{{Session::get('success')}}</div>
+
+        @endif
+
+        @if(Session::get('fail'))
+        <div class="alert alert-danger text-center">{{Session::get('fail')}}</div>
+        @endif
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">

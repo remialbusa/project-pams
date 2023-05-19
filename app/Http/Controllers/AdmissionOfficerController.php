@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\EnrolledStudent;
+use App\Models\Student;
 use App\Models\Program;
+use App\Models\StudentStatus;
 use App\Models\Subject;
 use App\Models\PendingStudent;
+use App\Models\AssignStudent;
+use App\Models\AdvisingStudent;
+use App\Models\StudentUser;
 use App\Models\ApprovedStudent;
 use App\Models\Adviser;
+use App\Models\Scheduling;
 use App\Exports\EnrolledStudentExport;
 use App\Exports\SubjectExport;
 use App\Exports\ProgramExport;
@@ -188,7 +194,7 @@ class AdmissionOfficerController extends Controller
     }
 
     #Enroll Approved Student
-    function approveEnrollment(Request $request)
+     function approveEnrollment(Request $request)
     {
         $request->validate([
             'student_type' => 'required',
@@ -241,6 +247,7 @@ class AdmissionOfficerController extends Controller
 
         $save = $student->save();
 
+        Mail::to($student->email)->send(new NotificationMail($student->email));
         if ($save) {
             return back()->with('success', 'Successfully inserted student data');
         } else {
@@ -383,8 +390,6 @@ class AdmissionOfficerController extends Controller
         }
 
         $save = $student->save();
-       /*  Mail::to($student->email)->send(new NotificationMail($student->email)); */
-
         if ($save) {
             return back()->with('success', 'Successfully inserted data');
         } else {
@@ -512,6 +517,8 @@ class AdmissionOfficerController extends Controller
     #Program Table
     function programList()
     {
+        $data = [];
+
         if (session()->has('LoggedAdmin')) {
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
             $data = [
@@ -523,14 +530,19 @@ class AdmissionOfficerController extends Controller
         $semester = SchoolYear::all();
 
         foreach ($programs as $program) {
-            $no_of_students = PendingStudent::where(function ($query) use ($program) {
-                $query->where('program', $program->id);
-            })->count();
-            $program->no_of_students = $no_of_students;
+            $pending_count = PendingStudent::where('program', $program->id)->count();
+            $approved_count = ApprovedStudent::where('program', $program->id)->count();
+
+            $program->no_of_students = $pending_count + $approved_count;
         }
 
-        return view('ogs.classifications.programs', $data, ['semester'=>$semester,'programs' => $programs]);
+        $data['semester'] = $semester;
+        $data['programs'] = $programs;
+
+        return view('ogs.classifications.programs', $data);
     }
+    
+
 
     #Editing Program
     function programEdit($id)
@@ -552,17 +564,25 @@ class AdmissionOfficerController extends Controller
             $programs->available_slots = $available_slots_program;
             $programs->save();
         }
-        return view('ogs.edit-program', $data, ['school_year'=>$school_year,'programData' => $programData, 'programs' => $programs]);
+        return view('ogs.edit-program', $data, ['school_year' => $school_year, 'programData' => $programData, 'programs' => $programs]);
     }
 
     #Delete Program
     function programDelete($id)
     {
         $program = Program::find($id);
-        $program->delete();
-        return redirect('/staff/admin/programs');
-    }
 
+        // Check if there are any enrolled students associated with the program
+        $no_of_students = PendingStudent::where('program', $id)->count();
+        $no_of_students += ApprovedStudent::where('program', $id)->count();
+
+        if ($no_of_students >= 1) {
+            return redirect('/staff/admin/programs')->with('fail', 'Cannot delete program as it has enrolled students.');
+        }
+
+        $program->delete();
+        return redirect('/staff/admin/programs')->with('success', 'Program has been deleted.');
+    }
     #Insert Program
     function programInsert(Request $request)
     {
@@ -599,19 +619,15 @@ class AdmissionOfficerController extends Controller
             'degree' => 'required',
             'program' => 'required',
             'description' => 'required',
-            'semester' => 'required',
-            'status' => 'required',
         ]);
 
         //insert data
         $programs = Program::find($request->id);
         $programs->code = $request->code;
-        $programs->available_slots += $request->available_slots;
+        $programs->available_slots = $request->available_slots;
         $programs->degree = $request->degree;
         $programs->program = $request->program;
         $programs->description = $request->description;
-        $programs->semester = $request->semester;
-        $programs->status = $request->status;
         $save = $programs->save();
 
         if ($save) {
@@ -624,25 +640,41 @@ class AdmissionOfficerController extends Controller
     #Subject Table
     function subjectList()
     {
+        $data = [];
+
         if (session()->has('LoggedAdmin')) {
             $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
             $data = [
                 'LoggedAdminInfo' => $admin
             ];
         }
+
         $programs = Program::all();
         $subjects = Subject::all();
         $semester = SchoolYear::all();
+
         foreach ($subjects as $subject) {
-            $no_of_students = PendingStudent::where(function ($query) use ($subject) {
+            $pending_count = PendingStudent::where(function ($query) use ($subject) {
                 $query->where('first_period_sub', $subject->id)
                     ->orWhere('second_period_sub', $subject->id)
                     ->orWhere('third_period_sub', $subject->id);
             })->count();
-            $subject->no_of_students = $no_of_students;
+
+            $approved_count = ApprovedStudent::where(function ($query) use ($subject) {
+                $query->where('first_period_sub', $subject->id)
+                    ->orWhere('second_period_sub', $subject->id)
+                    ->orWhere('third_period_sub', $subject->id);
+            })->count();
+
+
+            $subject->no_of_students = $pending_count + $approved_count;
         }
 
-        return view('ogs.classifications.subjects', $data, ['semesters' => $semester, 'programs' => $programs, 'subjects' => $subjects, 'no_of_students' => $no_of_students,]);
+        $data['semesters'] = $semester;
+        $data['programs'] = $programs;
+        $data['subjects'] = $subjects;
+
+        return view('ogs.classifications.subjects', $data);
     }
 
 
@@ -676,7 +708,6 @@ class AdmissionOfficerController extends Controller
 
         return view('ogs.edit-subject', $data, ['school_year' => $school_year, 'programs' => $programs, 'subject' => $subject, 'availableSlots' => $availableSlots]);
     }
-
     public function getStudentSubjectsAndPrograms($id)
     {
         $student = PendingStudent::find($id);
@@ -719,30 +750,28 @@ class AdmissionOfficerController extends Controller
         $subject = Subject::find($id);
 
         // Check if there are any pending students associated with the subject
-        $no_of_students = PendingStudent::where(function ($query) use ($subject) {
+        $pending_count = PendingStudent::where(function ($query) use ($subject) {
             $query->where('first_period_sub', $subject->id)
                 ->orWhere('second_period_sub', $subject->id)
                 ->orWhere('third_period_sub', $subject->id);
         })->count();
-        $subject->no_of_students = $no_of_students;
 
-        if ($no_of_students >= 1) {
+        // Check if there are any approved students associated with the subject
+        $approved_count = ApprovedStudent::where(function ($query) use ($subject) {
+            $query->where('first_period_sub', $subject->id)
+                ->orWhere('second_period_sub', $subject->id)
+                ->orWhere('third_period_sub', $subject->id);
+        })->count();
+
+        $subject->no_of_students = $pending_count + $approved_count;
+
+        if ($subject->no_of_students >= 1) {
             return redirect('/staff/admin/subjects')->with('fail', 'Cannot delete subject as it has enrolled students.');
         }
 
         $subject->delete();
         return redirect('/staff/admin/subjects')->with('success', 'Subject has been deleted.');
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -765,7 +794,7 @@ class AdmissionOfficerController extends Controller
         $subject = Subject::find($request->id);
         $subject->code = $request->code;
         $subject->program = $request->program;
-        $subject->available_slots += $request->available_slots;
+        $subject->available_slots = $request->available_slots;
         $subject->subject = $request->subject;
         $subject->unit = $request->units;
         $subject->period = $request->period;
@@ -1211,6 +1240,14 @@ class AdmissionOfficerController extends Controller
         }
     }
 
+
+
+
+
+
+
+
+
     function updateEnrolledStudent(Request $request)
     {
         $request->validate([
@@ -1281,6 +1318,28 @@ class AdmissionOfficerController extends Controller
         $student = EnrolledStudent::find($id);
         $student->delete();
         return redirect('/staff/admin/enrolled');
+    }
+
+
+    function updateStudentUser(Request $request)
+    {
+        $request->validate([
+            'student_type' => 'required',
+            'student_id' => 'required',
+            'password' => 'required',
+        ]);
+
+        $student = StudentUser::find($request->id);
+        $student->id = $request->id;
+        $student->student_id = $request->student_id;
+        $student->password = Hash::make($request->password);
+        $save = $student->save();
+
+        if ($save) {
+            return back()->with('success', 'Successfully Changed Password!');
+        } else {
+            return back()->with('fail', 'failed updating');
+        }
     }
 
     function deleteStudentUser($id)
