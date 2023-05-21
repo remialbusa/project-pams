@@ -92,7 +92,6 @@ class AdmissionOfficerController extends Controller
             'birth_date' => 'required',
             'mobile_no' => 'required',
             'fb_acc_name' => 'required',
-            'fb_acc_name' => 'required',
             'region' => 'required',
             'province' => 'required',
             'city' => 'required',
@@ -102,7 +101,7 @@ class AdmissionOfficerController extends Controller
             'third_period' => 'required',
         ]);
 
-        //insert data
+        // Insert data
         $student = new ApprovedStudent();
         $student->id = $request->id;
         $student->student_type = $request->student_type;
@@ -136,6 +135,14 @@ class AdmissionOfficerController extends Controller
         $student->second_procedure = "Pending";
         $student->third_procedure = "Pending";
 
+        // Decrement available_slots in the programs table
+        $program = Program::find($request->program);
+        $program->decrement('available_slots');
+
+        // Decrement available_slots in the subjects table
+        $subjects = [$request->first_period, $request->second_period, $request->third_period];
+        Subject::whereIn('id', $subjects)->decrement('available_slots');
+
         $save = $student->save();
 
         if ($save) {
@@ -145,6 +152,7 @@ class AdmissionOfficerController extends Controller
             return back()->with('fail', 'Failed inserting student data');
         }
     }
+
 
     #Delete Pending Students
     public function deletePendingStudent($id)
@@ -194,7 +202,7 @@ class AdmissionOfficerController extends Controller
     }
 
     #Enroll Approved Student
-     function approveEnrollment(Request $request)
+    function approveEnrollment(Request $request)
     {
         $request->validate([
             'student_type' => 'required',
@@ -541,7 +549,7 @@ class AdmissionOfficerController extends Controller
 
         return view('ogs.classifications.programs', $data);
     }
-    
+
 
 
     #Editing Program
@@ -1202,6 +1210,8 @@ class AdmissionOfficerController extends Controller
             return back()->with('fail', 'Failed inserting student data');
         }
     }
+
+
 
     public function deletePending($id)
     {
