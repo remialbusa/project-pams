@@ -144,7 +144,7 @@ class AdmissionOfficerController extends Controller
         Subject::whereIn('id', $subjects)->decrement('available_slots');
 
         $save = $student->save();
-
+ 
         if ($save) {
             $this->deletePendingStudent($request->id);
             return redirect('/staff/admin/manage-enrollees');
