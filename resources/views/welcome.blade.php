@@ -13,15 +13,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    
+
     <!-- custom css -->
     <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
 
-    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png" />
 </head>
 
 <body>
-    
+
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark shadow-5-strong">
         <div class="container">
             <a class="navbar-brand" href="/welcome"><img class="img-logo" src="https://www.lnu.edu.ph/images/logo.png" alt=""></a>
@@ -53,16 +53,15 @@
             </div>
         </div>
     </nav>
-    
+
     <section id="hero-main">
         <div class="container h-50">
             <div class="row ">
                 <div class="col col-xs-6 my-auto">
                     <div class="card bg-none text-white">
                         <div class="card-title">
-                            <h1 class="pt-5 text-center" >
-                                Welcome to <strong style="color: #f6b024; font-weight: bold;">LNU-GSMS</strong>
-                            </h1>
+                            <h1 class="pt-5 text-center">
+                                Welcome to <span class="auto-type" strong style="color: #f6b024; font-weight: bold;"></span> </strong> </h1>
                         </div>
                         <div class="card-body pt-0">
                             <p class="card-text text-center">
@@ -71,10 +70,10 @@
                             <p class="card-text text-center">
                                 @foreach ($school_year as $school_year)
                                 @if ($school_year->status == 'Active')
-                                    The pre-enrollment for {{$school_year->semester}} S.Y. {{$school_year->school_year}}
-                                    is currently on going! Pre-enrollment period:
-                                    July 16 - August 7, 2022. Enrollment Period: August 08 - 19, 2022.
-                                    Classes will start on August 22, 2022.
+                                The pre-enrollment for {{$school_year->semester}} S.Y. {{$school_year->school_year}}
+                                is currently on going! Pre-enrollment period:
+                                July 16 - August 7, 2022. Enrollment Period: August 08 - 19, 2022.
+                                Classes will start on August 22, 2022.
                                 @else
                                 @endif
                                 @endforeach
@@ -84,7 +83,7 @@
                                 <a style="font-weight: bold;" href="student/auth/login" class="btn btn-warning technical-btn btn-get-started animate__animated animate__fadeInUp scrollto">I'm a Student</a>
                                 <a style="font-weight: bold;" href="staff/auth/login" class="btn btn-warning technical-btn btn-get-started animate__animated animate__fadeInUp scrollto">I'm an Employee</a>
                             </div> --}}
-                            <div style=" text-align: center;" >
+                            <div style=" text-align: center;">
                                 <a style="font-weight: bold;" href="{{ route('enrollment') }}" class="btn btn-warning technical-btn btn-get-started animate__animated animate__fadeInUp scrollto">Enroll Now</a>
                                 <a style="font-weight: bold;" href="{{ route('process') }}" class="btn btn-warning technical-btn btn-get-started animate__animated animate__fadeInUp scrollto">Enrollment Process</a>
                             </div>
@@ -108,7 +107,7 @@
             <!-- Remove Unavailable Class if page is ready -->
 
             <div class="row text-center">
-            {{-- <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">
+                {{-- <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">
                 <div class="icon-box shadow">
                 <div class="icon unavailable"><i class="bx bx-transfer"></i></div>
                 <h4 class="title unavailable"><a href="">Shifting of Program</a></h4>
@@ -117,18 +116,18 @@
                 <div class="alert alert-dark pt-1 pb-1" style="border-radius: 50px; font-weight: 600; font-size: 10px; width: 70%;"><i class="bx bx-hard-hat pt-1"></i>&nbsp;Page Under Construction</div>
                 </div>
             </div> --}}
-            <div class="col-sm"></div>
-            <div class="col-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="icon-box">
-                <div class="icon"><i class="bx bx-file"></i></div>
-                <h4 class="title">Programs Offered</h4>
-                <p class="description">List of programs offering!</p>
-                <hr class="default-divider mt-3">
-                <div class="btn btn-warning" style="border-radius: 50px; width: 70%; font-weight: bold;" data-bs-toggle="modal" data-bs-target="#programModalForm">Show</div>
+                <div class="col-sm"></div>
+                <div class="col-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-file"></i></div>
+                        <h4 class="title">Programs Offered</h4>
+                        <p class="description">List of programs offering!</p>
+                        <hr class="default-divider mt-3">
+                        <div class="btn btn-warning" style="border-radius: 50px; width: 70%; font-weight: bold;" data-bs-toggle="modal" data-bs-target="#programModalForm">Show</div>
+                    </div>
                 </div>
-            </div>
 
-            {{-- <div class="col-4" data-aos="fade-up" data-aos-delay="100">
+                {{-- <div class="col-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="icon-box">
                 <div class="icon"><i class="bx bx-file"></i></div>
                 <h4 class="title">Subjects Offered</h4>
@@ -137,8 +136,8 @@
                 <div class="btn btn-warning" style="border-radius: 50px; width: 70%; font-weight: bold;" data-bs-toggle="modal" data-bs-target="#subjectModalForm">Show</div>
                 </div>
             </div> --}}
-            <div class="col-sm"></div>
-        </div>
+                <div class="col-sm"></div>
+            </div>
 
         </div>
     </section>
@@ -162,8 +161,8 @@
                         @else
                         <a style="text-decoration: none; border-radius:30px;" class="alert alert-warning text-center"> Inactive </a>
                         @endif
-                    </li><br class="mt-5"/>
-                    
+                    </li><br class="mt-5" />
+
                     @endforeach
                 </div>
             </div>
@@ -190,7 +189,7 @@
 
         <!-- what we do -->
         <h1 class="text-center display-6">Announcements</h1>
-        <hr/>
+        <hr />
         <div class="container h-100">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
                 <div class="carousel-indicators">
@@ -234,14 +233,14 @@
     </section>
 
     <section class="dashboard-main mt-5">
-        <br/>
+        <br />
         <h1 class="text-center display-6 mt-3" style="color: white;"><strong>Graduate School</strong></h1>
         <p class="mt-1 text-center dashboard-detail">Dashboard Numbers</p>
-        <br/>
+        <br />
         <div class="row text-center mt-5">
             <div class="col">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="yellow" class="bi bi-person-fill" viewBox="0 0 16 16">
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                 </svg>
                 <div class="col mt-3 dashboard-count">{{$enrolledStudents}}</div>
                 <hr class="mb-3" style="width: 150px; margin: auto; color: white;">
@@ -249,7 +248,7 @@
             </div>
             <div class="col">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="yellow" class="bi bi-person-fill" viewBox="0 0 16 16">
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                 </svg>
                 <div class="col mt-3 dashboard-count">{{$approvedStudents}}</div>
                 <hr class="mb-3" style="width: 150px; margin: auto; color: white;">
@@ -257,24 +256,24 @@
             </div>
             <div class="col">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="yellow" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
-                    <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
-                  </svg>
-                  <div class="col mt-3 dashboard-count">{{$programs}}</div>
-                  <hr class="mb-3" style="width: 150px; margin: auto; color: white;">
-                  <p class="dashboard-detail">Programs Offered</p>
+                    <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+                </svg>
+                <div class="col mt-3 dashboard-count">{{$programs}}</div>
+                <hr class="mb-3" style="width: 150px; margin: auto; color: white;">
+                <p class="dashboard-detail">Programs Offered</p>
             </div>
             <div class="col">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="yellow" class="bi bi-book-fill" viewBox="0 0 16 16">
-                    <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-                  </svg>
-                  <div class="col mt-3 dashboard-count">{{$subjects}}</div>
-                  <hr class="mb-3" style="width: 150px; margin: auto; color: white;">
-                  <p class="dashboard-detail">Subjects Offered</p>
+                    <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+                </svg>
+                <div class="col mt-3 dashboard-count">{{$subjects}}</div>
+                <hr class="mb-3" style="width: 150px; margin: auto; color: white;">
+                <p class="dashboard-detail">Subjects Offered</p>
             </div>
         </div>
     </section>
 
-    
+
 
     {{-- <section class="hero-body pt-5 mt-5 mb-5">
         <h1 style="color:white;"class="text-center display-6">Event Calendar</h1>
@@ -290,7 +289,7 @@
 
         <!-- what we do -->
         <h1 class="text-center display-6">Technical Support</h1>
-        <hr/>
+        <hr />
         <div class="row mt-5 d-flex justify-content-end" data-aos="fade-right" data-aos-delay="100">
             <div class="col card-wrap mb-1 mt-4">
                 <img src="./images/Technical_Support.jpg" class="rounded mx-auto d-block technical-img" alt="...">
@@ -313,31 +312,31 @@
                         </div>
                         <div class="mb-3">
                             <div>
-                                
+
                                 <input type="text" class="technical-form mt-2 mt-1 border-strong" name="program" placeholder="Program">
                                 <span class="text-danger">@error('program'){{$message}} @enderror</span>
                             </div>
 
                             <div>
-                                
+
                                 <input type="text" class="technical-form mt-1 border-strong" name="name" placeholder="Name">
                                 <span class="text-danger">@error('name'){{$message}} @enderror</span>
                             </div>
-                            
+
                             <div>
-                                
+
                                 <input type="text" class="technical-form mt-1 border-strong" name="id_no" placeholder="ID Number">
                                 <span class="text-danger">@error('id_no'){{$message}} @enderror</span>
                             </div>
 
                             <div>
-                                
+
                                 <input type="text" class="technical-form mt-1 mt-1 border-strong" name="email" placeholder="Email">
                                 <span class="text-danger">@error('email'){{$message}} @enderror</span>
                             </div>
 
                             <div>
-                                
+
                                 <input style="height: 100px;" class="technical-form mt-1 mt-1 border-strong" name="concern" placeholder="Concern">
                                 <span class="text-danger">@error('concern'){{$message}} @enderror</span>
                             </div>
@@ -345,7 +344,7 @@
                         <div>
                             <button type="submit" class="mt-3 technical-btn btn btn-warning">Submit</button>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
@@ -360,7 +359,7 @@
                     <div class="row text-white">
                         <div class="col col-12 col-sm-6">
                             <h5>Contact Us</h5>
-                            <ul> 
+                            <ul>
                                 <li><a>Leyte Normal University</a></li>
                                 <li><a>B. Paterno Street</a></li>
                                 <li><a>Tacloban City, Leyte 6500</a></li>
@@ -392,6 +391,15 @@
                 <p class="text-light text-center">© Copyright <b>Leyte Normal university</b> . All Rights Reserved 2022</p>
             </div>
     </footer>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+        var typed = new Typed(".auto-type", {
+            strings: ["LNU-GSMS"],
+            typeSpeed: 150,
+            backSpeed: 100,
+            loop: true
+        })
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>

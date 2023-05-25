@@ -13,6 +13,10 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
     <!-- ph locations jquery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
     <script src="https://f001.backblazeb2.com/file/buonzz-assets/jquery.ph-locations-v1.0.1.js"></script>
@@ -156,29 +160,7 @@
                                 </div>
                             </div>
                             <!-- 2 column grid layout with text inputs for the first and last names -->
-                            <div class="row mt-4 mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
-                                        <select class="form-select" aria-label="Default select example" name="vaccination_status">
-                                            <option disabled selected>N/A</option>
-                                            <option value="Fully Vaccinated">Fully Vaccinated</option>
-                                            <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
-                                            <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
-                                            <option value="Not Vaccinated">Not Vaccinated</option>
-                                            <option value="Partially Vaccinated">Partially Vaccinated</option>
-                                        </select>
-                                        <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-outline form-line">
-                                        <label class="form-label" for="form6Example1">Upload Vaccination Card: <label class="text-danger">*</label></label>
-                                        <input type="file" placeholder="Input Image" class="form-control" name="vaccination_file">
-                                        <span class="text-danger">@error('vaccination_file'){{$message}} @enderror</span>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="row mt-4 mb-4">
                                 <div class="col ">
                                     <div class="form-outline form-line">
@@ -227,19 +209,53 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-4">
-                                <div class="col-md-12">
-                                    <div class="form-group form-line">
-                                        <label class="form-label" for="form6Example1">List of Requirements: <label class="text-danger">*</label></label>
-                                        <p>
-                                            <i>(Kindly upload the soft copy of your entrance payment receipt, credentials, registration, consent, and promissory note in one PDF file.)</i>
-                                            <br><i>(File format name (ex. Lastname-Firstname-MI-Requirements))</i>
-                                        </p>
-                                        <input multiple type="file" placeholder="Choose file" class="form-control" name="file[]" multiple>
-                                        <span class="text-danger">@error('file'){{$message}} @enderror</span>
+                            <div class="row mt-4 mb-3">
+                                <div class="col">
+                                    <div class="form-outline form-line">
+                                        <label class="form-label" for="form6Example2">Vaccination Status <label class="text-danger">*</label></label>
+                                        <select class="form-select" aria-label="Default select example" name="vaccination_status">
+                                            <option disabled selected>N/A</option>
+                                            <option value="Fully Vaccinated">Fully Vaccinated</option>
+                                            <option value="Vaccinated w/ 1 Booster">Vaccinated w/ 1 Booster</option>
+                                            <option value="Vaccinated w/ 2 Boosters">Vaccinated w/ 2 Boosters</option>
+                                            <option value="Not Vaccinated">Not Vaccinated</option>
+                                            <option value="Partially Vaccinated">Partially Vaccinated</option>
+                                        </select>
+
+                                        <span class="text-danger">@error('vaccination_status'){{$message}} @enderror</span>
                                     </div>
                                 </div>
+
                             </div>
+
+                            <div class="row mt-5">
+                                <div class="col-md-12">
+
+                                    <label class="form-label" for="form6Example1">Enter Required Files and Vaccination File: <label class="text-danger">*</label></label>
+                                    <p>
+                                        <i>(Kindly upload the soft copy of your entrance payment receipt, credentials, registration, consent, and promissory note in one PDF file.)</i>
+                                        <br><i>(File format name (ex. Lastname-Firstname-MI-Requirements))</i>
+                                    </p>
+
+                                    <span class="text-danger">@error('file'){{$message}} @enderror</span>
+                                    <hr>
+                                </div>
+                                <div class="col-md-5">
+
+                                    <label class="form-label" id="label-form" for="file"><span class="material-symbols-outlined">description</span>Required Files</label>
+                                    <input type="file" id="file" name="file[]" class="form-control" multiple>
+                                    <span class="text-danger">@error('file'){{$message}} @enderror</span>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="form-label" id="vaccination_label" for="vaccination_file"><span class="material-symbols-outlined">
+                                            vaccines
+                                        </span>Vaccination Card</label>
+                                    <input type="file" id="vaccination_file" placeholder="Choose file" class="form-control" name="vaccination_file">
+                                    <span class="text-danger">@error('vaccination_file'){{$message}} @enderror</span>
+                                </div>
+                            </div>
+                            <div class="form-group form-line mt-1"></div>
+
 
                             <h5 class="mt-5 lead">Programs & Subjects</h5>
                             <div class="col mt-4 mb-3">
@@ -347,6 +363,43 @@
             </div>
         </div>
     </footer>
+
+
+    <script>
+        // Get the file input elements
+        const fileInput = document.getElementById('file');
+        const vaccinationFileInput = document.getElementById('vaccination_file');
+
+        // Get the label elements
+        const fileLabel = document.getElementById('label-form');
+        const vaccinationLabel = document.getElementById('vaccination_label');
+
+        // Listen for file input change event
+        fileInput.addEventListener('change', function() {
+            // Check if a file is selected
+            if (this.files && this.files[0]) {
+                // Update the label text
+                fileLabel.textContent = 'Required File Uploaded';
+                // Add the icon after the label text
+                fileLabel.innerHTML += '<span class="material-symbols-outlined">file_download_done</span>';
+                // Change the background color of the input
+                fileLabel.style.backgroundColor = '#d4d11c';
+            }
+        });
+
+        // Listen for vaccination file input change event
+        vaccinationFileInput.addEventListener('change', function() {
+            // Check if a file is selected
+            if (this.files && this.files[0]) {
+                // Update the label text
+                vaccinationLabel.textContent = 'Vaccination File Uploaded';
+                // Add the icon after the label text
+                vaccinationLabel.innerHTML += '<span class="material-symbols-outlined">file_download_done</span>';
+                // Change the background color of the input
+                vaccinationLabel.style.backgroundColor = '#d4d11c';
+            }
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
     <script type='text/javascript'>
