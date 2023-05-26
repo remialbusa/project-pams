@@ -22,8 +22,8 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
 
     <!-- custom css -->
-    <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
     <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
+    <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
     <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png" />
     <title>Pre-registration</title>
