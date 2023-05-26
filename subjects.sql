@@ -36,6 +36,8 @@ CREATE TABLE `subjects` (
   `period` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `semester` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_of_students` int(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `available_slots` int(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -44,7 +46,7 @@ CREATE TABLE `subjects` (
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `code`, `program`, `subject`, `unit`, `period`, `created_at`, `updated_at`) VALUES
+INSERT INTO `subjects` (`id`, `code`, `program`, `subject`, `unit`, `period`,`created_at`, `updated_at`) VALUES
 (3, 'FD 601', '3', 'Advanced Research', '2', '1st Period', '2022-12-03 08:00:43', '2022-12-03 08:00:43'),
 (4, 'DA 601', '3', 'Socio-Psycholinguistics', '2', '1st Period', '2022-12-03 08:01:17', '2022-12-03 08:01:17'),
 (5, 'FD 602', '3', 'Advanced Statistics', '2', '2nd Period', '2022-12-03 08:01:53', '2022-12-03 08:01:53'),

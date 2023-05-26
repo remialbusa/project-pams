@@ -81,7 +81,7 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" name="available_slots" placeholder="Enter Available Slots" value="{{ $subject->available_slots }}" max="{{ $subject->no_of_students }}" min="0" max="100">
+                                <input type="number" class="form-control" name="available_slots" placeholder="Enter Available Slots" value="{{ $subject->available_slots }}" min="0" max="100">
                                 <label for="floatingInput">No. of Slots</label>
                                 <span class="text-danger">@error('slots'){{$message}} @enderror</span>
                             </div>

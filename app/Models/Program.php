@@ -13,7 +13,7 @@ class Program extends Model
     public static function getAllPrograms()
     {
         $result = DB::table('programs')
-            ->select('id', 'code', 'degree', 'program', 'description')
+            ->select('id', 'code', 'degree', 'program', 'description','semester','status')
             ->get()
             ->toArray();
         return $result;
@@ -24,7 +24,9 @@ class Program extends Model
         'code',
         'degree',
         'program',
-        'description'
+        'description',
+        'semester',
+        'status'
     ];
 
     public function students()

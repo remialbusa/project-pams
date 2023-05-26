@@ -627,6 +627,8 @@ class AdmissionOfficerController extends Controller
             'degree' => 'required',
             'program' => 'required',
             'description' => 'required',
+            'semester' => 'required',
+            'status' => 'required'
         ]);
 
         //insert data
@@ -636,6 +638,8 @@ class AdmissionOfficerController extends Controller
         $programs->degree = $request->degree;
         $programs->program = $request->program;
         $programs->description = $request->description;
+        $programs->semester = $request->semester;
+        $programs->status = $request->status;
         $save = $programs->save();
 
         if ($save) {
