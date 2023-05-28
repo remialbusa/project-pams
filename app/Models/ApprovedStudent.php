@@ -34,5 +34,10 @@ class ApprovedStudent extends Model
     {
         return $this->belongsTo(Program::class, 'program', 'id');
     }
+
+    public function studentLoad()
+    {
+        return $this->hasMany('App\Models\StudentLoad', 'student_id','id');
+    }
     
 }

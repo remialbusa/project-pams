@@ -3,48 +3,32 @@
 namespace App\Exports;
 
 use App\Models\EnrolledStudent;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+use App\Models\SchoolYear;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\BeforeExport;
+use Maatwebsite\Excel\Events\BeforeWriting;
+use Maatwebsite\Excel\Events\BeforeSheet;
 
-class EnrolledStudentExport implements FromCollection,WithHeadings
+class EnrolledStudentExport implements FromView, WithEvents
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public function registerEvents() : array
     {
-        return collect(EnrolledStudent::getAllStudents());
-    }
-    
-    public function headings():array
-    {
-        return[
-            'id',
-            'student_type',
-            'student_id',
-            'last_name',
-            'first_name',
-            'middle_name',
-            'vaccination_status',
-            'email',
-            'gender',
-            'birth_date',
-            'mobile_no',
-            'fb_acc_name',
-            'region',
-            'province',
-            'city',
-            'baranggay',
-            'program',
-            'first_period_sub',
-            'second_period_sub',
-            'third_period_sub',
-            'first_period_sched',
-            'second_period_sched',
-            'third_period_sched',
-            'first_period_adviser',
-            'second_period_adviser',
-            'third_period_adviser'
+        return [
+            AfterSheet::class    => function(AfterSheet $event) {
+                $event->sheet->setAutoSize(true) ;
+            },
         ];
+    }  
+    public function view(): View
+    {
+        $school_years = SchoolYear::with(['schoolEnrollees' => function ($query) {
+            $query->with('student');
+        }])->get();
+
+        return view('exports.enrolled_students', [
+            'school_years' => $school_years
+        ]);
     }
 }

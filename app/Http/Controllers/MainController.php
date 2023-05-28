@@ -9,6 +9,7 @@ use App\Models\Subject;
 use App\Models\Program;
 use App\Models\TechnicalForm;
 use App\Models\SchoolYear;
+use App\Models\StudentLoad;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -35,25 +36,29 @@ class MainController extends Controller
         return view('welcome', compact('programList', 'school_year', 'enrolledStudents', 'approvedStudents', 'subjects', 'programs'));
     }
 
-    function register()
+    function register(Request $request)
     {
+        $school_year= SchoolYear::find($request->schoolyear_id);
+
         $programData['data'] = Program::orderby("program", "asc")
             ->select('id', 'program', 'description')
             ->where('status', 'Active')
+            ->where('semester', $school_year->semester)
             ->get();
 
-        $school_year = SchoolYear::all();
         return view('auth.register-student', ['school_year' => $school_year, 'programData' => $programData]);
     }
 
-    function registerNewStudent()
+    function registerNewStudent(Request $request)
     {
+        $school_year = SchoolYear::find($request->schoolyear_id);
+
         $programData['data'] = Program::orderby("program", "asc")
             ->select('id', 'program', 'description')
             ->where('status', 'Active')
+            ->where('semester', $school_year->semester)
             ->get();
 
-        $school_year = SchoolYear::all();
         return view('auth.register-new-student', ['school_year' => $school_year, 'programData' => $programData]);
     }
 
@@ -191,10 +196,6 @@ class MainController extends Controller
         $student->save();
         return back()->with('success', 'Registration complete');
     }
-
-
-
-
     //checks the number of slots of subjects
     function checkNoOfSlots($subjects)
     {
@@ -246,7 +247,6 @@ class MainController extends Controller
             'baranggay' => 'required',
         ]);
 
-
         //insert data
         $student = EnrolledStudent::find($request->id);
         $student->id = $request->id;
@@ -255,7 +255,7 @@ class MainController extends Controller
         $student->last_name = $request->last_name;
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
-        $student->vaccination_status = $request->vaccination_status;
+        $student->vaStudentLoadccination_status = $request->vaccination_status;
         $student->email = $request->email;
         $student->gender = $request->gender;
         $student->birth_date = $request->birth_date;
@@ -267,7 +267,6 @@ class MainController extends Controller
         $student->baranggay = $request->baranggay;
 
         $save = $student->save();
-
 
         if ($save) {
             return back()->with('success', 'Registration complete');

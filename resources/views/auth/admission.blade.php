@@ -88,8 +88,12 @@
                     
 
                     @if (SchoolYear::exists())
-                    
-                    <a class="small btn btn-warning bg-warning btn-block mt-1" href="student/auth/register-new-student">PRE-REGISTER HERE!</a> </p>
+                        @php
+                            $school_years = App\Models\SchoolYear::where('status', 'Active')->get();
+                        @endphp
+                        @foreach($school_years as $school_year)
+                            <a class="small btn btn-warning bg-warning btn-block mt-1" href="student/auth/register-new-student?schoolyear_id={{ $school_year->id}}">PRE-REGISTER FOR SEMESTER - {{ strtoupper($school_year->semester) }}!</a> 
+                        @endforeach
                     @else
                     <a class="small btn btn-warning bg-warning btn-block mt-1" data-bs-toggle="modal" data-bs-target="#modalForm">PRE-REGISTER HERE!</a>
                     <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -139,7 +143,14 @@
                     <p class="m-0">2. FILL OUT ONLINE PRE-REGISTRATION:
                     
                     @if (SchoolYear::exists())
-                    <a class="small btn btn-warning bg-warning btn-block mt-1" href="student/auth/register-student">PRE-REGISTER HERE!</a> </p>
+                        @php
+                            $school_years = App\Models\SchoolYear::where('status', 'Active')->get();
+                        @endphp
+                        @foreach($school_years as $school_year)
+                            <a class="small btn btn-warning bg-warning btn-block mt-1" href="student/auth/register-student?schoolyear_id={{ $school_year->id}}">PRE-REGISTER FOR SEMESTER - {{ strtoupper($school_year->semester) }}!</a> 
+                        @endforeach
+                        </p>
+
                     @else
                     <a class="small btn btn-warning bg-warning btn-block mt-1" data-bs-toggle="modal" data-bs-target="#modalForm">PRE-REGISTER HERE!</a>
                     <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

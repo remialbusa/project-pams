@@ -27,7 +27,7 @@
     <link type="text/css" href="{{url('css/style.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
     <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png" />
-    <title>Pre-registration</title>
+    <title>Pre-registration For {{ $school_year->school_year . ' - ' . ucfirst($school_year->semester) }}</title>
 </head>
 
 <body>
@@ -58,11 +58,11 @@
         <div class="manage-users-body container mt-5">
             <div class="container h-100">
                 <div class=" px-4 mt-5 mb-5">
-                    <h4>PRE-REGISTRATION</h4>
+                    <h4>PRE-REGISTRATION for {{ $school_year->school_year . ' - ' . ucfirst($school_year->semester) }}</h4>
                     <hr />
-                    @foreach ($school_year as $school_year)
                     @if ($school_year->status == 'Active')
                     <form action="{{ route('auth.save') }}" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" value="{{$school_year->id}}" name="school_year_id">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
                         @if(Session::get('success'))
 
@@ -317,7 +317,6 @@
                         <span style="font-weight: bold;">Enrollment is not yet Actived. If you think this is wrong please message us in Technical support</span>
                     </div>
                     @endif
-                    @endforeach
                 </div>
             </div>
         </div>

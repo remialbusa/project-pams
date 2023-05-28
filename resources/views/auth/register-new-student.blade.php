@@ -26,7 +26,7 @@
     <link type="text/css" href="{{url('css/profile.css')}}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('js/script.js') }}"></script>
     <link rel="shortcut icon" type="image/jpg" href="https://www.lnu.edu.ph/images/logo.png" />
-    <title>Pre-registration</title>
+    <title>Pre-registration for {{ $school_year->school_year . ' - ' . ucfirst($school_year->semester) }}</title>
 </head>
 
 <body>
@@ -57,7 +57,7 @@
         <div class="manage-users-body container mt-5">
             <div class="container h-100">
                 <div class="px-4 mt-5 mb-5">
-                    <h4>PRE-REGISTRATION</h4>
+                    <h4>PRE-REGISTRATION for {{ $school_year->school_year . ' - ' . ucfirst($school_year->semester) }}</h4>
                     <hr />
                     <div class="col-sm-8 lh-lg">
                         <p class="m-0">I. For New Students (Freshmen, Returnees, and Transferees)</p>
@@ -71,6 +71,7 @@
 
                     <hr />
                     <form action="{{ route('auth.save') }}" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" value="{{$school_year->id}}" name="school_year_id">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
                         @if(Session::get('success'))
                         <div class="alert alert-success text-center">{{Session::get('success')}}</div>

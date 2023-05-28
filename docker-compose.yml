@@ -14,11 +14,10 @@ services:
         container_name: 'pams_mysql'
         working_dir: /application
         volumes:
-            - '.:/application'
+            - db-data:/var/lib/mysql
         environment:
-            - MYSQL_ROOT_PASSWORD=root
             - MYSQL_DATABASE=pams_db
-            - MYSQL_PASSWORD=root
+            - MYSQL_ROOT_PASSWORD=root
         ports:
             - '3306:3306'
 
@@ -39,3 +38,6 @@ services:
         volumes:
             - '.:/application'
             - './dev/php-fpm/php-ini-overrides.ini:/etc/php/8.0/fpm/conf.d/99-overrides.ini'
+
+volumes:
+  db-data:

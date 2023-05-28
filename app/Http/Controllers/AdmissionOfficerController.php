@@ -21,6 +21,8 @@ use App\Exports\SubjectExport;
 use App\Exports\ProgramExport;
 use App\Exports\InstructorExport;
 use App\Models\SchoolYear;
+use App\Models\StudentLoad;
+use App\Models\SchoolYearEnrollee;
 use App\Mail\NotificationMail;
 use Illuminate\Support\Facades\Mail;
 use Excel;
@@ -223,44 +225,68 @@ class AdmissionOfficerController extends Controller
             'second_period_sub' => 'required',
             'third_period_sub' => 'required',
         ]);
-
-        $student = new EnrolledStudent();
-        $student->id = $request->id;
-        $student->student_type = $request->student_type;
-        $student->student_id = $request->student_id;
-        $student->last_name = $request->last_name;
-        $student->first_name = $request->first_name;
-        $student->middle_name = $request->middle_name;
-        $student->vaccination_status = $request->vaccination_status;
-        $student->email = $request->email;
-        $student->gender = $request->gender;
-        $student->birth_date = $request->birth_date;
-        $student->mobile_no = $request->mobile_no;
-        $student->fb_acc_name = $request->fb_acc_name;
-        $student->region = $request->region;
-        $student->province = $request->province;
-        $student->city = $request->city;
-        $student->baranggay = $request->baranggay;
-        $student->program = $request->program;
-        $student->first_period_sub = $request->first_period_sub;
-        $student->second_period_sub = $request->second_period_sub;
-        $student->third_period_sub = $request->third_period_sub;
-        $student->first_period_sched = $request->first_period_sched;
-        $student->second_period_sched = $request->second_period_sched;
-        $student->third_period_sched = $request->third_period_sched;
-        $student->first_period_adviser = $request->first_period_adviser;
-        $student->second_period_adviser = $request->second_period_adviser;
-        $student->third_period_adviser = $request->third_period_adviser;
-        $student->enrollment_id = $request->id;
-
-        $save = $student->save();
-
+        $student = EnrolledStudent::updateOrCreate([ 'student_id' => $request->student_id ], [
+            'id' => $request->id,
+            'student_type' => $request->student_type,
+            'student_id' => $request->student_id,
+            'last_name' => $request->last_name,
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'vaccination_status' => $request->vaccination_status,
+            'email' => $request->email,
+            'gender' => $request->gender,
+            'birth_date' => $request->birth_date,
+            'mobile_no' => $request->mobile_no,
+            'fb_acc_name' => $request->fb_acc_name,
+            'region' => $request->region,
+            'province' => $request->province,
+            'city' => $request->city,
+            'baranggay' => $request->baranggay,
+            'program' => $request->program,
+            'first_period_sub' => $request->first_period_sub,
+            'second_period_sub' => $request->second_period_sub,
+            'third_period_sub' => $request->third_period_sub,
+            'first_period_sched' => $request->first_period_sched,
+            'second_period_sched' => $request->second_period_sched,
+            'third_period_sched' => $request->third_period_sched,
+            'first_period_adviser' => $request->first_period_adviser,
+            'second_period_adviser' => $request->second_period_adviser,
+            'third_period_adviser' => $request->third_period_adviser,
+            'enrollment_id' => $request->id,
+        ]);
+        $this->saveStudentLoad($student);
         Mail::to($student->email)->send(new NotificationMail($student->email));
-        if ($save) {
+        if ($student) {
             return back()->with('success', 'Successfully inserted student data');
         } else {
             return back()->with('fail', 'Failed inserting student data');
         }
+    }
+
+    function saveStudentLoad($student)
+    {
+        $sy = SchoolYear::where('semester', $student->currentProgram->semester)
+            ->where('status', 'Active')
+            ->first();
+        $sye = SchoolYearEnrollee::updateOrCreate(['student_id' => $student->id, 'school_year_id' => $sy->id], ['student_id' => $student->id, 'school_year_id' => $sy->id]);
+        
+        $this->createStudentLoad($student->first_period_sub, $sy, $student, $student->first_period_adviser, $student->first_period_sched);
+        $this->createStudentLoad($student->second_period_sub, $sy, $student, $student->second_period_adviser, $student->second_period_sched);
+        $this->createStudentLoad($student->third_period_sub, $sy, $student, $student->third_period_adviser, $student->third_period_sched);
+    }
+
+    function createStudentLoad($subject_id, $sy, $student, $adviser, $sched){
+        $subject = Subject::find($subject_id);
+        StudentLoad::updateOrCreate(['school_year_id' => $sy->id, 'student_id' => $student->id, 'period' => $subject->period], [
+            'subject_id' => $subject_id,
+            'student_id' => $student->id, 
+            'school_year_id' => $sy->id,
+            'semester' => $sy->semester,
+            'period' => $subject->period,
+            'program' => $student->program,
+            'sub_sched' => $sched,
+            'adviser' => $adviser,
+        ]);
     }
 
     #Edit Approved Student
@@ -327,7 +353,7 @@ class AdmissionOfficerController extends Controller
         $students->program = $request->program;
 
         $save = $students->save();
-
+        $this->saveStudentLoad($student);
         if ($save) {
             return redirect('/staff/admin/manage-enrollees');
         } else {
@@ -1081,25 +1107,12 @@ class AdmissionOfficerController extends Controller
         $student->third_procedure = $request->third_procedure;
         $save = $student->save();
 
-
         if ($save) {
             return redirect('/staff/admin/enrolled');
         } else {
             return back()->with('fail', 'Failed inserting student data');
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     function editPreEnrollees($id)
     {
@@ -1207,7 +1220,7 @@ class AdmissionOfficerController extends Controller
 
         $this->deletePending($request->id);
         $this->deletePreEnrollee($request->id);
-
+        $this->saveStudentLoad($student);
         if ($save) {
             return redirect('staff/admin/enrolled');
         } else {
@@ -1319,7 +1332,7 @@ class AdmissionOfficerController extends Controller
         $student->second_period_adviser = $request->second_period_adviser;
         $student->third_period_adviser = $request->third_period_adviser;
         $save = $student->save();
-
+        $this->saveStudentLoad($student);
         if ($save) {
             return redirect('/staff/admin/enrolled');
         } else {
