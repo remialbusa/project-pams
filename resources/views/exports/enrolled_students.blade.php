@@ -15,7 +15,9 @@
         </tr>
         <tr></tr>
         <tr>
-            <td></td>
+            @if(count($school_years) > 1)
+                <td></td>
+            @endif
             <td style="width:100px; font-weight:bold;text-align:center">Student Type</td>
             <td style="width:100px; font-weight:bold;text-align:center">Student ID</td>
             <td style="width:100px; font-weight:bold;text-align:center">Last Name</td>
@@ -49,7 +51,9 @@
             @endphp
             @if($student)
                 <tr>
-                    <td style="text-align:center"></td>
+                    @if(count($school_years) > 1)
+                        <td></td>
+                    @endif
                     <td style="text-align:center">{{$student->student_type}}</td>
                     <td style="text-align:center">{{$student->student_id}}</td>
                     <td style="text-align:center">{{$student->last_name}}</td>

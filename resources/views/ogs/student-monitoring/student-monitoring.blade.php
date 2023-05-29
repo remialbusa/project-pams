@@ -8,7 +8,15 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-2 text-gray-800">Enrolled Students</h1>
-        <a href="{{ route('admin.export-enrolled-students') }}"class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm">Export Data</a>
+        <div>
+            <select class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm mr-3" id="exportSchoolyear" onchange="changeExport()">
+                <option disabled selected>Select School Year To Export</option>
+                @foreach(App\Models\SchoolYear::all() as $schoolyear)
+                    <option value="{{$schoolyear->id}}">{{ $schoolyear->school_year . ' - ' . ucfirst($schoolyear->semester)}}</option>
+                @endforeach
+            </select>
+            <a id="exportEnrolledLink" href="{{ route('admin.export-enrolled-students') }}"class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm">Export Data</a>
+        </div>
     </div>
     <p class="mb-4">Monitor students who are enrolled this School Year</p>
     

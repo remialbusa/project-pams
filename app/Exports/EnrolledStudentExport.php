@@ -13,6 +13,12 @@ use Maatwebsite\Excel\Events\BeforeSheet;
 
 class EnrolledStudentExport implements FromView, WithEvents
 {
+    private $school_year_id;
+
+    public function __construct($school_year_id) {
+        $this->school_year_id = $school_year_id;
+    }
+
     public function registerEvents() : array
     {
         return [
@@ -23,9 +29,15 @@ class EnrolledStudentExport implements FromView, WithEvents
     }  
     public function view(): View
     {
-        $school_years = SchoolYear::with(['schoolEnrollees' => function ($query) {
-            $query->with('student');
-        }])->get();
+       if($this->school_year_id){
+            $school_years = SchoolYear::where('id', $this->school_year_id)->with(['schoolEnrollees' => function ($query) {
+                $query->with('student');
+            }])->get();
+       } else {
+            $school_years = SchoolYear::with(['schoolEnrollees' => function ($query) {
+                $query->with('student');
+            }])->get();
+       }
 
         return view('exports.enrolled_students', [
             'school_years' => $school_years

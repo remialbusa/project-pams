@@ -38,7 +38,18 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">S.Y. {{$school_year->school_year}} - {{$school_year->semester}}</h6>
+            @php
+                $schoolyears_enrolled = App\Models\SchoolYear::where('status', 'active')->with('schoolEnrollees')->whereDoesntHave('schoolEnrollees', function($query) use($LoggedUserInfo){
+                    $query->where('student_id', $LoggedUserInfo->id);
+                })->get(); 
+            @endphp
+            @if($schoolyears_enrolled)
+            <select class="form-control"  id="preEnrollmentSemesterSelect" onchange="changeSemForEnroll()">
+                @foreach($schoolyears_enrolled as $school_year_option)
+                    <option {{ $school_year->id ==  $school_year_option->id ? 'selected' : ''  }} value="{{$school_year_option->id}}" >S.Y. {{ ucfirst($school_year_option->school_year) . ' - '. ucfirst($school_year_option->semester) }}</option>
+                @endforeach
+            </select>
+            @endif
             </div>
             <section class="details">
                 <div class="container mt-5">
@@ -72,13 +83,7 @@
                                         <div class="form-outline form-line">
                                             <label class="form-label" for="form6Example1">Student Type</label>
                                             <select class="form-select no-border" aria-label="Default select example" name="student_type">   
-                                                @if($LoggedUserInfo->student_type == 'New Student')
-                                                <option selected value="New Student">New Student</option>
-                                                <option value="Continuing">Continuing</option>
-                                                @else
-                                                <option value="New Student">New Student</option>
                                                 <option selected value="Continuing">Continuing</option>
-                                                @endif
                                             </select>
                                             <span class="text-danger">@error('student_type'){{$message}} @enderror</span>
                                         </div>

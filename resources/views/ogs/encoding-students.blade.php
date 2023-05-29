@@ -132,9 +132,7 @@
                                             <option value="Done">Done</option>
                                             <option selected value="Pending">Pending</option>
                                         @else
-                                            <option disabled selected>N/A</option>
-                                            <option value="Done">Done</option>
-                                            <option value="Pending">Pending</option>
+                                            <option selected value="Done">Done</option>
                                         @endif
                                     </select>
                                     <span class="text-danger">@error('first_procedure'){{$message}} @enderror</span>
@@ -152,9 +150,8 @@
                                         <option value="Done">Done</option>
                                         <option selected value="Pending">Pending</option>
                                         @else
-                                        <option disabled selected>N/A</option>
                                         <option value="Done">Done</option>
-                                        <option value="Pending">Pending</option>
+                                        <option disabled selected value="Pending">Pending</option>
                                         @endif
                                     </select>
                                     <span class="text-danger">@error('second_procedure'){{$message}} @enderror</span>
@@ -172,9 +169,8 @@
                                         <option value="Done">Done</option>
                                         <option selected value="Pending">Pending</option>
                                         @else
-                                        <option disabled selected>N/A</option>
                                         <option value="Done">Done</option>
-                                        <option value="Pending">Pending</option>
+                                        <option disabled selected value="Pending">Pending</option>
                                         @endif
                                     </select>
                                     <span class="text-danger">@error('third_procedure'){{$message}} @enderror</span>

@@ -221,6 +221,10 @@
     $(document).ready(function() {
         $('table.display').DataTable();
     });
+
+    function changeExport() {
+        $("#exportEnrolledLink").attr("href", "http://localhost/staff/admin/enrolled/export-data?schoolyear_id=" + $('#exportSchoolyear').val());
+    }
 </script>
 
 </body>

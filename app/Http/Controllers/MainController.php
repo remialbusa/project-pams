@@ -346,7 +346,7 @@ class MainController extends Controller
         return view('student.monitor-enrollment.monitor-enrollment', ['LoggedUserInfo' =>  $student, 'school_year' => $school_year, 'subject' => $subject, 'studentUser' => $studentUser]);
     }
 
-    function preEnroll()
+    function preEnroll(Request $request)
     {
         if (session()->has('LoggedUser')) {
             $student = EnrolledStudent::where('id', '=', session('LoggedUser'))->first();
@@ -355,7 +355,11 @@ class MainController extends Controller
             ];
         }
 
-        $school_year = DB::table('school_year')->where('status', 'Active')->first();
+        $school_year = $request->schoolyear_id 
+            ? DB::table('school_year')->where('id', $request->schoolyear_id )->where('status', 'Active')->first() 
+            : SchoolYear::where('status', 'Active')->whereDoesntHave('schoolEnrollees', function($q) use($student){
+                $q->where('student_id', $student->id);
+            })->first();
         $studentUser = EnrolledStudent::all();
         $enrolledStudent = EnrolledStudent::all();
         $programs = Program::all();
@@ -365,6 +369,7 @@ class MainController extends Controller
 
         $programData['data'] = Program::orderby("program", "asc")
             ->select('id', 'program', 'description')
+            ->where('semester', $school_year->semester)
             ->get();
 
         return view('student.pre-enroll.pre-enrollment', $data, ['school_year' => $school_year, 'programData' => $programData, 'firstPeriod' => $firstPeriod, 'secondPeriod' => $secondPeriod, 'thirdPeriod' => $thirdPeriod, 'programs' => $programs, 'studentUser' => $studentUser, 'enrolledStudent' => $enrolledStudent]);
@@ -397,7 +402,7 @@ class MainController extends Controller
 
 
         //insert data
-        $student = new ApprovedStudent();
+        $student = ApprovedStudent::firstOrNew(['id' => $request->id]);
         $student->id = $request->id;
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;

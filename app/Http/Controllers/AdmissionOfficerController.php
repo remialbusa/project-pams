@@ -1385,9 +1385,9 @@ class AdmissionOfficerController extends Controller
     }
 
     #Exporting Data Tables
-    function exportEnrolledStudents()
+    function exportEnrolledStudents(Request $request)
     {
-        return Excel::download(new EnrolledStudentExport, 'enrolled-students.xlsx');
+        return Excel::download(new EnrolledStudentExport($request->schoolyear_id), 'enrolled-students.xlsx');
     }
 
     function exportSubjects()

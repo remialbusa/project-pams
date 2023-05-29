@@ -89,11 +89,9 @@
 
                     @if (SchoolYear::exists())
                         @php
-                            $school_years = App\Models\SchoolYear::where('status', 'Active')->get();
+                            $school_year = App\Models\SchoolYear::where('status', 'Active')->first();
                         @endphp
-                        @foreach($school_years as $school_year)
-                            <a class="small btn btn-warning bg-warning btn-block mt-1" href="student/auth/register-new-student?schoolyear_id={{ $school_year->id}}">PRE-REGISTER FOR SEMESTER - {{ strtoupper($school_year->semester) }}!</a> 
-                        @endforeach
+                        <a class="small btn btn-warning bg-warning btn-block mt-1" href="student/auth/register-new-student?schoolyear_id={{ $school_year->id}}">PRE-REGISTER FOR {{ $school_year->school_year }} - {{ strtoupper($school_year->semester) }} SEMESTER!</a> 
                     @else
                     <a class="small btn btn-warning bg-warning btn-block mt-1" data-bs-toggle="modal" data-bs-target="#modalForm">PRE-REGISTER HERE!</a>
                     <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -144,11 +142,9 @@
                     
                     @if (SchoolYear::exists())
                         @php
-                            $school_years = App\Models\SchoolYear::where('status', 'Active')->get();
+                            $school_year = App\Models\SchoolYear::where('status', 'Active')->first();
                         @endphp
-                        @foreach($school_years as $school_year)
-                            <a class="small btn btn-warning bg-warning btn-block mt-1" href="student/auth/register-student?schoolyear_id={{ $school_year->id}}">PRE-REGISTER FOR SEMESTER - {{ strtoupper($school_year->semester) }}!</a> 
-                        @endforeach
+                        <a class="small btn btn-warning bg-warning btn-block mt-1" href="student/auth/register-student?schoolyear_id={{ $school_year->id}}">PRE-REGISTER FOR {{ $school_year->school_year }} - {{ strtoupper($school_year->semester) }} SEMESTER!</a> 
                         </p>
 
                     @else

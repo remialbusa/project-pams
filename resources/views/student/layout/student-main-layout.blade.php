@@ -355,6 +355,11 @@
                 };
             });
         }
+
+        function changeSemForEnroll()
+        {
+            location.href = 'student/auth/pre-enroll?schoolyear_id=' + $("#preEnrollmentSemesterSelect").val();
+        }
     </script>
 
 </body>
