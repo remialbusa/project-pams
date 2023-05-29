@@ -250,7 +250,7 @@
                             <div class="col mt-4">
                                 <div class="form-outline ">
                                     <label class="form-label" for="form6Example2">First Process</label>
-                                    <select class="form-select form-line" aria-label="Default select example" name="first_procedure">
+                                    <select class="form-select form-line" aria-label="Default select example" name="first_procedure" disabled>
                                         @if ($students['first_procedure'] == 'Done')
                                         <option selected value="Done">Done</option>
                                         @else
@@ -264,7 +264,7 @@
                             <div class="col mt-4">
                                 <div class="form-outline ">
                                     <label class="form-label " for="form6Example2">Second Process</label>
-                                    <select class="form-select form-line" aria-label="Default select example" name="second_procedure">
+                                    <select class="form-select form-line" aria-label="Default select example" name="second_procedure" disabled>
                                         @if ($students['second_procedure'] == 'Done')
                                         <option selected value="Done">Done</option>
                                         @else
@@ -278,8 +278,8 @@
                             <div class="col mt-4">
                                 <div class="form-outline ">
                                     <label class="form-label" for="form6Example2">Third Process</label>
-                                    <select class="form-select form-line" aria-label="Default select example" name="third_procedure">
-                                        @if ($students['third_procedure'] == 'Done')
+                                    <select class="form-select form-line" aria-label="Default select example" name="third_procedure" disabled>
+                                        @if ($students['third_procedure'] == 'Done' || Session::get('success'))
                                         <option selected value="Done">Done</option>
                                         @else
                                         <option selected value="Pending">Pending</option>

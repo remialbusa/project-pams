@@ -133,7 +133,7 @@ class AdmissionOfficerController extends Controller
         $student->first_period_adviser = "";
         $student->second_period_adviser = "";
         $student->third_period_adviser = "";
-        $student->first_procedure = "Pending";
+        $student->first_procedure = "Done";
         $student->second_procedure = "Pending";
         $student->third_procedure = "Pending";
 
@@ -400,8 +400,8 @@ class AdmissionOfficerController extends Controller
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;
         $student->enrollment_status = $request->enrollment_status;
-        $student->first_procedure = $request->first_procedure;
-        $student->second_procedure = $request->second_procedure;
+        $student->first_procedure = 'Done';
+        $student->second_procedure = 'Done';
         $student->third_procedure = $request->third_procedure;
         $student->first_period_sub = $request->first_period_sub;
         $student->second_period_sub = $request->second_period_sub;
@@ -416,10 +416,8 @@ class AdmissionOfficerController extends Controller
         $file = $request->enrollment_file;
 
         if ($file !== null) {
-            $filename = $file->getClientOriginalName();
-            $request->enrollment_file->move('assets', $filename);
-
-            $student->enrollment_file = $filename;
+            $path = Storage::disk('assets')->put('/', $request->enrollment_file);
+            $student->enrollment_file = $path;
         } else {
         }
 
@@ -441,10 +439,8 @@ class AdmissionOfficerController extends Controller
         $student = ApprovedStudent::find($request->id);
         $file = $request->enrollment_file;
 
-        $filename = $file->getClientOriginalName();
-        $request->enrollment_file->move('assets', $filename);
-
-        $student->enrollment_file = $filename;
+        $path = Storage::disk('assets')->put('/', $request->enrollment_file);
+        $student->enrollment_file = $path;
 
 
         $save = $student->save();
@@ -1102,9 +1098,9 @@ class AdmissionOfficerController extends Controller
         $student->venue = "";
         $student->link = "";
         $student->image = "";
-        $student->first_procedure = $request->first_procedure;
-        $student->second_procedure = $request->second_procedure;
-        $student->third_procedure = $request->third_procedure;
+        $student->first_procedure = 'Done';
+        $student->second_procedure ='Done';
+        $student->third_procedure = 'Done';
         $save = $student->save();
 
         if ($save) {
@@ -1213,9 +1209,9 @@ class AdmissionOfficerController extends Controller
         $student->first_period_adviser = $request->first_period_adviser;
         $student->second_period_adviser = $request->second_period_adviser;
         $student->third_period_adviser = $request->third_period_adviser;
-        $student->first_procedure = $request->first_procedure;
-        $student->second_procedure = $request->second_procedure;
-        $student->third_procedure = $request->third_procedure;
+        $student->first_procedure = 'Done';
+        $student->second_procedure = 'Done';
+        $student->third_procedure = 'Done';
         $save = $student->save();
 
         $this->deletePending($request->id);

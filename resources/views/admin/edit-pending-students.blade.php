@@ -71,7 +71,7 @@
                                 <div class="col mt-4">
                                     <div class="form-outline ">
                                         <label class="form-label" for="form6Example2">Submitted Form</label>
-                                        <select class="form-select form-line" aria-label="Default select example" name="submitted_form">
+                                        <select class="form-select form-line" aria-label="Default select example" name="submitted_form" disabled>
                                             @if($status['submitted_form'] == 'Pending')
                                             <option value="Pending">Pending</option>
                                             <option value="Done">Done</option>
@@ -88,7 +88,7 @@
                                 <div class="col mt-4">
                                     <div class="form-outline ">
                                         <label class="form-label " for="form6Example2">Payment</label>
-                                        <select class="form-select form-line" aria-label="Default select example" name="payment">
+                                        <select class="form-select form-line" aria-label="Default select example" name="payment" disabled>
                                             @if($status['payment'] == 'Pending')
                                             <option value="Pending">Pending</option>
                                             <option value="Done">Done</option>
@@ -105,7 +105,7 @@
                                 <div class="col mt-4">
                                     <div class="form-outline ">
                                         <label class="form-label" for="form6Example2">Status Form</label>
-                                        <select class="form-select form-line" aria-label="Default select example" name="status">
+                                        <select class="form-select form-line" aria-label="Default select example" name="status" disabled>
                                             @if($status['status'] == 'Pending')
                                             <option value="Pending">Pending</option>
                                             <option value="Done">Done</option>

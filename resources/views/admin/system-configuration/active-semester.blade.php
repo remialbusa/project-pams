@@ -38,7 +38,9 @@
                             <td>{{$school_year->status}}</td>
                             <td class="text-center">
                                 <a href="{{route('auth.edit-active-semester', $school_year->id)}}" class=" d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
-                                <a href="{{route('auth.delete-semester', $school_year->id)}}" class=" d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
+                                @if( count($school_year->schoolEnrollees->toArray()) == 0)
+                                    <a href="{{route('auth.delete-semester', $school_year->id)}}" class=" d-none d-sm-inline-block btn btn-md btn-danger shadow-sm"><i class="bi bi-trash3"></i></a>
+                                @endif
                             </td>
                             
                         </tr>

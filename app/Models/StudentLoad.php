@@ -21,4 +21,9 @@ class StudentLoad extends Model
         'semester',
         'sub_sched',
     ];
+
+    public function subject()
+    {
+        return $this->belongsTo('App\Models\Subject', 'subject_id');
+    }
 }

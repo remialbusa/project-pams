@@ -16,6 +16,7 @@ use App\Models\Scheduling;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ThesisManagementController extends Controller
 {
@@ -93,10 +94,8 @@ class ThesisManagementController extends Controller
 
         $file = $request->file;
         
-        $filename=$file->getClientOriginalName();
-        $request->file->move('assets',$filename);
-
-        $thesis->file= $filename;
+        $path = Storage::disk('assets')->put('/', $file);
+        $thesis->file= $filepathname;
 
         $save = $thesis->save();
 

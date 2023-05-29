@@ -104,7 +104,7 @@
                         
                         <div class="mt-4 form-outline form-line">
                             <label class="form-label" for="form6Example1">Enrollment Status <label class="text-danger">*</label></label>
-                            <select class="form-select" aria-label="Default select example" name="enrollment_status" placeholder="Status">
+                            <select class="form-select" aria-label="Default select example" name="enrollment_status" placeholder="Status" >
                                 @if ($students['enrollment_status'] == 'Enrolled')
                                 <option selected value="Enrolled">Enrolled</option>
                                 <option value="Pending">Pending</option>
@@ -124,8 +124,8 @@
                             <div class="col mt-4">
                                 <div class="form-outline ">
                                     <label class="form-label" for="form6Example2">First Process</label>
-                                    <select class="form-select form-line" aria-label="Default select example" name="first_procedure">
-                                        @if ($students['first_procedure'] == 'Done')
+                                    <select class="form-select form-line" aria-label="Default select example" name="first_procedure" disabled>
+                                        @if ($students['first_procedure'] == 'Done' || Session::get('success'))
                                             <option selected value="Done">Done</option>
                                             <option value="Pending">Pending</option>
                                         @elseif ($students['first_procedure'] == 'Pending')
@@ -144,7 +144,7 @@
                             <div class="col mt-4">
                                 <div class="form-outline ">
                                     <label class="form-label " for="form6Example2">Second Process</label>
-                                    <select class="form-select form-line" aria-label="Default select example" name="second_procedure">
+                                    <select class="form-select form-line" aria-label="Default select example" name="second_procedure" disabled>
                                         @if ($students['second_procedure'] == 'Done')
                                         <option selected value="Done">Done</option>
                                         <option value="Pending">Pending</option>
@@ -164,7 +164,7 @@
                             <div class="col mt-4">
                                 <div class="form-outline ">
                                     <label class="form-label" for="form6Example2">Third Process</label>
-                                    <select class="form-select form-line" aria-label="Default select example" name="third_procedure">
+                                    <select class="form-select form-line" aria-label="Default select example" name="third_procedure" disabled>
                                         @if ($students['third_procedure'] == 'Done')
                                         <option selected value="Done">Done</option>
                                         <option value="Pending">Pending</option>

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     
     <title>@yield('title')</title>
     <base href="{{ \URL::to('/')}}">
@@ -315,7 +316,45 @@
                 }
                 });
             });
+
+            
         });
+        function changeSem(){
+            $.post("/student/get-student-load",
+            {
+                schoolyear_id: $("#semesterSelect").val(),
+                id: $("#studentTableId").val(),
+                _token:$('meta[name="csrf-token"]').attr('content'),
+            },
+            function(data,status){
+                for (period of data) {
+                    if(period.period == '1st Period'){
+                        $("#subjectName1").show();
+                        $("#subjectName1").html(period.subject.code + ' - ' + period.subject.subject);
+                        $("#adviserName1").show();
+                        $("#adviserName1").html(period.adviser);
+                        $("#sched1").show();
+                        $("#sched1").html(period.period);
+                    }
+                    if(period.period == '2nd Period'){
+                        $("#subjectName2").show();
+                        $("#subjectName2").html(period.subject.code + ' - ' + period.subject.subject);
+                        $("#adviserName2").show();
+                        $("#adviserName2").html(period.adviser);
+                        $("#sched2").show();
+                        $("#sched2").html(period.period);
+                    }
+                    if(period.period == '3rd Period'){
+                        $("#subjectName3").show();
+                        $("#subjectName3").html(period.subject.code + ' - ' + period.subject.subject);
+                        $("#adviserName3").show();
+                        $("#adviserName3").html(period.adviser);
+                        $("#sched3").show();
+                        $("#sched3").html(period.period);
+                    }
+                };
+            });
+        }
     </script>
 
 </body>

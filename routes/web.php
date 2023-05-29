@@ -38,6 +38,7 @@ Route::get('/student/auth/login', [MainController::class, 'login'])->name('stude
 Route::get('/student/auth/register-student', [MainController::class, 'register'])->name('auth.save-continue');
 Route::post('/student/auth/register-student/save', [MainController::class, 'saveStudent'])->name('auth.save');
 Route::post('/student/auth/verify', [MainController::class, 'verify'])->name('login');
+Route::post('/student/get-student-load', [MainController::class, 'getStudentLoad'])->name('student.get-student-load');
 Route::get('/student/auth/register-new-student', [MainController::class, 'registerNewStudent']);
 Route::get('/student/auth/register-new-student/getFirstPeriod/{id}', [MainController::class, 'getFirstPeriod']);
 Route::get('/student/auth/register-new-student/getProgram/{id}', [MainController::class, 'getProgram']);

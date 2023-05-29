@@ -216,7 +216,9 @@ class AdminController extends Controller
     function deleteSemester($id)
     {
         $semester = SchoolYear::find($id);
-        $semester->delete();
+        if(count($semester->schoolEnrollees->toArray()) == 0){
+            $semester->delete();
+        }
         return back();
     }
 

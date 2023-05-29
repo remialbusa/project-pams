@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
 
-
 class MainController extends Controller
 {
     function login()
@@ -110,7 +109,7 @@ class MainController extends Controller
         //validate info
         $request->validate([
             'student_type' => 'required',
-            'student_id' => 'required|unique:pending_students',
+            'student_id' => 'required',
             'last_name' => 'required|unique:pending_students',
             'first_name' => 'required|unique:pending_students',
             'vaccination_status' => 'required',
@@ -130,7 +129,6 @@ class MainController extends Controller
             'second_period' => 'required',
             'third_period' => 'required',
         ]);
-
 
         //insert data
         $student = new PendingStudent();
@@ -154,21 +152,17 @@ class MainController extends Controller
         $student->second_period_sub = $request->second_period;
         $student->third_period_sub = $request->third_period;
         $vaccination_file = $request->vaccination_file;
-        $vaccination_file_name = $vaccination_file->getClientOriginalName();
-        $request->vaccination_file->move('assets', $vaccination_file_name);
-        $student->vaccination_file = $vaccination_file_name;
-
-
+        $vaccination_file_name = uniqid($vaccination_file->getClientOriginalName());
+        $path = Storage::disk('assets')->put('/', $vaccination_file);
+        $student->vaccination_file = $path;
 
         $student_file = []; // Initialize the variable as an empty array
         $files = $request->file;
+
         foreach ($files as $file) {
-            $extension = $file->getClientOriginalExtension();
-            if (in_array($extension, ['jpg', 'jpeg', 'png', 'pdf'])) {
-                $filename = time() . '_' . $file->getClientOriginalName();
-                $file->move('assets', $filename);
-                $student_file[] = $filename;
-            }
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = Storage::disk('assets')->put('/', $file);
+            array_push($student_file, $path);
         }
         $student->file = json_encode($student_file);
 
@@ -193,6 +187,7 @@ class MainController extends Controller
             $error = 'No available slot for Program: ' . $programs->program;
             return back()->with('fail', $error);
         }
+
         $student->save();
         return back()->with('success', 'Registration complete');
     }
@@ -426,10 +421,9 @@ class MainController extends Controller
 
         $file = $request->file;
 
-        $filename = $file->getClientOriginalName();
-        $request->file->move('assets', $filename);
+        $path = Storage::disk('assets')->put('/', $file);
 
-        $student->file = $filename;
+        $student->file = $path;
 
         $save = $student->save();
 
@@ -478,6 +472,11 @@ class MainController extends Controller
         }
 
         return view('student.profile-settings.change-password', $data);
+    }
+
+    function getStudentLoad(Request $request)
+    {
+        return StudentLoad::with('subject')->where('school_year_id', $request->schoolyear_id)->where('student_id', $request->id)->get();
     }
 
     function updatePassword(Request $request)

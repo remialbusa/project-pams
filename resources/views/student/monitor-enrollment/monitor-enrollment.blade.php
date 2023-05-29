@@ -88,6 +88,24 @@
                                             <hr class="default-divider ml-auto mt-1 mb-2">
                                             <p class="form-header">List of enrolled subjects: </p>
                                             <hr/>
+
+                                            <div>
+                                                <label>Select Semester</label>
+                                                @php
+                                                    $schoolyears_enrolled = App\Models\SchoolYear::where('status', 'active')->whereHas('schoolEnrollees', function($q) use($LoggedUserInfo){
+                                                        $q->where('student_id', $LoggedUserInfo->id);
+                                                    })->get(); 
+                                                @endphp
+                                                @if($schoolyears_enrolled)
+                                                <input type="hidden" id="studentTableId" value="{{$LoggedUserInfo->id}}">
+                                                <select class="form-control" onchange="changeSem()" id="semesterSelect">
+                                                    <option selected disabled> Select Semester</option>
+                                                    @foreach($schoolyears_enrolled as $school_year)
+                                                        <option value="{{$school_year->id}}">{{ ucfirst($school_year->school_year) . ' - '. ucfirst($school_year->semester) }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @endif
+                                            </div>
                                             <table class="table default-table" >
                                                 <thead>
                                                     <tr >
@@ -99,62 +117,35 @@
                                                 <tbody>
                                                     <tr >
                                                         <td>
-                                                            @if ($LoggedUserInfo->getFirstPeriodID->id !== null)
-                                                            <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->getFirstPeriodID->code}} - {{$LoggedUserInfo->getFirstPeriodID->subject}}</p>
-                                                            @else
-                                                            @endif
+                                                            <p class="sub-text" style="text-align: left; display:none" id="subjectName1"></p>
                                                         </td>
                                                         <td>
-                                                            @if ($LoggedUserInfo->first_period_adviser !== null)
-                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->first_period_adviser}}</p>
-                                                            @else
-                                                            @endif
+                                                            <p class="status-text" style="text-align: center; display:none" id="adviserName1"></p>
                                                         </td>
                                                         <td>
-                                                            @if ($LoggedUserInfo->first_period_sched !== null)
-                                                            <p class="status-text" style="text-align: right;">{{$LoggedUserInfo->first_period_sched}}</p>
-                                                            @else
-                                                            @endif
+                                                            <p class="status-text" style="text-align: right; display:none" id="sched1"></p>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            @if ($LoggedUserInfo->getSecondPeriodID->id !== null)
-                                                            <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->getSecondPeriodID->code}} - {{$LoggedUserInfo->getSecondPeriodID->subject}}</p>
-                                                            @else
-                                                            @endif
+                                                            <p class="sub-text" style="text-align: left; display:none" id="subjectName2"></p>
                                                         </td>
                                                         <td>
-                                                            @if ($LoggedUserInfo->second_period_adviser !== null)
-                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->second_period_adviser}}</p>
-                                                            @else
-                                                            @endif
+                                                            <p class="status-text" style="text-align: center; display:none" id="adviserName2"></p>
                                                         </td>
                                                         <td>
-                                                            @if ($LoggedUserInfo->second_period_sched !== null)
-                                                            <p class="status-text" style="text-align: right;">{{$LoggedUserInfo->second_period_sched}}</p>
-                                                            @else
-                                                            @endif
+                                                            <p class="status-text" style="text-align: right; display:none" id="sched2"></p>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            @if ($LoggedUserInfo->getThirdPeriodID->id !== null)
-                                                            <p class="sub-text" style="text-align: left;">{{$LoggedUserInfo->getThirdPeriodID->code}} - {{$LoggedUserInfo->getThirdPeriodID->subject}}</p>
-                                                            @else
-                                                            @endif
+                                                            <p class="sub-text" style="text-align: left; display:none" id="subjectName3"></p>
                                                         </td>
                                                         <td>
-                                                            @if ($LoggedUserInfo->third_period_adviser !== null)
-                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->third_period_adviser}}</p>
-                                                            @else
-                                                            @endif
+                                                            <p class="status-text" style="text-align: center; display:none" id="adviserName3"></p>
                                                         </td>
                                                         <td>
-                                                            @if ($LoggedUserInfo->third_period_sched !== null)
-                                                            <p class="status-text" style="text-align: right;">{{$LoggedUserInfo->third_period_sched}}</p>
-                                                            @else
-                                                            @endif
+                                                            <p class="status-text" style="text-align: right; display:none" id="sched3"></p>
                                                         </td>
                                                     </tr>
                                                 </tbody>
