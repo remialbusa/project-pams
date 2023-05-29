@@ -105,14 +105,14 @@
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            @if ($LoggedUserInfo->getStudentID->first_period_adviser !== null)
-                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->getStudentID->first_period_adviser}}</p>
+                                                            @if ($LoggedUserInfo->first_period_adviser !== null)
+                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->first_period_adviser}}</p>
                                                             @else
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            @if ($LoggedUserInfo->getStudentID->first_period_sched !== null)
-                                                            <p class="status-text" style="text-align: right;">{{$LoggedUserInfo->getStudentID->first_period_sched}}</p>
+                                                            @if ($LoggedUserInfo->first_period_sched !== null)
+                                                            <p class="status-text" style="text-align: right;">{{$LoggedUserInfo->first_period_sched}}</p>
                                                             @else
                                                             @endif
                                                         </td>
@@ -125,14 +125,14 @@
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            @if ($LoggedUserInfo->getStudentID->second_period_adviser !== null)
-                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->getStudentID->second_period_adviser}}</p>
+                                                            @if ($LoggedUserInfo->second_period_adviser !== null)
+                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->second_period_adviser}}</p>
                                                             @else
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            @if ($LoggedUserInfo->getStudentID->second_period_sched !== null)
-                                                            <p class="status-text" style="text-align: right;">{{$LoggedUserInfo->getStudentID->second_period_sched}}</p>
+                                                            @if ($LoggedUserInfo->second_period_sched !== null)
+                                                            <p class="status-text" style="text-align: right;">{{$LoggedUserInfo->second_period_sched}}</p>
                                                             @else
                                                             @endif
                                                         </td>
@@ -145,14 +145,14 @@
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            @if ($LoggedUserInfo->getStudentID->third_period_adviser !== null)
-                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->getStudentID->third_period_adviser}}</p>
+                                                            @if ($LoggedUserInfo->third_period_adviser !== null)
+                                                            <p class="status-text" style="text-align: center;">{{$LoggedUserInfo->third_period_adviser}}</p>
                                                             @else
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            @if ($LoggedUserInfo->getStudentID->third_period_sched !== null)
-                                                            <p class="status-text" style="text-align: right;">{{$LoggedUserInfo->getStudentID->third_period_sched}}</p>
+                                                            @if ($LoggedUserInfo->third_period_sched !== null)
+                                                            <p class="status-text" style="text-align: right;">{{$LoggedUserInfo->third_period_sched}}</p>
                                                             @else
                                                             @endif
                                                         </td>
@@ -167,14 +167,14 @@
 
                                 {{-- Enrollment Process/Status Tab --}}
                                 <div class="tab-pane fade" id="enrollment-process" role="tabpanel" aria-labelledby="enrollment-process-tab">
-                                    @if ($LoggedUserInfo->getStudentID['enrollment_status'] == 'Enrolled')
+                                    @if ($LoggedUserInfo['enrollment_status'] == 'Enrolled')
                                         
-                                        @if ($LoggedUserInfo->getStudentID->file !== null)
+                                        @if ($LoggedUserInfo->file !== null)
                                         <div class="alert alert-success d-flex align-items-center mt-4" role="alert">
                                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                                             <div>
                                               You are now officially Enrolled!
-                                              <a href="{{ route('student.view-entrance-slip-pdf', $LoggedUserInfo->getStudentID->id)}}" target="_blank"><button class="ml-5 btn btn-md btn-success">Download Enrollment Slip</button></a>
+                                              <a href="{{ route('student.view-entrance-slip-pdf', $LoggedUserInfo->id)}}" target="_blank"><button class="ml-5 btn btn-md btn-success">Download Enrollment Slip</button></a>
                                             </div>
                                         </div>
                                         @else
@@ -199,7 +199,7 @@
                                                         <p class="sub-text mt-3" style="text-align: left;">1. Subject advisement by the Enrolling Teacher:</i></p>
                                                     </td>
                                                     <td>
-                                                        @if($LoggedUserInfo->getStudentID['first_procedure'] == 'Done')
+                                                        @if($LoggedUserInfo['first_procedure'] == 'Done')
                                                         <p class="status-text" style="text-align: center;"><span style="font-weight: 600; font-size: 12px; color: #13a166">
                                                             <i class="bi bi-check-circle"></i> 
                                                             <option value="Done">Done</option>
@@ -219,7 +219,7 @@
                                                         <p class="sub-text mt-3" style="text-align: left;">2. Subject Enlistment at the Management Information System Office:</i></p>
                                                     </td>
                                                     <td>
-                                                        @if($LoggedUserInfo->getStudentID['second_procedure'] == 'Done')
+                                                        @if($LoggedUserInfo['second_procedure'] == 'Done')
                                                         <p class="status-text" style="text-align: center;"><span style="font-weight: 600; font-size: 12px; color: #13a166">
                                                             <i class="bi bi-check-circle"></i> 
                                                             <option value="Done">Done</option>
@@ -239,7 +239,7 @@
                                                         <p class="sub-text mt-3" style="text-align: left;">3. Validation and issuance of the Entrance Slip:</i></p>
                                                     </td>
                                                     <td>
-                                                        @if($LoggedUserInfo->getStudentID['third_procedure'] == 'Done')
+                                                        @if($LoggedUserInfo['third_procedure'] == 'Done')
                                                         <p class="status-text" style="text-align: center;"><span style="font-weight: 600; font-size: 12px; color: #13a166">
                                                             <i class="bi bi-check-circle"></i> 
                                                             <option value="Done">Done</option>

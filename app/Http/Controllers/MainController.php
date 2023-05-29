@@ -255,7 +255,7 @@ class MainController extends Controller
         $student->last_name = $request->last_name;
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
-        $student->vaStudentLoadccination_status = $request->vaccination_status;
+        $student->vaccination_status = $request->vaccination_status;
         $student->email = $request->email;
         $student->gender = $request->gender;
         $student->birth_date = $request->birth_date;
@@ -338,6 +338,7 @@ class MainController extends Controller
 
     function enrollmentStatus()
     {
+        $student = null;
         if (session()->has('LoggedUser')) {
             $student = EnrolledStudent::where('id', '=', session('LoggedUser'))->first();
             $data = [
@@ -347,7 +348,7 @@ class MainController extends Controller
         $school_year = DB::table('school_year')->where('status', 'Active')->first();
         $studentUser = EnrolledStudent::all();
         $subject = Subject::all();
-        return view('student.monitor-enrollment.monitor-enrollment', $data, ['school_year' => $school_year, 'subject' => $subject, 'studentUser' => $studentUser]);
+        return view('student.monitor-enrollment.monitor-enrollment', ['LoggedUserInfo' =>  $student, 'school_year' => $school_year, 'subject' => $subject, 'studentUser' => $studentUser]);
     }
 
     function preEnroll()

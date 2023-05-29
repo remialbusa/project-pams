@@ -126,7 +126,7 @@
                                             @php
                                             $vaccination_file = $student->vaccination_file; // Assign the vaccination file path or name to the variable
                                             @endphp
-                                            <td class="col-sm-1 text-center"> <a href="{{ asset('assets/' . $vaccination_file) }}" target="_blank" rel="noopener noreferrer">{{ $vaccination_file }}</a></td>
+                                            <td class="col-sm-1 text-center"> <a href="{{ asset('assets/' . $vaccination_file) }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('assets/' . $vaccination_file) }}" style="width: 100px;"></a></td>
                                             <td class="col-sm-1 text-center pt-4">
                                                 @php
                                                 $files = json_decode($student->file, true);
