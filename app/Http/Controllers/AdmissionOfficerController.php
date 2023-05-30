@@ -226,7 +226,7 @@ class AdmissionOfficerController extends Controller
             'second_period_sub' => 'required',
             'third_period_sub' => 'required',
         ]);
-        $student = EnrolledStudent::create([
+        $student = EnrolledStudent::updateOrCreate([ 'student_id' => $request->student_id, 'program' => $request->program, ], [
             'id' => $request->id,
             'student_type' => $request->student_type,
             'student_id' => $request->student_id,
