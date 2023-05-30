@@ -16,7 +16,7 @@ class CreateStudentLoad extends Migration
         Schema::create('student_loads', function (Blueprint $table) {
             $table->id();
             $table->integer('subject_id')->references('id')->on('constituents')->onDelete('cascade');
-            $table->string('student_id')->references('id')->on('enrolled_students')->onDelete('cascade');
+            $table->string('student_id')->references('student_id')->on('enrolled_students')->onDelete('cascade');
             $table->integer('school_year_id')->references('id')->on('school_year')->onDelete('cascade');
             $table->string('adviser');
             $table->string('period');

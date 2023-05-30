@@ -27,7 +27,12 @@ class EnrolledStudent extends Model
 
     public function studentLoad()
     {
-        return $this->hasMany('App\Models\StudentLoad', 'student_id','id');
+        return $this->hasMany('App\Models\StudentLoad', 'student_id','student_id');
+    }
+
+    public function schoolYearEnrollees()
+    {
+        return $this->hasMany('App\Models\EnrolledStudent', 'student_id','student_id');
     }
 
     public function currentProgram()

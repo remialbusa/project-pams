@@ -90,11 +90,11 @@
                                                 <label>Select Semester</label>
                                                 @php
                                                     $schoolyears_enrolled = App\Models\SchoolYear::where('status', 'active')->whereHas('schoolEnrollees', function($q) use($LoggedUserInfo){
-                                                        $q->where('student_id', $LoggedUserInfo->id);
+                                                        $q->where('student_id', $LoggedUserInfo->student_id);
                                                     })->get(); 
                                                 @endphp
                                                 @if($schoolyears_enrolled)
-                                                <input type="hidden" id="studentTableId" value="{{$LoggedUserInfo->id}}">
+                                                <input type="hidden" id="studentId" value="{{$LoggedUserInfo->student_id}}">
                                                 <select class="form-control" onchange="changeSem()" id="semesterSelect">
                                                     <option selected disabled> Select Semester</option>
                                                     @foreach($schoolyears_enrolled as $school_year)

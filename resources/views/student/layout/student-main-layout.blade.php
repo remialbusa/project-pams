@@ -404,10 +404,11 @@
         function changeSem() {
             $.post("/student/get-student-load", {
                     schoolyear_id: $("#semesterSelect").val(),
-                    id: $("#studentTableId").val(),
+                    student_id: $("#studentId").val(),
                     _token: $('meta[name="csrf-token"]').attr('content'),
                 },
                 function(data, status) {
+                    console.log(data);
                     for (period of data) {
                         if (period.period == '1st Period') {
                             $("#subjectName1").show();

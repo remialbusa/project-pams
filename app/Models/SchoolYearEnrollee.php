@@ -14,10 +14,16 @@ class SchoolYearEnrollee extends Model
     protected $fillable = [
         'student_id', 
         'school_year_id',
+        'enrolled_student_table_id',
     ];
 
     public function student()
     {
-        return $this->belongsTo('App\Models\EnrolledStudent', 'student_id');
+        return $this->belongsTo('App\Models\EnrolledStudent', 'student_id', 'student_id');
+    }
+
+    public function enrolledStudentById()
+    {
+        return $this->belongsTo('App\Models\EnrolledStudent', 'enrolled_student_table_id');
     }
 }

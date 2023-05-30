@@ -47,7 +47,7 @@
         <tr></tr>
         @foreach($school_year->schoolEnrollees as $school_enrollee)
             @php
-                $student = $school_enrollee->student;
+                $student = $school_enrollee->enrolledStudentById;
             @endphp
             @if($student)
                 <tr>
@@ -70,7 +70,7 @@
                     <td style="text-align:center">{{$student->city}}</td>
                     <td style="text-align:center">{{$student->baranggay}}</td>
                 @php
-                    $student_loads = App\Models\StudentLoad::where('school_year_id', $school_year->id)->where('student_id', $student->id)->get();
+                    $student_loads = App\Models\StudentLoad::where('school_year_id', $school_year->id)->where('student_id', $student->student_id)->get();
                     $program = App\Models\Program::where('id', $student_loads->first() ? $student_loads->first()->program : -1)->first();
                 @endphp
 

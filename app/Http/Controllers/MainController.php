@@ -131,7 +131,7 @@ class MainController extends Controller
         ]);
 
         //insert data
-        $student = new PendingStudent();
+        $student = PendingStudent::firstOrNew(['student_id' => $request->student_id]);
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;
         $student->last_name = $request->last_name;
@@ -358,7 +358,7 @@ class MainController extends Controller
         $school_year = $request->schoolyear_id
             ? DB::table('school_year')->where('id', $request->schoolyear_id)->where('status', 'Active')->first()
             : SchoolYear::where('status', 'Active')->whereDoesntHave('schoolEnrollees', function ($q) use ($student) {
-                $q->where('student_id', $student->id);
+                $q->where('student_id', $student->student_id);
             })->first();
         $studentUser = EnrolledStudent::all();
         $enrolledStudent = EnrolledStudent::all();
@@ -376,9 +376,7 @@ class MainController extends Controller
 
     function savePreEnroll(Request $request)
     {
-
-        //validate info
-        /*   $request->validate([
+        $request->validate([
             'student_type' => 'required',
             'student_id' => 'required',
             'last_name' => 'required',
@@ -394,16 +392,16 @@ class MainController extends Controller
             'province' => 'required',
             'city' => 'required',
             'baranggay' => 'required',
-            'file.*' => 'required|mimes:pdf,xlx,csv|max:2048',
+            'file.*' => 'required|mimes:pdf,xlx,csv,jpg,jpeg,png|max:2048',
             'program' => 'required',
             'first_period' => 'required',
             'second_period' => 'required',
             'third_period' => 'required',
         ]);
- */
 
         //insert data
-        $student = ApprovedStudent::firstOrNew(['id' => $request->id]);
+        $student = ApprovedStudent::firstOrNew(['student_id' => $request->student_id]);
+
         $student->id = $request->id;
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;
@@ -427,7 +425,6 @@ class MainController extends Controller
         $student->second_period_sub = $request->second_period;
         $student->third_period_sub = $request->third_period;
         $vaccination_file = $request->vaccination_file;
-
         $vaccination_file_name = uniqid($vaccination_file->getClientOriginalName());
         $path = Storage::disk('assets')->put('/', $vaccination_file);
         $student->vaccination_file = $path;
@@ -441,13 +438,6 @@ class MainController extends Controller
             array_push($student_file, $path);
         }
         $student->file = json_encode($student_file);
-
-        $student = ApprovedStudent::where('first_name', $student->first_name)
-            ->where(function ($query) {
-                $query->where('student_type', 'New Student')
-                    ->orWhere('student_type', 'Continuing Student');
-            })
-            ->first();
 
         $save = $student->save();
         if ($save) {
@@ -498,7 +488,7 @@ class MainController extends Controller
 
     function getStudentLoad(Request $request)
     {
-        return StudentLoad::with('subject')->where('school_year_id', $request->schoolyear_id)->where('student_id', $request->id)->get();
+        return StudentLoad::with('subject')->where('school_year_id', $request->schoolyear_id)->where('student_id', $request->student_id)->get();
     }
 
     function updatePassword(Request $request)

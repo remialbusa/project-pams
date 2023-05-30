@@ -31,14 +31,13 @@ class EnrolledStudentExport implements FromView, WithEvents
     {
        if($this->school_year_id){
             $school_years = SchoolYear::where('id', $this->school_year_id)->with(['schoolEnrollees' => function ($query) {
-                $query->with('student');
+                $query->with('enrolledStudentById');
             }])->get();
        } else {
             $school_years = SchoolYear::with(['schoolEnrollees' => function ($query) {
-                $query->with('student');
+                $query->with('enrolledStudentById');
             }])->get();
        }
-
         return view('exports.enrolled_students', [
             'school_years' => $school_years
         ]);

@@ -18,7 +18,7 @@ class ApprovedStudent extends Model
 
     public function enrolledSchoolYear()
     {
-        return $this->belongsTo('App\Models\SchoolYearEnrollee', 'id', 'student_id');
+        return $this->belongsTo('App\Models\SchoolYearEnrollee', 'student_id', 'student_id');
     }
 
     public function getFirstPeriodID()
@@ -48,7 +48,7 @@ class ApprovedStudent extends Model
 
     public function studentLoad()
     {
-        return $this->hasMany('App\Models\StudentLoad', 'student_id','id');
+        return $this->hasMany('App\Models\StudentLoad', 'student_id','student_id');
     }
     
 }

@@ -61,8 +61,8 @@ class AdmissionOfficerController extends Controller
                 'LoggedAdminInfo' => $admin
             ];
         }
-        $pendingStudents = PendingStudent::with('studentLoad')->doesntHave('enrolledSchoolYear')->get();
-        $approvedStudents = ApprovedStudent::with('studentLoad')->doesntHave('enrolledSchoolYear')->get();
+        $pendingStudents = PendingStudent::with('studentLoad')->get();
+        $approvedStudents = ApprovedStudent::with('studentLoad')->get();
         return view('ogs.manage-enrollees.manage-enrollees', $data, ['approvedStudents' => $approvedStudents, 'pendingStudents' => $pendingStudents]);
     }
 
@@ -103,8 +103,9 @@ class AdmissionOfficerController extends Controller
             'third_period' => 'required',
         ]);
 
+
         // Insert data
-        $student = new ApprovedStudent();
+        $student = ApprovedStudent::firstOrNew(['student_id' => $request->student_id]);
         $student->id = $request->id;
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;
@@ -225,7 +226,7 @@ class AdmissionOfficerController extends Controller
             'second_period_sub' => 'required',
             'third_period_sub' => 'required',
         ]);
-        $student = EnrolledStudent::updateOrCreate([ 'id' => $request->id ], [
+        $student = EnrolledStudent::create([
             'id' => $request->id,
             'student_type' => $request->student_type,
             'student_id' => $request->student_id,
@@ -254,7 +255,7 @@ class AdmissionOfficerController extends Controller
             'third_period_adviser' => $request->third_period_adviser,
             'enrollment_id' => $request->id,
         ]);
-        $this->saveStudentLoad($student, $request->id);
+        $this->saveStudentLoad($student);
         Mail::to($student->email)->send(new NotificationMail($student->email));
         if ($student) {
             return back()->with('success', 'Successfully inserted student data');
@@ -263,13 +264,16 @@ class AdmissionOfficerController extends Controller
         }
     }
 
-    function saveStudentLoad($student, $approveStudentId)
+    function saveStudentLoad($student)
     {
         $sy = SchoolYear::where('semester', $student->currentProgram->semester)
             ->where('status', 'Active')
             ->first();
-        SchoolYearEnrollee::updateOrCreate(['student_id' => $approveStudentId, 'school_year_id' => $sy->id], ['student_id' => $approveStudentId, 'school_year_id' => $sy->id]);
-        $sye = SchoolYearEnrollee::updateOrCreate(['student_id' => $student->id, 'school_year_id' => $sy->id], ['student_id' => $student->id, 'school_year_id' => $sy->id]);
+        $sye = SchoolYearEnrollee::updateOrCreate(['student_id' => $student->student_id, 'school_year_id' => $sy->id], [
+            'student_id' => $student->student_id,
+            'enrolled_student_table_id' => $student->id,
+            'school_year_id' => $sy->id
+        ]);
         $this->createStudentLoad($student->first_period_sub, $sy, $student, $student->first_period_adviser, $student->first_period_sched);
         $this->createStudentLoad($student->second_period_sub, $sy, $student, $student->second_period_adviser, $student->second_period_sched);
         $this->createStudentLoad($student->third_period_sub, $sy, $student, $student->third_period_adviser, $student->third_period_sched);
@@ -277,9 +281,9 @@ class AdmissionOfficerController extends Controller
 
     function createStudentLoad($subject_id, $sy, $student, $adviser, $sched){
         $subject = Subject::find($subject_id);
-        StudentLoad::updateOrCreate(['school_year_id' => $sy->id, 'student_id' => $student->id, 'period' => $subject->period], [
+        StudentLoad::updateOrCreate(['school_year_id' => $sy->id, 'student_id' => $student->student_id, 'period' => $subject->period], [
             'subject_id' => $subject_id,
-            'student_id' => $student->id, 
+            'student_id' => $student->student_id, 
             'school_year_id' => $sy->id,
             'semester' => $sy->semester,
             'period' => $subject->period,
@@ -353,7 +357,7 @@ class AdmissionOfficerController extends Controller
         $students->program = $request->program;
 
         $save = $students->save();
-        $this->saveStudentLoad($students, $request->id);
+        $this->saveStudentLoad($students);
         if ($save) {
             return redirect('/staff/admin/manage-enrollees');
         } else {
@@ -1182,7 +1186,7 @@ class AdmissionOfficerController extends Controller
         ]);
 
         //insert data
-        $student = new EnrolledStudent();
+        $student = EnrolledStudent::firstOrNew(['student_id' => $request->student_id]);
         $student->id = $request->id;
         $student->student_type = $request->student_type;
         $student->student_id = $request->student_id;
@@ -1216,7 +1220,7 @@ class AdmissionOfficerController extends Controller
 
         $this->deletePending($request->id);
         $this->deletePreEnrollee($request->id);
-        $this->saveStudentLoad($student, $request->id);
+        $this->saveStudentLoad($student);
         if ($save) {
             return redirect('staff/admin/enrolled');
         } else {
@@ -1328,7 +1332,7 @@ class AdmissionOfficerController extends Controller
         $student->second_period_adviser = $request->second_period_adviser;
         $student->third_period_adviser = $request->third_period_adviser;
         $save = $student->save();
-        $this->saveStudentLoad($student, $request->id);
+        $this->saveStudentLoad($student);
         if ($save) {
             return redirect('/staff/admin/enrolled');
         } else {

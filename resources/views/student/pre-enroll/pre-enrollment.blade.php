@@ -40,7 +40,7 @@
     <div class="card-header py-3">
         @php
         $schoolyears_enrolled = App\Models\SchoolYear::where('status', 'active')->with('schoolEnrollees')->whereDoesntHave('schoolEnrollees', function($query) use($LoggedUserInfo){
-        $query->where('student_id', $LoggedUserInfo->id);
+        $query->where('student_id', $LoggedUserInfo->student_id);
         })->get();
         @endphp
         <label>Select Semester</label>
