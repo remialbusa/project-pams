@@ -21,7 +21,7 @@ class CreateStudentLoad extends Migration
             $table->string('adviser');
             $table->string('period');
             $table->string('program');
-            $table->string('semester');
+            $table->string('semester')->nullable();
             $table->string('sub_sched');
             $table->timestamps();
         });

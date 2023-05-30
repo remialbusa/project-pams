@@ -420,18 +420,24 @@
                                 var code = response['data'][i].code;
                                 var subject = response['data'][i].subject;
                                 var status = response['data'][i].status;
-
+                                var semester = response['data'][i].semester;
                                 var option = "<option value='" + id + "'";
 
                                 if (status === 'Dissolved' || status === 'Inactive') {
                                     option += " disabled";
                                 }
 
+                                if (semester == 'Second') {
+                                    option += "hidden";
+                                }
+
+
                                 option += ">" + code + "\n" + "-" + "\n" + subject + "-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + status + "</option>";
 
                                 $("#first_period").append(option);
                             }
                         }
+
                     }
                 });
                 $('#second_period').find('option').not(':first').remove();
@@ -454,11 +460,15 @@
                                 var code = response['data'][i].code;
                                 var subject = response['data'][i].subject;
                                 var status = response['data'][i].status;
+                                var semester = response['data'][i].semester;
 
                                 var option = "<option value='" + id + "'";
 
                                 if (status === 'Dissolved' || status === 'Inactive') {
                                     option += " disabled";
+                                }
+                                if (semester == 'Second') {
+                                    option += "hidden";
                                 }
 
                                 option += ">" + code + "\n" + "-" + "\n" + subject + "-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + status + "</option>";
@@ -489,11 +499,15 @@
                                 var code = response['data'][i].code;
                                 var subject = response['data'][i].subject;
                                 var status = response['data'][i].status;
+                                var semester = response['data'][i].semester;
 
                                 var option = "<option value='" + id + "'";
 
                                 if (status === 'Dissolved' || status === 'Inactive') {
                                     option += " disabled";
+                                }
+                                if (semester == 'Second'){
+                                    option += "hidden";
                                 }
 
                                 option += ">" + code + "\n" + "-" + "\n" + subject + "-" + "-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + status + "</option>";

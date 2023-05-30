@@ -37,7 +37,7 @@ class MainController extends Controller
 
     function register(Request $request)
     {
-        $school_year= SchoolYear::find($request->schoolyear_id);
+        $school_year = SchoolYear::find($request->schoolyear_id);
 
         $programData['data'] = Program::orderby("program", "asc")
             ->select('id', 'program', 'description')
@@ -355,9 +355,9 @@ class MainController extends Controller
             ];
         }
 
-        $school_year = $request->schoolyear_id 
-            ? DB::table('school_year')->where('id', $request->schoolyear_id )->where('status', 'Active')->first() 
-            : SchoolYear::where('status', 'Active')->whereDoesntHave('schoolEnrollees', function($q) use($student){
+        $school_year = $request->schoolyear_id
+            ? DB::table('school_year')->where('id', $request->schoolyear_id)->where('status', 'Active')->first()
+            : SchoolYear::where('status', 'Active')->whereDoesntHave('schoolEnrollees', function ($q) use ($student) {
                 $q->where('student_id', $student->id);
             })->first();
         $studentUser = EnrolledStudent::all();
@@ -366,7 +366,6 @@ class MainController extends Controller
         $firstPeriod = DB::table('subjects')->where('period', '1st Period')->get();
         $secondPeriod = DB::table('subjects')->where('period', '2nd Period')->get();
         $thirdPeriod = DB::table('subjects')->where('period', '3rd Period')->get();
-
         $programData['data'] = Program::orderby("program", "asc")
             ->select('id', 'program', 'description')
             ->where('semester', $school_year->semester)
@@ -377,13 +376,15 @@ class MainController extends Controller
 
     function savePreEnroll(Request $request)
     {
+
         //validate info
-        $request->validate([
+        /*   $request->validate([
             'student_type' => 'required',
             'student_id' => 'required',
             'last_name' => 'required',
             'first_name' => 'required',
             'vaccination_status' => 'required',
+            'vaccination_file' => 'required|mimes:pdf,xlx,csv,jpg,jpeg,png|max:2048',
             'email' => 'required',
             'gender' => 'required',
             'birth_date' => 'required|date|before:-23 years',
@@ -393,13 +394,13 @@ class MainController extends Controller
             'province' => 'required',
             'city' => 'required',
             'baranggay' => 'required',
-            'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+            'file.*' => 'required|mimes:pdf,xlx,csv|max:2048',
             'program' => 'required',
             'first_period' => 'required',
             'second_period' => 'required',
             'third_period' => 'required',
         ]);
-
+ */
 
         //insert data
         $student = ApprovedStudent::firstOrNew(['id' => $request->id]);
@@ -410,6 +411,7 @@ class MainController extends Controller
         $student->first_name = $request->first_name;
         $student->middle_name = $request->middle_name;
         $student->vaccination_status = $request->vaccination_status;
+        $student->vaccination_file = $request->vaccination_file;
         $student->email = $request->email;
         $student->gender = $request->gender;
         $student->birth_date = $request->birth_date;
@@ -419,20 +421,35 @@ class MainController extends Controller
         $student->province = $request->province;
         $student->city = $request->city;
         $student->baranggay = $request->baranggay;
+        $student->file = $request->file;
         $student->program = $request->program;
         $student->first_period_sub = $request->first_period;
         $student->second_period_sub = $request->second_period;
         $student->third_period_sub = $request->third_period;
+        $vaccination_file = $request->vaccination_file;
 
-        $file = $request->file;
+        $vaccination_file_name = uniqid($vaccination_file->getClientOriginalName());
+        $path = Storage::disk('assets')->put('/', $vaccination_file);
+        $student->vaccination_file = $path;
 
-        $path = Storage::disk('assets')->put('/', $file);
+        $student_file = []; // Initialize the variable as an empty array
+        $files = $request->file;
 
-        $student->file = $path;
+        foreach ($files as $file) {
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = Storage::disk('assets')->put('/', $file);
+            array_push($student_file, $path);
+        }
+        $student->file = json_encode($student_file);
+
+        $student = ApprovedStudent::where('first_name', $student->first_name)
+            ->where(function ($query) {
+                $query->where('student_type', 'New Student')
+                    ->orWhere('student_type', 'Continuing Student');
+            })
+            ->first();
 
         $save = $student->save();
-
-
         if ($save) {
             return back()->with('success', 'Registration complete');
         } else {

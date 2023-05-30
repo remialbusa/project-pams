@@ -41,7 +41,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
 
-            <h6 class="m-0 font-weight-bold text-primary">S.Y. {{$school_year->school_year}}  {{$school_year->semester}}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">S.Y. {{$school_year->school_year}}</h6>
 
         </div>
         <section class="details">
@@ -69,9 +69,6 @@
                         <ul class="nav nav-tabs nav-fill mt-4 mb-2" id="myTab" role="tablist">                      
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link link-dark active" id="enrolled-subjects-tab" data-bs-toggle="tab" href="#enrolled-subjects" role="tab" aria-controls="enrolled-subjects" aria-selected="true">Enrolled Subjects</a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link link-dark" id="enrollment-process-tab" data-bs-toggle="tab" href="#enrollment-process" role="tab" aria-controls="enrollment-process" aria-selected="false">Enrollment Status</a>
                             </li>
                         </ul>
 
@@ -101,7 +98,7 @@
                                                 <select class="form-control" onchange="changeSem()" id="semesterSelect">
                                                     <option selected disabled> Select Semester</option>
                                                     @foreach($schoolyears_enrolled as $school_year)
-                                                        <option value="{{$school_year->id}}">{{ ucfirst($school_year->school_year) . ' - '. ucfirst($school_year->semester) }}</option>
+                                                        <option value="{{$school_year->id}}">{{ ucfirst($school_year->school_year) . ' - '. ucfirst($school_year->semester) }} Semester</option>
                                                     @endforeach
                                                 </select>
                                                 @endif

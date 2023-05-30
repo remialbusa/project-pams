@@ -141,6 +141,7 @@
                                                 @endforeach
                                                 @endif
                                             </td>
+
                                             <td class="px-1">
                                                 <a href="{{route('admin.encoding-students', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-pencil-square"></i></a>
                                                 <a href="{{route('view-encode-student-data', $student->id)}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm"><i class="bi bi-eye"></i></a>                        

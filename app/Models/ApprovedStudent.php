@@ -12,12 +12,23 @@ class ApprovedStudent extends Model
 {
     use HasFactory;
     use UUID;
+    protected $fillable = ['id'];
     
     protected $table = 'approved_students';
+
+    public function enrolledSchoolYear()
+    {
+        return $this->belongsTo('App\Models\SchoolYearEnrollee', 'id', 'student_id');
+    }
 
     public function getFirstPeriodID()
     {
         return $this->belongsTo(Subject::class, 'first_period_sub', 'id');
+    }
+
+    public function currentProgram()
+    {
+        return $this->belongsTo('App\Models\Program', 'program');
     }
 
     public function getSecondPeriodID()

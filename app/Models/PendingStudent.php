@@ -46,6 +46,11 @@ class PendingStudent extends Model
         'third_period_sub',
     ];
 
+    public function currentProgram()
+    {
+        return $this->belongsTo('App\Models\Program', 'program');
+    }
+
     public function getFirstPeriodID()
     {
         return $this->belongsTo(Subject::class, 'first_period_sub', 'id');
@@ -77,5 +82,15 @@ class PendingStudent extends Model
         return $this->select('first_period_sub', 'second_period_sub', 'third_period_sub')
             ->where('status', 'pending')
             ->get();
+    }
+
+    public function studentLoad()
+    {
+        return $this->hasMany('App\Models\StudentLoad', 'student_id','id');
+    }
+
+    public function enrolledSchoolYear()
+    {
+        return $this->belongsTo('App\Models\SchoolYearEnrollee', 'id');
     }
 }
