@@ -79,6 +79,17 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Student Monitoring</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.export-enrolled-student')}}">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Export Student Data</span></a>
+            </li>
+
+           <!--  <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.export-student') }}">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Export Student Data</span></a>
+            </li> -->
 
             <hr class="sidebar-divider">
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -147,7 +158,7 @@
 
                             <ul class="navbar-nav ms-auto font-weight-semibold">
                                 <li class="nav-item px-2">
-                                    <a class="nav-link-1">Welcome, <b>{{$LoggedAdminInfo->name}}</b></a>
+                                    <a class="nav-link-1">Welcome, <b></b></a>
                                 </li>
                                 </li>
                                 <li class="nav-item px-2">

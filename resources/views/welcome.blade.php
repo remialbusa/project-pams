@@ -394,9 +394,9 @@
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <script>
         var typed = new Typed(".auto-type", {
-            strings: ["LNU-GSMS"],
-            typeSpeed: 150,
-            backSpeed: 100,
+            strings: ["LEYTE NORMAL UNIVERSITY","Graduate School Managment System"],
+            typeSpeed: 100,
+            backSpeed: 50,
             loop: true
         })
     </script>

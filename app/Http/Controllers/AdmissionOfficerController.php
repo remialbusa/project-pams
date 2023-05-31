@@ -17,6 +17,7 @@ use App\Models\ApprovedStudent;
 use App\Models\Adviser;
 use App\Models\Scheduling;
 use App\Exports\EnrolledStudentExport;
+use App\Exports\StudentDataExport;
 use App\Exports\SubjectExport;
 use App\Exports\ProgramExport;
 use App\Exports\InstructorExport;
@@ -64,6 +65,18 @@ class AdmissionOfficerController extends Controller
         $pendingStudents = PendingStudent::with('studentLoad')->get();
         $approvedStudents = ApprovedStudent::with('studentLoad')->get();
         return view('ogs.manage-enrollees.manage-enrollees', $data, ['approvedStudents' => $approvedStudents, 'pendingStudents' => $pendingStudents]);
+    }
+
+
+    function exportStudentData()
+    {
+        if (session()->has('LoggedAdmin')) {
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo' => $admin
+            ];
+        }
+      return view('ogs.export-student');
     }
 
     #Approving Pending Students
@@ -496,6 +509,20 @@ class AdmissionOfficerController extends Controller
         $enrolledStudents = EnrolledStudent::all();
         return view('ogs.student-monitoring.student-monitoring', $data, ['enrolledStudents' => $enrolledStudents]);
     }
+
+    function enrolledStudentData()
+    {
+        if (session()->has('LoggedAdmin')) {
+            $admin = Admin::where('id', '=', session('LoggedAdmin'))->first();
+            $data = [
+                'LoggedAdminInfo' => $admin
+            ];
+        }
+        $enrolledStudents = EnrolledStudent::all();
+        $school_years = SchoolYear::all();
+        return view('ogs.student-monitoring.export-enrolled-students', $data, ['enrolledStudents' => $enrolledStudents, 'school_years'=> $school_years]);
+    }
+
 
     #Edit Enrolled Student
     function editEnrolledStudent($id)
@@ -1391,7 +1418,11 @@ class AdmissionOfficerController extends Controller
     #Exporting Data Tables
     function exportEnrolledStudents(Request $request)
     {
-        return Excel::download(new EnrolledStudentExport($request->schoolyear_id), 'enrolled-students.xlsx');
+        return Excel::download(new EnrolledStudentExport($request->schoolyear_id), 'Student-Data.xlsx');
+    }
+    function studentDataExport(Request $request)
+    {
+        return Excel::download(new StudentDataExport($request->schoolyear_id), 'student-data.xlsx');
     }
 
     function exportSubjects()
